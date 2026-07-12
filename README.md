@@ -1,9 +1,8 @@
-# sathishk.github.io
-Profile Page Sample
+# devcarnival.github.io
+Website of DevCarnival
 
 ## Setup
 
 ```sh
-git submodule add https://github.com/techatpark/my-resume.git themes/my-resume
 hugo server
 ```
