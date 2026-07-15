@@ -7,6 +7,7 @@ languageCode = "en-us"
   twitter = "#"
   github = "https://github.com/devcarnival"
   linkedin = "https://www.linkedin.com/company/dev-carnival"
+  email = "contact@devcarnival.com"
 
 [menu]
   [[menu.main]]
