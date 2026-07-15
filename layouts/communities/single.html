@@ -1,0 +1,65 @@
+{{ define "main" }}
+<div class="container hero-section">
+    <div class="row g-5">
+        <!-- Main Markdown Content Column -->
+        <div class="col-lg-8">
+            <a href="{{ "communities/" | relURL }}" class="text-muted text-decoration-none small fw-bold mb-4 d-inline-block">&larr; Back to all communities</a>
+            
+            <div class="d-flex align-items-center gap-4 mb-4">
+                {{ if .Params.logo }}
+                <div class="p-2 border bg-light rounded-3">
+                    <img src="{{ .Params.logo | relURL }}" alt="{{ .Title }} Logo" class="img-fluid" style="max-height: 80px; width: auto;">
+                </div>
+                {{ end }}
+                <div>
+                    <h1 class="display-4 fw-bold text-dark mb-1">{{ .Title }}</h1>
+                    <div class="d-flex gap-2 mt-2">
+                        {{ range .Params.years }}
+                        <span class="badge bg-light text-dark border">{{ . }} Cohort</span>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4 section-divider">
+
+            <!-- Renders the full markdown content safely -->
+            <div class="article-content text-secondary fs-5 line-height-md mb-5">
+                {{ .Content }}
+            </div>
+        </div>
+
+        <!-- Sidebar Panel for Social Links & Connection metadata -->
+        <div class="col-lg-4">
+            <div class="p-4 bg-light border rounded-0 sticky-top" style="top: 100px; z-index: 10;">
+                <h4 class="fw-bold text-dark mb-3 small text-uppercase tracking-wider">Connect & Engage</h4>
+                <p class="small text-muted mb-4">Follow this community's updates, collaborative repositories, and active social channels.</p>
+                
+                <div class="d-grid gap-2">
+                    {{ if .Params.socials.twitter }}
+                    <a href="{{ .Params.socials.twitter }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal w-100 text-start d-flex align-items-center justify-content-between">
+                        <span>Twitter / X</span> &rarr;
+                    </a>
+                    {{ end }}
+                    
+                    {{ if .Params.socials.github }}
+                    <a href="{{ .Params.socials.github }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal w-100 text-start d-flex align-items-center justify-content-between">
+                        <span>GitHub Ecosystem</span> &rarr;
+                    </a>
+                    {{ end }}
+                    
+                    {{ if .Params.socials.linkedin }}
+                    <a href="{{ .Params.socials.linkedin }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal w-100 text-start d-flex align-items-center justify-content-between">
+                        <span>LinkedIn Page</span> &rarr;
+                    </a>
+                    {{ end }}
+
+                    {{ if not (or .Params.socials.twitter .Params.socials.github .Params.socials.linkedin) }}
+                    <span class="text-muted small italic">No social ecosystem links registered for this year.</span>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}

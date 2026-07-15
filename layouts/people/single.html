@@ -1,0 +1,47 @@
+{{ define "main" }}
+<div class="container hero-section">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <!-- Back Navigation -->
+            <a href="{{ "" | relURL }}" class="text-muted text-decoration-none small fw-bold mb-5 d-inline-block">&larr; Return Home</a>
+            
+            <!-- Main Member Identifier Block -->
+            <div class="mb-4">
+                <h1 class="display-4 fw-bold text-dark mb-1">{{ .Title }}</h1>
+                {{ if .Params.designation }}
+                <span class="text-uppercase tracking-wider small fw-bold text-muted">{{ .Params.designation }}</span>
+                {{ end }}
+            </div>
+
+            <hr class="my-4 section-divider">
+
+            <!-- Dynamic Body Render for the Markdown Bio -->
+            <div class="article-content text-secondary fs-5 line-height-md mb-5">
+                {{ .Content }}
+            </div>
+
+            <!-- Horizontal Clean Connectivity Badges -->
+            <div class="pt-4 border-top">
+                <span class="d-block small fw-bold text-dark text-uppercase tracking-wider mb-3">Professional Profiles</span>
+                <div class="d-flex flex-wrap gap-3">
+                    {{ if .Params.socials.linkedin }}
+                    <a href="{{ .Params.socials.linkedin }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal btn-sm">
+                        LinkedIn Profile
+                    </a>
+                    {{ end }}
+                    
+                    {{ if .Params.socials.github }}
+                    <a href="{{ .Params.socials.github }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal btn-sm">
+                        GitHub Workspace
+                    </a>
+                    {{ end }}
+
+                    {{ if not (or .Params.socials.linkedin .Params.socials.github) }}
+                    <span class="text-muted small italic">No public code or career metrics registered.</span>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}

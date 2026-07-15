@@ -1,0 +1,17 @@
+<!-- Fixed Minimal Footer -->
+<footer class="py-4 section-divider bg-light fixed-bottom border-top">
+    <div class="container d-flex justify-content-between align-items-center small text-muted">
+        <div>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. Worldwide.</div>
+        <div class="d-flex gap-4">
+            {{ if .Site.Params.twitter }}
+            <a href="{{ .Site.Params.twitter }}" class="text-decoration-none text-muted">Twitter</a>
+            {{ end }}
+            {{ if .Site.Params.github }}
+            <a href="{{ .Site.Params.github }}" class="text-decoration-none text-muted">GitHub</a>
+            {{ end }}
+            {{ if .Site.Params.linkedin }}
+            <a href="{{ .Site.Params.linkedin }}" class="text-decoration-none text-muted" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            {{ end }}
+        </div>
+    </div>
+</footer>

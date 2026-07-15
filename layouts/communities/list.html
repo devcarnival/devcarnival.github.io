@@ -1,0 +1,79 @@
+{{ define "main" }}
+<div class="container hero-section">
+    <!-- Header -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h1 class="display-5 fw-bold text-dark mb-2">Ecosystem Communities</h1>
+            <p class="lead text-muted">The developer groups, open-source cohorts, and engineering circles driving DevCarnival.</p>
+        </div>
+    </div>
+
+    <!-- Extract Years & Filter Current Active Edition -->
+    {{ $allYears := slice }}
+    {{ range (where .Site.RegularPages "Section" "communities") }}
+        {{ range .Params.years }}
+            {{ $allYears = $allYears | append . }}
+        {{ end }}
+    {{ end }}
+    {{ $sortedYears := sort ($allYears | uniq) "value" "desc" }}
+    {{ $currentYear := index $sortedYears 0 }}
+
+    <div class="row mb-4">
+        <div class="col-12 d-flex align-items-center gap-3">
+            <h2 class="h4 fw-bold text-dark mb-0">{{ $currentYear }} Cohort Partners</h2>
+            <span class="badge bg-success text-white px-2 py-1 font-monospace">Active</span>
+        </div>
+        <div class="col-12 mt-2">
+            <hr class="m-0 border-dark-subtle">
+        </div>
+    </div>
+
+    <!-- Communities Grid -->
+    <div class="row g-4 mb-5">
+        {{ range (where .Site.RegularPages "Section" "communities") }}
+            {{ if in .Params.years $currentYear }}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border rounded-0 shadow-sm">
+                    <div class="card-body d-flex flex-column p-4">
+                        <h3 class="h5 fw-bold mb-2">
+                            <a href="{{ .Permalink }}" class="text-decoration-none text-dark hover-underline">{{ .Title }}</a>
+                        </h3>
+                        
+                        <p class="text-secondary small flex-grow-1">
+                            {{ .Summary | truncate 130 }}
+                        </p>
+                        
+                        <div class="mt-4 pt-3 border-top d-flex justify-content-between align-items-center">
+                            <a href="{{ .Permalink }}" class="btn btn-outline-minimal btn-sm">Explore Portal</a>
+                            
+                            <!-- Display count of connected people dynamically if array exists -->
+                            {{ if .Params.people }}
+                            <span class="small text-muted font-monospace bg-light px-2 py-1 border">
+                                {{ len .Params.people }} Leads
+                            </span>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        {{ end }}
+    </div>
+
+    <!-- Historical Communities Archive Link Submenu -->
+    <div class="row mt-5 pt-4 border-top border-light">
+        <div class="col-12 text-center">
+            <div class="d-inline-flex align-items-center gap-3 bg-light px-4 py-2 border rounded-pill small">
+                <span class="text-muted fw-bold text-uppercase tracking-wider fs-7">Communities Archive:</span>
+                {{ range $sortedYears }}
+                    {{ if ne . $currentYear }}
+                    <a href="{{ relURL (printf "years/%s/" .) }}" class="font-monospace">
+                        {{ . }} Catalog
+                    </a>
+                    {{ end }}
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}

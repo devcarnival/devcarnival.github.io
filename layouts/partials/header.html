@@ -1,0 +1,21 @@
+<!-- Header Navigation -->
+<nav class="navbar navbar-expand-lg bg-white fixed-top py-3 border-bottom border-light">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="{{ "" | relURL }}">
+            <!-- Small Logo Icon for Navbar -->
+            <img src="{{ "devcarnival-logo.svg" | relURL }}" alt="" class="me-2" style="max-height: 28px;" onerror="this.style.display='none'">
+            <span class="fw-bold tracking-tight text-dark fs-5">{{ .Site.Title }}</span>
+        </a>
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto gap-lg-4 mt-3 mt-lg-0 align-items-lg-center">
+                {{ range .Site.Menus.main }}
+                <li class="nav-item"><a class="nav-link" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+                {{ end }}
+                <li class="nav-item ms-lg-2"><a class="btn btn-outline-minimal btn-sm text-nowrap" href="#cfp">Submit a Talk</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

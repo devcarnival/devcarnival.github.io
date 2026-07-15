@@ -4,5 +4,5 @@ Website of DevCarnival
 ## Setup
 
 ```sh
-hugo server
+hugo server --cleanDestinationDir --disableFastRender
 ```

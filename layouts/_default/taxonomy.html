@@ -1,0 +1,61 @@
+{{ define "main" }}
+<div class="container hero-section">
+    <!-- Header Summary Block -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <!-- .Title dynamically prints the current term (e.g., "2025" or "2026") -->
+            <h1 class="display-5 fw-bold text-dark mb-2">{{ .Title }} Ecosystem Archive</h1>
+            <p class="lead text-muted">Reviewing active community footprints and contributions from the {{ .Title }} festival track.</p>
+        </div>
+    </div>
+
+    <!-- Active List Grid for the Target Year -->
+    <div class="row g-4 mb-5">
+        {{ range .Pages }}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border rounded-0 shadow-sm">
+                <div class="card-body d-flex flex-column p-4">
+                    {{ if .Params.logo }}
+                    <div class="mb-3">
+                        <img src="{{ .Params.logo | relURL }}" alt="{{ .Title }} Logo" class="img-fluid" style="max-height: 40px; object-fit: contain;">
+                    </div>
+                    {{ end }}
+                    
+                    <h3 class="h5 fw-bold mb-2">
+                        <a href="{{ .Permalink }}" class="text-decoration-none text-dark hover-underline">{{ .Title }}</a>
+                    </h3>
+                    
+                    <p class="text-secondary small flex-grow-1">
+                        {{ .Summary | truncate 120 }}
+                    </p>
+                    
+                    <div class="mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
+                        <a href="{{ .Permalink }}" class="btn btn-outline-minimal btn-sm">View Details</a>
+                        
+                        <!-- Shows other associated cohorts if any exist -->
+                        <div class="gap-1 d-flex">
+                            {{ range .Params.years }}
+                            <span class="badge bg-light text-muted border font-monospace fs-7">{{ . }}</span>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ else }}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted italic">No community modules found registered under this cohort year.</p>
+        </div>
+        {{ end }}
+    </div>
+
+    <!-- Quick Navigation to head back to primary ecosystem landing page -->
+    <div class="row mt-5 pt-4 border-top border-light">
+        <div class="col-12">
+            <a href="{{ "communities/" | relURL }}" class="text-decoration-none text-dark fw-bold small">
+                &larr; Back to Active Communities
+            </a>
+        </div>
+    </div>
+</div>
+{{ end }}

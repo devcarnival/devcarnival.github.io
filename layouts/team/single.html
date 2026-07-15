@@ -1,0 +1,55 @@
+{{ define "main" }}
+<div class="container hero-section">
+    <div class="row g-5">
+        <!-- Left: Team Purpose & Overview -->
+        <div class="col-lg-7">
+            <a href="{{ "team/" | relURL }}" class="text-muted text-decoration-none small fw-bold mb-4 d-inline-block">&larr; Back to all teams</a>
+            
+            <h1 class="display-4 fw-bold text-dark mb-3">{{ .Title }}</h1>
+            
+            <div class="article-content text-secondary fs-5 line-height-md mb-5">
+                <!-- Renders the team's Purpose statement -->
+                {{ .Content }}
+            </div>
+        </div>
+
+        <!-- Right: Dynamic Members Roster Card Stack -->
+        <div class="col-lg-5">
+            <div class="p-4 bg-light border rounded-0">
+                <h4 class="fw-bold text-dark mb-4 small text-uppercase tracking-wider">Team Roster</h4>
+                
+                <div class="d-grid gap-3">
+                    {{ range .Params.people }}
+                        <!-- Dynamically lookup the referenced profile file inside content/people/ -->
+                        {{ $profilePath := printf "people/%s.md" . }}
+                        {{ with $.Site.GetPage $profilePath }}
+                            <div class="p-3 bg-white border rounded-0 shadow-sm">
+                                <h5 class="fw-bold text-dark mb-1 fs-5">
+                                    <a href="{{ .Permalink }}" class="text-decoration-none text-dark hover-underline">{{ .Title }}</a>
+                                </h5>
+                                {{ if .Params.designation }}
+                                    <span class="text-muted small d-block mb-2">{{ .Params.designation }}</span>
+                                {{ end }}
+                                
+                                <div class="d-flex gap-3 mt-2">
+                                    {{ if .Params.socials.linkedin }}
+                                        <a href="{{ .Params.socials.linkedin }}" target="_blank" rel="noopener noreferrer" class="small text-decoration-none text-secondary hover-underline">LinkedIn</a>
+                                    {{ end }}
+                                    {{ if .Params.socials.github }}
+                                        <a href="{{ .Params.socials.github }}" target="_blank" rel="noopener noreferrer" class="small text-decoration-none text-secondary hover-underline">GitHub</a>
+                                    {{ end }}
+                                </div>
+                            </div>
+                        {{ else }}
+                            <!-- Fallback display if a team file lists a username that hasn't been created yet -->
+                            <div class="p-3 border rounded-0 border-dashed text-muted small">
+                                Member profile reference missing (`people/{{ . }}.md`).
+                            </div>
+                        {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}

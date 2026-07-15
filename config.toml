@@ -10,8 +10,8 @@ languageCode = "en-us"
 
 [menu]
   [[menu.main]]
-    name = "Schedule"
-    url = "#schedule"
+    name = "Sessions"
+    url = "/session"
     weight = 1
   [[menu.main]]
     name = "Speakers"
@@ -19,9 +19,17 @@ languageCode = "en-us"
     weight = 2
   [[menu.main]]
     name = "Community"
-    url = "#community"
+    url = "/communities"
     weight = 3
   [[menu.main]]
     name = "Team"
-    url = "#team"
+    url = "/team"
     weight = 4
+[taxonomies]
+  year = "years"
+  tag = "tags"
+  category = "categories"
+
+[permalinks]
+  session = "/session/:slug/"
+  communities = "/communities/:slug/"

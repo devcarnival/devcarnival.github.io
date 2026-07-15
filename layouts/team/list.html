@@ -1,0 +1,42 @@
+{{ define "main" }}
+<div class="container hero-section">
+    <!-- Header Title -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h1 class="display-5 fw-bold text-dark mb-2">Festival Operations Teams</h1>
+            <p class="lead text-muted">The crews engineering the DevCarnival ecosystem framework.</p>
+        </div>
+    </div>
+
+    <!-- Grid of All Teams -->
+    <div class="row g-4">
+        {{ range (where .Site.RegularPages "Section" "team") }}
+        <div class="col-md-6">
+            <div class="card h-100 border rounded-0 shadow-sm">
+                <div class="card-body p-4 d-flex flex-column">
+                    <h3 class="h4 fw-bold mb-2">
+                        <a href="{{ .Permalink }}" class="text-decoration-none text-dark hover-underline">{{ .Title }}</a>
+                    </h3>
+                    
+                    <!-- Automatically pulls the first few lines of your team's markdown description -->
+                    <p class="text-secondary small flex-grow-1">
+                        {{ .Summary | truncate 150 }}
+                    </p>
+                    
+                    <div class="mt-4 pt-3 border-top d-flex justify-content-between align-items-center">
+                        <a href="{{ .Permalink }}" class="btn btn-outline-minimal btn-sm">View Purpose & Members</a>
+                        <span class="small text-muted font-monospace bg-light px-2 py-1 border">
+                            {{ len .Params.people }} Members
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ else }}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted italic">No operational teams have been registered yet.</p>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

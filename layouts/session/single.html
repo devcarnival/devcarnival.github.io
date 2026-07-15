@@ -1,0 +1,62 @@
+{{ define "main" }}
+<div class="container hero-section">
+    <div class="row g-5">
+        <!-- Abstract Column -->
+        <div class="col-lg-7">
+            <a href="{{ "session/" | relURL }}" class="text-muted text-decoration-none small fw-bold mb-4 d-inline-block">&larr; Back to all sessions</a>
+            
+            <h1 class="display-4 fw-bold text-dark mb-3">{{ .Title }}</h1>
+            
+            <div class="d-flex gap-2 mb-4">
+                {{ range .Params.years }}
+                <span class="badge bg-light text-dark border font-monospace">{{ . }} Edition</span>
+                {{ end }}
+            </div>
+
+            <hr class="my-4 section-divider">
+
+            <div class="article-content text-secondary fs-5 line-height-md mb-5">
+                {{ .Content }}
+            </div>
+        </div>
+
+        <!-- Speakers Dynamic Profile Column -->
+        <div class="col-lg-5">
+            <div class="p-4 bg-light border rounded-0 sticky-top" style="top: 100px; z-index: 10;">
+                <h4 class="fw-bold text-dark mb-4 small text-uppercase tracking-wider">Presenting Speakers</h4>
+                
+                <div class="d-grid gap-3">
+                    {{ range .Params.speakers }}
+                        {{ $profilePath := printf "people/%s.md" . }}
+                        {{ with $.Site.GetPage $profilePath }}
+                            <div class="p-3 bg-white border rounded-0 shadow-sm">
+                                <h5 class="fw-bold text-dark mb-1 fs-5">{{ .Title }}</h5>
+                                {{ if .Params.designation }}
+                                    <span class="text-muted small d-block mb-2">{{ .Params.designation }}</span>
+                                {{ end }}
+                                
+                                <p class="text-secondary small mt-2 mb-3">
+                                    {{ .Summary | truncate 90 }}
+                                </p>
+                                
+                                <div class="d-flex gap-3 border-top pt-2">
+                                    {{ if .Params.socials.linkedin }}
+                                        <a href="{{ .Params.socials.linkedin }}" target="_blank" rel="noopener noreferrer" class="small text-decoration-none text-secondary hover-underline">LinkedIn</a>
+                                    {{ end }}
+                                    {{ if .Params.socials.github }}
+                                        <a href="{{ .Params.socials.github }}" target="_blank" rel="noopener noreferrer" class="small text-decoration-none text-secondary hover-underline">GitHub</a>
+                                    {{ end }}
+                                </div>
+                            </div>
+                        {{ else }}
+                            <div class="p-3 border rounded-0 border-dashed text-muted small">
+                                Speaker profile metadata file missing (`people/{{ . }}.md`).
+                            </div>
+                        {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
