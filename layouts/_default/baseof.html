@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+<html lang="{{ .Site.LanguageCode | default `en-us` }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +7,14 @@
 
     <!-- Primary Meta Tags (Search Engine Description) -->
     <meta name="title" content="{{ .Title | default .Site.Title }}">
-    <meta name="description" content="{{ .Site.Params.description | default "Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia for purpose-oriented engineering." }}">
+    <meta name="description" content="{{ .Site.Params.description | default `Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia for purpose-oriented engineering.` }}">
 
     <!-- Open Graph / Facebook & WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ .Permalink }}">
     <meta property="og:title" content="{{ .Title | default .Site.Title }}">
-    <meta property="og:description" content="{{ .Site.Params.description | default "Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia." }}">
-    <meta property="og:image" content="{{ "whatsapp-thumbnail.png" | absURL }}">
+    <meta property="og:description" content="{{ .Site.Params.description | default `Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia.` }}">
+    <meta property="og:image" content="{{ `whatsapp-thumbnail.png` | absURL }}">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -23,14 +23,14 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ .Permalink }}">
     <meta property="twitter:title" content="{{ .Title | default .Site.Title }}">
-    <meta property="twitter:description" content="{{ .Site.Params.description | default "Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia." }}">
-    <meta property="twitter:image" content="{{ "whatsapp-thumbnail.png" | absURL }}">
+    <meta property="twitter:description" content="{{ .Site.Params.description | default `Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia.` }}">
+    <meta property="twitter:image" content="{{ `whatsapp-thumbnail.png` | absURL }}">
 
     <!-- Favicon Links -->
-    <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
+    <link rel="icon" type="image/x-icon" href="{{ `favicon.ico` | relURL }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ `favicon-32x32.png` | relURL }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ `favicon-16x16.png` | relURL }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ `apple-touch-icon.png` | relURL }}">
 
     <!-- Bootstrap 5 CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
