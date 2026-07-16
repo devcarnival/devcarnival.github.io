@@ -3,12 +3,12 @@ title: "Udayani V"
 designation: "AI Team Organizer"
 weight: 1
 socials:
-  github: "https://www.linkedin.com/in/thamaraikanni-p-951031107/"
-  linkedin: "https://www.linkedin.com/in/thamaraikanni-p-951031107/"
+  github: "https://github.com/vudayani"
+  linkedin: "https://www.linkedin.com/in/udayani-v-56261a147"
 ---
 
-Purpose-driven software generalist with 15+ years of experience, with expertise in both high-level application development 🖥️ and low-level real-time & embedded systems 🔧 across various domains such as Telecom, Automotive, Textile, Defense, Aerospace, and Medical.
+I am a software engineer focused on Spring Boot, developer tooling, and AI-powered application development. Over the years, I have had the opportunity to build and deploy cloud-native Spring Boot applications, developing a strong interest in developer productivity, OpenRewrite, and the broader Spring ecosystem. I have also been exploring Spring AI to understand practical ways of integrating AI capabilities into Spring applications.
 
-Proven track record in leading cross-functional teams, managing IT operations at scale, and driving digital transformation initiatives in international environments. Deep expertise in automotive software  and IT strategy. Passionate about aligning IT with business goals, building high-performance teams, and ensuring secure, scalable infrastructure. 
+In my previous roles, I worked on Spring IDE support for VS Code and Eclipse, helping improve developer productivity when working with Spring Boot applications in IDEs.
 
-I'd love to hear from you if you want to discuss opportunities to work together, exchange insights, or network with an enthusiastic professional. Let’s connect and discover opportunities together! 
+Currently, I contribute to commercial products within the Tanzu portfolio at Broadcom, focusing on building scalable, distributed enterprise systems. I also work on OpenRewrite migration recipes that help teams modernize their applications and upgrade Spring Boot projects to newer versions more smoothly.
