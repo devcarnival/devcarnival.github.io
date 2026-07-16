@@ -4,7 +4,6 @@ languageCode = "en-us"
 
 [params]
   description = "Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia for purpose-oriented engineering."
-  twitter = "#"
   github = "https://github.com/devcarnival"
   linkedin = "https://www.linkedin.com/company/dev-carnival"
   email = "contact@devcarnival.com"
