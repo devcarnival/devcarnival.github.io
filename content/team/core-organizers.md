@@ -2,6 +2,7 @@
 title: "Core Organizing Committee"
 people:
   - "anandbabur"
+  - "ravindran"
   - "mutheeshwaran"
 ---
 
