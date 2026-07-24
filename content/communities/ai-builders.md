@@ -4,7 +4,7 @@ logo: "images/communities/ai-builders.png"
 years: ["2026"]
 socials:
   twitter: "https://x.com/aibuilderschai"
-  github: "https://github.com/ai-builders-chennai"
+  github: "ai-builders-chennai"
   linkedin: "https://linkedin.com/company/ai-builders-hub"
 ---
 

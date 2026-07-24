@@ -5,11 +5,24 @@
             <!-- Back Navigation -->
             <a href="{{ "" | relURL }}" class="text-muted text-decoration-none small fw-bold mb-5 d-inline-block">&larr; Return Home</a>
             
-            <!-- Main Member Identifier Block -->
-            <div class="mb-4">
-                <h1 class="display-4 fw-bold text-dark mb-1">{{ .Title }}</h1>
-                {{ if .Params.designation }}
-                <span class="text-uppercase tracking-wider small fw-bold text-muted">{{ .Params.designation }}</span>
+            <!-- Main Member Identifier Block with Profile Avatar -->
+            <div class="d-flex align-items-center justify-content-between gap-4 mb-4">
+                <div>
+                    <h1 class="display-4 fw-bold text-dark mb-1">{{ .Title }}</h1>
+                    {{ if .Params.designation }}
+                    <span class="text-uppercase tracking-wider small fw-bold text-muted d-block">{{ .Params.designation }}</span>
+                    {{ end }}
+                </div>
+
+                {{ if .Params.socials.github }}
+                <div class="flex-shrink-0">
+                    <img src="https://github.com/{{ .Params.socials.github }}.png?size=200" 
+                         class="rounded-circle border border-secondary-subtle object-fit-cover shadow-sm" 
+                         width="112" 
+                         height="112" 
+                         alt="{{ .Title }}" 
+                         loading="eager">
+                </div>
                 {{ end }}
             </div>
 
@@ -31,7 +44,7 @@
                     {{ end }}
                     
                     {{ if .Params.socials.github }}
-                    <a href="{{ .Params.socials.github }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal btn-sm">
+                    <a href="https://github.com/{{ .Params.socials.github }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal btn-sm">
                         GitHub Workspace
                     </a>
                     {{ end }}

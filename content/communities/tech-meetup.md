@@ -4,7 +4,7 @@ logo: "images/communities/tech-logo.png"
 years: ["2026", "2025"]
 socials:
   twitter: "https://twitter.com/techmeetup"
-  github: "https://github.com/techmeetup"
+  github: "techmeetup"
   linkedin: "https://linkedin.com/company/techmeetup"
 ---
 
