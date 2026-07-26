@@ -3,6 +3,7 @@ title: "Academia"
 people:
   - "samir"
   - "sathish"
+  - "sree-sharmila"
 ---
 
 The Academia Team is responsible for building strong relationships with academic institutions and understanding their unique needs. The team collaborates with colleges, universities, faculty members, and student communities to organize technical events, workshops, hackathons, and learning initiatives that help students gain practical industry exposure and skills.
