@@ -1,0 +1,187 @@
+/* ==========================================================================
+   DevCarnival - Custom Theme Overrides & Styling
+   ========================================================================== */
+
+   :root {
+    /* Colors */
+    --dc-bg: #fcfcfd;
+    --dc-surface: #ffffff;
+    --dc-text-primary: #0f172a;
+    --dc-text-secondary: #475569;
+    --dc-text-muted: #94a3b8;
+    --dc-border: #e2e8f0;
+    --dc-border-hover: #cbd5e1;
+    
+    /* Accent Gradient (Vibrant yet sophisticated tech vibe) */
+    --dc-gradient-accent: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+    --dc-gradient-subtle: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(219, 39, 119, 0.05) 100%);
+    
+    /* Typography */
+    --dc-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    
+    /* Shadows & Radius */
+    --dc-radius-sm: 8px;
+    --dc-radius-md: 12px;
+    --dc-radius-lg: 20px;
+    --dc-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+    --dc-shadow-hover: 0 12px 24px -10px rgba(15, 23, 42, 0.12), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
+    
+    /* Transitions */
+    --dc-transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    --dc-transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  /* --------------------------------------------------------------------------
+     1. Base & Global Styles
+     -------------------------------------------------------------------------- */
+  body {
+    font-family: var(--dc-font-sans);
+    background-color: var(--dc-bg);
+    color: var(--dc-text-primary);
+    letter-spacing: -0.015em;
+    padding-bottom: 80px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Typography Enhancements */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--dc-text-primary);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  
+  .text-gradient {
+    background: var(--dc-gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+  }
+  
+  /* --------------------------------------------------------------------------
+     2. Navigation Bar (Glassmorphism Sticky Nav)
+     -------------------------------------------------------------------------- */
+  .navbar {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--dc-border);
+    transition: var(--dc-transition-fast);
+  }
+  
+  .nav-link {
+    color: var(--dc-text-secondary);
+    font-weight: 600;
+    font-size: 0.925rem;
+    padding: 0.5rem 1rem !important;
+    transition: var(--dc-transition-fast);
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--dc-text-primary);
+  }
+  
+  /* --------------------------------------------------------------------------
+     3. Hero Section
+     -------------------------------------------------------------------------- */
+  .hero-section {
+    padding: 10rem 0 6rem 0;
+    position: relative;
+    background: radial-gradient(70% 50% at 50% 0%, rgba(99, 102, 241, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+  
+  .hero-logo {
+    max-width: 260px;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.05));
+  }
+  
+  .section-divider {
+    border-top: 1px solid var(--dc-border);
+  }
+  
+  /* --------------------------------------------------------------------------
+     4. Buttons (Modern Pill/Rounded Aesthetic)
+     -------------------------------------------------------------------------- */
+  .btn-minimal {
+    background-color: var(--dc-text-primary);
+    color: #ffffff;
+    border: 1px solid var(--dc-text-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--dc-radius-sm);
+    box-shadow: var(--dc-shadow-sm);
+    transition: var(--dc-transition-smooth);
+  }
+  
+  .btn-minimal:hover {
+    background-color: #1e293b;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: var(--dc-shadow-hover);
+  }
+  
+  .btn-outline-minimal {
+    background-color: transparent;
+    color: var(--dc-text-primary);
+    border: 1px solid var(--dc-border-hover);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--dc-radius-sm);
+    transition: var(--dc-transition-smooth);
+  }
+  
+  .btn-outline-minimal:hover {
+    background-color: var(--dc-surface);
+    color: var(--dc-text-primary);
+    border-color: var(--dc-text-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--dc-shadow-sm);
+  }
+  
+  /* --------------------------------------------------------------------------
+     5. Feature Cards / Pillar Items (01, 02, 03)
+     -------------------------------------------------------------------------- */
+  .feature-card {
+    background: var(--dc-surface);
+    border: 1px solid var(--dc-border);
+    border-radius: var(--dc-radius-md);
+    padding: 2rem;
+    height: 100%;
+    transition: var(--dc-transition-smooth);
+  }
+  
+  .feature-card:hover {
+    border-color: var(--dc-border-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--dc-shadow-hover);
+  }
+  
+  .feature-number {
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #6366f1;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+  }
+  
+  /* --------------------------------------------------------------------------
+     6. Footer & Meta Badges
+     -------------------------------------------------------------------------- */
+  .meta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    background-color: rgba(99, 102, 241, 0.06);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4f46e5;
+  }
