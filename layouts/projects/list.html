@@ -1,0 +1,119 @@
+{{ define "main" }}
+<section class="hero-section text-center position-relative">
+  <div class="container">
+    <span class="meta-badge mb-3">Innovation Expo</span>
+    <h1 class="display-4 fw-bold mb-3">Tech  <span class="text-gradient">Pavilion</span></h1>
+    <p class="lead text-secondary mx-auto" style="max-width: 800px;">
+        Tech Pavilion is a showcase of 100 carefully selected projects from communities, startups, academia, enterprises, and open-source ecosystems.
+    </p>
+  </div>
+</section>
+
+<section class="container mb-5">
+  <!-- Filter Bar -->
+  <div class="card border-0 shadow-sm p-4 mb-5" style="border-radius: var(--dc-radius-md); background: var(--dc-surface);">
+    <div class="row g-3 align-items-center">
+      
+      <!-- Business Domain Filter -->
+      <div class="col-md-5">
+        <label for="businessFilter" class="form-label fw-bold text-secondary small">Business Domain</label>
+        <select id="businessFilter" class="form-select border-0 bg-light" onchange="filterProjects()">
+          <option value="all">All Business Domains</option>
+          {{ range $name, $taxonomy := .Site.Taxonomies.business_domains }}
+            <option value="{{ $name | urlize }}">{{ $name | humanize }}</option>
+          {{ end }}
+        </select>
+      </div>
+
+      <!-- Technical Domain Filter -->
+      <div class="col-md-5">
+        <label for="techFilter" class="form-label fw-bold text-secondary small">Technical Domain</label>
+        <select id="techFilter" class="form-select border-0 bg-light" onchange="filterProjects()">
+          <option value="all">All Technical Domains</option>
+          {{ range $name, $taxonomy := .Site.Taxonomies.tech_domains }}
+            <option value="{{ $name | urlize }}">{{ $name | humanize }}</option>
+          {{ end }}
+        </select>
+      </div>
+
+      <!-- Reset Button -->
+      <div class="col-md-2 d-flex align-items-end">
+        <button class="btn btn-outline-minimal w-100" onclick="resetFilters()">Reset</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Project Grid -->
+  <div class="row g-4" id="projectGrid">
+    {{ range .Pages }}
+      {{ $bDomains := apply .Params.business_domains "urlize" "." }}
+      {{ $tDomains := apply .Params.tech_domains "urlize" "." }}
+      
+      <div class="col-md-6 col-lg-4 project-item" 
+           data-business="{{ delimit $bDomains " " }}" 
+           data-tech="{{ delimit $tDomains " " }}">
+        
+        <div class="feature-card d-flex flex-column h-100">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="badge bg-dark rounded-pill">{{ .Params.booth_number | default "Tech Pavilion" }}</span>
+            <small class="text-muted fw-bold">Expo 2026</small>
+          </div>
+
+          <h3 class="h5 fw-bold mb-2">
+            <a href="{{ .RelPermalink }}" class="text-decoration-none text-dark">{{ .Title }}</a>
+          </h3>
+
+          <p class="text-secondary small flex-grow-1">{{ .Params.summary | truncate 120 }}</p>
+
+          <!-- Domain Tags -->
+          <div class="mt-3">
+            <div class="mb-2">
+              {{ range .Params.business_domains }}
+                <span class="badge bg-primary-subtle text-primary me-1 mb-1">{{ . }}</span>
+              {{ end }}
+            </div>
+            <div>
+              {{ range .Params.tech_domains }}
+                <span class="badge bg-secondary-subtle text-secondary me-1 mb-1">{{ . }}</span>
+              {{ end }}
+            </div>
+          </div>
+
+          <a href="{{ .RelPermalink }}" class="btn btn-outline-minimal btn-sm mt-3 w-100">View Project →</a>
+        </div>
+
+      </div>
+    {{ end }}
+  </div>
+</section>
+
+<!-- Filter Logic JS -->
+<script>
+function filterProjects() {
+  const selectedBusiness = document.getElementById('businessFilter').value;
+  const selectedTech = document.getElementById('techFilter').value;
+  const items = document.querySelectorAll('.project-item');
+
+  items.forEach(item => {
+    const itemBusiness = item.getAttribute('data-business').split(' ');
+    const itemTech = item.getAttribute('data-tech').split(' ');
+
+    const matchesBusiness = (selectedBusiness === 'all') || itemBusiness.includes(selectedBusiness);
+    const matchesTech = (selectedTech === 'all') || itemTech.includes(selectedTech);
+
+    if (matchesBusiness && matchesTech) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+function resetFilters() {
+  document.getElementById('businessFilter').value = 'all';
+  document.getElementById('techFilter').value = 'all';
+  filterProjects();
+}
+</script>
+{{ end }}
