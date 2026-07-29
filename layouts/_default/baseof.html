@@ -3,18 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Title | default .Site.Title }}</title>
+    <!-- SEO & Browser Tab Title -->
+{{/* 1. Dynamic Variables Setup */}}
+{{ $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) }}
+{{ $defaultDesc := "Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia for purpose-oriented engineering." }}
+{{ $description := .Description | default .Summary | default .Site.Params.description | default $defaultDesc | plainify | truncate 160 }}    {{/* 2. Dynamic Image Handling for Social Sharing */}}
+    {{ $ogImage := "whatsapp-thumbnail.png" | absURL }}
+    {{ if .Params.hero_image }}
+    {{ $ogImage = .Params.hero_image | absURL }}
+    {{ else if .Params.image }}
+    {{ $ogImage = .Params.image | absURL }}
+    {{ end }}
 
-    <!-- Primary Meta Tags (Search Engine Description) -->
-    <meta name="title" content="{{ .Title | default .Site.Title }}">
-    <meta name="description" content="{{ .Site.Params.description | default `Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia for purpose-oriented engineering.` }}">
+    <!-- Page Title -->
+    <title>{{ $title }}</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="{{ $title }}">
+    <meta name="description" content="{{ $description }}">
 
     <!-- Open Graph / Facebook & WhatsApp -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
-    <meta property="og:title" content="{{ .Title | default .Site.Title }}">
-    <meta property="og:description" content="{{ .Site.Params.description | default `Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia.` }}">
-    <meta property="og:image" content="{{ `whatsapp-thumbnail.png` | absURL }}">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $description }}">
+    <meta property="og:image" content="{{ $ogImage }}">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -22,10 +35,9 @@
     <!-- Twitter Preview -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ .Permalink }}">
-    <meta property="twitter:title" content="{{ .Title | default .Site.Title }}">
-    <meta property="twitter:description" content="{{ .Site.Params.description | default `Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia.` }}">
-    <meta property="twitter:image" content="{{ `whatsapp-thumbnail.png` | absURL }}">
-
+    <meta property="twitter:title" content="{{ $title }}">
+    <meta property="twitter:description" content="{{ $description }}">
+    <meta property="twitter:image" content="{{ $ogImage }}">
     <!-- Favicon Links -->
     <link rel="icon" type="image/x-icon" href="{{ `favicon.ico` | relURL }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ `favicon-32x32.png` | relURL }}">

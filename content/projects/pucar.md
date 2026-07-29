@@ -1,5 +1,6 @@
 ---
-title: "PUCAR (Public Service Infrastructure)"
+title: "PUCAR"
+description: "An open-source digital platform modernizing public dispute resolution and judicial workflows."
 date: 2026-07-29T10:00:00+05:30
 draft: false
 summary: "An open-source digital platform modernizing public dispute resolution, consumer grievances, and legal workflows with transparency and scalability."
