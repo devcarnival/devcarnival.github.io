@@ -1,6 +1,6 @@
 ---
 title: "When AI Learns the Wrong Lessons: Live Data Poisoning and Backdoor Attacks with ART"
-speakers: "Micheal Joshuva"
+speakers: "michealJoshuva"
 years: ["2026"]
 ---
 
