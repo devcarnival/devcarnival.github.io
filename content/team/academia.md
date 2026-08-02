@@ -2,7 +2,7 @@
 title: "Academia"
 people:
   - "samir"
-  - "sathish"
+  # - "sathish"
   - "sree-sharmila"
 ---
 
