@@ -14,8 +14,8 @@ languageCode = "en-us"
     url = "/session"
     weight = 1
   [[menu.main]]
-    name = "Speakers"
-    url = "#speakers"
+    name = "Schedule"
+    url = "/schedule"
     weight = 2
   [[menu.main]]
     name = "Tech Pavilion"
