@@ -15,7 +15,7 @@ draft: false
   </div>
 
   <!-- Day Navigation Tabs -->
-  <ul class="nav nav-pills nav-justified mb-4 id="scheduleTabs" role="tablist">
+  <ul class="nav nav-pills nav-justified mb-4" id="scheduleTabs" role="tablist">
     <li class="nav-item" role="presentation">
       <button class="nav-link active fs-5 fw-semibold py-3" id="day1-tab" data-bs-toggle="pill" data-bs-target="#day1" type="button" role="tab">
         🗓️ 8th Jan: AI Day
@@ -71,46 +71,58 @@ draft: false
       </div>
 
       <!-- Workshop Sessions (4 Parallel Halls) -->
-      <h4 class="fw-bold mb-3">Parallel Workshops <span class="fs-6 fw-normal text-muted">(1 hr 45 mins each)</span></h4>
+      <h4 class="fw-bold mb-3">Parallel Workshops & Academia Track</h4>
       
       <div class="table-responsive">
         <table class="table table-bordered align-middle text-center shadow-sm">
           <thead class="table-dark">
             <tr>
-              <th style="width: 15%;">Time Slot</th>
-              <th style="width: 21%;">Hall A</th>
-              <th style="width: 21%;">Hall B</th>
-              <th style="width: 21%;">Hall C</th>
-              <th style="width: 21%;">Hall D</th>
+              <th style="width: 16%;">Time Slot</th>
+              <th style="width: 21%;">Nalantha</th>
+              <th style="width: 21%;">Harvard</th>
+              <th style="width: 21%;">Cambridge</th>
+              <th style="width: 21%;">Ganga<br><small class="text-light fw-normal">(Academia Track - Talks)</small></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="fw-bold bg-light">10:00 AM – 11:45 AM</td>
-              <td><strong>Workshop 1A</strong><br><small class="text-muted">Cloud & DevOps</small></td>
-              <td><strong>Workshop 1B</strong><br><small class="text-muted">Fullstack Web</small></td>
-              <td><strong>Workshop 1C</strong><br><small class="text-muted">AI & Machine Learning</small></td>
-              <td><strong>Workshop 1D</strong><br><small class="text-muted">Open Source Dev</small></td>
+              <td class="fw-bold bg-light">10:00 AM – 10:45 AM</td>
+              <td rowspan="2" class="align-middle"><strong>Workshop 1A</strong><br><small class="text-muted">Cloud & DevOps</small><br><small class="text-info fw-bold">(10:00 AM – 11:45 AM)</small></td>
+              <td rowspan="2" class="align-middle"><strong>Workshop 1B</strong><br><small class="text-muted">Fullstack Web</small><br><small class="text-info fw-bold">(10:00 AM – 11:45 AM)</small></td>
+              <td rowspan="2" class="align-middle"><strong>Workshop 1C</strong><br><small class="text-muted">AI & Machine Learning</small><br><small class="text-info fw-bold">(10:00 AM – 11:45 AM)</small></td>
+              <td><strong>Talk 1D</strong><br><small class="text-muted">Open Source Dev</small></td>
+            </tr>
+            <tr>
+              <td class="fw-bold bg-light">11:00 AM – 11:45 AM</td>
+              <td><strong>Talk 2D</strong><br><small class="text-muted">Academic Research & Tech</small></td>
             </tr>
             <tr class="table-warning">
               <td colspan="5" class="fw-bold py-2">🥗 11:45 AM – 01:15 PM | Networking & Lunch Break</td>
             </tr>
             <tr>
-              <td class="fw-bold bg-light">01:15 PM – 03:00 PM</td>
-              <td><strong>Workshop 2A</strong><br><small class="text-muted">Docker & K8s</small></td>
-              <td><strong>Workshop 2B</strong><br><small class="text-muted">System Design</small></td>
-              <td><strong>Workshop 2C</strong><br><small class="text-muted">Data Engineering</small></td>
-              <td><strong>Workshop 2D</strong><br><small class="text-muted">Cyber Security Lab</small></td>
+              <td class="fw-bold bg-light">01:15 PM – 02:00 PM</td>
+              <td rowspan="2" class="align-middle"><strong>Workshop 2A</strong><br><small class="text-muted">Docker & K8s</small><br><small class="text-info fw-bold">(01:15 PM – 03:00 PM)</small></td>
+              <td rowspan="2" class="align-middle"><strong>Workshop 2B</strong><br><small class="text-muted">System Design</small><br><small class="text-info fw-bold">(01:15 PM – 03:00 PM)</small></td>
+              <td rowspan="2" class="align-middle"><strong>Workshop 2C</strong><br><small class="text-muted">Data Engineering</small><br><small class="text-info fw-bold">(01:15 PM – 03:00 PM)</small></td>
+              <td><strong>Talk 3D</strong><br><small class="text-muted">Cyber Security Lab</small></td>
+            </tr>
+            <tr>
+              <td class="fw-bold bg-light">02:15 PM – 03:00 PM</td>
+              <td><strong>Talk 4D</strong><br><small class="text-muted">Innovations in Academia</small></td>
             </tr>
             <tr class="table-secondary">
               <td colspan="5" class="fw-bold py-2">☕ 03:00 PM – 03:15 PM | Tea & Snack Break</td>
             </tr>
             <tr>
-              <td class="fw-bold bg-light">03:15 PM – 05:00 PM</td>
-              <td><strong>Workshop 3A</strong><br><small class="text-muted">CI/CD Pipelines</small></td>
-              <td><strong>Workshop 3B</strong><br><small class="text-muted">Mobile App Dev</small></td>
-              <td><strong>Workshop 3C</strong><br><small class="text-muted">LLMs in Action</small></td>
-              <td><strong>Workshop 3D</strong><br><small class="text-muted">Community Projects</small></td>
+              <td class="fw-bold bg-light">03:15 PM – 04:00 PM</td>
+              <td rowspan="2" class="align-middle"><strong>Workshop 3A</strong><br><small class="text-muted">CI/CD Pipelines</small><br><small class="text-info fw-bold">(03:15 PM – 05:00 PM)</small></td>
+              <td rowspan="2" class="align-middle"><strong>Workshop 3B</strong><br><small class="text-muted">Mobile App Dev</small><br><small class="text-info fw-bold">(03:15 PM – 05:00 PM)</small></td>
+              <td rowspan="2" class="align-middle"><strong>Workshop 3C</strong><br><small class="text-muted">LLMs in Action</small><br><small class="text-info fw-bold">(03:15 PM – 05:00 PM)</small></td>
+              <td><strong>Talk 5D</strong><br><small class="text-muted">Community Projects</small></td>
+            </tr>
+            <tr>
+              <td class="fw-bold bg-light">04:15 PM – 05:00 PM</td>
+              <td><strong>Talk 6D</strong><br><small class="text-muted">Future Tech Case Studies</small></td>
             </tr>
           </tbody>
         </table>
@@ -164,10 +176,10 @@ draft: false
           <thead class="table-dark">
             <tr>
               <th style="width: 15%;">Time Slot</th>
-              <th style="width: 21%;">Hall A</th>
-              <th style="width: 21%;">Hall B</th>
-              <th style="width: 21%;">Hall C</th>
-              <th style="width: 21%;">Hall D</th>
+              <th style="width: 21%;">Nalantha</th>
+              <th style="width: 21%;">Harvard</th>
+              <th style="width: 21%;">Cambridge</th>
+              <th style="width: 21%;">Ganga</th>
             </tr>
           </thead>
           <tbody>
