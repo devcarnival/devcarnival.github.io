@@ -8,7 +8,7 @@ hero:
   cta_link: "#register"
 event:
   label: "Global Gathering"
-  date: "Jan 8-9, 2027"
+  date: "Fri, Jan 8, 2027 & Sat, Jan 9, 2027"
   location: "Infosys, Mahindra City, Chennai"
 pillars:
   - title: "Cross-Technology"
