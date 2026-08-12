@@ -23,7 +23,9 @@
                         <!-- Dynamically lookup the referenced profile file inside content/people/ -->
                         {{ $profilePath := printf "people/%s.md" . }}
                         {{ with $.Site.GetPage $profilePath }}
-                            <div class="p-3 bg-white border rounded-0 shadow-sm">
+                        <div class="p-3 bg-white border rounded-0 shadow-sm d-flex align-items-center justify-content-between gap-3">
+                            <!-- Card Text Details -->
+                            <div>
                                 <h5 class="fw-bold text-dark mb-1 fs-5">
                                     <a href="{{ .Permalink }}" class="text-decoration-none text-dark hover-underline">{{ .Title }}</a>
                                 </h5>
@@ -36,10 +38,23 @@
                                         <a href="{{ .Params.socials.linkedin }}" target="_blank" rel="noopener noreferrer" class="small text-decoration-none text-secondary hover-underline">LinkedIn</a>
                                     {{ end }}
                                     {{ if .Params.socials.github }}
-                                        <a href="{{ .Params.socials.github }}" target="_blank" rel="noopener noreferrer" class="small text-decoration-none text-secondary hover-underline">GitHub</a>
+                                        <a href="https://github.com/{{ .Params.socials.github }}" target="_blank" rel="noopener noreferrer" class="small text-decoration-none text-secondary hover-underline">GitHub</a>
                                     {{ end }}
                                 </div>
                             </div>
+                        
+                            <!-- Profile Picture (Right Side) -->
+                            {{ if .Params.socials.github }}
+                                <div class="flex-shrink-0">
+                                    <img src="https://github.com/{{ .Params.socials.github }}.png?size=80" 
+                                         class="rounded-circle border border-secondary-subtle object-fit-cover" 
+                                         width="56" 
+                                         height="56" 
+                                         alt="{{ .Title }}" 
+                                         loading="lazy">
+                                </div>
+                            {{ end }}
+                        </div>
                         {{ else }}
                             <!-- Fallback display if a team file lists a username that hasn't been created yet -->
                             <div class="p-3 border rounded-0 border-dashed text-muted small">

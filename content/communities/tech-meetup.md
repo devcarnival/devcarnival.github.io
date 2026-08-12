@@ -1,11 +1,12 @@
 ---
-title: "Tech Meetup Chennai"
-logo: "images/communities/tech-logo.png"
+title: "OpenSearch Project Chennai"
+logo: "https://avatars.githubusercontent.com/u/80134844?s=200&v=4"
 years: ["2026", "2025"]
 socials:
-  twitter: "https://twitter.com/techmeetup"
-  github: "https://github.com/techmeetup"
-  linkedin: "https://linkedin.com/company/techmeetup"
+  github: "opensearch-project"
+  linkedin: "https://www.linkedin.com/company/opensearch-project/"
 ---
 
-This is the **Markdown description** of the community. It can contain paragraphs, links, bullet points, and formatting that will be rendered cleanly on the details page.
+This is a group for anyone interested in search engineering, open source search technology, and search relevancy in the Chennai area. If you’ve used or are interested in OpenSearch, you’re in the right place!
+
+All skill levels are welcome. Even if search is just a small part of your day-to-day duties, come learn and connect with other smart engineers. We cover and welcome talks on topics including: search, logging, log analytics, AI, and data visualization.

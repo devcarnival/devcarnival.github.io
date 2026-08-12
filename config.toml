@@ -1,4 +1,4 @@
-title = "DEVCARNIVAL"
+title = "DevCarnival"
 baseURL = "https://example.com/"
 languageCode = "en-us"
 
@@ -14,21 +14,28 @@ languageCode = "en-us"
     url = "/session"
     weight = 1
   [[menu.main]]
-    name = "Speakers"
-    url = "#speakers"
+    name = "Schedule"
+    url = "/schedule"
     weight = 2
+  [[menu.main]]
+    name = "Tech Pavilion"
+    url = "/projects"
+    weight = 3
   [[menu.main]]
     name = "Community"
     url = "/communities"
-    weight = 3
+    weight = 4
   [[menu.main]]
     name = "Team"
     url = "/team"
-    weight = 4
+    weight = 5
+    
 [taxonomies]
   year = "years"
   tag = "tags"
   category = "categories"
+  business_domain = "business_domains"
+  tech_domain     = "tech_domains"
 
 [permalinks]
   session = "/session/:slug/"

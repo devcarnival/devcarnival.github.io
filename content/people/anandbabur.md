@@ -3,7 +3,7 @@ title: "Anand Babu"
 designation: "Core Organizer"
 weight: 1
 socials:
-  github: "https://github.com/sathish"
+  github: "sathish"
   linkedin: "https://www.linkedin.com/in/anandbabur/"
 ---
 

@@ -3,7 +3,7 @@ title: "Ravindran P"
 designation: "Core Organizer"
 weight: 2
 socials:
-  github: "https://github.com/Hari-Nikesh-R"
+  github: "hari-nikesh-r"
   linkedin: "https://www.linkedin.com/in/ravindran-p-597b4164/"
 ---
 

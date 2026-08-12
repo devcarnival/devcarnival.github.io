@@ -8,8 +8,8 @@ hero:
   cta_link: "#register"
 event:
   label: "Global Gathering"
-  date: "Dec 4-5, 2026"
-  location: "Infosys, Mahendra City, Chennai"
+  date: "Fri, Jan 8, 2027 & Sat, Jan 9, 2027"
+  location: "Infosys, Mahindra City, Chennai"
 pillars:
   - title: "Cross-Technology"
     description: "Breaking domain silos. Whether it is backend engineering, decentralized systems, AI, or open-source infrastructure, communities collide to build multi-stack perspective."

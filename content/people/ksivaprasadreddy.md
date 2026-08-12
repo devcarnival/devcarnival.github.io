@@ -3,7 +3,7 @@ title: "K Siva Prasad Reddy"
 designation: "AI Team Organizer"
 weight: 1
 socials:
-  github: "https://github.com/sivaprasadreddy"
+  github: "sivaprasadreddy"
   linkedin: "https://www.linkedin.com/in/ksivaprasadreddy/"
 ---
 
