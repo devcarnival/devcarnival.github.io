@@ -3,7 +3,7 @@ title: "Mutheeshwaran S"
 designation: "Core Organizer"
 weight: 3
 socials:
-  github: "https://github.com/Hari-Nikesh-R"
+  github: "hari-nikesh-r"
   linkedin: "https://www.linkedin.com/in/mutheeshwaran/"
 ---
 
