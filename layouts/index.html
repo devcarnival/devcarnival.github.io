@@ -1,50 +1,333 @@
 {{ define "main" }}
-    <!-- Hero Section -->
-    <header class="hero-section">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-7">
-                    <!-- Featured Main Logo Display -->
-                    <div class="mb-4">
-                        <img src="{{ "devcarnival-logo.svg" | relURL }}" width="250px" alt="DevCarnival Logo" class="hero-logo img-fluid">
+{{ $frameCount := 260 }}
+
+{{/* ======================================================================
+     HERO — 350vh scroll track, sticky canvas stage, frame-sequence scrub.
+     Ships in the reduced-motion / no-JS state (static poster + stacked
+     overlays); carnival-hero.js removes .dc-hero--static to take over.
+     ====================================================================== */}}
+<section class="dc-hero dc-hero--static"
+         data-dc-hero
+         data-count="{{ $frameCount }}"
+         data-frames="{{ `frames/dc-` | relURL }}"
+         data-frames-sm="{{ `frames-sm/dc-` | relURL }}"
+         aria-label="Dev Carnival grounds">
+    <div class="dc-hero__stage">
+        <canvas class="dc-hero__canvas" data-dc-canvas role="img"
+                aria-label="Isometric night view of the Dev Carnival grounds assembling as you scroll"></canvas>
+
+        <img class="dc-hero__poster" data-dc-poster
+             src="{{ `img/hero-static.webp` | relURL }}"
+             data-src="{{ `img/hero-static.webp` | relURL }}"
+             alt="The fully built Dev Carnival grounds at night: glowing arched sign, booths, ferris wheel and crowds.">
+
+        {{/* Brand tile. Sits between the frame and the scrim so it dims with
+             the imagery; carnival-hero.js positions it and slides it in. The
+             static poster has it baked in already, so CSS hides it there. */}}
+        <div class="dc-hero__bug" data-dc-bug aria-hidden="true"></div>
+
+        <div class="dc-hero__scrim"></div>
+
+        <div class="dc-beats">
+            {{ range $i, $beat := .Params.hero_beats }}
+            <div class="dc-beat dc-beat--{{ $beat.side | default `center` }} dc-beat--{{ $beat.accent | default `cyan` }}{{ if $beat.hero }} dc-beat--hero{{ end }}"
+                 data-dc-beat
+                 data-start="{{ $beat.start }}"
+                 data-end="{{ $beat.end }}">
+                <div class="dc-panel">
+                    <div class="dc-panel__bar">
+                        <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                        <span>{{ printf "%02d" (add $i 1) }} — {{ $beat.tag }}</span>
                     </div>
-                    <div class='display-6 fw-bold text-dark mb-3'>{{ .Site.Title }}</div>
-                    <h1 class="display-4 fw-bold mb-4 line-height-sm">
-                        {{ $heading := .Params.hero.heading | default "Technology. People. Purpose." }}
-                        {{ $highlight := .Params.hero.highlight | default "Purpose." }}
-                        {{ $plain_heading := replace $heading $highlight "" }}
-                        {{ $plain_heading }}<span class="text-gradient">{{ $highlight }}</span>
-                    </h1>
-                    <p class="lead text-muted col-md-11 fs-4 fw-normal mb-4">
-                        {{ .Params.hero.subheading | default "Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia. A celebration of fulfillment and purpose-oriented engineering." }}
-                    </p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="{{ .Params.hero.cta_link | default "#register" }}" class="btn btn-minimal btn-lg">{{ .Params.hero.cta_text | default "Register Now" }}</a>
-                    </div>
-                </div>
-                <!-- Optional Side Visual or Featured Space -->
-                <div class="col-lg-5 text-center text-lg-end">
-                    <div class="p-5 bg-light rounded-4 border">
-                        <span class="text-uppercase text-muted fw-bold small d-block mb-2">{{ .Params.event.label | default "Global Gathering" }}</span>
-                        <h2 class="display-6 fw-bold mb-1">{{ .Params.event.date | default "Jan 8-9, 2027" }}</h2>
-                        <p class="text-secondary mb-0">{{ .Params.event.location | default "Infosys, Mahendra City, Chennai" }}</p>
+                    <div class="dc-panel__body">
+                        {{ if $beat.hero }}
+                        <h1 class="dc-beat__title dc-neon-{{ $beat.accent | default `cyan` }}">{{ $beat.title }}</h1>
+                        {{ else }}
+                        <h2 class="dc-beat__title dc-neon-{{ $beat.accent | default `cyan` }}">{{ $beat.title }}</h2>
+                        {{ end }}
+                        <p class="dc-beat__sub">{{ $beat.subtitle }}</p>
+                        {{ with $beat.cta_text }}
+                        <a class="dc-btn dc-btn--lg mt-4" href="{{ $beat.cta_link | default `#passport` }}">{{ . }} &rarr;</a>
+                        {{ end }}
                     </div>
                 </div>
             </div>
+            {{ end }}
         </div>
-    </header>
 
-    <!-- Pillars / Info Section -->
-    <section class="py-5 section-divider" id="team">
-        <div class="container py-4">
-            <div class="row g-5">
-                {{ range $index, $pillar := .Params.pillars }}
-                <div class="col-md-4">
-                    <h5 class="fw-bold text-uppercase tracking-wider small mb-3 text-muted">{{ printf "%02d" (add $index 1) }} / {{ $pillar.title }}</h5>
-                    <p class="text-secondary mb-0">{{ $pillar.description }}</p>
+        <p class="dc-loader" data-dc-loader>Lighting up the grounds · 0%</p>
+
+        <div class="dc-cue" data-dc-cue>
+            Scroll to build the grounds
+            <span aria-hidden="true">&darr;</span>
+        </div>
+
+        <div class="dc-progress" role="presentation">
+            <div class="dc-progress__bar" data-dc-progress-bar></div>
+        </div>
+    </div>
+</section>
+
+{{/* ====================== STAT STRIP ====================== */}}
+{{ with .Params.stats }}
+<div class="dc-stats">
+    {{ range . }}
+    <div class="dc-stat">
+        <span class="dc-stat__num">{{ .num }}</span>
+        <span class="dc-stat__label">{{ .label }}</span>
+    </div>
+    {{ end }}
+</div>
+{{ end }}
+
+{{/* ====================== AGENDA / HIGH SCORES ====================== */}}
+<section class="dc-section" id="map">
+    <div class="container">
+        <div class="row g-4 align-items-end mb-5">
+            <div class="col-lg-7">
+                <span class="dc-kicker">// the grounds &middot; two days</span>
+                <h2 class="dc-section-title">High <span class="dc-neon-cyan">Scores</span></h2>
+                <p class="dc-section-lead mb-0">
+                    Four halls, two keynote blocks, twelve workshops and an academia track.
+                    Insert coin, pick a room, climb the board.
+                </p>
+            </div>
+            <div class="col-lg-5 text-lg-end">
+                <p class="dc-note mb-1">{{ .Params.event.label | upper }}</p>
+                <p class="dc-mono mb-0" style="color:var(--dc-text)">
+                    {{ .Params.event.date }}<br>{{ .Params.event.location }}
+                </p>
+            </div>
+        </div>
+
+        <div class="dc-arcade">
+            <div class="dc-arcade__bar">
+                <span class="dc-arcade__title">&#9654; DEVCARNIVAL.EXE — LEADERBOARD</span>
+                <span>Rank &middot; Time &middot; Session &middot; Room</span>
+            </div>
+
+            <div class="dc-arcade__body">
+                {{ $agenda := .Params.agenda }}
+
+                <ul class="nav nav-pills dc-days" role="tablist">
+                    {{ range $i, $day := $agenda }}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link{{ if eq $i 0 }} active{{ end }}"
+                                id="tab-{{ $day.id }}"
+                                data-bs-toggle="pill"
+                                data-bs-target="#pane-{{ $day.id }}"
+                                type="button" role="tab"
+                                aria-controls="pane-{{ $day.id }}"
+                                aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}">
+                            🗓️ {{ $day.day }} · {{ $day.label }}
+                        </button>
+                    </li>
+                    {{ end }}
+                </ul>
+
+                <div class="tab-content">
+                    {{ range $i, $day := $agenda }}
+                    <div class="tab-pane fade{{ if eq $i 0 }} show active{{ end }}"
+                         id="pane-{{ $day.id }}" role="tabpanel"
+                         aria-labelledby="tab-{{ $day.id }}" tabindex="0">
+
+                        <p class="dc-note mb-3">{{ $day.date }} &middot; {{ $day.label }}</p>
+
+                        {{ $rank := 0 }}
+                        {{ range $day.rows }}
+                        {{ $break := eq (.kind | default "session") "break" }}
+                        {{ if not $break }}{{ $rank = add $rank 1 }}{{ end }}
+                        <div class="dc-score{{ if $break }} dc-score--break{{ end }}{{ if eq (.kind | default `session`) `keynote` }} dc-score--keynote{{ end }}">
+                            <span class="dc-score__rank">{{ if $break }}&mdash;{{ else }}{{ printf "%02d" $rank }}{{ end }}</span>
+                            <span class="dc-score__time">{{ .time }}</span>
+                            <span class="dc-score__name">{{ .name }}</span>
+                            {{ if not $break }}<span class="dc-score__room">{{ .room }}</span>{{ end }}
+                        </div>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+
+            <div class="dc-arcade__foot">
+                Full room-by-room grid on the <a href="{{ "schedule" | relURL }}">schedule page</a>
+                &nbsp;&middot;&nbsp; Insert coin to continue <b>_</b>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{/* ====================== ATTRACTIONS ======================
+     Booths live in content/attractions/ and are pulled relationally:
+     Site.GetPage for the section, `where` to drop hidden ones, and the
+     repo's people-join contract (§4.1) for booth hosts.
+     ======================================================== */}}
+<section class="dc-section" id="attractions" style="background:var(--dc-surface-2)">
+    <div class="container">
+        <div class="row g-4 align-items-end mb-5">
+            <div class="col-lg-8">
+                <span class="dc-kicker">// booths &middot; zones &middot; side quests</span>
+                <h2 class="dc-section-title">The <span class="dc-neon-magenta">Attractions</span></h2>
+                <p class="dc-section-lead mb-0">
+                    Eight things to do between talks. Every one of them stamps your passport.
+                </p>
+            </div>
+        </div>
+
+        {{ with .Site.GetPage "/attractions" }}
+        {{ $booths := where .Pages "Params.hidden" "!=" true }}
+        <div class="dc-grid">
+            {{ range $booths }}
+            <article class="dc-booth dc-booth--{{ .Params.accent | default `cyan` }}">
+                <span class="dc-booth__icon" aria-hidden="true">{{ .Params.icon | default "🎪" }}</span>
+                <h3 class="dc-booth__name">{{ .Title }}</h3>
+                <p class="dc-booth__desc">{{ .Params.summary }}</p>
+
+                {{/* booth hosts — same slug join the team/session templates use */}}
+                {{ with .Params.hosts }}
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    {{ range . }}
+                    {{ with $.Site.GetPage (printf "people/%s.md" .) }}
+                    {{/* several people records store a full URL instead of a handle — normalise */}}
+                    {{ $handle := trim (replaceRE `^https?://(www\.)?github\.com/` "" (.Params.socials.github | default "")) "/" }}
+                    <span class="d-inline-flex align-items-center gap-2 dc-mono"
+                          style="font-size:.68rem;letter-spacing:.1em;color:var(--dc-text-mute)"
+                          title="{{ .Title }} — {{ .Params.designation }}">
+                        {{ with $handle }}
+                        <img src="https://github.com/{{ . }}.png?size=48" alt=""
+                             width="22" height="22" loading="lazy"
+                             style="border:1px solid var(--dc-line-bright)">
+                        {{ end }}
+                        {{ .Title }}
+                    </span>
+                    {{ else }}
+                    <span class="dc-note border-dashed" style="border:1px dashed var(--dc-line-bright);padding:.15rem .4rem">
+                        Host profile missing (<code>people/{{ . }}.md</code>)
+                    </span>
+                    {{ end }}
+                    {{ end }}
                 </div>
                 {{ end }}
+
+                <div class="dc-booth__meta">
+                    <span>📍 {{ .Params.zone }}</span>
+                    <span>⏰ {{ .Params.hours }}</span>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+        {{ else }}
+        <p class="dc-note">No attractions registered yet — add files to <code>content/attractions/</code>.</p>
+        {{ end }}
+    </div>
+</section>
+
+{{/* ====================== PILLARS ====================== */}}
+{{ with .Params.pillars }}
+<section class="dc-section" id="why">
+    <div class="container">
+        <span class="dc-kicker">// why we do this</span>
+        <h2 class="dc-section-title mb-5">Technology. People. <span class="dc-neon-magenta">Purpose.</span></h2>
+        <div class="row g-4">
+            {{ range $i, $pillar := . }}
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <span class="feature-number">{{ printf "%02d" (add $i 1) }} /</span>
+                    <h3 class="h5 fw-bold text-uppercase mb-3">{{ $pillar.title }}</h3>
+                    <p class="mb-0" style="color:var(--dc-text-dim);font-size:.95rem">{{ $pillar.description }}</p>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}
+
+{{/* ====================== REGISTRATION ====================== */}}
+<section class="dc-section" id="passport" style="background:var(--dc-surface-2)">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5">
+                <span class="dc-kicker">// gates open</span>
+                <h2 class="dc-section-title">Get Your <span class="dc-neon-magenta">Dev Passport</span></h2>
+                <p class="dc-section-lead">
+                    One pass, both days, every hall. Collect stamps at the booths,
+                    trade them at the Token Booth, leave with something you built.
+                </p>
+                {{ with .Params.passport.tiers }}
+                <ul class="list-unstyled dc-mono mt-4 mb-0" style="font-size:.8rem;color:var(--dc-text-dim)">
+                    {{ range . }}
+                    <li class="d-flex gap-2 mb-2"><span style="color:var(--dc-cyan)">&rarr;</span>{{ . }}</li>
+                    {{ end }}
+                </ul>
+                {{ end }}
+            </div>
+
+            <div class="col-lg-7">
+                <div class="dc-register">
+                    <div class="dc-panel__bar">
+                        <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                        <span>registration/booth &middot; main gate</span>
+                    </div>
+                    <div class="dc-register__body">
+                        {{/* No endpoint yet. Add action="https://..." (Formspree, Netlify
+                             Forms, Google Form, etc.) and carnival-hero.js stops
+                             intercepting the submit automatically. */}}
+                        <form data-dc-form novalidate>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <label class="dc-label" for="dc-name">Name</label>
+                                    <input class="dc-input" id="dc-name" name="name" type="text"
+                                           placeholder="ada.lovelace" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="dc-label" for="dc-email">Email</label>
+                                    <input class="dc-input" id="dc-email" name="email" type="email"
+                                           placeholder="you@stack.dev" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="dc-label" for="dc-tier">Passport type</label>
+                                    <div class="dc-select-wrap">
+                                        <select class="dc-select" id="dc-tier" name="tier">
+                                            {{ range .Params.passport.tiers }}
+                                            {{/* the full tier copy is too long for the control —
+                                                 show the name, submit the whole line */}}
+                                            <option value="{{ . }}">{{ index (split . " — ") 0 }}</option>
+                                            {{ end }}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="dc-label" for="dc-track">Home track</label>
+                                    <div class="dc-select-wrap">
+                                        <select class="dc-select" id="dc-track" name="track">
+                                            <option>AI &amp; Machine Learning</option>
+                                            <option>Cloud &amp; DevOps</option>
+                                            <option>Full Stack</option>
+                                            <option>Java &amp; JVM</option>
+                                            <option>Open Source</option>
+                                            <option>Academia &amp; Research</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex flex-wrap gap-3 align-items-center">
+                                    <button class="dc-btn dc-btn--lg" type="submit">
+                                        Get Your Dev Passport &rarr;
+                                    </button>
+                                    <p class="dc-note mb-0">Free for students · ID at the gate</p>
+                                </div>
+                            </div>
+
+                            <p class="dc-notice" data-dc-notice hidden tabindex="-1">
+                                ⚠️ Heads up — this form has no endpoint wired yet, so nothing was sent.
+                                Set <code>action</code> on the form in <code>layouts/index.html</code>
+                                to start collecting entries.
+                            </p>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 {{ end }}

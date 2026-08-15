@@ -1,15 +1,46 @@
-<!-- Fixed Minimal Footer -->
-<footer class="py-4 section-divider bg-light fixed-bottom border-top">
-    <div class="container d-flex justify-content-between align-items-center small text-muted">
-        <div>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. Worldwide.</div>
-        <div class="d-flex gap-4">
-            {{ if .Site.Params.github }}
-            <a href="{{ .Site.Params.github }}" class="text-decoration-none text-muted">GitHub</a>
-            {{ end }}
-            {{ if .Site.Params.linkedin }}
-            <a href="{{ .Site.Params.linkedin }}" class="text-decoration-none text-muted" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            {{ end }}
+<!-- Minimal footer. Emojis stand in for icons — the stack has no icon set. -->
+<footer class="dc-footer">
+    <div class="container">
+        <div class="dc-footer__marks" aria-hidden="true">🎪 👾 ☕ 🐛 🤖</div>
 
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-5">
+                <span class="dc-brand d-inline-flex mb-2">
+                    <img class="dc-brand__icon" src="{{ `img/dc-mark.png` | relURL }}"
+                         alt="" width="256" height="148">
+                    <span class="dc-brand__mark">Dev<em>Carnival</em></span>
+                </span>
+                <p class="dc-note mb-0">
+                    {{ with .Site.GetPage "/" }}{{ .Params.event.date }}<br>{{ .Params.event.location }}{{ end }}
+                </p>
+            </div>
+
+            <div class="col-lg-7">
+                <nav class="d-flex flex-wrap gap-3 gap-md-4 justify-content-lg-end mb-3"
+                     aria-label="Site sections">
+                    {{ range .Site.Menus.main }}
+                    <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+                    {{ end }}
+                </nav>
+                <div class="d-flex flex-wrap gap-3 gap-md-4 justify-content-lg-end">
+                    {{ with .Site.Params.github }}
+                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
+                    {{ end }}
+                    {{ with .Site.Params.linkedin }}
+                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+                    {{ end }}
+                    {{ with .Site.Params.email }}
+                    <a href="mailto:{{ . }}">✉️ Contact</a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+
+        <hr class="dc-rule my-4">
+
+        <div class="d-flex flex-wrap gap-2 justify-content-between dc-footer__legal">
+            <span>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. Worldwide. 🎪</span>
+            <span>Build. Break. Learn. Repeat.</span>
         </div>
     </div>
 </footer>
