@@ -1,187 +1,1218 @@
 /* ==========================================================================
-   DevCarnival - Custom Theme Overrides & Styling
+   DevCarnival — asphalt-night neon theme
+   Plain CSS. Everything visual funnels through the tokens in :root.
+   Companion to Bootstrap 5.3.2 (CDN) running in data-bs-theme="dark".
    ========================================================================== */
 
-   :root {
-    /* Colors */
-    --dc-bg: #fcfcfd;
-    --dc-surface: #ffffff;
-    --dc-text-primary: #0f172a;
-    --dc-text-secondary: #475569;
-    --dc-text-muted: #94a3b8;
-    --dc-border: #e2e8f0;
-    --dc-border-hover: #cbd5e1;
-    
-    /* Accent Gradient (Vibrant yet sophisticated tech vibe) */
-    --dc-gradient-accent: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
-    --dc-gradient-subtle: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(219, 39, 119, 0.05) 100%);
-    
-    /* Typography */
-    --dc-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    
-    /* Shadows & Radius */
-    --dc-radius-sm: 8px;
-    --dc-radius-md: 12px;
-    --dc-radius-lg: 20px;
-    --dc-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
-    --dc-shadow-hover: 0 12px 24px -10px rgba(15, 23, 42, 0.12), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
-    
-    /* Transitions */
-    --dc-transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    --dc-transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+:root {
+  /* --- surfaces: deep asphalt night ------------------------------------- */
+  --dc-asphalt: #121214;        /* page + canvas background. exact match. */
+  --dc-surface: #17171b;
+  --dc-surface-2: #1d1d23;
+  --dc-surface-3: #24242c;
+  --dc-line: #2b2b34;
+  --dc-line-bright: #3a3a46;
+
+  /* --- ink -------------------------------------------------------------- */
+  --dc-text: #f2f2f5;           /* off-white, not pure white */
+  --dc-text-dim: #a2a2b0;
+  --dc-text-mute: #6d6d7b;
+
+  /* --- neon ------------------------------------------------------------- */
+  --dc-magenta: #ff2fb9;
+  --dc-cyan: #22e0ff;
+  --dc-purple: #9d5cff;
+  --dc-red: #ff4747;            /* bugs, warnings */
+  --dc-amber: #ffb62e;          /* festoon bulbs */
+
+  /* --- glows (box-shadow only, no gradients) ---------------------------- */
+  --dc-glow-cyan: 0 0 0 1px rgba(34, 224, 255, .40), 0 0 22px rgba(34, 224, 255, .16);
+  --dc-glow-magenta: 0 0 0 1px rgba(255, 47, 185, .40), 0 0 22px rgba(255, 47, 185, .16);
+  --dc-glow-purple: 0 0 0 1px rgba(157, 92, 255, .40), 0 0 22px rgba(157, 92, 255, .16);
+  --dc-glow-amber: 0 0 0 1px rgba(255, 182, 46, .40), 0 0 22px rgba(255, 182, 46, .16);
+
+  --dc-text-glow-cyan: 0 0 6px rgba(34, 224, 255, .65), 0 0 26px rgba(34, 224, 255, .35);
+  --dc-text-glow-magenta: 0 0 6px rgba(255, 47, 185, .65), 0 0 26px rgba(255, 47, 185, .35);
+  --dc-text-glow-amber: 0 0 6px rgba(255, 182, 46, .60), 0 0 26px rgba(255, 182, 46, .32);
+
+  /* --- type ------------------------------------------------------------- */
+  /* Plus Jakarta Sans tops out at 800 (ExtraBold) — that is our "black". */
+  --dc-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --dc-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* --- geometry: hard edges --------------------------------------------- */
+  --dc-radius-sm: 0px;
+  --dc-radius-md: 0px;
+  --dc-radius-lg: 0px;
+
+  /* --- motion ----------------------------------------------------------- */
+  --dc-transition-fast: all .18s cubic-bezier(.16, 1, .3, 1);
+  --dc-transition-smooth: all .35s cubic-bezier(.16, 1, .3, 1);
+
+  /* --- legacy aliases: keep the untouched section templates coherent ---- */
+  --dc-bg: var(--dc-asphalt);
+  --dc-text-primary: var(--dc-text);
+  --dc-text-secondary: var(--dc-text-dim);
+  --dc-border: var(--dc-line);
+  --dc-border-hover: var(--dc-line-bright);
+  --dc-shadow-sm: 0 1px 0 rgba(255, 255, 255, .03);
+  --dc-shadow-hover: 0 0 0 1px var(--dc-line-bright), 0 14px 40px -18px rgba(0, 0, 0, .9);
+}
+
+/* --------------------------------------------------------------------------
+   1. Base
+   -------------------------------------------------------------------------- */
+html,
+body {
+  /* the canvas sits on exactly this colour, so it has no visible edges */
+  background-color: var(--dc-asphalt);
+}
+
+html { scroll-behavior: smooth; }
+
+/* clear the fixed navbar when jumping to an anchor */
+[id] { scroll-margin-top: 5.5rem; }
+
+body {
+  font-family: var(--dc-font-sans);
+  color: var(--dc-text);
+  font-weight: 500;
+  letter-spacing: -.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--dc-text);
+  font-weight: 800;
+  letter-spacing: -.03em;
+}
+
+a { color: var(--dc-cyan); }
+a:hover { color: #7ceeff; }
+
+::selection {
+  background: var(--dc-magenta);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--dc-cyan);
+  outline-offset: 2px;
+}
+
+.dc-mono {
+  font-family: var(--dc-font-mono);
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+
+/* Skip link — the pinned hero is a long way to tab past */
+.dc-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 2000;
+  padding: .75rem 1.25rem;
+  background: var(--dc-surface-2);
+  color: var(--dc-cyan);
+  border: 1px solid var(--dc-cyan);
+  font-family: var(--dc-font-mono);
+  font-size: .8rem;
+}
+.dc-skip:focus { left: 1rem; top: 1rem; }
+
+/* --------------------------------------------------------------------------
+   2. Shared section furniture
+   -------------------------------------------------------------------------- */
+.dc-section { padding: 6rem 0; }
+
+/* A Bootstrap row pulls negative margins of half its gutter, so a `g-5` row
+   overhangs a default .container (.75rem of padding) by 12px a side. Widen the
+   section gutter so no row can escape — it also breathes better on narrow
+   screens than Bootstrap's 12px. */
+.dc-section > .container,
+.dc-footer > .container { padding-inline: 1.5rem; }
+
+.dc-kicker {
+  font-family: var(--dc-font-mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--dc-cyan);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.dc-section-title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -.02em;
+  line-height: .98;
+  margin-bottom: 1rem;
+}
+
+.dc-section-lead {
+  color: var(--dc-text-dim);
+  font-size: 1.075rem;
+  max-width: 56ch;
+}
+
+.dc-rule {
+  height: 1px;
+  background: var(--dc-line);
+  border: 0;
+  margin: 0;
+}
+
+/* neon text treatments */
+.dc-neon-cyan { color: #eafcff; text-shadow: var(--dc-text-glow-cyan); }
+.dc-neon-magenta { color: #ffeaf8; text-shadow: var(--dc-text-glow-magenta); }
+.dc-neon-amber { color: #fff6e3; text-shadow: var(--dc-text-glow-amber); }
+.dc-neon-red { color: #ffecec; text-shadow: 0 0 6px rgba(255, 71, 71, .65), 0 0 26px rgba(255, 71, 71, .35); }
+
+/* --------------------------------------------------------------------------
+   3. Navbar — transparent at top, dark + neon hairline after the hero
+   -------------------------------------------------------------------------- */
+.dc-nav,
+.navbar {
+  background: transparent !important;
+  border-bottom: 1px solid transparent;
+  transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.dc-nav.is-stuck,
+.navbar.is-stuck {
+  background: rgba(18, 18, 20, .92) !important;
+  border-bottom-color: rgba(34, 224, 255, .45);
+  box-shadow: 0 1px 18px rgba(34, 224, 255, .10);
+}
+
+/* inner pages have no hero to scroll past — keep the chrome from day one */
+body.dc-page .dc-nav,
+body.dc-page .navbar {
+  background: rgba(18, 18, 20, .92) !important;
+  border-bottom-color: rgba(34, 224, 255, .30);
+}
+
+.dc-brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .5rem;
+  text-decoration: none;
+}
+
+/* The monogram is symmetric about its own centre, so baseline alignment (which
+   .dc-brand sets for the wordmark and the tag) would hang it below the text. */
+.dc-brand__icon {
+  flex: none;
+  align-self: center;
+  height: 1.4rem;
+  width: auto;
+}
+
+.dc-brand__mark {
+  font-family: var(--dc-font-sans);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  color: var(--dc-text);
+}
+.dc-brand__mark em {
+  font-style: normal;
+  color: #ffeaf8;
+  text-shadow: var(--dc-text-glow-magenta);
+}
+
+.dc-brand__tag {
+  font-family: var(--dc-font-mono);
+  font-size: .62rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--dc-text-mute);
+}
+
+.nav-link,
+.dc-nav .nav-link {
+  color: var(--dc-text-dim);
+  font-family: var(--dc-font-mono);
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .5rem .75rem !important;
+  transition: var(--dc-transition-fast);
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+  color: var(--dc-text);
+  text-shadow: var(--dc-text-glow-cyan);
+}
+
+/* keep the chrome legible over the brightest frames while still transparent */
+/* Over the hero there is imagery behind the chrome, so the dim tokens lose
+   too much contrast — lift them and hard-shadow the glyphs. */
+.dc-nav:not(.is-stuck) .dc-brand__mark,
+.dc-nav:not(.is-stuck) .dc-brand__tag,
+.dc-nav:not(.is-stuck) .nav-link,
+.dc-nav:not(.is-stuck) .dc-btn--ghost {
+  text-shadow: 0 1px 14px rgba(0, 0, 0, .85), 0 0 3px rgba(0, 0, 0, .7);
+}
+
+.dc-nav:not(.is-stuck) .dc-brand__tag { color: var(--dc-text-dim); }
+.dc-nav:not(.is-stuck) .nav-link { color: var(--dc-text); }
+
+.navbar-toggler {
+  border: 1px solid var(--dc-line-bright);
+  border-radius: 0;
+  padding: .3rem .5rem;
+}
+.navbar-toggler-icon {
+  filter: invert(1) opacity(.75);
+}
+
+/* mobile: the collapse needs its own dark plate over the canvas */
+@media (max-width: 991.98px) {
+  .dc-nav .navbar-collapse.show,
+  .dc-nav .navbar-collapse.collapsing {
+    background: rgba(18, 18, 20, .97);
+    border: 1px solid var(--dc-line);
+    padding: 1rem;
+    margin-top: .75rem;
   }
-  
-  /* --------------------------------------------------------------------------
-     1. Base & Global Styles
-     -------------------------------------------------------------------------- */
-  body {
-    font-family: var(--dc-font-sans);
-    background-color: var(--dc-bg);
-    color: var(--dc-text-primary);
-    letter-spacing: -0.015em;
-    padding-bottom: 80px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------------------------------------------------------------
+   4. Hero — 350vh scroll track, sticky canvas stage
+   -------------------------------------------------------------------------- */
+.dc-hero {
+  position: relative;
+  height: 350vh;              /* the scrub runway */
+  background: var(--dc-asphalt);
+}
+
+.dc-hero__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--dc-asphalt);
+}
+
+@supports (height: 100svh) {
+  .dc-hero__stage { height: 100svh; }
+}
+
+.dc-hero__canvas,
+.dc-hero__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: var(--dc-asphalt);
+}
+
+.dc-hero__poster { display: none; }
+
+/* Brand tile pinned to a fixed spot of the frame. carnival-hero.js owns its
+   size, offset and slide-in transform — it maps the spot through the same
+   cover transform the canvas draws with, so inline geometry is unavoidable.
+   Hidden by default so the no-JS and reduced-motion hero shows only the
+   poster, which has the tile baked in (tools/build-frames.py). */
+.dc-hero__bug {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: var(--dc-asphalt) url("../img/dc-mark.png") no-repeat center / 64%;
+  border: 1px solid var(--dc-line-bright);
+  box-shadow: 0 0 0 1px rgba(255, 47, 185, .16), 0 0 20px rgba(255, 47, 185, .1);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.dc-hero:not(.dc-hero--static) .dc-hero__bug { display: block; }
+
+/* keeps overlay copy legible against the busiest frames */
+/* Flat dim so the neon panels read, plus a top band so the transparent
+   navbar keeps its contrast over the brightest frames. */
+.dc-hero__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(18, 18, 20, .78), rgba(18, 18, 20, 0) 9rem),
+    rgba(18, 18, 20, .34);
+}
+
+/* loading readout */
+.dc-loader {
+  position: absolute;
+  left: 50%;
+  bottom: 3.25rem;
+  transform: translateX(-50%);
+  z-index: 6;
+  font-family: var(--dc-font-mono);
+  font-size: .7rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--dc-cyan);
+  background: rgba(18, 18, 20, .8);
+  border: 1px solid rgba(34, 224, 255, .3);
+  padding: .5rem .9rem;
+  transition: opacity .4s ease;
+}
+.dc-loader[hidden] { display: none; }
+
+/* scrub progress hairline */
+.dc-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, .07);
+  z-index: 6;
+}
+.dc-progress__bar {
+  height: 100%;
+  width: 0;
+  background: var(--dc-cyan);
+  box-shadow: 0 0 10px rgba(34, 224, 255, .8);
+}
+
+/* scroll cue */
+.dc-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  z-index: 6;
+  font-family: var(--dc-font-mono);
+  font-size: .65rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--dc-text-mute);
+  transition: opacity .4s ease;
+}
+.dc-cue.is-gone { opacity: 0; }
+.dc-cue span {
+  display: block;
+  text-align: center;
+  color: var(--dc-cyan);
+  animation: dc-bob 1.8s ease-in-out infinite;
+}
+
+@keyframes dc-bob {
+  0%, 100% { transform: translateY(0); opacity: .5; }
+  50% { transform: translateY(4px); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   5. Narrative overlays during the pin
+   -------------------------------------------------------------------------- */
+.dc-beats {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.dc-beat {
+  position: absolute;
+  width: min(46ch, 44vw);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .12s linear, transform .3s ease;
+  will-change: opacity, transform;
+}
+
+.dc-beat.is-on {
+  transform: translateY(0);
+}
+.dc-beat.is-on .dc-panel { pointer-events: auto; }
+
+/* While scrubbing, an inactive beat is fully out: visibility:hidden keeps its
+   links out of the tab order and the accessibility tree. */
+.dc-hero:not(.dc-hero--static) .dc-beat { visibility: hidden; }
+.dc-hero:not(.dc-hero--static) .dc-beat.is-on { visibility: visible; }
+
+.dc-beat--center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% + 14px));
+  width: min(52ch, 62vw);
+  text-align: center;
+}
+.dc-beat--center.is-on { transform: translate(-50%, -50%); }
+
+.dc-beat--left {
+  left: clamp(1.5rem, 7vw, 7rem);
+  top: 50%;
+  transform: translateY(calc(-50% + 14px));
+}
+.dc-beat--left.is-on { transform: translateY(-50%); }
+
+.dc-beat--right {
+  right: clamp(1.5rem, 7vw, 7rem);
+  top: 50%;
+  transform: translateY(calc(-50% + 14px));
+  text-align: right;
+}
+.dc-beat--right.is-on { transform: translateY(-50%); }
+
+/* terminal-ish panel */
+.dc-panel {
+  background: rgba(18, 18, 20, .82);
+  border: 1px solid var(--dc-line-bright);
+  padding: 0;
+}
+
+.dc-panel__bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem .85rem;
+  border-bottom: 1px solid var(--dc-line);
+  font-family: var(--dc-font-mono);
+  font-size: .66rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--dc-text-mute);
+}
+
+.dc-panel__dots {
+  display: inline-flex;
+  gap: .3rem;
+}
+.dc-panel__dots i {
+  width: 7px;
+  height: 7px;
+  display: block;
+  background: var(--dc-line-bright);
+}
+.dc-panel__dots i:nth-child(1) { background: var(--dc-red); }
+.dc-panel__dots i:nth-child(2) { background: var(--dc-amber); }
+.dc-panel__dots i:nth-child(3) { background: var(--dc-cyan); }
+
+.dc-panel__body { padding: 1.5rem 1.65rem 1.75rem; }
+
+.dc-beat__title {
+  font-size: clamp(1.9rem, 4.4vw, 3.4rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: .95;
+  letter-spacing: -.025em;
+  margin: 0 0 .65rem;
+}
+
+.dc-beat--hero .dc-beat__title {
+  font-size: clamp(2.6rem, 8.5vw, 6rem);
+}
+
+.dc-beat__sub {
+  font-family: var(--dc-font-mono);
+  font-size: clamp(.82rem, 1.5vw, 1rem);
+  font-weight: 500;
+  letter-spacing: .05em;
+  color: var(--dc-text-dim);
+  margin: 0;
+}
+
+/* accent border per beat */
+.dc-beat--cyan .dc-panel { box-shadow: var(--dc-glow-cyan); }
+.dc-beat--magenta .dc-panel { box-shadow: var(--dc-glow-magenta); }
+.dc-beat--purple .dc-panel { box-shadow: var(--dc-glow-purple); }
+.dc-beat--amber .dc-panel { box-shadow: var(--dc-glow-amber); }
+
+/* --------------------------------------------------------------------------
+   6. Buttons
+   -------------------------------------------------------------------------- */
+.dc-btn,
+.btn-minimal {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  background: var(--dc-magenta);
+  color: #fff;
+  border: 1px solid var(--dc-magenta);
+  border-radius: 0;
+  font-family: var(--dc-font-sans);
+  font-weight: 800;
+  font-size: .9rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: .85rem 1.6rem;
+  text-decoration: none;
+  box-shadow: 0 0 0 1px rgba(255, 47, 185, .3), 0 0 26px rgba(255, 47, 185, .28);
+  transition: var(--dc-transition-smooth);
+}
+
+.dc-btn:hover,
+.dc-btn:focus,
+.btn-minimal:hover,
+.btn-minimal:focus {
+  background: #ff52c6;
+  border-color: #ff52c6;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(255, 47, 185, .5), 0 0 38px rgba(255, 47, 185, .45);
+}
+
+.dc-btn--ghost,
+.btn-outline-minimal {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  background: transparent;
+  color: var(--dc-text);
+  border: 1px solid var(--dc-line-bright);
+  border-radius: 0;
+  font-family: var(--dc-font-mono);
+  font-weight: 500;
+  font-size: .78rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .8rem 1.4rem;
+  text-decoration: none;
+  box-shadow: none;
+  transition: var(--dc-transition-smooth);
+}
+
+.dc-btn--ghost:hover,
+.dc-btn--ghost:focus,
+.btn-outline-minimal:hover,
+.btn-outline-minimal:focus {
+  color: #eafcff;
+  border-color: var(--dc-cyan);
+  background: transparent;
+  transform: translateY(-2px);
+  box-shadow: var(--dc-glow-cyan);
+}
+
+.dc-btn--lg {
+  font-size: 1rem;
+  padding: 1.05rem 2.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. Agenda — retro arcade high-score screen
+   -------------------------------------------------------------------------- */
+.dc-arcade {
+  border: 1px solid var(--dc-line-bright);
+  background: var(--dc-surface);
+  box-shadow: var(--dc-glow-cyan);
+  position: relative;
+  overflow: hidden;
+}
+
+/* CRT scanlines — 2-stop repeating pattern, deliberately subtle */
+.dc-arcade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, .022) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+.dc-arcade__bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1.25rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: .85rem 1.25rem;
+  border-bottom: 1px solid var(--dc-line);
+  background: var(--dc-surface-2);
+  font-family: var(--dc-font-mono);
+  font-size: .7rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--dc-text-mute);
+}
+
+.dc-arcade__title {
+  color: #eafcff;
+  text-shadow: var(--dc-text-glow-cyan);
+}
+
+.dc-arcade__body { padding: 1.25rem; }
+
+/* day switcher (Bootstrap nav-pills, restyled) */
+.dc-days {
+  gap: .5rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--dc-line);
+  padding-bottom: 1.25rem;
+}
+
+.dc-days .nav-link {
+  border-radius: 0;
+  border: 1px solid var(--dc-line-bright);
+  color: var(--dc-text-dim);
+  background: transparent;
+  padding: .6rem 1.1rem !important;
+}
+
+.dc-days .nav-link:hover { border-color: var(--dc-cyan); }
+
+.dc-days .nav-link.active {
+  background: transparent;
+  color: #eafcff;
+  border-color: var(--dc-magenta);
+  box-shadow: var(--dc-glow-magenta);
+  text-shadow: var(--dc-text-glow-magenta);
+}
+
+/* score rows */
+.dc-score {
+  display: grid;
+  grid-template-columns: 3.5rem 8.5rem 1fr 9rem;
+  gap: 1rem;
+  align-items: baseline;
+  padding: .85rem .5rem;
+  border-bottom: 1px dashed var(--dc-line);
+  font-family: var(--dc-font-mono);
+  font-size: .85rem;
+}
+
+.dc-score:last-child { border-bottom: 0; }
+.dc-score:hover { background: rgba(34, 224, 255, .04); }
+
+.dc-score__rank {
+  color: var(--dc-amber);
+  font-weight: 500;
+}
+
+.dc-score__time {
+  color: var(--dc-cyan);
+  white-space: nowrap;
+}
+
+.dc-score__name {
+  font-family: var(--dc-font-sans);
+  font-weight: 700;
+  font-size: .98rem;
+  color: var(--dc-text);
+  letter-spacing: -.01em;
+}
+
+.dc-score__room {
+  color: var(--dc-text-mute);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .72rem;
+  text-align: right;
+}
+
+/* break rows read as interludes, not sessions */
+.dc-score--break {
+  grid-template-columns: 3.5rem 8.5rem 1fr;
+  background: rgba(255, 182, 46, .05);
+  border-bottom-style: solid;
+}
+.dc-score--break .dc-score__name {
+  font-family: var(--dc-font-mono);
+  font-weight: 500;
+  font-size: .82rem;
+  color: var(--dc-amber);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+
+.dc-score--keynote .dc-score__name { color: #ffeaf8; text-shadow: var(--dc-text-glow-magenta); }
+
+@media (max-width: 767.98px) {
+  .dc-score,
+  .dc-score--break {
+    grid-template-columns: 3rem 1fr;
+    gap: .25rem .85rem;
+    row-gap: .2rem;
   }
-  
-  /* Typography Enhancements */
-  h1, h2, h3, h4, h5, h6 {
-    color: var(--dc-text-primary);
-    font-weight: 700;
-    letter-spacing: -0.03em;
+  .dc-score__rank { grid-row: span 3; }
+  .dc-score__room { text-align: left; }
+}
+
+.dc-arcade__foot {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--dc-line);
+  background: var(--dc-surface-2);
+  font-family: var(--dc-font-mono);
+  font-size: .7rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--dc-text-mute);
+}
+.dc-arcade__foot b {
+  color: var(--dc-cyan);
+  font-weight: 500;
+  animation: dc-blink 1.4s steps(1) infinite;
+}
+
+@keyframes dc-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: .15; }
+}
+
+/* --------------------------------------------------------------------------
+   8. Attractions grid
+   -------------------------------------------------------------------------- */
+.dc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: 1px;
+  background: var(--dc-line);
+  border: 1px solid var(--dc-line);
+}
+
+.dc-booth {
+  background: var(--dc-surface);
+  padding: 1.9rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  border-top: 2px solid var(--dc-line-bright);
+  transition: var(--dc-transition-smooth);
+  position: relative;
+}
+
+.dc-booth:hover {
+  background: var(--dc-surface-2);
+  transform: translateY(-3px);
+  z-index: 2;
+}
+
+.dc-booth__icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.dc-booth__name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+  margin: 0;
+}
+
+.dc-booth__desc {
+  color: var(--dc-text-dim);
+  font-size: .92rem;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.dc-booth__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .9rem;
+  font-family: var(--dc-font-mono);
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dc-text-mute);
+  border-top: 1px dashed var(--dc-line);
+  padding-top: .85rem;
+  margin-top: .25rem;
+}
+
+/* accent per booth, set from front matter */
+.dc-booth--cyan { border-top-color: var(--dc-cyan); }
+.dc-booth--cyan:hover { box-shadow: var(--dc-glow-cyan); }
+.dc-booth--cyan .dc-booth__name { color: #eafcff; text-shadow: var(--dc-text-glow-cyan); }
+
+.dc-booth--magenta { border-top-color: var(--dc-magenta); }
+.dc-booth--magenta:hover { box-shadow: var(--dc-glow-magenta); }
+.dc-booth--magenta .dc-booth__name { color: #ffeaf8; text-shadow: var(--dc-text-glow-magenta); }
+
+.dc-booth--purple { border-top-color: var(--dc-purple); }
+.dc-booth--purple:hover { box-shadow: var(--dc-glow-purple); }
+.dc-booth--purple .dc-booth__name { color: #f3ebff; text-shadow: 0 0 6px rgba(157, 92, 255, .65), 0 0 26px rgba(157, 92, 255, .35); }
+
+.dc-booth--red { border-top-color: var(--dc-red); }
+.dc-booth--red:hover { box-shadow: 0 0 0 1px rgba(255, 71, 71, .4), 0 0 22px rgba(255, 71, 71, .16); }
+.dc-booth--red .dc-booth__name { color: #ffecec; text-shadow: 0 0 6px rgba(255, 71, 71, .65), 0 0 26px rgba(255, 71, 71, .35); }
+
+.dc-booth--amber { border-top-color: var(--dc-amber); }
+.dc-booth--amber:hover { box-shadow: var(--dc-glow-amber); }
+.dc-booth--amber .dc-booth__name { color: #fff6e3; text-shadow: var(--dc-text-glow-amber); }
+
+/* --------------------------------------------------------------------------
+   9. Stat strip
+   -------------------------------------------------------------------------- */
+/* Flex-wrap, not grid: five tiles in a grid leave a hole in the last row when
+   they wrap on narrow screens. Flex grows the final row's tiles to fill it
+   instead, at any tile count. Dividers are each tile's outline, which meets
+   its neighbour's across the 1px gap; overflow clips the outer ring. */
+.dc-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  background: var(--dc-asphalt);
+  border-block: 1px solid var(--dc-line);
+  overflow: hidden;
+}
+
+.dc-stat {
+  flex: 1 1 10rem;
+  background: var(--dc-asphalt);
+  outline: 1px solid var(--dc-line);
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+}
+
+.dc-stat__num {
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1;
+  color: #eafcff;
+  text-shadow: var(--dc-text-glow-cyan);
+  display: block;
+}
+
+.dc-stat__label {
+  font-family: var(--dc-font-mono);
+  font-size: .66rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--dc-text-mute);
+  margin-top: .6rem;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   10. Registration form
+   -------------------------------------------------------------------------- */
+.dc-register {
+  border: 1px solid var(--dc-line-bright);
+  background: var(--dc-surface);
+  box-shadow: var(--dc-glow-magenta);
+}
+
+.dc-register__body { padding: clamp(1.5rem, 4vw, 3rem); }
+
+.dc-label {
+  display: block;
+  font-family: var(--dc-font-mono);
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--dc-text-dim);
+  margin-bottom: .5rem;
+}
+
+.dc-input,
+.dc-select {
+  width: 100%;
+  background: var(--dc-asphalt);
+  color: var(--dc-text);
+  border: 1px solid var(--dc-line-bright);
+  border-radius: 0;
+  padding: .8rem .9rem;
+  font-family: var(--dc-font-mono);
+  font-size: .9rem;
+  transition: var(--dc-transition-fast);
+  appearance: none;
+}
+
+.dc-select {
+  /* caret without an SVG dependency */
+  padding-right: 2.25rem;
+}
+
+.dc-select-wrap { position: relative; }
+.dc-select-wrap::after {
+  content: "\25BE";
+  position: absolute;
+  right: .9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--dc-cyan);
+  pointer-events: none;
+  font-size: .8rem;
+}
+
+.dc-input::placeholder { color: var(--dc-text-mute); }
+
+.dc-input:focus,
+.dc-select:focus {
+  outline: none;
+  border-color: var(--dc-cyan);
+  box-shadow: var(--dc-glow-cyan);
+}
+
+.dc-note {
+  font-family: var(--dc-font-mono);
+  font-size: .72rem;
+  letter-spacing: .06em;
+  color: var(--dc-text-mute);
+  margin: 0;
+}
+
+.dc-notice {
+  border: 1px solid var(--dc-amber);
+  background: rgba(255, 182, 46, .07);
+  color: #fff6e3;
+  font-family: var(--dc-font-mono);
+  font-size: .78rem;
+  letter-spacing: .04em;
+  padding: .85rem 1rem;
+  margin-top: 1.25rem;
+}
+.dc-notice[hidden] { display: none; }
+
+/* --------------------------------------------------------------------------
+   11. Footer
+   -------------------------------------------------------------------------- */
+.dc-footer {
+  border-top: 1px solid var(--dc-line);
+  background: var(--dc-asphalt);
+  padding: 3.25rem 0 2.5rem;
+}
+
+.dc-footer__marks {
+  font-size: 1.5rem;
+  letter-spacing: .35rem;
+  margin-bottom: 1.25rem;
+}
+
+.dc-footer a {
+  color: var(--dc-text-dim);
+  text-decoration: none;
+  font-family: var(--dc-font-mono);
+  font-size: .74rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  transition: var(--dc-transition-fast);
+}
+
+.dc-footer a:hover {
+  color: #eafcff;
+  text-shadow: var(--dc-text-glow-cyan);
+}
+
+.dc-footer__legal {
+  font-family: var(--dc-font-mono);
+  font-size: .72rem;
+  letter-spacing: .1em;
+  color: var(--dc-text-mute);
+}
+
+/* --------------------------------------------------------------------------
+   12. Reduced motion — bypass the scrub entirely
+   -------------------------------------------------------------------------- */
+.dc-hero.dc-hero--static {
+  height: auto;
+  min-height: 100vh;
+}
+
+.dc-hero--static .dc-hero__stage {
+  position: relative;
+  height: auto;
+  min-height: 100vh;
+}
+
+.dc-hero--static .dc-hero__canvas,
+.dc-hero--static .dc-loader,
+.dc-hero--static .dc-progress,
+.dc-hero--static .dc-cue { display: none; }
+
+.dc-hero--static .dc-hero__poster { display: block; }
+
+/* overlays become a stacked, readable column over the static frame */
+.dc-hero--static .dc-beats {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 7.5rem clamp(1.25rem, 5vw, 4rem) 4rem;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.dc-hero--static .dc-beat {
+  position: static;
+  transform: none;
+  width: min(46ch, 100%);
+  opacity: 0;
+  animation: dc-fade-in .6s ease forwards;
+}
+
+.dc-hero--static .dc-beat--center { text-align: left; }
+.dc-hero--static .dc-beat--right { text-align: left; align-self: flex-start; }
+.dc-hero--static .dc-beat:nth-child(2) { animation-delay: .15s; }
+.dc-hero--static .dc-beat:nth-child(3) { animation-delay: .3s; }
+.dc-hero--static .dc-beat:nth-child(4) { animation-delay: .45s; }
+.dc-hero--static .dc-beat .dc-panel { pointer-events: auto; }
+
+@keyframes dc-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
-  
-  .text-gradient {
-    background: var(--dc-gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    display: inline-block;
+  .dc-hero--static .dc-beat { opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   13. Mobile — overlays centre-screen on readable dark plates
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .dc-beat,
+  .dc-beat--left,
+  .dc-beat--right,
+  .dc-beat--center {
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: 5.5rem;
+    width: calc(100vw - 2.5rem);
+    max-width: 34rem;
+    text-align: center;
+    transform: translate(-50%, 14px);
   }
-  
-  /* --------------------------------------------------------------------------
-     2. Navigation Bar (Glassmorphism Sticky Nav)
-     -------------------------------------------------------------------------- */
-  .navbar {
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--dc-border);
-    transition: var(--dc-transition-fast);
+
+  .dc-beat.is-on,
+  .dc-beat--left.is-on,
+  .dc-beat--right.is-on,
+  .dc-beat--center.is-on {
+    transform: translate(-50%, 0);
   }
-  
-  .nav-link {
-    color: var(--dc-text-secondary);
-    font-weight: 600;
-    font-size: 0.925rem;
-    padding: 0.5rem 1rem !important;
-    transition: var(--dc-transition-fast);
+
+  .dc-beat .dc-panel { background: rgba(18, 18, 20, .90); }
+  .dc-hero__scrim { background: rgba(18, 18, 20, .42); }
+  .dc-panel__body { padding: 1.15rem 1.15rem 1.4rem; }
+  .dc-beat--hero .dc-beat__title { font-size: clamp(2.1rem, 11vw, 3.4rem); }
+  .dc-loader { bottom: auto; top: 5.5rem; }
+  .dc-section { padding: 4rem 0; }
+}
+
+@media (max-width: 991.98px) {
+  .dc-hero--static .dc-beat,
+  .dc-hero--static .dc-beat--left,
+  .dc-hero--static .dc-beat--right,
+  .dc-hero--static .dc-beat--center {
+    position: static;
+    width: 100%;
+    max-width: none;
+    transform: none;
+    text-align: left;
   }
-  
-  .nav-link:hover,
-  .nav-link.active {
-    color: var(--dc-text-primary);
-  }
-  
-  /* --------------------------------------------------------------------------
-     3. Hero Section
-     -------------------------------------------------------------------------- */
-  .hero-section {
-    padding: 10rem 0 6rem 0;
-    position: relative;
-    background: radial-gradient(70% 50% at 50% 0%, rgba(99, 102, 241, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
-  }
-  
-  .hero-logo {
-    max-width: 260px;
-    height: auto;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.05));
-  }
-  
-  .section-divider {
-    border-top: 1px solid var(--dc-border);
-  }
-  
-  /* --------------------------------------------------------------------------
-     4. Buttons (Modern Pill/Rounded Aesthetic)
-     -------------------------------------------------------------------------- */
-  .btn-minimal {
-    background-color: var(--dc-text-primary);
-    color: #ffffff;
-    border: 1px solid var(--dc-text-primary);
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.75rem 1.75rem;
-    border-radius: var(--dc-radius-sm);
-    box-shadow: var(--dc-shadow-sm);
-    transition: var(--dc-transition-smooth);
-  }
-  
-  .btn-minimal:hover {
-    background-color: #1e293b;
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: var(--dc-shadow-hover);
-  }
-  
-  .btn-outline-minimal {
-    background-color: transparent;
-    color: var(--dc-text-primary);
-    border: 1px solid var(--dc-border-hover);
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.75rem 1.75rem;
-    border-radius: var(--dc-radius-sm);
-    transition: var(--dc-transition-smooth);
-  }
-  
-  .btn-outline-minimal:hover {
-    background-color: var(--dc-surface);
-    color: var(--dc-text-primary);
-    border-color: var(--dc-text-primary);
-    transform: translateY(-2px);
-    box-shadow: var(--dc-shadow-sm);
-  }
-  
-  /* --------------------------------------------------------------------------
-     5. Feature Cards / Pillar Items (01, 02, 03)
-     -------------------------------------------------------------------------- */
-  .feature-card {
-    background: var(--dc-surface);
-    border: 1px solid var(--dc-border);
-    border-radius: var(--dc-radius-md);
-    padding: 2rem;
-    height: 100%;
-    transition: var(--dc-transition-smooth);
-  }
-  
-  .feature-card:hover {
-    border-color: var(--dc-border-hover);
-    transform: translateY(-4px);
-    box-shadow: var(--dc-shadow-hover);
-  }
-  
-  .feature-number {
-    font-size: 0.875rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: #6366f1;
-    margin-bottom: 0.75rem;
-    display: inline-block;
-  }
-  
-  /* --------------------------------------------------------------------------
-     6. Footer & Meta Badges
-     -------------------------------------------------------------------------- */
-  .meta-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.85rem;
-    background-color: rgba(99, 102, 241, 0.06);
-    border: 1px solid rgba(99, 102, 241, 0.15);
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #4f46e5;
-  }
+}
+
+/* --------------------------------------------------------------------------
+   14. Legacy classes — the nine inner-page templates still use these.
+       Retokened for the dark theme so those pages stay coherent.
+   -------------------------------------------------------------------------- */
+.text-gradient {
+  color: #ffeaf8;
+  text-shadow: var(--dc-text-glow-magenta);
+  display: inline-block;
+}
+
+.hero-section {
+  padding: 9rem 0 4rem;
+  position: relative;
+}
+
+.hero-logo {
+  max-width: 260px;
+  height: auto;
+}
+
+.section-divider { border-top: 1px solid var(--dc-line); }
+
+.feature-card {
+  background: var(--dc-surface);
+  border: 1px solid var(--dc-line);
+  border-radius: 0;
+  padding: 2rem;
+  height: 100%;
+  transition: var(--dc-transition-smooth);
+}
+
+.feature-card:hover {
+  border-color: var(--dc-cyan);
+  transform: translateY(-4px);
+  box-shadow: var(--dc-glow-cyan);
+}
+
+.feature-number {
+  font-family: var(--dc-font-mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  color: var(--dc-cyan);
+  margin-bottom: .75rem;
+  display: inline-block;
+}
+
+.meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .4rem .85rem;
+  background: rgba(34, 224, 255, .06);
+  border: 1px solid rgba(34, 224, 255, .28);
+  border-radius: 0;
+  font-family: var(--dc-font-mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--dc-cyan);
+}
+
+/* Bootstrap utility overrides that assumed a light page */
+.bg-light,
+.bg-white {
+  background-color: var(--dc-surface) !important;
+  color: var(--dc-text);
+}
+.text-dark { color: var(--dc-text) !important; }
+.text-muted { color: var(--dc-text-mute) !important; }
+.text-secondary { color: var(--dc-text-dim) !important; }
+.border,
+.border-top,
+.border-bottom,
+.border-light { border-color: var(--dc-line) !important; }
+
+.card {
+  background-color: var(--dc-surface);
+  border-color: var(--dc-line);
+  border-radius: 0;
+}
+
+/* Previously-phantom classes referenced by inner templates — now real */
+.line-height-sm { line-height: 1.05; }
+.line-height-md { line-height: 1.35; }
+.tracking-tight { letter-spacing: -.03em; }
+.tracking-wider { letter-spacing: .16em; }
+.fs-7 { font-size: .8rem; }
+.border-dashed { border-style: dashed !important; }
+.italic { font-style: italic; }
+.hover-underline:hover { text-decoration: underline; }
+.article-content { color: var(--dc-text-dim); line-height: 1.75; }
+.article-content h2,
+.article-content h3 { margin-top: 2rem; margin-bottom: .75rem; }

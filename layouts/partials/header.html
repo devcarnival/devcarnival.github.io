@@ -1,20 +1,27 @@
-<!-- Header Navigation -->
-<nav class="navbar navbar-expand-lg bg-white fixed-top py-3 border-bottom border-light">
+<!-- Fixed navbar: transparent over the hero, dark + neon hairline once past it -->
+<nav class="navbar dc-nav navbar-expand-lg fixed-top py-3" data-dc-nav>
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="{{ "" | relURL }}">
-            <!-- Small Logo Icon for Navbar -->
-            <img src="{{ "devcarnival-logo.svg" | relURL }}" alt="" class="me-2" style="max-height: 28px;" onerror="this.style.display='none'">
-            <span class="fw-bold tracking-tight text-dark fs-5">{{ .Site.Title }}</span>
+        <a class="navbar-brand dc-brand p-0" href="{{ "" | relURL }}">
+            {{/* alt="" on purpose — the wordmark beside it already names the brand */}}
+            <img class="dc-brand__icon" src="{{ `img/dc-mark.png` | relURL }}"
+                 alt="" width="256" height="148">
+            <span class="dc-brand__mark">Dev<em>Carnival</em></span>
+            <span class="dc-brand__tag d-none d-sm-inline">Chennai '27</span>
         </a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+        <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#dcNav" aria-controls="dcNav" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto gap-lg-4 mt-3 mt-lg-0 align-items-lg-center">
-                {{ range .Site.Menus.main }}
-                <li class="nav-item"><a class="nav-link" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-                {{ end }}
-                <li class="nav-item ms-lg-2"><a class="btn btn-outline-minimal btn-sm text-nowrap" href="#cfp">Submit a Talk</a></li>
+
+        <div class="collapse navbar-collapse" id="dcNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mt-2 mt-lg-0">
+                <li class="nav-item"><a class="nav-link" href="{{ "" | relURL }}#map">Map</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ "" | relURL }}#attractions">Attractions</a></li>
+                <li class="nav-item ms-lg-2">
+                    <a class="dc-btn dc-btn--ghost" href="{{ "" | relURL }}#passport">Passport</a>
+                </li>
             </ul>
         </div>
     </div>
