@@ -1,0 +1,150 @@
+{{ define "main" }}
+<div class="container hero-section py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Navigation Backlink -->
+            <div class="mb-4">
+                <a href="{{ "team/academia/" | relURL }}" class="text-muted text-decoration-none small fw-bold d-inline-flex align-items-center gap-1">
+                    &larr; Back to Academia Team
+                </a>
+            </div>
+
+            <!-- Hero Header -->
+            <div class="mb-5">
+                <div class="d-inline-flex align-items-center gap-2 mb-3">
+                    <span class="meta-badge">Academia Flagship Initiative</span>
+                    <span class="badge bg-dark-subtle text-dark border px-3 py-1 font-monospace">All-India Cohort (Max 90)</span>
+                </div>
+                <h1 class="display-4 fw-bold text-dark mb-3 tracking-tight">Changemakers</h1>
+                <p class="lead text-secondary fs-4 mb-4">
+                    Empowering hands-on coding professors who understand both academic rigors and industry needs to transform engineering education across India.
+                </p>
+                
+                <div class="d-flex flex-wrap gap-3">
+                    {{ if .Params.deck_url }}
+                    <a href="{{ .Params.deck_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-minimal d-inline-flex align-items-center gap-2">
+                        <span>View Presentation Deck</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                            <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                        </svg>
+                    </a>
+                    {{ end }}
+                    <a href="{{ "team/academia/" | relURL }}" class="btn btn-outline-minimal">
+                        Meet the Academia Team
+                    </a>
+                </div>
+            </div>
+
+            <hr class="section-divider my-5">
+
+            <!-- Mission Overview Block -->
+            <div class="row g-4 align-items-center mb-5">
+                <div class="col-lg-12">
+                    <div class="p-4 p-md-5 bg-white border rounded-3 shadow-sm">
+                        <h2 class="h3 fw-bold text-dark mb-3">Who are Changemakers?</h2>
+                        <div class="article-content text-secondary fs-5 line-height-md">
+                            {{ .Content }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Pillars Grid (01 - 04) -->
+            <div class="mb-5">
+                <h2 class="h3 fw-bold text-dark mb-4">Core Framework</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="feature-card">
+                            <span class="feature-number">01 / IDENTIFY</span>
+                            <h3 class="h5 fw-bold text-dark mb-2">Professor Hackathons</h3>
+                            <p class="text-secondary small mb-0">
+                                Organizing exclusive, high-intensity hackathons designed specifically for professors to showcase hands-on coding ability, architecture skills, and innovative software solutions.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="feature-card">
+                            <span class="feature-number">02 / SELECT</span>
+                            <h3 class="h5 fw-bold text-dark mb-2">Max 90 Selected Professors</h3>
+                            <p class="text-secondary small mb-0">
+                                Curating a premier national cohort of up to 90 exceptional faculty from institutions across India, fostering continuous peer collaboration and high-impact curriculum co-creation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="feature-card">
+                            <span class="feature-number">03 / ENABLE</span>
+                            <h3 class="h5 fw-bold text-dark mb-2">Corporate Feedback Loops</h3>
+                            <p class="text-secondary small mb-0">
+                                Connecting professors with enterprise leaders and engineering architects who provide direct industry feedback, real-world constraints, and validation on hackathon projects.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="feature-card">
+                            <span class="feature-number">04 / INCUBATE</span>
+                            <h3 class="h5 fw-bold text-dark mb-2">TN-Startup Connectivity</h3>
+                            <p class="text-secondary small mb-0">
+                                Bridging standout ideas and faculty-led research with the Tamil Nadu Startup Ecosystem (TN-Startup / StartupTN) for incubation, mentorship, and venture development.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process & Journey Flow -->
+            <div class="p-4 p-md-5 bg-light border rounded-3 mb-5">
+                <h2 class="h3 fw-bold text-dark mb-4">The Engagement Journey</h2>
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="border-start border-3 border-primary ps-3">
+                            <div class="fw-bold text-dark mb-1">1. Hackathon Entry</div>
+                            <p class="text-muted small mb-0">Hands-on coding challenges evaluating real problem-solving and software development craft.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border-start border-3 border-primary ps-3">
+                            <div class="fw-bold text-dark mb-1">2. Industry Review</div>
+                            <p class="text-muted small mb-0">Direct engagement with corporate architects for code reviews, architecture critique, and feedback.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border-start border-3 border-primary ps-3">
+                            <div class="fw-bold text-dark mb-1">3. Startup Bridge</div>
+                            <p class="text-muted small mb-0">Connecting viable innovations with TN-Startup pipelines, accelerators, and incubation.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="border-start border-3 border-primary ps-3">
+                            <div class="fw-bold text-dark mb-1">4. Campus Impact</div>
+                            <p class="text-muted small mb-0">Cascading practical, industry-aligned engineering practices to thousands of students.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reference Deck CTA Box -->
+            {{ if .Params.deck_url }}
+            <div class="p-4 p-md-5 bg-dark text-white rounded-3 shadow d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
+                <div>
+                    <h3 class="h4 fw-bold text-white mb-2">Explore the Full Changemakers Deck</h3>
+                    <p class="text-white-50 mb-0">
+                        Review the complete vision, roadmap, and execution model for the Changemakers professor hackathon and engagement initiative.
+                    </p>
+                </div>
+                <div>
+                    <a href="{{ .Params.deck_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-light px-4 py-2 fw-semibold text-nowrap">
+                        Open Presentation Deck &#8599;
+                    </a>
+                </div>
+            </div>
+            {{ end }}
+
+        </div>
+    </div>
+</div>
+{{ end }}

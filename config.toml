@@ -40,3 +40,9 @@ languageCode = "en-us"
 [permalinks]
   session = "/session/:slug/"
   communities = "/communities/:slug/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
