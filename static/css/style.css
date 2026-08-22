@@ -30,10 +30,28 @@
   --dc-glow-magenta: 0 0 0 1px rgba(255, 47, 185, .40), 0 0 22px rgba(255, 47, 185, .16);
   --dc-glow-purple: 0 0 0 1px rgba(157, 92, 255, .40), 0 0 22px rgba(157, 92, 255, .16);
   --dc-glow-amber: 0 0 0 1px rgba(255, 182, 46, .40), 0 0 22px rgba(255, 182, 46, .16);
+  --dc-glow-red: 0 0 0 1px rgba(255, 71, 71, .40), 0 0 22px rgba(255, 71, 71, .16);
 
   --dc-text-glow-cyan: 0 0 6px rgba(34, 224, 255, .65), 0 0 26px rgba(34, 224, 255, .35);
   --dc-text-glow-magenta: 0 0 6px rgba(255, 47, 185, .65), 0 0 26px rgba(255, 47, 185, .35);
   --dc-text-glow-amber: 0 0 6px rgba(255, 182, 46, .60), 0 0 26px rgba(255, 182, 46, .32);
+  --dc-text-glow-red: 0 0 6px rgba(255, 71, 71, .65), 0 0 26px rgba(255, 71, 71, .35);
+  --dc-text-glow-purple: 0 0 6px rgba(157, 92, 255, .65), 0 0 26px rgba(157, 92, 255, .35);
+
+  /* --- ink: the "lit" text colour every neon glow is paired with. Near-white
+     in the dark theme; swaps to a readable dark tint of the same hue in
+     light mode (see the [data-bs-theme="light"] block). The hero (always
+     dark, see .dc-hero further down) re-pins these too, so nothing inside
+     it needs a separate hardcoded value just to resist the toggle. -------- */
+  --dc-ink-cyan: #eafcff;
+  --dc-ink-magenta: #ffeaf8;
+  --dc-ink-amber: #fff6e3;
+  --dc-ink-red: #ffecec;
+  --dc-ink-purple: #f3ebff;
+
+  /* --- shared chrome backgrounds: same reasoning as --dc-ink-* above ----- */
+  --dc-nav-bg: rgba(18, 18, 20, .92);
+  --dc-panel-bg: rgba(18, 18, 20, .82);
 
   /* --- type ------------------------------------------------------------- */
   /* Plus Jakarta Sans tops out at 800 (ExtraBold) — that is our "black". */
@@ -90,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a { color: var(--dc-cyan); }
-a:hover { color: #7ceeff; }
+a:hover { color: var(--dc-ink-cyan); }
 
 ::selection {
   background: var(--dc-magenta);
@@ -169,10 +187,10 @@ a:hover { color: #7ceeff; }
 }
 
 /* neon text treatments */
-.dc-neon-cyan { color: #eafcff; text-shadow: var(--dc-text-glow-cyan); }
-.dc-neon-magenta { color: #ffeaf8; text-shadow: var(--dc-text-glow-magenta); }
-.dc-neon-amber { color: #fff6e3; text-shadow: var(--dc-text-glow-amber); }
-.dc-neon-red { color: #ffecec; text-shadow: 0 0 6px rgba(255, 71, 71, .65), 0 0 26px rgba(255, 71, 71, .35); }
+.dc-neon-cyan { color: var(--dc-ink-cyan); text-shadow: var(--dc-text-glow-cyan); }
+.dc-neon-magenta { color: var(--dc-ink-magenta); text-shadow: var(--dc-text-glow-magenta); }
+.dc-neon-amber { color: var(--dc-ink-amber); text-shadow: var(--dc-text-glow-amber); }
+.dc-neon-red { color: var(--dc-ink-red); text-shadow: var(--dc-text-glow-red); }
 
 /* --------------------------------------------------------------------------
    3. Navbar — transparent at top, dark + neon hairline after the hero
@@ -186,7 +204,7 @@ a:hover { color: #7ceeff; }
 
 .dc-nav.is-stuck,
 .navbar.is-stuck {
-  background: rgba(18, 18, 20, .92) !important;
+  background: var(--dc-nav-bg) !important;
   border-bottom-color: rgba(34, 224, 255, .45);
   box-shadow: 0 1px 18px rgba(34, 224, 255, .10);
 }
@@ -194,7 +212,7 @@ a:hover { color: #7ceeff; }
 /* inner pages have no hero to scroll past — keep the chrome from day one */
 body.dc-page .dc-nav,
 body.dc-page .navbar {
-  background: rgba(18, 18, 20, .92) !important;
+  background: var(--dc-nav-bg) !important;
   border-bottom-color: rgba(34, 224, 255, .30);
 }
 
@@ -224,7 +242,7 @@ body.dc-page .navbar {
 }
 .dc-brand__mark em {
   font-style: normal;
-  color: #ffeaf8;
+  color: var(--dc-ink-magenta);
   text-shadow: var(--dc-text-glow-magenta);
 }
 
@@ -281,7 +299,7 @@ body.dc-page .navbar {
 @media (max-width: 991.98px) {
   .dc-nav .navbar-collapse.show,
   .dc-nav .navbar-collapse.collapsing {
-    background: rgba(18, 18, 20, .97);
+    background: var(--dc-nav-bg);
     border: 1px solid var(--dc-line);
     padding: 1rem;
     margin-top: .75rem;
@@ -471,9 +489,10 @@ body.dc-page .navbar {
 }
 .dc-beat--right.is-on { transform: translateY(-50%); }
 
-/* terminal-ish panel */
+/* terminal-ish panel — shared by hero beats (always dark, body.dc-carnival
+   re-pins --dc-panel-bg) and /schedule's keynote panels (theme-aware) */
 .dc-panel {
-  background: rgba(18, 18, 20, .82);
+  background: var(--dc-panel-bg);
   border: 1px solid var(--dc-line-bright);
   padding: 0;
 }
@@ -593,7 +612,7 @@ body.dc-page .navbar {
 .dc-btn--ghost:focus,
 .btn-outline-minimal:hover,
 .btn-outline-minimal:focus {
-  color: #eafcff;
+  color: var(--dc-ink-cyan);
   border-color: var(--dc-cyan);
   background: transparent;
   transform: translateY(-2px);
@@ -646,7 +665,7 @@ body.dc-page .navbar {
 }
 
 .dc-arcade__title {
-  color: #eafcff;
+  color: var(--dc-ink-cyan);
   text-shadow: var(--dc-text-glow-cyan);
 }
 
@@ -672,7 +691,7 @@ body.dc-page .navbar {
 
 .dc-days .nav-link.active {
   background: transparent;
-  color: #eafcff;
+  color: var(--dc-ink-cyan);
   border-color: var(--dc-magenta);
   box-shadow: var(--dc-glow-magenta);
   text-shadow: var(--dc-text-glow-magenta);
@@ -734,7 +753,7 @@ body.dc-page .navbar {
   letter-spacing: .14em;
 }
 
-.dc-score--keynote .dc-score__name { color: #ffeaf8; text-shadow: var(--dc-text-glow-magenta); }
+.dc-score--keynote .dc-score__name { color: var(--dc-ink-magenta); text-shadow: var(--dc-text-glow-magenta); }
 
 @media (max-width: 767.98px) {
   .dc-score,
@@ -833,23 +852,23 @@ body.dc-page .navbar {
 /* accent per booth, set from front matter */
 .dc-booth--cyan { border-top-color: var(--dc-cyan); }
 .dc-booth--cyan:hover { box-shadow: var(--dc-glow-cyan); }
-.dc-booth--cyan .dc-booth__name { color: #eafcff; text-shadow: var(--dc-text-glow-cyan); }
+.dc-booth--cyan .dc-booth__name { color: var(--dc-ink-cyan); text-shadow: var(--dc-text-glow-cyan); }
 
 .dc-booth--magenta { border-top-color: var(--dc-magenta); }
 .dc-booth--magenta:hover { box-shadow: var(--dc-glow-magenta); }
-.dc-booth--magenta .dc-booth__name { color: #ffeaf8; text-shadow: var(--dc-text-glow-magenta); }
+.dc-booth--magenta .dc-booth__name { color: var(--dc-ink-magenta); text-shadow: var(--dc-text-glow-magenta); }
 
 .dc-booth--purple { border-top-color: var(--dc-purple); }
 .dc-booth--purple:hover { box-shadow: var(--dc-glow-purple); }
-.dc-booth--purple .dc-booth__name { color: #f3ebff; text-shadow: 0 0 6px rgba(157, 92, 255, .65), 0 0 26px rgba(157, 92, 255, .35); }
+.dc-booth--purple .dc-booth__name { color: var(--dc-ink-purple); text-shadow: var(--dc-text-glow-purple); }
 
 .dc-booth--red { border-top-color: var(--dc-red); }
-.dc-booth--red:hover { box-shadow: 0 0 0 1px rgba(255, 71, 71, .4), 0 0 22px rgba(255, 71, 71, .16); }
-.dc-booth--red .dc-booth__name { color: #ffecec; text-shadow: 0 0 6px rgba(255, 71, 71, .65), 0 0 26px rgba(255, 71, 71, .35); }
+.dc-booth--red:hover { box-shadow: var(--dc-glow-red); }
+.dc-booth--red .dc-booth__name { color: var(--dc-ink-red); text-shadow: var(--dc-text-glow-red); }
 
 .dc-booth--amber { border-top-color: var(--dc-amber); }
 .dc-booth--amber:hover { box-shadow: var(--dc-glow-amber); }
-.dc-booth--amber .dc-booth__name { color: #fff6e3; text-shadow: var(--dc-text-glow-amber); }
+.dc-booth--amber .dc-booth__name { color: var(--dc-ink-amber); text-shadow: var(--dc-text-glow-amber); }
 
 /* --------------------------------------------------------------------------
    9. Stat strip
@@ -879,7 +898,7 @@ body.dc-page .navbar {
   font-size: clamp(1.75rem, 4vw, 2.6rem);
   font-weight: 800;
   line-height: 1;
-  color: #eafcff;
+  color: var(--dc-ink-cyan);
   text-shadow: var(--dc-text-glow-cyan);
   display: block;
 }
@@ -966,7 +985,7 @@ body.dc-page .navbar {
 .dc-notice {
   border: 1px solid var(--dc-amber);
   background: rgba(255, 182, 46, .07);
-  color: #fff6e3;
+  color: var(--dc-ink-amber);
   font-family: var(--dc-font-mono);
   font-size: .78rem;
   letter-spacing: .04em;
@@ -1001,7 +1020,7 @@ body.dc-page .navbar {
 }
 
 .dc-footer a:hover {
-  color: #eafcff;
+  color: var(--dc-ink-cyan);
   text-shadow: var(--dc-text-glow-cyan);
 }
 
@@ -1101,7 +1120,7 @@ body.dc-page .navbar {
     transform: translate(-50%, 0);
   }
 
-  .dc-beat .dc-panel { background: rgba(18, 18, 20, .90); }
+  .dc-beat .dc-panel { background: var(--dc-panel-bg); }
   .dc-hero__scrim { background: rgba(18, 18, 20, .42); }
   .dc-panel__body { padding: 1.15rem 1.15rem 1.4rem; }
   .dc-beat--hero .dc-beat__title { font-size: clamp(2.1rem, 11vw, 3.4rem); }
@@ -1127,7 +1146,7 @@ body.dc-page .navbar {
        Retokened for the dark theme so those pages stay coherent.
    -------------------------------------------------------------------------- */
 .text-gradient {
-  color: #ffeaf8;
+  color: var(--dc-ink-magenta);
   text-shadow: var(--dc-text-glow-magenta);
   display: inline-block;
 }
@@ -1216,3 +1235,285 @@ body.dc-page .navbar {
 .article-content { color: var(--dc-text-dim); line-height: 1.75; }
 .article-content h2,
 .article-content h3 { margin-top: 2rem; margin-bottom: .75rem; }
+
+/* --------------------------------------------------------------------------
+   15. Schedule — room-by-room grid, dressed in the arcade's own language.
+       /schedule needs a track x time table the home page's condensed
+       .dc-score list has no equivalent for, so this borrows the same bar,
+       dots, mono-time and amber-break/magenta-keynote tokens instead of
+       introducing new colours.
+   -------------------------------------------------------------------------- */
+.dc-sched {
+  border: 1px solid var(--dc-line-bright);
+  background: var(--dc-surface);
+  margin-bottom: 3rem;
+}
+
+.dc-sched__bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: 0;
+  padding: .85rem 1.25rem;
+  background: var(--dc-surface-2);
+  border-bottom: 1px solid var(--dc-line);
+  font-family: var(--dc-font-mono);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--dc-text-mute);
+}
+
+.dc-sched-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.dc-sched-table th,
+.dc-sched-table td {
+  border: 1px solid var(--dc-line);
+  padding: .85rem .75rem;
+  vertical-align: middle;
+}
+
+.dc-sched-table thead th {
+  background: var(--dc-surface-2);
+  border-color: var(--dc-line-bright);
+  color: var(--dc-text-mute);
+  font-family: var(--dc-font-mono);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.dc-sched-table thead th small { color: var(--dc-text-mute); }
+
+.dc-sched-time {
+  background: var(--dc-surface-2);
+  font-family: var(--dc-font-mono);
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--dc-cyan);
+  white-space: nowrap;
+}
+
+.dc-sched-slot__title {
+  display: block;
+  font-family: var(--dc-font-sans);
+  font-weight: 700;
+  font-size: .92rem;
+  color: var(--dc-text);
+  letter-spacing: -.01em;
+}
+
+.dc-sched-slot__meta {
+  display: block;
+  font-family: var(--dc-font-mono);
+  font-size: .7rem;
+  letter-spacing: .03em;
+  color: var(--dc-text-dim);
+  margin-top: .2rem;
+}
+
+.dc-sched-slot__range {
+  display: block;
+  font-family: var(--dc-font-mono);
+  font-size: .68rem;
+  letter-spacing: .04em;
+  color: var(--dc-cyan);
+  margin-top: .35rem;
+}
+
+/* interstitials read as one thing across the whole site: amber, mono,
+   uppercase — same treatment as .dc-score--break on the home page */
+.dc-sched-break td {
+  background: rgba(255, 182, 46, .07);
+  border-color: var(--dc-line);
+  color: var(--dc-amber);
+  font-family: var(--dc-font-mono);
+  font-size: .76rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767.98px) {
+  .dc-sched-table { font-size: .82rem; }
+  .dc-sched-table th,
+  .dc-sched-table td { padding: .6rem .5rem; }
+}
+
+/* --------------------------------------------------------------------------
+   16. Light theme — inner pages only. The home page (body.dc-carnival, see
+       section 17) re-pins every one of these tokens back to their dark
+       values regardless of this block, so it never lightens.
+
+       "Clean, muted accents": the raw hues (--dc-magenta/cyan/purple/red/
+       amber) don't change — they still work as solid border/link/button
+       colours on a light surface. What changes is everything the neon
+       *glow* effect depended on: the glow shadows drop to `none` (a glow is
+       inherently a dark-background effect), and the near-white "ink" text
+       colours that were always paired with a glow swap for a readable dark
+       tint of the same hue instead.
+   -------------------------------------------------------------------------- */
+:root[data-bs-theme="light"] {
+  --dc-asphalt: #f7f7f9;
+  --dc-surface: #ffffff;
+  --dc-surface-2: #f0f0f4;
+  --dc-surface-3: #e7e7ee;
+  --dc-line: #dcdce3;
+  --dc-line-bright: #c7c7d1;
+
+  --dc-text: #16161a;
+  --dc-text-dim: #55555f;
+  --dc-text-mute: #85858f;
+
+  --dc-ink-cyan: #0e7490;
+  --dc-ink-magenta: #a8156f;
+  --dc-ink-amber: #8a5a00;
+  --dc-ink-red: #c62828;
+  --dc-ink-purple: #6b3fd4;
+
+  --dc-nav-bg: rgba(255, 255, 255, .92);
+  --dc-panel-bg: rgba(255, 255, 255, .92);
+
+  --dc-glow-cyan: none;
+  --dc-glow-magenta: none;
+  --dc-glow-purple: none;
+  --dc-glow-amber: none;
+  --dc-glow-red: none;
+  --dc-text-glow-cyan: none;
+  --dc-text-glow-magenta: none;
+  --dc-text-glow-amber: none;
+  --dc-text-glow-red: none;
+  --dc-text-glow-purple: none;
+
+  --dc-shadow-sm: 0 1px 0 rgba(0, 0, 0, .04);
+  --dc-shadow-hover: 0 0 0 1px var(--dc-line-bright), 0 14px 40px -18px rgba(20, 20, 30, .18);
+}
+
+/* the CRT scanline was tuned as a white overlay on black — invisible on a
+   light arcade panel, so give light mode its own (much fainter) dark pass */
+:root[data-bs-theme="light"] .dc-arcade::after {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, .025) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+/* Bootstrap's dark hamburger icon, inverted to read on a dark navbar — needs
+   to go the other way once the navbar actually has a light, opaque
+   background: either an inner page (always opaque) or the home page once
+   scrolled past the hero (.is-stuck). Deliberately excludes the home page's
+   pre-scroll state, where the navbar is transparent over the still-dark
+   hero — see the nav legibility re-pin below. */
+:root[data-bs-theme="light"] body.dc-page .navbar-toggler-icon,
+:root[data-bs-theme="light"] .dc-nav.is-stuck .navbar-toggler-icon {
+  filter: none;
+  opacity: .65;
+}
+
+/* --------------------------------------------------------------------------
+   17. The hero canvas itself can't relight — it's baked video frames, not
+       live-rendered graphics — but everything overlaid on top of it (the
+       beat panels, their titles/borders/glow) is an ordinary theme-aware
+       card and repaints normally when toggled. Only the asphalt fallback
+       (the stage background behind the video, and the brand-tile
+       watermark cover, which needs to keep visually reading as the same
+       dark chip that's always sat over that corner of the frame) stays
+       pinned. The scroll cue floats directly on the video with no card of
+       its own, so it keeps a hardcoded dark-safe colour below instead of
+       reading the (now theme-aware) --dc-text-mute token.
+   -------------------------------------------------------------------------- */
+.dc-hero {
+  --dc-asphalt: #121214;
+}
+
+.dc-cue {
+  color: #6d6d7b;
+}
+
+/* The navbar sits in the DOM *before* .dc-hero (fixed-top, outside <main>),
+   so it can't inherit the pin above — but while it's transparent over the
+   hero (:not(.is-stuck), pre-scroll on the home page only) it still needs
+   to assume a dark backdrop no matter what the toggle says. Once stuck, or
+   on any inner page, the navbar has its own opaque theme-aware background
+   and this no longer applies. */
+body:not(.dc-page) .dc-nav:not(.is-stuck) {
+  --dc-text: #f2f2f5;
+  --dc-text-dim: #a2a2b0;
+  --dc-line-bright: #3a3a46;
+  --dc-ink-cyan: #eafcff;
+  --dc-ink-magenta: #ffeaf8;
+  --dc-glow-cyan: 0 0 0 1px rgba(34, 224, 255, .40), 0 0 22px rgba(34, 224, 255, .16);
+}
+
+/* --------------------------------------------------------------------------
+   18. Theme toggle switch — hard-edged rectangle, not a rounded iOS pill,
+       to match the site's radius: 0 language. Magenta knob for dark/night,
+       cyan for light/day — the same duality the panel dots already use.
+   -------------------------------------------------------------------------- */
+.dc-theme-toggle {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.dc-theme-toggle__track {
+  position: relative;
+  display: block;
+  width: 3.4rem;
+  height: 1.7rem;
+  background: var(--dc-surface-2);
+  border: 1px solid var(--dc-line-bright);
+  transition: var(--dc-transition-smooth);
+}
+
+.dc-theme-toggle:hover .dc-theme-toggle__track,
+.dc-theme-toggle:focus-visible .dc-theme-toggle__track {
+  border-color: var(--dc-cyan);
+}
+
+/* the knob carries the icon with it rather than sliding over a separate
+   fixed icon — a shared track icon would either be obscured by the knob or
+   sit ambiguously outside its path */
+.dc-theme-toggle__knob {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dc-magenta);
+  box-shadow: var(--dc-glow-magenta);
+  transform: translateX(0);
+  transition: var(--dc-transition-smooth);
+}
+
+.dc-theme-toggle__icon {
+  position: absolute;
+  font-size: .68rem;
+  line-height: 1;
+  opacity: 0;
+  transition: var(--dc-transition-fast);
+}
+
+.dc-theme-toggle__icon--moon { opacity: 1; }
+
+/* aria-pressed="true" == light mode is active */
+.dc-theme-toggle[aria-pressed="true"] .dc-theme-toggle__knob {
+  transform: translateX(1.65rem);
+  background: var(--dc-cyan);
+  box-shadow: var(--dc-glow-cyan);
+}
+
+.dc-theme-toggle[aria-pressed="true"] .dc-theme-toggle__icon--moon { opacity: 0; }
+.dc-theme-toggle[aria-pressed="true"] .dc-theme-toggle__icon--sun { opacity: 1; }

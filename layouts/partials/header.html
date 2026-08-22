@@ -19,6 +19,17 @@
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mt-2 mt-lg-0">
                 <li class="nav-item"><a class="nav-link" href="{{ "" | relURL }}#map">Map</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ "" | relURL }}#attractions">Attractions</a></li>
+                <li class="nav-item d-flex align-items-center">
+                    <button type="button" class="dc-theme-toggle" data-dc-theme-toggle
+                            aria-pressed="false" aria-label="Switch to light theme">
+                        <span class="dc-theme-toggle__track" aria-hidden="true">
+                            <span class="dc-theme-toggle__knob">
+                                <span class="dc-theme-toggle__icon dc-theme-toggle__icon--moon">🌙</span>
+                                <span class="dc-theme-toggle__icon dc-theme-toggle__icon--sun">☀️</span>
+                            </span>
+                        </span>
+                    </button>
+                </li>
                 <li class="nav-item ms-lg-2">
                     <a class="dc-btn dc-btn--ghost" href="{{ "" | relURL }}#passport">Passport</a>
                 </li>

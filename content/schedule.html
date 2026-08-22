@@ -7,25 +7,26 @@ draft: false
 <div class="container hero-section">
   <!-- Event Header -->
   <div class="text-center mb-5">
-    <h1 class="display-4 fw-bold text-primary">Schedule</h1>
-    <p class="lead text-muted">Keynotes, Hands-on Workshops & Tech Talks</p>
-    <div class="d-flex justify-content-center gap-3">
-      <span class="badge bg-primary fs-6">⏰ 9:00 AM – 5:20 PM</span>
+    <span class="dc-kicker">// two days &middot; four halls</span>
+    <h1 class="dc-section-title mb-2">Schedule</h1>
+    <p class="dc-section-lead mx-auto">Keynotes, Hands-on Workshops &amp; Tech Talks</p>
+    <div class="d-flex justify-content-center mt-3">
+      <span class="meta-badge">&#9200; 9:00 AM &ndash; 5:20 PM</span>
     </div>
   </div>
 
   <!-- Day Navigation Tabs -->
-  <ul class="nav nav-pills nav-justified mb-4" id="scheduleTabs" role="tablist">
+  <ul class="nav nav-pills dc-days justify-content-center" id="scheduleTabs" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active fs-5 fw-semibold py-3" id="day1-tab" data-bs-toggle="pill"
+      <button class="nav-link active" id="day1-tab" data-bs-toggle="pill"
         data-bs-target="#day1" type="button" role="tab">
-        🗓️ Day 1: AI Day & Workshops
+        🗓️ Day 1 &middot; AI Day &amp; Workshops
       </button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link fs-5 fw-semibold py-3" id="day2-tab" data-bs-toggle="pill"
+      <button class="nav-link" id="day2-tab" data-bs-toggle="pill"
         data-bs-target="#day2" type="button" role="tab">
-        🗓️ Day 2: Tech Talks
+        🗓️ Day 2 &middot; Tech Talks
       </button>
     </li>
   </ul>
@@ -37,30 +38,29 @@ draft: false
     <div class="tab-pane fade show active" id="day1" role="tabpanel">
 
       <!-- Keynotes -->
-      <div class="card border-0 shadow-sm mb-4 bg-light">
-        <div class="card-body p-4">
-          <div class="d-flex align-items-center mb-3">
-            <span class="badge bg-danger fs-6 me-2">Main Hall</span>
-            <h3 class="h4 mb-0 fw-bold">Morning Keynotes</h3>
-          </div>
-
+      <div class="dc-panel mb-4">
+        <h2 class="dc-sched__bar">
+          <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>Main Hall &middot; Morning Keynotes</span>
+        </h2>
+        <div class="dc-panel__body">
           <div class="row g-3">
             <div class="col-md-4">
-              <div class="p-3 bg-white rounded border">
-                <small class="text-primary fw-bold">09:00 AM – 09:20 AM</small>
-                <h5 class="mt-1 mb-1">Keynote 1</h5>
+              <div class="p-3" style="background:var(--dc-surface-2);border:1px solid var(--dc-line)">
+                <span class="dc-mono d-block mb-1" style="color:var(--dc-cyan);font-size:.78rem">09:00 AM &ndash; 09:20 AM</span>
+                <h3 class="h5 mb-0 dc-neon-magenta">Keynote 1</h3>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="p-3 bg-white rounded border">
-                <small class="text-primary fw-bold">09:20 AM – 09:40 AM</small>
-                <h5 class="mt-1 mb-1">Keynote 2</h5>
+              <div class="p-3" style="background:var(--dc-surface-2);border:1px solid var(--dc-line)">
+                <span class="dc-mono d-block mb-1" style="color:var(--dc-cyan);font-size:.78rem">09:20 AM &ndash; 09:40 AM</span>
+                <h3 class="h5 mb-0 dc-neon-magenta">Keynote 2</h3>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="p-3 bg-white rounded border">
-                <small class="text-primary fw-bold">09:40 AM – 10:00 AM</small>
-                <h5 class="mt-1 mb-1">Keynote 3</h5>
+              <div class="p-3" style="background:var(--dc-surface-2);border:1px solid var(--dc-line)">
+                <span class="dc-mono d-block mb-1" style="color:var(--dc-cyan);font-size:.78rem">09:40 AM &ndash; 10:00 AM</span>
+                <h3 class="h5 mb-0 dc-neon-magenta">Keynote 3</h3>
               </div>
             </div>
           </div>
@@ -68,188 +68,192 @@ draft: false
       </div>
 
       <!-- Workshops -->
-      <h4 class="fw-bold mb-3">Parallel Workshops & Academia Track</h4>
+      <div class="dc-sched">
+        <h2 class="dc-sched__bar">
+          <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>Parallel Workshops &amp; Academia Track</span>
+        </h2>
 
-      <div class="table-responsive">
-        <table class="table table-bordered align-middle text-center shadow-sm">
-          <thead class="table-dark">
-            <tr>
-              <th style="width:16%">Time Slot</th>
-              <th>Nalantha</th>
-              <th>Harvard</th>
-              <th>Cambridge</th>
-              <th>Ganga<br><small class="text-light fw-normal">(Academia Track)</small></th>
-            </tr>
-          </thead>
-          <tbody>
+        <div class="table-responsive">
+          <table class="dc-sched-table">
+            <thead>
+              <tr>
+                <th style="width:16%">Time Slot</th>
+                <th>Nalantha</th>
+                <th>Harvard</th>
+                <th>Cambridge</th>
+                <th>Ganga<br><small>(Academia Track)</small></th>
+              </tr>
+            </thead>
+            <tbody>
 
-            <tr>
-                <td class="fw-bold bg-light">10:00 AM – 10:45 AM</td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 1A</strong><br>
-                    <small class="text-muted">Cloud & DevOps</small><br>
-                    <small class="text-info fw-bold">(10:00 AM – 11:30 AM)</small>
-                </td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 1B</strong><br>
-                    <small class="text-muted">Full Stack Development</small><br>
-                    <small class="text-info fw-bold">(10:00 AM – 11:30 AM)</small>
-                </td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 1C</strong><br>
-                    <small class="text-muted">AI & Machine Learning</small><br>
-                    <small class="text-info fw-bold">(10:00 AM – 11:30 AM)</small>
-                </td>
-        
-                <td>
-                    <strong>Talk 1D</strong><br>
-                    <small class="text-muted">Academic Research & Innovation</small>
-                </td>
-            </tr>
-        
-            <tr>
-                <td class="fw-bold bg-light">10:45 AM – 11:30 AM</td>
-                <td>
-                    <strong>Talk 2D</strong><br>
-                    <small class="text-muted">Industry Collaboration in Academia</small>
-                </td>
-            </tr>
-        
-            <tr class="table-secondary">
-                <td colspan="5" class="fw-bold py-1 small">
-                    ☕ 11:30 AM – 11:40 AM | Morning Tea Break (10 Mins)
-                </td>
-            </tr>
-        
-            <tr>
-                <td class="fw-bold bg-light">11:40 AM – 12:25 PM</td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 2A</strong><br>
-                    <small class="text-muted">Docker & Kubernetes</small><br>
-                    <small class="text-info fw-bold">(11:40 AM – 01:10 PM)</small>
-                </td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 2B</strong><br>
-                    <small class="text-muted">System Design</small><br>
-                    <small class="text-info fw-bold">(11:40 AM – 01:10 PM)</small>
-                </td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 2C</strong><br>
-                    <small class="text-muted">Data Engineering</small><br>
-                    <small class="text-info fw-bold">(11:40 AM – 01:10 PM)</small>
-                </td>
-        
-                <td>
-                    <strong>Talk 3D</strong><br>
-                    <small class="text-muted">Future of Engineering Education</small>
-                </td>
-            </tr>
-        
-            <tr>
-                <td class="fw-bold bg-light">12:25 PM – 01:10 PM</td>
-                <td>
-                    <strong>Talk 4D</strong><br>
-                    <small class="text-muted">Student Innovation Showcase</small>
-                </td>
-            </tr>
-        
-            <tr class="table-warning">
-                <td colspan="5" class="fw-bold py-2">
-                    🥗 01:10 PM – 01:55 PM | Lunch Break (45 Mins)
-                </td>
-            </tr>
-        
-            <tr>
-                <td class="fw-bold bg-light">01:55 PM – 02:40 PM</td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 3A</strong><br>
-                    <small class="text-muted">Cloud Native Development</small><br>
-                    <small class="text-info fw-bold">(01:55 PM – 03:25 PM)</small>
-                </td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 3B</strong><br>
-                    <small class="text-muted">Modern Java</small><br>
-                    <small class="text-info fw-bold">(01:55 PM – 03:25 PM)</small>
-                </td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 3C</strong><br>
-                    <small class="text-muted">AI Applications</small><br>
-                    <small class="text-info fw-bold">(01:55 PM – 03:25 PM)</small>
-                </td>
-        
-                <td>
-                    <strong>Talk 5D</strong><br>
-                    <small class="text-muted">Research to Product Journey</small>
-                </td>
-            </tr>
-        
-            <tr>
-                <td class="fw-bold bg-light">02:40 PM – 03:25 PM</td>
-                <td>
-                    <strong>Talk 6D</strong><br>
-                    <small class="text-muted">Academia & Open Source</small>
-                </td>
-            </tr>
-        
-            <tr class="table-secondary">
-                <td colspan="5" class="fw-bold py-1 small">
-                    ☕ 03:25 PM – 03:35 PM | Evening Tea Break (10 Mins)
-                </td>
-            </tr>
-        
-            <tr>
-                <td class="fw-bold bg-light">03:35 PM – 04:20 PM</td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 4A</strong><br>
-                    <small class="text-muted">DevOps at Scale</small><br>
-                    <small class="text-info fw-bold">(03:35 PM – 05:05 PM)</small>
-                </td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 4B</strong><br>
-                    <small class="text-muted">Architecture Patterns</small><br>
-                    <small class="text-info fw-bold">(03:35 PM – 05:05 PM)</small>
-                </td>
-        
-                <td rowspan="2" class="align-middle">
-                    <strong>Workshop 4C</strong><br>
-                    <small class="text-muted">Advanced AI Engineering</small><br>
-                    <small class="text-info fw-bold">(03:35 PM – 05:05 PM)</small>
-                </td>
-        
-                <td>
-                    <strong>Talk 7D</strong><br>
-                    <small class="text-muted">Emerging Technologies</small>
-                </td>
-            </tr>
-        
-            <tr>
-                <td class="fw-bold bg-light">04:20 PM – 05:05 PM</td>
-                <td>
-                    <strong>Talk 8D</strong><br>
-                    <small class="text-muted">Academic Leadership Panel</small>
-                </td>
-            </tr>
-        
-            <tr class="table-primary">
-                <td class="fw-bold">05:05 PM – 05:20 PM</td>
-                <td colspan="4" class="fw-bold">
-                    🎉 Valedictory & Day 1 Wrap-up
-                </td>
-            </tr>
-        
-        </tbody>
-        </table>
+              <tr>
+                  <td class="dc-sched-time">10:00 AM &ndash; 10:45 AM</td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 1A</span>
+                      <span class="dc-sched-slot__meta">Cloud &amp; DevOps</span>
+                      <span class="dc-sched-slot__range">10:00 AM &ndash; 11:30 AM</span>
+                  </td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 1B</span>
+                      <span class="dc-sched-slot__meta">Full Stack Development</span>
+                      <span class="dc-sched-slot__range">10:00 AM &ndash; 11:30 AM</span>
+                  </td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 1C</span>
+                      <span class="dc-sched-slot__meta">AI &amp; Machine Learning</span>
+                      <span class="dc-sched-slot__range">10:00 AM &ndash; 11:30 AM</span>
+                  </td>
+
+                  <td>
+                      <span class="dc-sched-slot__title">Talk 1D</span>
+                      <span class="dc-sched-slot__meta">Academic Research &amp; Innovation</span>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td class="dc-sched-time">10:45 AM &ndash; 11:30 AM</td>
+                  <td>
+                      <span class="dc-sched-slot__title">Talk 2D</span>
+                      <span class="dc-sched-slot__meta">Industry Collaboration in Academia</span>
+                  </td>
+              </tr>
+
+              <tr class="dc-sched-break">
+                  <td colspan="5">
+                      &#9749; 11:30 AM &ndash; 11:40 AM &middot; Morning Tea Break (10 Mins)
+                  </td>
+              </tr>
+
+              <tr>
+                  <td class="dc-sched-time">11:40 AM &ndash; 12:25 PM</td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 2A</span>
+                      <span class="dc-sched-slot__meta">Docker &amp; Kubernetes</span>
+                      <span class="dc-sched-slot__range">11:40 AM &ndash; 01:10 PM</span>
+                  </td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 2B</span>
+                      <span class="dc-sched-slot__meta">System Design</span>
+                      <span class="dc-sched-slot__range">11:40 AM &ndash; 01:10 PM</span>
+                  </td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 2C</span>
+                      <span class="dc-sched-slot__meta">Data Engineering</span>
+                      <span class="dc-sched-slot__range">11:40 AM &ndash; 01:10 PM</span>
+                  </td>
+
+                  <td>
+                      <span class="dc-sched-slot__title">Talk 3D</span>
+                      <span class="dc-sched-slot__meta">Future of Engineering Education</span>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td class="dc-sched-time">12:25 PM &ndash; 01:10 PM</td>
+                  <td>
+                      <span class="dc-sched-slot__title">Talk 4D</span>
+                      <span class="dc-sched-slot__meta">Student Innovation Showcase</span>
+                  </td>
+              </tr>
+
+              <tr class="dc-sched-break">
+                  <td colspan="5">
+                      &#127811; 01:10 PM &ndash; 01:55 PM &middot; Lunch Break (45 Mins)
+                  </td>
+              </tr>
+
+              <tr>
+                  <td class="dc-sched-time">01:55 PM &ndash; 02:40 PM</td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 3A</span>
+                      <span class="dc-sched-slot__meta">Cloud Native Development</span>
+                      <span class="dc-sched-slot__range">01:55 PM &ndash; 03:25 PM</span>
+                  </td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 3B</span>
+                      <span class="dc-sched-slot__meta">Modern Java</span>
+                      <span class="dc-sched-slot__range">01:55 PM &ndash; 03:25 PM</span>
+                  </td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 3C</span>
+                      <span class="dc-sched-slot__meta">AI Applications</span>
+                      <span class="dc-sched-slot__range">01:55 PM &ndash; 03:25 PM</span>
+                  </td>
+
+                  <td>
+                      <span class="dc-sched-slot__title">Talk 5D</span>
+                      <span class="dc-sched-slot__meta">Research to Product Journey</span>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td class="dc-sched-time">02:40 PM &ndash; 03:25 PM</td>
+                  <td>
+                      <span class="dc-sched-slot__title">Talk 6D</span>
+                      <span class="dc-sched-slot__meta">Academia &amp; Open Source</span>
+                  </td>
+              </tr>
+
+              <tr class="dc-sched-break">
+                  <td colspan="5">
+                      &#9749; 03:25 PM &ndash; 03:35 PM &middot; Evening Tea Break (10 Mins)
+                  </td>
+              </tr>
+
+              <tr>
+                  <td class="dc-sched-time">03:35 PM &ndash; 04:20 PM</td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 4A</span>
+                      <span class="dc-sched-slot__meta">DevOps at Scale</span>
+                      <span class="dc-sched-slot__range">03:35 PM &ndash; 05:05 PM</span>
+                  </td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 4B</span>
+                      <span class="dc-sched-slot__meta">Architecture Patterns</span>
+                      <span class="dc-sched-slot__range">03:35 PM &ndash; 05:05 PM</span>
+                  </td>
+
+                  <td rowspan="2">
+                      <span class="dc-sched-slot__title">Workshop 4C</span>
+                      <span class="dc-sched-slot__meta">Advanced AI Engineering</span>
+                      <span class="dc-sched-slot__range">03:35 PM &ndash; 05:05 PM</span>
+                  </td>
+
+                  <td>
+                      <span class="dc-sched-slot__title">Talk 7D</span>
+                      <span class="dc-sched-slot__meta">Emerging Technologies</span>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td class="dc-sched-time">04:20 PM &ndash; 05:05 PM</td>
+                  <td>
+                      <span class="dc-sched-slot__title">Talk 8D</span>
+                      <span class="dc-sched-slot__meta">Academic Leadership Panel</span>
+                  </td>
+              </tr>
+
+              <tr class="dc-sched-break">
+                  <td colspan="5">
+                      &#127881; 05:05 PM &ndash; 05:20 PM &middot; Valedictory &amp; Day 1 Wrap-up
+                  </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -257,30 +261,29 @@ draft: false
     <div class="tab-pane fade" id="day2" role="tabpanel">
 
       <!-- Keynotes -->
-      <div class="card border-0 shadow-sm mb-4 bg-light">
-        <div class="card-body p-4">
-          <div class="d-flex align-items-center mb-3">
-            <span class="badge bg-danger fs-6 me-2">Main Hall</span>
-            <h3 class="h4 mb-0 fw-bold">Morning Keynotes</h3>
-          </div>
-
+      <div class="dc-panel mb-4">
+        <h2 class="dc-sched__bar">
+          <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>Main Hall &middot; Morning Keynotes</span>
+        </h2>
+        <div class="dc-panel__body">
           <div class="row g-3">
             <div class="col-md-4">
-              <div class="p-3 bg-white rounded border">
-                <small class="text-primary fw-bold">09:00 AM – 09:20 AM</small>
-                <h5 class="mt-1 mb-1">Keynote 1</h5>
+              <div class="p-3" style="background:var(--dc-surface-2);border:1px solid var(--dc-line)">
+                <span class="dc-mono d-block mb-1" style="color:var(--dc-cyan);font-size:.78rem">09:00 AM &ndash; 09:20 AM</span>
+                <h3 class="h5 mb-0 dc-neon-magenta">Keynote 1</h3>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="p-3 bg-white rounded border">
-                <small class="text-primary fw-bold">09:20 AM – 09:40 AM</small>
-                <h5 class="mt-1 mb-1">Keynote 2</h5>
+              <div class="p-3" style="background:var(--dc-surface-2);border:1px solid var(--dc-line)">
+                <span class="dc-mono d-block mb-1" style="color:var(--dc-cyan);font-size:.78rem">09:20 AM &ndash; 09:40 AM</span>
+                <h3 class="h5 mb-0 dc-neon-magenta">Keynote 2</h3>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="p-3 bg-white rounded border">
-                <small class="text-primary fw-bold">09:40 AM – 10:00 AM</small>
-                <h5 class="mt-1 mb-1">Keynote 3</h5>
+              <div class="p-3" style="background:var(--dc-surface-2);border:1px solid var(--dc-line)">
+                <span class="dc-mono d-block mb-1" style="color:var(--dc-cyan);font-size:.78rem">09:40 AM &ndash; 10:00 AM</span>
+                <h3 class="h5 mb-0 dc-neon-magenta">Keynote 3</h3>
               </div>
             </div>
           </div>
@@ -288,105 +291,109 @@ draft: false
       </div>
 
       <!-- Talks -->
-      <h4 class="fw-bold mb-3">Parallel Tech Talks</h4>
+      <div class="dc-sched">
+        <h2 class="dc-sched__bar">
+          <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>Parallel Tech Talks</span>
+        </h2>
 
-      <div class="table-responsive">
-        <table class="table table-bordered align-middle text-center shadow-sm">
-          <thead class="table-dark">
-            <tr>
-              <th style="width:16%">Time Slot</th>
-              <th>Nalantha</th>
-              <th>Harvard</th>
-              <th>Cambridge</th>
-              <th>Ganga</th>
-            </tr>
-          </thead>
+        <div class="table-responsive">
+          <table class="dc-sched-table">
+            <thead>
+              <tr>
+                <th style="width:16%">Time Slot</th>
+                <th>Nalantha</th>
+                <th>Harvard</th>
+                <th>Cambridge</th>
+                <th>Ganga</th>
+              </tr>
+            </thead>
 
-          <tbody>
+            <tbody>
 
-            <tr>
-              <td class="fw-bold bg-light">10:00 AM – 10:45 AM</td>
-              <td><strong>Talk 1A</strong></td>
-              <td><strong>Talk 1B</strong></td>
-              <td><strong>Talk 1C</strong></td>
-              <td><strong>Talk 1D</strong></td>
-            </tr>
+              <tr>
+                <td class="dc-sched-time">10:00 AM &ndash; 10:45 AM</td>
+                <td><span class="dc-sched-slot__title">Talk 1A</span></td>
+                <td><span class="dc-sched-slot__title">Talk 1B</span></td>
+                <td><span class="dc-sched-slot__title">Talk 1C</span></td>
+                <td><span class="dc-sched-slot__title">Talk 1D</span></td>
+              </tr>
 
-            <tr class="table-secondary">
-              <td colspan="5" class="fw-bold py-1 small">
-                ☕ 10:45 AM – 10:55 AM | Morning Tea Break (10 Mins)
-              </td>
-            </tr>
+              <tr class="dc-sched-break">
+                <td colspan="5">
+                  &#9749; 10:45 AM &ndash; 10:55 AM &middot; Morning Tea Break (10 Mins)
+                </td>
+              </tr>
 
-            <tr>
-              <td class="fw-bold bg-light">10:55 AM – 11:40 AM</td>
-              <td><strong>Talk 2A</strong></td>
-              <td><strong>Talk 2B</strong></td>
-              <td><strong>Talk 2C</strong></td>
-              <td><strong>Talk 2D</strong></td>
-            </tr>
+              <tr>
+                <td class="dc-sched-time">10:55 AM &ndash; 11:40 AM</td>
+                <td><span class="dc-sched-slot__title">Talk 2A</span></td>
+                <td><span class="dc-sched-slot__title">Talk 2B</span></td>
+                <td><span class="dc-sched-slot__title">Talk 2C</span></td>
+                <td><span class="dc-sched-slot__title">Talk 2D</span></td>
+              </tr>
 
-            <tr>
-              <td class="fw-bold bg-light">11:40 AM – 12:25 PM</td>
-              <td><strong>Talk 3A</strong></td>
-              <td><strong>Talk 3B</strong></td>
-              <td><strong>Talk 3C</strong></td>
-              <td><strong>Talk 3D</strong></td>
-            </tr>
+              <tr>
+                <td class="dc-sched-time">11:40 AM &ndash; 12:25 PM</td>
+                <td><span class="dc-sched-slot__title">Talk 3A</span></td>
+                <td><span class="dc-sched-slot__title">Talk 3B</span></td>
+                <td><span class="dc-sched-slot__title">Talk 3C</span></td>
+                <td><span class="dc-sched-slot__title">Talk 3D</span></td>
+              </tr>
 
-            <tr class="table-warning">
-              <td colspan="5" class="fw-bold py-2">
-                🥗 12:25 PM – 01:10 PM | Lunch Break (45 Mins)
-              </td>
-            </tr>
+              <tr class="dc-sched-break">
+                <td colspan="5">
+                  &#127811; 12:25 PM &ndash; 01:10 PM &middot; Lunch Break (45 Mins)
+                </td>
+              </tr>
 
-            <tr>
-              <td class="fw-bold bg-light">01:10 PM – 01:55 PM</td>
-              <td><strong>Talk 4A</strong></td>
-              <td><strong>Talk 4B</strong></td>
-              <td><strong>Talk 4C</strong></td>
-              <td><strong>Talk 4D</strong></td>
-            </tr>
+              <tr>
+                <td class="dc-sched-time">01:10 PM &ndash; 01:55 PM</td>
+                <td><span class="dc-sched-slot__title">Talk 4A</span></td>
+                <td><span class="dc-sched-slot__title">Talk 4B</span></td>
+                <td><span class="dc-sched-slot__title">Talk 4C</span></td>
+                <td><span class="dc-sched-slot__title">Talk 4D</span></td>
+              </tr>
 
-            <tr>
-              <td class="fw-bold bg-light">01:55 PM – 02:40 PM</td>
-              <td><strong>Talk 5A</strong></td>
-              <td><strong>Talk 5B</strong></td>
-              <td><strong>Talk 5C</strong></td>
-              <td><strong>Talk 5D</strong></td>
-            </tr>
+              <tr>
+                <td class="dc-sched-time">01:55 PM &ndash; 02:40 PM</td>
+                <td><span class="dc-sched-slot__title">Talk 5A</span></td>
+                <td><span class="dc-sched-slot__title">Talk 5B</span></td>
+                <td><span class="dc-sched-slot__title">Talk 5C</span></td>
+                <td><span class="dc-sched-slot__title">Talk 5D</span></td>
+              </tr>
 
-            <tr>
-              <td class="fw-bold bg-light">02:40 PM – 03:25 PM</td>
-              <td><strong>Talk 6A</strong></td>
-              <td><strong>Talk 6B</strong></td>
-              <td><strong>Talk 6C</strong></td>
-              <td><strong>Talk 6D</strong></td>
-            </tr>
+              <tr>
+                <td class="dc-sched-time">02:40 PM &ndash; 03:25 PM</td>
+                <td><span class="dc-sched-slot__title">Talk 6A</span></td>
+                <td><span class="dc-sched-slot__title">Talk 6B</span></td>
+                <td><span class="dc-sched-slot__title">Talk 6C</span></td>
+                <td><span class="dc-sched-slot__title">Talk 6D</span></td>
+              </tr>
 
-            <tr class="table-secondary">
-              <td colspan="5" class="fw-bold py-1 small">
-                ☕ 03:25 PM – 03:35 PM | Evening Tea Break (10 Mins)
-              </td>
-            </tr>
+              <tr class="dc-sched-break">
+                <td colspan="5">
+                  &#9749; 03:25 PM &ndash; 03:35 PM &middot; Evening Tea Break (10 Mins)
+                </td>
+              </tr>
 
-            <tr>
-              <td class="fw-bold bg-light">03:35 PM – 04:20 PM</td>
-              <td><strong>Talk 7A</strong></td>
-              <td><strong>Talk 7B</strong></td>
-              <td><strong>Talk 7C</strong></td>
-              <td><strong>Talk 7D</strong></td>
-            </tr>
+              <tr>
+                <td class="dc-sched-time">03:35 PM &ndash; 04:20 PM</td>
+                <td><span class="dc-sched-slot__title">Talk 7A</span></td>
+                <td><span class="dc-sched-slot__title">Talk 7B</span></td>
+                <td><span class="dc-sched-slot__title">Talk 7C</span></td>
+                <td><span class="dc-sched-slot__title">Talk 7D</span></td>
+              </tr>
 
-            <tr class="table-info">
-              <td class="fw-bold">04:20 PM – 05:20 PM</td>
-              <td colspan="4" class="fw-bold fs-6">
-                🤝 Networking Session & Community Connect (60 Mins)
-              </td>
-            </tr>
+              <tr class="dc-sched-break">
+                <td colspan="5">
+                  &#129309; 04:20 PM &ndash; 05:20 PM &middot; Networking Session &amp; Community Connect (60 Mins)
+                </td>
+              </tr>
 
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
 
     </div>

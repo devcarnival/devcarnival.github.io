@@ -41,6 +41,7 @@
 
   bindNav();
   bindForm();
+  bindTheme();
 
   if (!hero) return;
 
@@ -447,6 +448,44 @@
         }
       }
     });
+  }
+
+  function bindTheme() {
+    var toggle = document.querySelector('[data-dc-theme-toggle]');
+    if (!toggle) return;
+
+    var root = document.documentElement;
+    var metaColor = document.querySelector('meta[name="theme-color"]');
+
+    function reflect(theme) {
+      var light = theme === 'light';
+      toggle.setAttribute('aria-pressed', String(light));
+      toggle.setAttribute('aria-label', light ? 'Switch to dark theme' : 'Switch to light theme');
+      if (metaColor) metaColor.setAttribute('content', light ? '#f7f7f9' : '#121214');
+    }
+
+    reflect(root.getAttribute('data-bs-theme'));
+
+    toggle.addEventListener('click', function () {
+      var next = root.getAttribute('data-bs-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-bs-theme', next);
+      reflect(next);
+      try { localStorage.setItem('dc-theme', next); } catch (e) { /* privacy mode */ }
+    });
+
+    // honour a mid-session OS preference flip, same as prefers-reduced-motion
+    // above — but only until the visitor makes an explicit choice of their own
+    var schemeQuery = window.matchMedia('(prefers-color-scheme: light)');
+    if (schemeQuery.addEventListener) {
+      schemeQuery.addEventListener('change', function (e) {
+        var stored;
+        try { stored = localStorage.getItem('dc-theme'); } catch (err) { /* privacy mode */ }
+        if (stored) return;
+        var next = e.matches ? 'light' : 'dark';
+        root.setAttribute('data-bs-theme', next);
+        reflect(next);
+      });
+    }
   }
 
   function clamp(v, lo, hi) {

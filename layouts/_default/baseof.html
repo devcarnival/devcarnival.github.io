@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode | default `en-us` }}" data-bs-theme="dark">
 <head>
+    <!-- Blocking, on purpose: sets the real theme before style.css paints, so
+         a stored/OS light preference never flashes dark first. Kept to a few
+         lines and wrapped in try/catch — localStorage can throw in some
+         privacy modes, and the dark default in the html tag above is a safe
+         fallback either way. -->
+    <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('dc-theme');
+        var theme = stored || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        if (theme === 'light') document.documentElement.setAttribute('data-bs-theme', 'light');
+      } catch (e) {}
+    }());
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- matches --dc-asphalt so mobile browser chrome blends into the page -->

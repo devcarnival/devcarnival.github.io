@@ -30,8 +30,12 @@ from make_brand_mark import render_tile
 LEAD_IN = 20  # synthetic frames: bare asphalt -> frame 1
 ASPHALT = (18, 18, 20)  # #121214 — must match --dc-asphalt in style.css
 
-FULL_W, FULL_Q = 1280, 72
-SMALL_W, SMALL_Q = 768, 62
+# The HD render (2026-08-22 drone pass) carries far more high-frequency detail
+# than the first set — bokeh, string lights, signage text — so the old 72/62
+# quality banded visibly on those; bumped until a spot-check crop of the
+# ferris wheel neon stopped showing blocking.
+FULL_W, FULL_Q = 1280, 80
+SMALL_W, SMALL_Q = 768, 68
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_FULL = os.path.join(REPO, "static", "frames")
