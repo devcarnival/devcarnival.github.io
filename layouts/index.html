@@ -46,8 +46,19 @@
                         <h2 class="dc-beat__title dc-neon-{{ $beat.accent | default `cyan` }}">{{ $beat.title }}</h2>
                         {{ end }}
                         <p class="dc-beat__sub">{{ $beat.subtitle }}</p>
+                        {{ if $beat.hero }}
+                        <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+                            <span class="meta-badge">2 Full Days</span>
+                            <span class="meta-badge">{{ $.Params.event.date }}</span>
+                            <span class="meta-badge">{{ $.Params.event.location }}</span>
+                        </div>
+                        {{ end }}
                         {{ with $beat.cta_text }}
-                        <a class="dc-btn dc-btn--lg mt-4" href="{{ $beat.cta_link | default `#passport` }}">{{ . }} &rarr;</a>
+                        <div class="d-flex flex-wrap justify-content-center gap-2 mt-3 mb-2">
+                            <span class="meta-badge">2 Days &middot; {{ $.Params.event.date }}</span>
+                            <span class="meta-badge">{{ $.Params.event.location }}</span>
+                        </div>
+                        <a class="dc-btn dc-btn--lg mt-3" href="{{ $beat.cta_link | default `#passport` }}">{{ . }} &rarr;</a>
                         {{ end }}
                     </div>
                 </div>
@@ -80,30 +91,41 @@
 </div>
 {{ end }}
 
-{{/* ====================== AGENDA / HIGH SCORES ====================== */}}
+{{/* ====================== FESTIVAL SCHEDULE & DETAILS ====================== */}}
 <section class="dc-section" id="map">
     <div class="container">
-        <div class="row g-4 align-items-end mb-5">
-            <div class="col-lg-7">
-                <span class="dc-kicker">// the grounds &middot; two days</span>
-                <h2 class="dc-section-title">High <span class="dc-neon-cyan">Scores</span></h2>
+        <div class="row g-4 align-items-center mb-5">
+            <div class="col-lg-6">
+                <span class="dc-kicker">// 2 days &middot; 4 halls &middot; keynotes &amp; workshops</span>
+                <h2 class="dc-section-title">Festival <span class="dc-neon-cyan">Schedule</span></h2>
                 <p class="dc-section-lead mb-0">
-                    Four halls, two keynote blocks, twelve workshops and an academia track.
-                    Insert coin, pick a room, climb the board.
+                    Two full days uniting tech communities, industry leaders, and academia across four parallel tracks.
                 </p>
             </div>
-            <div class="col-lg-5 text-lg-end">
-                <p class="dc-note mb-1">{{ .Params.event.label | upper }}</p>
-                <p class="dc-mono mb-0" style="color:var(--dc-text)">
-                    {{ .Params.event.date }}<br>{{ .Params.event.location }}
-                </p>
+            <div class="col-lg-6">
+                <div class="p-3 p-md-4 border" style="background:var(--dc-surface);border-color:var(--dc-line-bright)!important;box-shadow:var(--dc-glow-cyan)">
+                    <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+                        <span class="meta-badge">2 Full Days</span>
+                        <span class="dc-note text-uppercase">{{ .Params.event.label | default "Global Gathering" }}</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="d-block dc-mono fw-bold" style="color:var(--dc-text);font-size:1.05rem">
+                            WHEN: <span style="color:var(--dc-ink-cyan)">{{ .Params.event.date }}</span>
+                        </span>
+                    </div>
+                    <div>
+                        <span class="d-block dc-mono" style="color:var(--dc-text);font-size:.95rem">
+                            WHERE: <span style="color:var(--dc-text-dim)">{{ .Params.event.location }}</span>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="dc-arcade">
             <div class="dc-arcade__bar">
-                <span class="dc-arcade__title">&#9654; DEVCARNIVAL.EXE — LEADERBOARD</span>
-                <span>Rank &middot; Time &middot; Session &middot; Room</span>
+                <span class="dc-arcade__title">&#9654; DEVCARNIVAL.EXE — 2-DAY SCHEDULE &amp; TRACKS</span>
+                <span>Day 1 &middot; Day 2 &middot; 4 Parallel Halls</span>
             </div>
 
             <div class="dc-arcade__body">
@@ -119,7 +141,7 @@
                                 type="button" role="tab"
                                 aria-controls="pane-{{ $day.id }}"
                                 aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}">
-                            🗓️ {{ $day.day }} · {{ $day.label }}
+                            {{ $day.day }} · {{ $day.label }}
                         </button>
                     </li>
                     {{ end }}
@@ -179,7 +201,6 @@
         <div class="dc-grid">
             {{ range $booths }}
             <article class="dc-booth dc-booth--{{ .Params.accent | default `cyan` }}">
-                <span class="dc-booth__icon" aria-hidden="true">{{ .Params.icon | default "🎪" }}</span>
                 <h3 class="dc-booth__name">{{ .Title }}</h3>
                 <p class="dc-booth__desc">{{ .Params.summary }}</p>
 
@@ -210,8 +231,8 @@
                 {{ end }}
 
                 <div class="dc-booth__meta">
-                    <span>📍 {{ .Params.zone }}</span>
-                    <span>⏰ {{ .Params.hours }}</span>
+                    <span>Zone: {{ .Params.zone }}</span>
+                    <span>Hours: {{ .Params.hours }}</span>
                 </div>
             </article>
             {{ end }}
@@ -319,7 +340,7 @@
                             </div>
 
                             <p class="dc-notice" data-dc-notice hidden tabindex="-1">
-                                ⚠️ Heads up — this form has no endpoint wired yet, so nothing was sent.
+                                Heads up — this form has no endpoint wired yet, so nothing was sent.
                                 Set <code>action</code> on the form in <code>layouts/index.html</code>
                                 to start collecting entries.
                             </p>

@@ -1,6 +1,5 @@
 ---
 title: "Coffee Cart"
-icon: "☕"
 accent: "amber"
 zone: "Everywhere"
 hours: "Until it runs out"

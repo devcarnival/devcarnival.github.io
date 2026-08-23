@@ -1,6 +1,5 @@
 ---
 title: "Hackathon Zone"
-icon: "🛠️"
 accent: "purple"
 zone: "Zone A"
 hours: "48h · non-stop"

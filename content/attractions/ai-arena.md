@@ -1,6 +1,5 @@
 ---
 title: "AI Arena"
-icon: "🤖"
 accent: "cyan"
 zone: "Zone B"
 hours: "10:00 – 17:00"

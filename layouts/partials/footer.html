@@ -1,8 +1,5 @@
-<!-- Minimal footer. Emojis stand in for icons — the stack has no icon set. -->
 <footer class="dc-footer">
     <div class="container">
-        <div class="dc-footer__marks" aria-hidden="true">🎪 👾 ☕ 🐛 🤖</div>
-
         <div class="row g-4 align-items-start">
             <div class="col-lg-5">
                 <span class="dc-brand d-inline-flex mb-2">
@@ -24,13 +21,13 @@
                 </nav>
                 <div class="d-flex flex-wrap gap-3 gap-md-4 justify-content-lg-end">
                     {{ with .Site.Params.github }}
-                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
+                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer">GitHub</a>
                     {{ end }}
                     {{ with .Site.Params.linkedin }}
-                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     {{ end }}
                     {{ with .Site.Params.email }}
-                    <a href="mailto:{{ . }}">✉️ Contact</a>
+                    <a href="mailto:{{ . }}">Contact</a>
                     {{ end }}
                 </div>
             </div>
@@ -39,7 +36,7 @@
         <hr class="dc-rule my-4">
 
         <div class="d-flex flex-wrap gap-2 justify-content-between dc-footer__legal">
-            <span>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. Worldwide. 🎪</span>
+            <span>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. Worldwide.</span>
             <span>Build. Break. Learn. Repeat.</span>
         </div>
     </div>

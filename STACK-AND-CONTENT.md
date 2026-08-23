@@ -154,9 +154,7 @@ project cards with images needs to add that markup.
 | `https://github.com/<handle>.png?size=200` | `people/single.html` avatar (112×112 render) |
 | `https://github.com/<handle>.png?size=80` | `team/single.html` avatar (56×56 render) |
 | `https://tamilnadujug.org/assets/tamil_jug-dZMYtDXl.jpeg` | Tamilnadu JUG logo |
-| `https://cdn5.telesco.pe/file/v0k_huJ...jpg` (Telegram CDN, long signed URL) | Tamil Linux logo — **fragile, likely to expire** |
 | `https://javafest.org/images/infosys_logo.jpeg` | TechCohere logo |
-| `https://avatars.githubusercontent.com/u/80134844?s=200&v=4` | OpenSearch Chennai logo |
 | `https://lh3.googleusercontent.com/sitesv/AG8ngQW...=w16383` (Google Sites) | Raithu hero — **fragile** |
 
 Avatar rule: **a person's GitHub handle IS their avatar.** No image assets per person.
@@ -297,7 +295,7 @@ Contract: `title`, `speakers: [slug…]`, `years: ["2026"]`, body = abstract.
 
 All `years: ["2026"]`. All AI-themed.
 
-#### Communities — 6 files, `content/communities/<slug>.md`
+#### Communities — 4 files, `content/communities/<slug>.md`
 
 Contract: `title`, `logo`, `years[]`, `socials.{github,linkedin,twitter}`, body = blurb.
 `_index.md` title = `Our Communities`. Permalink `/communities/:slug/`.
@@ -305,14 +303,9 @@ Contract: `title`, `logo`, `years[]`, `socials.{github,linkedin,twitter}`, body 
 | slug | title | years | logo |
 | --- | --- | --- | --- |
 | `tamil-jug` | Tamilnadu Java User Group | 2026 | external (tamilnadujug.org) |
-| `tamil-linux` | Tamil Linux Community | 2026 | external (telesco.pe, fragile) |
 | `tech-cohere` | TechCohere | 2025, 2026 | external (javafest.org) |
-| `tech-meetup` | OpenSearch Project Chennai | 2026, 2025 | external (githubusercontent) |
 | `cloud-native` | Cloud Native Chennai | 2025 | `images/communities/cnc-logo.png` **missing** |
 | `rust-rustaceans` | Madras Rustaceans | 2025 | `images/communities/madras-rust.png` **missing** |
-
-⚠️ `tech-meetup.md` is titled *OpenSearch Project Chennai* — file name is stale.
-`tamil-linux` `socials.linkedin` is actually a Telegram link (`t.me/tamillinux`) and renders as "LinkedIn Page".
 
 #### Projects — 4 files, `content/projects/<slug>.md`
 

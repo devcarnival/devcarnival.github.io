@@ -1,6 +1,5 @@
 ---
 title: "Bug Hunt"
-icon: "🐛"
 accent: "red"
 zone: "Zone B"
 hours: "10:00 – 17:00"

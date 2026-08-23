@@ -11,7 +11,7 @@ draft: false
     <h1 class="dc-section-title mb-2">Schedule</h1>
     <p class="dc-section-lead mx-auto">Keynotes, Hands-on Workshops &amp; Tech Talks</p>
     <div class="d-flex justify-content-center mt-3">
-      <span class="meta-badge">&#9200; 9:00 AM &ndash; 5:20 PM</span>
+      <span class="meta-badge">9:00 AM &ndash; 5:20 PM</span>
     </div>
   </div>
 
@@ -20,13 +20,13 @@ draft: false
     <li class="nav-item" role="presentation">
       <button class="nav-link active" id="day1-tab" data-bs-toggle="pill"
         data-bs-target="#day1" type="button" role="tab">
-        🗓️ Day 1 &middot; AI Day &amp; Workshops
+        Day 1 &middot; AI Day &amp; Workshops
       </button>
     </li>
     <li class="nav-item" role="presentation">
       <button class="nav-link" id="day2-tab" data-bs-toggle="pill"
         data-bs-target="#day2" type="button" role="tab">
-        🗓️ Day 2 &middot; Tech Talks
+        Day 2 &middot; Tech Talks
       </button>
     </li>
   </ul>

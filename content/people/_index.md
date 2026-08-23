@@ -1,6 +1,6 @@
 ---
 title: "People Overview"
-_build:
+build:
   render: never
   list: local
 ---

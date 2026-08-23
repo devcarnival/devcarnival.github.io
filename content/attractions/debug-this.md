@@ -1,6 +1,5 @@
 ---
 title: "Debug This"
-icon: "🖥️"
 accent: "red"
 zone: "Zone A"
 hours: "10:00 – 17:00"

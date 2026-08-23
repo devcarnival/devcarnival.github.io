@@ -211,8 +211,8 @@ card tag sets are present — social sharing was clearly a priority.
 - **4 sessions** published (Spring AI agentic patterns, designing for the AI age,
   AI robustness/security & privacy by design, software development in the AI age)
   — all tagged `years: ["2026"]`. The programme is heavily AI-oriented.
-- **6 communities**: Tamilnadu JUG, Tamil Linux, Cloud Native, Rust Rustaceans,
-  Tech Cohere, Tech Meetup.
+- **4 communities**: Tamilnadu JUG, Cloud Native, Rust Rustaceans,
+  Tech Cohere.
 - **4 projects** in the Tech Pavilion (Raithu AgriTech platform, Azul JDK,
   SQLComponents, TNeBooks) — against a stated ambition of "100 curated projects".
 - **Schedule** (`content/schedule.html`, ~390 lines of hand-written Bootstrap):

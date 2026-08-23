@@ -7,7 +7,7 @@ socials:
   linkedin: "https://www.linkedin.com/in/anandbabur/"
 ---
 
-Purpose-driven software generalist with 15+ years of experience, with expertise in both high-level application development 🖥️ and low-level real-time & embedded systems 🔧 across various domains such as Telecom, Automotive, Textile, Defense, Aerospace, and Medical.
+Purpose-driven software generalist with 15+ years of experience, with expertise in both high-level application development and low-level real-time & embedded systems across various domains such as Telecom, Automotive, Textile, Defense, Aerospace, and Medical.
 
 Proven track record in leading cross-functional teams, managing IT operations at scale, and driving digital transformation initiatives in international environments. Deep expertise in automotive software  and IT strategy. Passionate about aligning IT with business goals, building high-performance teams, and ensuring secure, scalable infrastructure. 
 

@@ -1395,6 +1395,36 @@ body.dc-page .navbar {
   --dc-shadow-hover: 0 0 0 1px var(--dc-line-bright), 0 14px 40px -18px rgba(20, 20, 30, .18);
 }
 
+/* Light mode high-contrast overrides for text badges, kickers, and table times */
+:root[data-bs-theme="light"] .meta-badge {
+  background: rgba(14, 116, 144, .1);
+  border-color: rgba(14, 116, 144, .35);
+  color: #0e7490;
+  font-weight: 700;
+}
+
+:root[data-bs-theme="light"] .dc-kicker {
+  color: var(--dc-ink-cyan);
+}
+
+:root[data-bs-theme="light"] .dc-note {
+  color: var(--dc-text-dim);
+}
+
+:root[data-bs-theme="light"] .dc-score__time {
+  color: var(--dc-ink-cyan);
+  font-weight: 700;
+}
+
+:root[data-bs-theme="light"] .dc-score__rank {
+  color: var(--dc-ink-amber);
+  font-weight: 700;
+}
+
+:root[data-bs-theme="light"] a:not(.dc-btn):not(.btn) {
+  color: var(--dc-ink-cyan);
+}
+
 /* the CRT scanline was tuned as a white overlay on black — invisible on a
    light arcade panel, so give light mode its own (much fainter) dark pass */
 :root[data-bs-theme="light"] .dc-arcade::after {

@@ -1,6 +1,5 @@
 ---
 title: "API Roulette"
-icon: "🎡"
 accent: "amber"
 zone: "Zone A"
 hours: "10:00 – 17:00"

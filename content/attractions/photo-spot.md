@@ -1,6 +1,5 @@
 ---
 title: "Photo Spot"
-icon: "📸"
 accent: "magenta"
 zone: "Ferris Wheel"
 hours: "All day"
