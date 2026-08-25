@@ -13,12 +13,7 @@
             </div>
 
             <div class="col-lg-7">
-                <nav class="d-flex flex-wrap gap-3 gap-md-4 justify-content-lg-end mb-3"
-                     aria-label="Site sections">
-                    {{ range .Site.Menus.main }}
-                    <a href="{{ .URL | relURL }}">{{ .Name }}</a>
-                    {{ end }}
-                </nav>
+
                 <div class="d-flex flex-wrap gap-3 gap-md-4 justify-content-lg-end">
                     {{ with .Site.Params.github }}
                     <a href="{{ . }}" target="_blank" rel="noopener noreferrer">GitHub</a>
