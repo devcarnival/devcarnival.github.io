@@ -1,12 +1,12 @@
 ---
-title: "DevCarnival | Build. Break. Learn. Repeat."
+title: "DevCarnival | Technology. People. Purpose."
 description: "Dev Carnival is a two-day global tech festival in Chennai — a neon-lit night carnival of hackathons, AI arenas, bug hunts and community. Jan 8–9, 2027."
 
 # --- pinned hero: narrative beats over the frame sequence -------------------
 # start/end are fractions of scroll progress through the 350vh hero track.
 hero_beats:
   - title: "Dev Carnival"
-    subtitle: "Build. Break. Learn. Repeat."
+    subtitle: "Technology. People. Purpose."
     tag: "grounds/boot.sh"
     side: "center"
     accent: "magenta"

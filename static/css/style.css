@@ -352,7 +352,7 @@ body.dc-page .navbar {
   left: 0;
   width: 4.5rem;
   height: 4.5rem;
-  background: var(--dc-asphalt) url("../img/dc-mark.png") no-repeat center / 64%;
+  background: var(--dc-asphalt) url("../img/logo.svg") no-repeat center / 64%;
   border: 1px solid var(--dc-line-bright);
   box-shadow: 0 0 0 1px rgba(255, 47, 185, .16), 0 0 20px rgba(255, 47, 185, .1);
   pointer-events: none;

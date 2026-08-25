@@ -4,17 +4,17 @@ Derive every Dev Carnival brand asset from the one logo lockup.
 
 Offline, one-time. NOT part of the Hugo build.
 
-  static/img/dc-mark.png   transparent monogram — the hero brand tile draws it
+  static/img/logo.svg   transparent monogram — the hero brand tile draws it
   static/img/dc-logo.png   transparent full lockup (monogram + wordmark + line)
   static/favicon*, apple-icon*, android-icon*, ms-icon*, apple-touch-icon
                            the app icon set, as dark tiles
 
 The source lockup is three stacked bands — monogram, "DEV CARNIVAL" wordmark,
-tagline. dc-mark.png is band 0 alone; the wordmark is illegible at tile size.
+tagline. logo.svg is band 0 alone; the wordmark is illegible at tile size.
 
 Icons are dark tiles rather than a transparent mark: the mark is white-on-black,
 so on a light browser tab strip a transparent version would vanish. They also
-use a tighter crop than dc-mark.png (see core_crop) because the full monogram's
+use a tighter crop than logo.svg (see core_crop) because the full monogram's
 outer arms turn to mush at 16px.
 
 The hero tile is built two ways that must agree: .dc-hero__bug in style.css
@@ -231,7 +231,7 @@ def main():
 
     os.makedirs(OUT, exist_ok=True)
     mark, box = extract_mark(src)
-    mark.save(os.path.join(OUT, "dc-mark.png"), "PNG", optimize=True)
+    mark.save(os.path.join(OUT, "logo.svg"), "PNG", optimize=True)
 
     logo, logo_box = extract_logo(src)
     logo.save(os.path.join(OUT, "dc-logo.png"), "PNG", optimize=True)
@@ -248,7 +248,7 @@ def main():
     print(f"source     {src}")
     print(f"monogram   cropped {box} -> {mark.size}")
     print(f"lockup     cropped {logo_box} -> {logo.size}")
-    print(f"wrote      static/img/dc-mark.png  static/img/dc-logo.png")
+    print(f"wrote      static/img/logo.svg  static/img/dc-logo.png")
     print(f"           {written} icons in static/")
     print(f"preview    {OUT_TMP}/dc-tile-preview.png  {OUT_TMP}/dc-icon-preview.png")
 

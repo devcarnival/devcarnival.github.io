@@ -48,7 +48,7 @@ OUT_IMG = os.path.join(REPO, "static", "img")
 # are shown with no JS in play, so the tile is baked into them here instead.
 BUG_BOX = (0.8875, 0.8000, 0.9250, 0.8667)  # u0, v0, u1, v1 of the raw frame
 BUG_PAD = 0.010  # extra cover each side, as a fraction of image width
-MARK_PNG = os.path.join(OUT_IMG, "dc-mark.png")
+MARK_PNG = os.path.join(OUT_IMG, "logo.svg")
 
 
 def smoothstep(t):

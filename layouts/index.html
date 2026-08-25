@@ -48,7 +48,6 @@
                         <p class="dc-beat__sub">{{ $beat.subtitle }}</p>
                         {{ if $beat.hero }}
                         <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
-                            <span class="meta-badge">2 Full Days</span>
                             <span class="meta-badge">{{ $.Params.event.date }}</span>
                             <span class="meta-badge">{{ $.Params.event.location }}</span>
                         </div>
@@ -105,7 +104,6 @@
             <div class="col-lg-6">
                 <div class="p-3 p-md-4 border" style="background:var(--dc-surface);border-color:var(--dc-line-bright)!important;box-shadow:var(--dc-glow-cyan)">
                     <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
-                        <span class="meta-badge">2 Full Days</span>
                         <span class="dc-note text-uppercase">{{ .Params.event.label | default "Global Gathering" }}</span>
                     </div>
                     <div class="mb-2">
