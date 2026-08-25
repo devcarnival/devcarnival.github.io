@@ -1,6 +1,7 @@
 ---
 title: "K Siva Prasad Reddy"
 designation: "AI Team Organizer"
+company: Jetbrains
 weight: 1
 socials:
   github: "sivaprasadreddy"
