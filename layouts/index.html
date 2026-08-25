@@ -90,11 +90,11 @@
 </div>
 {{ end }}
 
-{{/* ====================== ATTRACTIONS ======================
+{{/* ====================== ATTRACTIONS (disabled) ======================
      Booths live in content/attractions/ and are pulled relationally:
      Site.GetPage for the section, `where` to drop hidden ones, and the
      repo's people-join contract (§4.1) for booth hosts.
-     ======================================================== */}}
+
 <section class="dc-section" id="attractions" style="background:var(--dc-surface-2)">
     <div class="container">
         <div class="row g-4 align-items-end mb-5">
@@ -115,12 +115,12 @@
                 <h3 class="dc-booth__name">{{ .Title }}</h3>
                 <p class="dc-booth__desc">{{ .Params.summary }}</p>
 
-                {{/* booth hosts — same slug join the team/session templates use */}}
+                booth hosts — same slug join the team/session templates use
                 {{ with .Params.hosts }}
                 <div class="d-flex align-items-center gap-2 flex-wrap">
                     {{ range . }}
                     {{ with $.Site.GetPage (printf "people/%s.md" .) }}
-                    {{/* several people records store a full URL instead of a handle — normalise */}}
+                    several people records store a full URL instead of a handle — normalise
                     {{ $handle := trim (replaceRE `^https?://(www\.)?github\.com/` "" (.Params.socials.github | default "")) "/" }}
                     <span class="d-inline-flex align-items-center gap-2 dc-mono"
                           style="font-size:.68rem;letter-spacing:.1em;color:var(--dc-text-mute)"
@@ -153,6 +153,7 @@
         {{ end }}
     </div>
 </section>
+     ======================================================== */}}
 
 {{/* ====================== PILLARS ====================== */}}
 {{ with .Params.pillars }}
@@ -246,7 +247,6 @@
                                     <button class="dc-btn dc-btn--lg" type="submit">
                                         Get Your Dev Passport &rarr;
                                     </button>
-                                    <p class="dc-note mb-0">Free for students · ID at the gate</p>
                                 </div>
                             </div>
 
