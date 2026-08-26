@@ -1,12 +1,18 @@
 {{ define "main" }}
-<div class="container hero-section">
-    <!-- Header -->
-    <div class="row mb-5">
-        <div class="col-12">
-            <h1 class="display-5 fw-bold text-dark mb-2">Technical Sessions</h1>
-            <p class="lead text-muted">Deep dives, keynotes, and masterclasses from industry practitioners.</p>
+<div class="container">
+
+    <section class="hero-section text-center position-relative">
+        <div class="container">
+          
+          <h1 class="display-4 fw-bold mb-3">Technical  <span class="text-gradient">Sessions</span></h1>
+          <p class="lead text-secondary mx-auto" style="max-width: 800px;">
+            Deep dives, keynotes, and masterclasses from industry practitioners.
+          </p>
+          <a class="dc-btn dc-btn--ghost" href="/#passport">Apply</a>
         </div>
-    </div>
+      </section>
+
+
 
     <!-- Extract Years & Filter Current -->
     {{ $allYears := slice }}

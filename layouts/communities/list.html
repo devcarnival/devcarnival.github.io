@@ -1,12 +1,21 @@
 {{ define "main" }}
-<div class="container hero-section">
-    <!-- Header -->
-    <div class="row mb-5">
-        <div class="col-12">
-            <h1 class="display-5 fw-bold text-dark mb-2">Ecosystem Communities</h1>
-            <p class="lead text-muted">The developer groups, open-source cohorts, and engineering circles driving DevCarnival.</p>
+
+
+
+<div class="container">
+
+    <section class="hero-section text-center position-relative">
+        <div class="container">
+          
+          <h1 class="display-4 fw-bold mb-3">Ecosystem  <span class="text-gradient">Communities</span></h1>
+          <p class="lead text-secondary mx-auto" style="max-width: 800px;">
+            The developer groups, open-source cohorts, and engineering circles driving DevCarnival.
+          </p>
+          <a class="dc-btn dc-btn--ghost" href="/#passport">Apply</a>
         </div>
-    </div>
+      </section>
+
+
 
     <!-- Extract Years & Filter Current Active Edition -->
     {{ $allYears := slice }}
