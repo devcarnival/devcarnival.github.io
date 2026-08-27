@@ -9,10 +9,10 @@ languageCode = "en-us"
   email = "contact@devcarnival.com"
 
 [menu]
-  [[menu.main]]
-    name = "Sessions"
-    url = "/session"
-    weight = 1
+  # [[menu.main]]
+  #   name = "Sessions"
+  #   url = "/session"
+  #   weight = 1
   [[menu.main]]
     name = "Schedule"
     url = "/schedule"

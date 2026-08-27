@@ -1481,3 +1481,16 @@ body:not(.dc-page) .dc-nav:not(.is-stuck) {
   --dc-ink-magenta: #ffeaf8;
   --dc-glow-cyan: 0 0 0 1px rgba(34, 224, 255, .40), 0 0 22px rgba(34, 224, 255, .16);
 }
+
+.sponsor-logo {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+  
+}
+
+.sponsor-logo {
+  max-height: 100px;
+  width: auto;
+  object-fit: contain;
+}
