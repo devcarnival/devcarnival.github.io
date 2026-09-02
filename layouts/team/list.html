@@ -15,7 +15,7 @@
             <div class="card h-100 border rounded-0 shadow-sm">
                 <div class="card-body p-4 d-flex flex-column">
                     <h3 class="h4 fw-bold mb-2">
-                        <a href="{{ .Permalink }}" class="text-decoration-none text-dark hover-underline">{{ .Title }}</a>
+                        <a href="{{ .RelPermalink }}" class="text-decoration-none text-dark hover-underline">{{ .Title }}</a>
                     </h3>
                     
                     <!-- Automatically pulls the first few lines of your team's markdown description -->
@@ -24,7 +24,7 @@
                     </p>
                     
                     <div class="mt-4 pt-3 border-top d-flex justify-content-between align-items-center">
-                        <a href="{{ .Permalink }}" class="btn btn-outline-minimal btn-sm">View Purpose & Members</a>
+                        <a href="{{ .RelPermalink }}" class="btn btn-outline-minimal btn-sm">View Purpose & Members</a>
                         <span class="small text-muted font-monospace bg-light px-2 py-1 border">
                             {{ len .Params.people }} Members
                         </span>

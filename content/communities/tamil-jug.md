@@ -1,6 +1,6 @@
 ---
 title: "Tamilnadu Java User Group"
-logo: "https://tamilnadujug.org/assets/tamil_jug-dZMYtDXl.jpeg"
+logo: "images/communities/tamil-jug.png"
 years: ["2026"]
 socials:
   github: "tamilnadujug"
