@@ -1,35 +1,35 @@
 ---
 title: "DevCarnival | Technology. People. Purpose."
-description: "Dev Carnival is a two-day global tech festival in Chennai — a neon-lit night carnival of hackathons, AI arenas, bug hunts and community. Jan 8–9, 2027."
+description: "DevCarnival is a two-day developer-focused technology conference in Chennai bringing together developers, tech communities, students, researchers, and industry professionals for parallel tracks, talks, workshops, and hands-on Tech Pavilion. Jan 8–9, 2027."
 
 # --- pinned hero: narrative beats over the frame sequence -------------------
 # start/end are fractions of scroll progress through the 350vh hero track.
 hero_beats:
   - title: "Dev Carnival"
     subtitle: "Technology. People. Purpose."
-    tag: "grounds/boot.sh"
+    tag: "conference/init"
     side: "center"
     accent: "magenta"
     start: 0.00
     end: 0.20
     hero: true
-  - title: "The Hackathon Zone."
-    subtitle: "48 hours. Endless coffee. Ship it."
-    tag: "zone/hackathon"
+  - title: "Parallel Tech Tracks."
+    subtitle: "Tech talks & workshops across AI, Cloud-Native, Backend, DevOps, Data, System Design & Java."
+    tag: "tracks/talks-workshops"
     side: "left"
     accent: "purple"
     start: 0.21
     end: 0.45
-  - title: "Bug Hunt & AI Arena."
-    subtitle: "Squash exceptions, battle prompts, win tokens."
-    tag: "zone/arena --watch"
+  - title: "The Tech Pavilion."
+    subtitle: "Hands-on space featuring 100+ technology projects, developer tools, and real-world implementations."
+    tag: "pavilion/hands-on"
     side: "right"
     accent: "cyan"
     start: 0.46
     end: 0.75
-  - title: "The Carnival Awaits."
-    subtitle: "Two days. One festival. Every stack."
-    tag: "gates/open"
+  - title: "Connecting Learning to Practice."
+    subtitle: "Two days uniting developers, technology communities, students, researchers, and industry leaders."
+    tag: "ecosystem/shared-learning"
     side: "center"
     accent: "amber"
     start: 0.76
@@ -41,7 +41,7 @@ hero_beats:
 hero:
   heading: "Technology. People. Purpose."
   highlight: "Purpose."
-  subheading: "Inspired by the spirit of a true carnival, DevCarnival is a two-day global festival uniting tech communities, industry, and academia. A celebration of fulfillment and purpose-oriented engineering."
+  subheading: "DevCarnival is a two-day developer-focused technology conference designed to bring together developers, technology communities, students, researchers, and industry professionals through a shared learning experience."
   cta_text: "Register Now"
   cta_link: "#passport"
 event:
@@ -49,29 +49,29 @@ event:
   date: "Fri, Jan 8, 2027 & Sat, Jan 9, 2027"
   location: "Infosys, Mahindra City, Chennai"
 pillars:
-  - title: "Cross-Technology"
-    description: "Breaking domain silos. Whether it is backend engineering, decentralized systems, AI, or open-source infrastructure, communities collide to build multi-stack perspective."
-  - title: "Unified Experience"
-    description: "Bridging paths across the timeline. Student innovators, foundational researchers, and seasoned engineering leads meet as peers to foster meaningful transfer of craft."
-  - title: "Industry & Academia"
-    description: "Aligning real-world ecosystem scales. Merging commercial enterprise constraints with theoretical breakthroughs to anchor technology in authentic human purpose."
+  - title: "Parallel Tech Tracks"
+    description: "Deep-dive tech talks and workshops spread across multiple parallel tracks covering AI, cloud-native technologies, backend and full-stack engineering, DevOps, data, system design, Java, and emerging technologies."
+  - title: "Hands-on Tech Pavilion"
+    description: "Explore and interact with 100+ technology projects, developer tools, community initiatives, and real-world implementations—connecting learning from talks with practical technology experiences."
+  - title: "Shared Learning Ecosystem"
+    description: "Bringing together developers, technology communities, students, researchers, and industry professionals to bridge insights, foster mentorship, and elevate engineering craft."
 
 stats:
   - num: "2"
     label: "Days"
-  - num: "4"
-    label: "Halls"
-  - num: "12"
-    label: "Workshops"
+  - num: "8+"
+    label: "Parallel Tracks"
+  - num: "50+"
+    label: "Talks & Workshops"
   - num: "100+"
     label: "Pavilion Projects"
-  - num: "8"
-    label: "Attractions"
+  - num: "5"
+    label: "Audience Spheres"
 
 passport:
   tiers:
-    - "Attendee — both days, all halls"
-    - "Hacker — Hackathon Zone seat + power"
-    - "Student — academia track, ID required"
-    - "Speaker / Crew — invite only"
+    - "Conference Attendee — access to all parallel tracks, talks, & workshops"
+    - "Pavilion Exhibitor — showcase your project or tool in the Tech Pavilion"
+    - "Student & Researcher — special academia & research access (ID required)"
+    - "Speaker & Host — session speakers, track hosts & community leads"
 ---
