@@ -624,6 +624,31 @@ body.dc-page .navbar {
   padding: 1.05rem 2.1rem;
 }
 
+.dc-btn:disabled,
+.dc-btn[disabled],
+.dc-btn.disabled,
+.btn-minimal:disabled,
+.btn-minimal[disabled],
+.btn-minimal.disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  transform: none !important;
+  filter: grayscale(0.6);
+  pointer-events: auto;
+}
+
+.dc-btn:disabled:hover,
+.dc-btn[disabled]:hover,
+.dc-btn.disabled:hover {
+  background: var(--dc-magenta);
+  border-color: var(--dc-magenta);
+  color: #fff;
+  transform: none !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+}
+
 /* --------------------------------------------------------------------------
    7. Agenda — retro arcade high-score screen
    -------------------------------------------------------------------------- */
@@ -972,6 +997,16 @@ body.dc-page .navbar {
   outline: none;
   border-color: var(--dc-cyan);
   box-shadow: var(--dc-glow-cyan);
+}
+
+.dc-input:disabled,
+.dc-select:disabled,
+fieldset:disabled .dc-input,
+fieldset:disabled .dc-select {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: var(--dc-surface);
+  border-color: var(--dc-line);
 }
 
 .dc-note {
