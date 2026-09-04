@@ -29,11 +29,7 @@ languageCode = "en-us"
     name = "Community"
     url = "/communities"
     weight = 5
-  [[menu.main]]
-    name = "Team"
-    url = "/team"
-    weight = 6
-    
+
 [taxonomies]
   year = "years"
   tag = "tags"
@@ -49,4 +45,7 @@ languageCode = "en-us"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[security]
+  allowContent = [".*"]
 

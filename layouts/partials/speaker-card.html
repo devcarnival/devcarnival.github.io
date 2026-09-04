@@ -1,4 +1,4 @@
-<article class="dc-speaker-card h-100">
+<article class="dc-speaker-card h-100 w-100">
     <!-- Header: Avatar + Name + Designation & Company -->
     <div class="dc-speaker-header d-flex align-items-center gap-3 mb-3">
         <!-- Avatar: GitHub Avatar or Styled Initials Fallback -->
@@ -22,7 +22,7 @@
 
         <div class="flex-grow-1 min-w-0">
             <h3 class="h5 fw-bold mb-1">
-                <a href="{{ .speaker.RelPermalink }}" class="text-decoration-none text-white hover-underline" title="{{ .speaker.Title }}">
+                <a href="{{ .speaker.RelPermalink }}" class="text-decoration-none hover-underline" style="color: var(--dc-text);" title="{{ .speaker.Title }}">
                     {{ .speaker.Title }}
                 </a>
             </h3>
@@ -71,7 +71,7 @@
                     </span>
                     {{ end }}
                 </div>
-                <a href="{{ .RelPermalink }}" class="fw-bold text-decoration-none text-white hover-underline d-inline-block" style="font-size: 0.88rem; line-height: 1.35;">
+                <a href="{{ .RelPermalink }}" class="fw-bold text-decoration-none hover-underline d-inline-block" style="color: var(--dc-text); font-size: 0.88rem; line-height: 1.35;">
                     {{ .Title }} &rarr;
                 </a>
             </div>

@@ -1640,3 +1640,24 @@ body:not(.dc-page) .dc-nav:not(.is-stuck) {
     max-height: 140px;
   }
 }
+
+:root[data-bs-theme="light"] .dc-speaker-card {
+  box-shadow: var(--dc-shadow-sm);
+}
+
+:root[data-bs-theme="light"] .dc-speaker-card:hover {
+  border-color: var(--dc-ink-cyan);
+  box-shadow: var(--dc-shadow-hover);
+}
+
+:root[data-bs-theme="light"] .dc-speaker-card:hover .dc-speaker-avatar {
+  border-color: var(--dc-ink-cyan);
+}
+
+:root[data-bs-theme="light"] .dc-speaker-session-box {
+  border-left-color: var(--dc-ink-cyan);
+}
+
+:root[data-bs-theme="light"] .dc-speaker-session-box:hover {
+  border-left-color: var(--dc-ink-magenta);
+}

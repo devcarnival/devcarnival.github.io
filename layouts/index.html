@@ -181,55 +181,6 @@
 </section>
 {{ end }}
 
-{{/* ====================== SPEAKERS ====================== */}}
-<section class="dc-section" id="speakers">
-    <div class="container">
-        <div class="row g-4 align-items-end mb-5">
-            <div class="col-lg-8">
-                <span class="dc-kicker">// voices &middot; architects &middot; researchers</span>
-                <h2 class="dc-section-title">Featured <span class="dc-neon-cyan">Speakers.</span></h2>
-                <p class="dc-section-lead mb-0">
-                    Meet the industry practitioners and researchers providing keynotes, deep-dive sessions, and masterclasses at DevCarnival.
-                </p>
-            </div>
-            <div class="col-lg-4 text-lg-end">
-                <a class="dc-btn dc-btn--ghost" href="{{ "speakers/" | relURL }}">View All Speakers &rarr;</a>
-            </div>
-        </div>
-
-        {{ $sessions := where .Site.RegularPages "Section" "session" }}
-        {{ $speakerSlugs := slice }}
-        {{ range $sessions }}
-            {{ with .Params.speakers }}
-                {{ range . }}
-                    {{ $speakerSlugs = $speakerSlugs | append . }}
-                {{ end }}
-            {{ end }}
-        {{ end }}
-        {{ $uniqueSlugs := sort ($speakerSlugs | uniq) }}
-
-        {{ if gt (len $uniqueSlugs) 0 }}
-        <div class="row g-4 mb-4">
-            {{ range $uniqueSlugs }}
-                {{ $slug := . }}
-                {{ $speakerPage := $.Site.GetPage (printf "people/%s.md" $slug) }}
-                {{ with $speakerPage }}
-                    {{ $speaker := . }}
-                    {{ $speakerSessions := slice }}
-                    {{ range $sessions }}
-                        {{ if in .Params.speakers $slug }}
-                            {{ $speakerSessions = $speakerSessions | append . }}
-                        {{ end }}
-                    {{ end }}
-                    <div class="col-lg-6 col-12">
-                        {{ partial "speaker-card.html" (dict "Site" $.Site "speaker" $speaker "sessions" $speakerSessions) }}
-                    </div>
-                {{ end }}
-            {{ end }}
-        </div>
-        {{ end }}
-    </div>
-</section>
 
 {{/* ====================== Sponsors ====================== */}}
 <div class="container" id="sponsors">
