@@ -66,7 +66,13 @@
                     </a>
                     {{ end }}
 
-                    {{ if not (or .Params.socials.twitter .Params.socials.github .Params.socials.linkedin .Params.socials.website .Params.socials.instagram) }}
+                    {{ if .Params.socials.youtube }}
+                    <a href="{{ .Params.socials.youtube }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal w-100 text-start d-flex align-items-center justify-content-between">
+                        <span>YouTube Channel</span> &rarr;
+                    </a>
+                    {{ end }}
+
+                    {{ if not (or .Params.socials.twitter .Params.socials.github .Params.socials.linkedin .Params.socials.website .Params.socials.instagram .Params.socials.youtube) }}
                     <span class="text-muted small italic">No social ecosystem links registered for this year.</span>
                     {{ end }}
                 </div>
