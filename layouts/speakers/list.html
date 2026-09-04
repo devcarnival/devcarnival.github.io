@@ -1,0 +1,67 @@
+{{ define "main" }}
+<div class="container hero-section">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <span class="dc-kicker">// voices &middot; architects &middot; researchers</span>
+        <h1 class="dc-section-title mb-2">Festival <span class="dc-neon-magenta">Speakers</span></h1>
+        <p class="dc-section-lead mx-auto" style="max-width: 760px;">
+            Meet the engineers, architects, and researchers sharing real-world insights, architecture patterns, and battle-tested lessons across our conference tracks.
+        </p>
+        <div class="d-flex justify-content-center flex-wrap gap-2 mt-3">
+            <a class="dc-btn dc-btn--ghost" href="{{ "session/" | relURL }}">Browse Sessions</a>
+            <a class="dc-btn dc-btn--ghost" href="{{ "schedule/" | relURL }}">View Schedule</a>
+            <a class="dc-btn dc-btn--ghost" href="https://forms.gle/jgfKDj1hUCipcSTH7" target="_blank" rel="noopener noreferrer">Submit CFP</a>
+        </div>
+    </div>
+
+    {{/* Collect all sessions and unique speakers providing sessions */}}
+    {{ $sessions := where .Site.RegularPages "Section" "session" }}
+    {{ $speakerSlugs := slice }}
+    {{ range $sessions }}
+        {{ with .Params.speakers }}
+            {{ range . }}
+                {{ $speakerSlugs = $speakerSlugs | append . }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+    {{ $uniqueSlugs := sort ($speakerSlugs | uniq) }}
+
+    {{ if gt (len $uniqueSlugs) 0 }}
+    <div class="row g-4 mb-5">
+        {{ range $uniqueSlugs }}
+            {{ $slug := . }}
+            {{ $speakerPage := $.Site.GetPage (printf "people/%s.md" $slug) }}
+            {{ with $speakerPage }}
+                {{ $speaker := . }}
+                {{ $speakerSessions := slice }}
+                {{ range $sessions }}
+                    {{ if in .Params.speakers $slug }}
+                        {{ $speakerSessions = $speakerSessions | append . }}
+                    {{ end }}
+                {{ end }}
+                <div class="col-lg-6 col-12 d-flex">
+                    {{ partial "speaker-card.html" (dict "Site" $.Site "speaker" $speaker "sessions" $speakerSessions) }}
+                </div>
+            {{ end }}
+        {{ end }}
+    </div>
+    {{ else }}
+    <div class="row justify-content-center my-5 py-4">
+        <div class="col-md-8 col-lg-6 text-center">
+            <div class="p-5 border rounded-0 shadow-sm" style="background: var(--dc-surface-2); border-color: var(--dc-line) !important;">
+                <div class="mb-3">
+                    <span class="display-6 dc-neon-magenta">&#10022;</span>
+                </div>
+                <h2 class="h3 fw-bold mb-3 text-dark">Speakers will be announced soon</h2>
+                <p class="text-secondary mb-4 mx-auto" style="max-width: 480px;">
+                    We are finalizing the speaker lineup for DevCarnival. Stay tuned as we announce keynotes and workshop leaders!
+                </p>
+                <div>
+                    <a class="dc-btn dc-btn--ghost" href="https://forms.gle/jgfKDj1hUCipcSTH7" target="_blank" rel="noopener noreferrer">Submit CFP &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

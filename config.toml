@@ -14,21 +14,25 @@ languageCode = "en-us"
     url = "/session"
     weight = 1
   [[menu.main]]
+    name = "Speakers"
+    url = "/speakers"
+    weight = 2
+  [[menu.main]]
     name = "Schedule"
     url = "/schedule"
-    weight = 2
+    weight = 3
   [[menu.main]]
     name = "Tech Pavilion"
     url = "/projects"
-    weight = 3
+    weight = 4
   [[menu.main]]
     name = "Community"
     url = "/communities"
-    weight = 4
+    weight = 5
   [[menu.main]]
     name = "Team"
     url = "/team"
-    weight = 5
+    weight = 6
     
 [taxonomies]
   year = "years"
