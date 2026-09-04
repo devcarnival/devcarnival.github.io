@@ -39,7 +39,7 @@
                         {{ $speakerSessions = $speakerSessions | append . }}
                     {{ end }}
                 {{ end }}
-                <div class="col-lg-6 col-12 d-flex">
+                <div class="col-lg-6 col-12">
                     {{ partial "speaker-card.html" (dict "Site" $.Site "speaker" $speaker "sessions" $speakerSessions) }}
                 </div>
             {{ end }}

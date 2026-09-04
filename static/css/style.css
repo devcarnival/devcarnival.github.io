@@ -1536,7 +1536,7 @@ body:not(.dc-page) .dc-nav:not(.is-stuck) {
 .dc-speaker-card {
   background: var(--dc-surface);
   border: 1px solid var(--dc-line);
-  padding: 1.75rem;
+  padding: 1.5rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1547,6 +1547,10 @@ body:not(.dc-page) .dc-nav:not(.is-stuck) {
   border-color: var(--dc-cyan);
   transform: translateY(-3px);
   box-shadow: var(--dc-glow-cyan);
+}
+
+.dc-speaker-header {
+  min-height: 64px;
 }
 
 .dc-speaker-avatar {
@@ -1562,14 +1566,38 @@ body:not(.dc-page) .dc-nav:not(.is-stuck) {
   box-shadow: inset 0 0 12px rgba(34, 224, 255, 0.08);
 }
 
+.dc-speaker-about {
+  display: flex;
+  flex-direction: column;
+}
+
 .dc-speaker-bio {
   color: var(--dc-text-dim);
-  font-size: 0.88rem;
-  line-height: 1.65;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  min-height: 75px;
+  max-height: 155px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Custom sleek scrollbar for speaker bio */
+.dc-speaker-bio::-webkit-scrollbar {
+  width: 4px;
+}
+.dc-speaker-bio::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+.dc-speaker-bio::-webkit-scrollbar-thumb {
+  background: var(--dc-line-bright);
+  border-radius: 2px;
+}
+.dc-speaker-bio::-webkit-scrollbar-thumb:hover {
+  background: var(--dc-cyan);
 }
 
 .dc-speaker-bio p {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 
 .dc-speaker-bio p:last-child {
@@ -1577,23 +1605,38 @@ body:not(.dc-page) .dc-nav:not(.is-stuck) {
 }
 
 .dc-speaker-bio ul {
-  padding-left: 1.25rem;
-  margin-bottom: 0.75rem;
+  padding-left: 1.15rem;
+  margin-bottom: 0.65rem;
 }
 
 .dc-speaker-bio li {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .dc-speaker-session-box {
   background: var(--dc-surface-2);
   border: 1px solid var(--dc-line);
   border-left: 3px solid var(--dc-cyan);
-  padding: 0.75rem 1rem;
+  padding: 0.65rem 0.85rem;
   transition: var(--dc-transition-fast);
 }
 
 .dc-speaker-session-box:hover {
   border-left-color: var(--dc-magenta);
   background: var(--dc-surface-3);
+}
+
+.dc-speaker-footer {
+  padding-top: 0.85rem;
+  margin-top: auto;
+}
+
+@media (max-width: 767.98px) {
+  .dc-speaker-card {
+    padding: 1.25rem;
+  }
+  .dc-speaker-bio {
+    min-height: auto;
+    max-height: 140px;
+  }
 }
