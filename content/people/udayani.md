@@ -1,9 +1,10 @@
 ---
 title: "Udayani V"
 designation: "AI Team Organizer"
+company: "Broadcom"
 weight: 1
 socials:
-  github: "https://github.com/vudayani"
+  github: "vudayani"
   linkedin: "https://www.linkedin.com/in/udayani-v-56261a147"
 ---
 

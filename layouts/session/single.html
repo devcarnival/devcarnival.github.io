@@ -7,9 +7,18 @@
             
             <h1 class="display-4 fw-bold text-dark mb-3">{{ .Title }}</h1>
             
-            <div class="d-flex gap-2 mb-4">
+            <div class="d-flex flex-wrap gap-2 mb-4">
                 {{ range .Params.years }}
                 <span class="badge bg-light text-dark border font-monospace">{{ . }} Edition</span>
+                {{ end }}
+                {{ with .Params.track }}
+                <span class="badge bg-light text-dark border font-monospace">{{ . }}</span>
+                {{ end }}
+                {{ with or .Params.session_type .Params.sessionType }}
+                <span class="badge bg-light text-dark border font-monospace">{{ . }}</span>
+                {{ end }}
+                {{ with .Params.duration }}
+                <span class="badge bg-light text-dark border font-monospace">{{ . }}</span>
                 {{ end }}
             </div>
 

@@ -1,9 +1,10 @@
 ---
 title: "Micheal Joshuva"
-designation: "Speaker"
+designation: "Founder & CEO"
+company: "MICH JOSH CYBERSECURITY"
 weight: 1
 socials:
-  inkedin: "https://www.linkedin.com/in/thamaraikanni-p-951031107/"
+  linkedin: "https://www.linkedin.com/in/micheal-joshuva/"
 ---
 
 Micheal Joshuva is the Founder & CEO of MICH JOSH CYBERSECURITY Pvt. Ltd. and the Founder of the AI-SEC Community Foundation, a rapidly growing nonprofit community dedicated to advancing AI security and cybersecurity awareness. With over 15 years of experience in cybersecurity, governance, risk, compliance, penetration testing, and AI security, he has worked with leading global organizations, including EY, Infosys, and Wipro, delivering security and compliance initiatives across diverse industries.
