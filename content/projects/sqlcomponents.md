@@ -6,7 +6,7 @@ summary: "A modern compile-time SQL persistence framework that combines the simp
 hero_image: "/images/projects/sqlcomponents.jpg"
 github_url: "https://github.com/sqlcomponents/sqlcomponents"
 demo_url: "https://sqlcomponents.org"
-booth_number: "TP-42"
+booth_number: "TP-63"
 
 business_domains:
   - "Developer Tools"

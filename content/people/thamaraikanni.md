@@ -4,7 +4,7 @@ title: "Thamaraikanni P"
 designation: "AI Team Organizer"
 weight: 1
 socials:
-  github: "https://github.com/ThamaraiP"
+  github: "ThamaraiP"
   linkedin: "https://www.linkedin.com/in/thamaraikanni-p-951031107/"
 ---
 

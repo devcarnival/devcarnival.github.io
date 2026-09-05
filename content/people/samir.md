@@ -3,7 +3,6 @@ title: "Samir Kamerkar"
 designation: "Core Organizer"
 weight: 2
 socials:
-  github: "samkamer"
   linkedin: "https://www.linkedin.com/in/samirkamerkar/"
 ---
 

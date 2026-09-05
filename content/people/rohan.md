@@ -3,7 +3,7 @@ title: "Rohan J"
 designation: "Core Organizer"
 weight: 2
 socials:
-  github: "http://github.com/apt-get2update"
+  github: "apt-get2update"
   linkedin: "https://www.linkedin.com/in/rohan-j-ba489b19b/"
 ---
 

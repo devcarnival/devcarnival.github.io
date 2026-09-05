@@ -1,6 +1,6 @@
 ---
 title: "TechCohere"
-logo: "https://javafest.org/images/infosys_logo.jpeg"
+logo: "images/communities/tech-cohere.jpeg"
 years: ["2025", "2026"]
 socials:
   linkedin: "https://www.linkedin.com/company/tech-cohere/about/"

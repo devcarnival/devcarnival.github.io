@@ -1223,6 +1223,35 @@ fieldset:disabled .dc-select {
   display: inline-block;
 }
 
+/* Normalizes third-party partner logos (some baked onto opaque white/light
+   art, some transparent) into one consistent frame so a grid of them reads
+   as a unified system instead of a mix of bright tiles and blended-in marks. */
+.dc-logo-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 56px;
+  padding: 0 1rem;
+  background: #f4f4f6;
+  border: 1px solid var(--dc-line);
+}
+
+.dc-logo-chip img {
+  max-height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+.dc-logo-chip--fallback {
+  background: var(--dc-surface-2);
+}
+
+.dc-logo-chip--fallback .dc-mono {
+  color: var(--dc-text-dim);
+  font-size: .78rem;
+}
+
 .meta-badge {
   display: inline-flex;
   align-items: center;

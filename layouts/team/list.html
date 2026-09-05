@@ -26,7 +26,7 @@
                     <div class="mt-4 pt-3 border-top d-flex justify-content-between align-items-center">
                         <a href="{{ .RelPermalink }}" class="btn btn-outline-minimal btn-sm">View Purpose & Members</a>
                         <span class="small text-muted font-monospace bg-light px-2 py-1 border">
-                            {{ len .Params.people }} Members
+                            {{ len .Params.people }} {{ if eq (len .Params.people) 1 }}Member{{ else }}Members{{ end }}
                         </span>
                     </div>
                 </div>

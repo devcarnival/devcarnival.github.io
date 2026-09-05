@@ -18,19 +18,23 @@
       <p class="lead text-secondary mb-4">{{ .Params.summary }}</p>
 
       <!-- Tags Section -->
-      <div class="card border-0 bg-light p-3 mb-4" style="border-radius: var(--dc-radius-sm);">
-        <div class="row g-2">
+      <div class="p-3 mb-4" style="border-radius: var(--dc-radius-sm); background: var(--dc-surface); border: 1px solid var(--dc-line);">
+        <div class="row g-3">
           <div class="col-md-6">
-            <strong class="d-block small text-muted mb-1">Business Domain:</strong>
-            {{ range .Params.business_domains }}
-              <a href="{{ "/business_domains/" | relURL }}{{ . | urlize }}" class="badge bg-primary text-decoration-none me-1">{{ . }}</a>
-            {{ end }}
+            <strong class="dc-mono d-block text-uppercase mb-2" style="font-size: .68rem; letter-spacing: .12em; color: var(--dc-text-dim);">Business Domain</strong>
+            <div class="d-flex flex-wrap gap-2">
+              {{ range .Params.business_domains }}
+                <a href="{{ "/business_domains/" | relURL }}{{ . | urlize }}" class="badge text-decoration-none" style="background: rgba(34, 224, 255, .08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</a>
+              {{ end }}
+            </div>
           </div>
           <div class="col-md-6">
-            <strong class="d-block small text-muted mb-1">Tech Domain:</strong>
-            {{ range .Params.tech_domains }}
-              <a href="{{ "/tech_domains/" | relURL }}{{ . | urlize }}" class="badge bg-dark text-decoration-none me-1">{{ . }}</a>
-            {{ end }}
+            <strong class="dc-mono d-block text-uppercase mb-2" style="font-size: .68rem; letter-spacing: .12em; color: var(--dc-text-dim);">Tech Domain</strong>
+            <div class="d-flex flex-wrap gap-2">
+              {{ range .Params.tech_domains }}
+                <a href="{{ "/tech_domains/" | relURL }}{{ . | urlize }}" class="badge text-decoration-none" style="background: rgba(157, 92, 255, .08); color: var(--dc-purple); border: 1px solid rgba(157, 92, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</a>
+              {{ end }}
+            </div>
           </div>
         </div>
       </div>

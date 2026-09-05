@@ -3,7 +3,6 @@ title: "Saravana Kumar Vithyananthan"
 designation: "Tech Review Member"
 weight: 2
 socials:
-  github: "hari-nikesh-r"
   linkedin: "https://www.linkedin.com/in/saravanakv/"
 ---
 

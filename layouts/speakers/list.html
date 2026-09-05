@@ -27,7 +27,7 @@
     {{ $uniqueSlugs := sort ($speakerSlugs | uniq) }}
 
     {{ if gt (len $uniqueSlugs) 0 }}
-    <div class="row g-4 mb-5">
+    <div class="row g-4 mb-5 align-items-start">
         {{ range $uniqueSlugs }}
             {{ $slug := . }}
             {{ $speakerPage := $.Site.GetPage (printf "people/%s.md" $slug) }}
