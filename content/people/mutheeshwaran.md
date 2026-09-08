@@ -1,13 +1,10 @@
 ---
 title: "Mutheeshwaran S"
-designation: "Core Organizer"
+designation: "AI Initiatives & Adoption Lead"
+company: "Infosys"
 weight: 3
 socials:
   linkedin: "https://www.linkedin.com/in/mutheeshwaran/"
 ---
 
-A Management Graduate with Marketing Specialization associated with Infosys. Currently I lead AI adoption initiatives for Microsoft Practice.In previous role, I lead several SAP Ariba implementation/roll-out programs/AMS for  leading organizations. Previously I worked as a Program Manager with Accenture and TCS SAP ISM (Ariba) Practice and was a part of Integrated Strategy and Planning team @ TCS SAP practice which is responsible for strategic initiatives like Research, Analyst relations, Consulting Advisory, New Service Offerings, Thought leadership initiatives, GTM activities, TCS – SAP Collaboration, Partner Initiatives etc. 
-
-Previously I have an experience as a Placement Trainer for a year and trained over 5000+ students across South India. I served with reputed organizations like FACE, SMART, Vibrant, Top Freshers Academy as a trainer in verbal, soft skills and personality development areas
-
-During MBA programme at Thiagarajar School of Management (TSM), Madurai actively participated and initiated innovative things in academics as well as co-curricular areas. I am also a recipient of the prestigious TSM Best All Round Student of the Year – 2014 Award with Gold Medal.
+Mutheeshwaran has more than a decade of experience in IT. He has worked in multiple global engagements of SAP implementation. In his current role, he takes care of AI adoption and AI initiatives for Infosys Microsoft Practice. He also leads TechCohere Chennai Chapter which is a flagship initiative for Infosys CTO office to evangelize tech community building within Infosys.
