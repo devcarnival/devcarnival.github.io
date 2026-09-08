@@ -216,7 +216,7 @@ Two kinds. **(A) Chrome** = hardcoded in templates, you will rewrite it.
 
 **`communities/single.html`** — back `← Back to all communities` · badge `<year> Cohort` · sidebar `Connect & Engage` + *"Follow this community's updates, collaborative repositories, and active social channels."* · buttons `Twitter / X` `GitHub Ecosystem` `LinkedIn Page` · empty *"No social ecosystem links registered for this year."*
 
-**`projects/list.html`** — badge `Innovation Expo` · h1 `Tech Pavilion` (`Pavilion` gradient; note double space in source) · lead *"Tech Pavilion is a showcase of 100 carefully selected projects from communities, startups, academia, enterprises, and open-source ecosystems."* · filter labels `Business Domain` / `Technical Domain`, options `All Business Domains` / `All Technical Domains`, button `Reset` · card: booth badge (default `Tech Pavilion`), `Expo 2026` **hardcoded**, CTA `View Project →`
+**`projects/list.html`** — badge `Innovation Expo` · h1 `Tech Pavilion` (`Pavilion` gradient; note double space in source) · lead *"Tech Pavilion is a showcase of 100 carefully selected projects from communities,  academia, enterprises, and open-source ecosystems."* · filter labels `Business Domain` / `Technical Domain`, options `All Business Domains` / `All Technical Domains`, button `Reset` · card: booth badge (default `Tech Pavilion`), `Expo 2026` **hardcoded**, CTA `View Project →`
 
 **`projects/single.html`** — back `← Back to Pavilion Projects` · badge `Booth <n>` · labels `Business Domain:` `Tech Domain:` · CTAs `Live Demo / Site ↗` `GitHub Repo ↗`
 
@@ -312,7 +312,7 @@ Contract: `title`, `logo`, `years[]`, `socials.{github,linkedin,twitter}`, body 
 Contract: `title`, `date`, `draft`, `summary`, `hero_image`, `github_url`, `demo_url`,
 `booth_number`, `business_domains[]`, `tech_domains[]`, body = markdown (`## Overview`,
 `### Key Features`, `### Impact`…).
-`_index.md`: title `Tech Pavilion`, description *"Explore 100+ curated projects, open-source initiatives, startups, and enterprise tech at the DevCarnival Innovation Expo."*
+`_index.md`: title `Tech Pavilion`, description *"Explore 100+ curated projects, open-source initiatives,  and enterprise tech at the DevCarnival Innovation Expo."*
 
 | slug | title | booth | business_domains | tech_domains |
 | --- | --- | --- | --- | --- |

@@ -1,6 +1,6 @@
 ---
 title: "Changemakers"
-subtitle: "Hands-on Coding Professors Bridging Academia, Industry & Startups"
+subtitle: "Hands-on Coding Professors Bridging Academia, Industry"
 deck_url: "https://drive.google.com/file/d/18Ci_2hYdC7XmlX_lZbaD-RL0LtFiTIOx/view?usp=sharing"
 aliases:
   - "/team/academia/changemakers/"

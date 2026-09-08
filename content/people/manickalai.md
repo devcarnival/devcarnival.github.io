@@ -14,10 +14,10 @@ What I bring to the table:
 → AI & Cognitive Technology — I integrate AI/ML capabilities into fintech workflows: intelligent underwriting, fraud detection, conversational AI, and predictive analytics that drive real business outcomes.
 → Cloud & Platform Architecture — Deep expertise across AWS, Azure, GCP, and hybrid cloud environments. I design scalable, resilient platforms built for millions of transactions.
 → Fintech & Payments Domain — Hands-on experience with payments infrastructure, BNPL, ONDC, and digital lending ecosystems across India's rapidly evolving financial landscape.
-→ Startup Building & Advisory — As Founder of Lemuria and advisor to early-stage startups, I help founding teams make the right technical bets, hire smart, and build engineering culture from day one.
+→ Startup Building & Advisory — As Founder of Lemuria and advisor to early-stage  I help founding teams make the right technical bets, hire smart, and build engineering culture from day one.
 My tech stack runs deep: 
 Hybrid Cloud | ONDC | Cognitive technology | SaaS | ELK Stack | Payments | Fintech | Agripreneur | GenAI/LLMs
 
 I'm passionate about the intersection of AI and financial services — where intelligent systems meet real-world impact at scale.
 
-Always happy to connect with founders and tech folks in fintech or startups—whether you’re scaling engineering teams or exploring how AI can elevate your product.
+Always happy to connect with founders and tech folks in fintech —whether you’re scaling engineering teams or exploring how AI can elevate your product.
