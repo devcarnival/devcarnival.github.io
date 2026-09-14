@@ -6,3 +6,4 @@ themes/
 
 .hugo_build.lock
 themes/my-resume
+.DS_Store
