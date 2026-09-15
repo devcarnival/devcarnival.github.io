@@ -62,11 +62,46 @@
                         {{ .Summary | truncate 130 }}
                     </p>
 
+                    {{ $commFile := .File.TranslationBaseName }}
+                    {{ $commSlug := .Slug | default $commFile }}
+                    {{ $commTitle := .Title }}
+                    {{ $commAliases := slice }}
+                    {{ range .Params.aliases }}
+                        {{ $clean := replace (replace . "/communities/" "") "/" "" }}
+                        {{ $commAliases = $commAliases | append $clean }}
+                    {{ end }}
+                    {{ $talkCount := 0 }}
+                    {{ range (where $.Site.RegularPages "Section" "session") }}
+                        {{ $match := false }}
+                        {{ $targets := slice }}
+                        {{ with .Params.communities }}
+                            {{ if reflect.IsSlice . }}
+                                {{ $targets = $targets | append . }}
+                            {{ else }}
+                                {{ $targets = $targets | append (slice .) }}
+                            {{ end }}
+                        {{ end }}
+                        {{ with .Params.community }}
+                            {{ $targets = $targets | append . }}
+                        {{ end }}
+                        {{ range $targets }}
+                            {{ if or (eq . $commFile) (eq . $commSlug) (eq (lower .) (lower $commTitle)) (in $commAliases .) }}
+                                {{ $match = true }}
+                            {{ end }}
+                        {{ end }}
+                        {{ if $match }}
+                            {{ $talkCount = add $talkCount 1 }}
+                        {{ end }}
+                    {{ end }}
+
                     <div class="mt-4 pt-3 d-flex justify-content-between align-items-center" style="border-top:1px solid var(--dc-line)">
                         <a href="{{ .RelPermalink }}" class="dc-btn dc-btn--ghost">Explore Portal</a>
 
-                        <!-- Display count of connected people dynamically if array exists -->
-                        {{ if .Params.people }}
+                        {{ if gt $talkCount 0 }}
+                        <span class="dc-mono" style="font-size:.72rem;color:var(--dc-cyan);border:1px solid var(--dc-line);padding:.25rem .6rem">
+                            {{ $talkCount }} {{ if eq $talkCount 1 }}Talk{{ else }}Talks{{ end }}
+                        </span>
+                        {{ else if .Params.people }}
                         <span class="dc-mono" style="font-size:.72rem;color:var(--dc-text-dim);border:1px solid var(--dc-line);padding:.25rem .6rem">
                             {{ len .Params.people }} {{ if eq (len .Params.people) 1 }}Lead{{ else }}Leads{{ end }}
                         </span>

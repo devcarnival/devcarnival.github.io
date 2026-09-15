@@ -1,5 +1,7 @@
 ---
 title: "Software Development In The Age of AI"
+communities:
+  - "tamilnadu-java-user-group"
 speakers:
   - "ksivaprasadreddy"
 years: ["2026"]

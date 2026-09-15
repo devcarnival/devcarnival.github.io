@@ -9,9 +9,6 @@ socials:
   website: "https://www.tamilnadujug.org"
   linkedin: "https://www.linkedin.com/company/tamil-jug/"
   github: "tamilnadujug"
-talks:
-  - "agentic-patterns-with-spring-ai"
-  - "software-development-in-the-age-of-ai"
 ---
 
 Tamilnadu Java User Group (TNJUG) is a grassroots community uniting enterprise software engineers, university professors, campus chapters, and student programmers to advance modern Java, Spring Boot, cloud architecture, and open source across Tamil Nadu.

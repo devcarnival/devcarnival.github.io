@@ -65,33 +65,73 @@
                     {{ end }}
                 </div>
 
-                {{/* Associated Community Partner */}}
-                {{ $commTarget := .Params.community }}
-                {{ $commPage := "" }}
-                {{ if $commTarget }}
-                    {{ $commPage = $.Site.GetPage (printf "communities/%s.md" $commTarget) }}
-                    {{ if not $commPage }}
-                        {{ $commPage = $.Site.GetPage (printf "communities/%s" $commTarget) }}
+                {{/* Associated Community Partner(s) */}}
+                {{ $sessionCommunities := slice }}
+                {{ with .Params.communities }}
+                    {{ if reflect.IsSlice . }}
+                        {{ $sessionCommunities = $sessionCommunities | append . }}
+                    {{ else }}
+                        {{ $sessionCommunities = $sessionCommunities | append (slice .) }}
                     {{ end }}
                 {{ end }}
-                {{ if not $commPage }}
+                {{ with .Params.community }}
+                    {{ $sessionCommunities = $sessionCommunities | append . }}
+                {{ end }}
+
+                {{ $resolvedCommunities := slice }}
+                {{ range $sessionCommunities }}
+                    {{ $raw := . }}
+                    {{ $cPage := $.Site.GetPage (printf "communities/%s.md" $raw) }}
+                    {{ if not $cPage }}
+                        {{ $cPage = $.Site.GetPage (printf "communities/%s" $raw) }}
+                    {{ end }}
+                    {{ if not $cPage }}
+                        {{ range (where $.Site.RegularPages "Section" "communities") }}
+                            {{ $match := false }}
+                            {{ if or (eq .File.TranslationBaseName $raw) (eq .Slug $raw) (eq (lower .Title) (lower $raw)) }}
+                                {{ $match = true }}
+                            {{ end }}
+                            {{ range .Params.aliases }}
+                                {{ $cleanAlias := replace (replace . "/communities/" "") "/" "" }}
+                                {{ if eq $cleanAlias $raw }}
+                                    {{ $match = true }}
+                                {{ end }}
+                            {{ end }}
+                            {{ if $match }}
+                                {{ $cPage = . }}
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                    {{ if $cPage }}
+                        {{ $resolvedCommunities = $resolvedCommunities | append $cPage }}
+                    {{ end }}
+                {{ end }}
+
+                {{/* Fallback for legacy talks tag in community */}}
+                {{ if not $resolvedCommunities }}
                     {{ $currentSessionBase := .File.TranslationBaseName }}
                     {{ $currentSessionSlug := .Slug | default $currentSessionBase }}
                     {{ range (where $.Site.RegularPages "Section" "communities") }}
                         {{ if or (in .Params.talks $currentSessionBase) (in .Params.talks $currentSessionSlug) (in .Params.sessions $currentSessionBase) (in .Params.sessions $currentSessionSlug) }}
-                            {{ $commPage = . }}
+                            {{ $resolvedCommunities = $resolvedCommunities | append . }}
                         {{ end }}
                     {{ end }}
                 {{ end }}
-                {{ with $commPage }}
+
+                {{ $resolvedCommunities = $resolvedCommunities | uniq }}
+                {{ if $resolvedCommunities }}
                 <div class="mt-4 pt-3 border-top" style="border-color: var(--dc-line) !important;">
-                    <span class="dc-mono d-block mb-1" style="color:var(--dc-cyan);font-size:.72rem;letter-spacing:.08em">// PRESENTED WITH COMMUNITY</span>
-                    <a href="{{ .RelPermalink }}" class="text-decoration-none fw-bold hover-underline d-flex align-items-center gap-2" style="color:var(--dc-text)">
-                        {{ if .Params.logo }}
-                        <img src="{{ .Params.logo | relURL }}" alt="{{ .Title }}" width="28" height="28" class="object-fit-contain rounded">
+                    <span class="dc-mono d-block mb-2" style="color:var(--dc-cyan);font-size:.72rem;letter-spacing:.08em">// PRESENTED WITH COMMUNITY</span>
+                    <div class="d-flex flex-column gap-2">
+                        {{ range $resolvedCommunities }}
+                        <a href="{{ .RelPermalink }}" class="text-decoration-none fw-bold hover-underline d-flex align-items-center gap-2" style="color:var(--dc-text)">
+                            {{ if .Params.logo }}
+                            <img src="{{ .Params.logo | relURL }}" alt="{{ .Title }}" width="28" height="28" class="object-fit-contain rounded">
+                            {{ end }}
+                            <span>{{ .Title }} &rarr;</span>
+                        </a>
                         {{ end }}
-                        <span>{{ .Title }} &rarr;</span>
-                    </a>
+                    </div>
                 </div>
                 {{ end }}
             </div>

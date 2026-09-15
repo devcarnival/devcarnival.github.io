@@ -32,9 +32,14 @@
             {{ $commSlug := .Slug | default .File.TranslationBaseName }}
             {{ $commFile := .File.TranslationBaseName }}
             {{ $commTitle := .Title }}
+            {{ $commAliases := slice }}
+            {{ range .Params.aliases }}
+                {{ $clean := replace (replace . "/communities/" "") "/" "" }}
+                {{ $commAliases = $commAliases | append $clean }}
+            {{ end }}
             {{ $associatedSessions := slice }}
 
-            {{/* 1. Explicit talks defined in community frontmatter: talks: [...] or sessions: [...] */}}
+            {{/* 1. Explicit talks defined in community frontmatter: talks: [...] or sessions: [...] (legacy fallback) */}}
             {{ range (.Params.talks | default .Params.sessions) }}
                 {{ $sPage := $.Site.GetPage (printf "session/%s.md" .) }}
                 {{ if not $sPage }}
@@ -52,17 +57,28 @@
                 {{ end }}
             {{ end }}
 
-            {{/* 2. Sessions specifying this community in session frontmatter (community or communities) */}}
+            {{/* 2. Sessions specifying this community in session frontmatter (communities list or community string) */}}
             {{ range (where $.Site.RegularPages "Section" "session") }}
                 {{ $match := false }}
-                {{ if or (eq .Params.community $commSlug) (eq .Params.community $commFile) (eq .Params.community $commTitle) }}
-                    {{ $match = true }}
+                {{ $targets := slice }}
+                {{ with .Params.communities }}
+                    {{ if reflect.IsSlice . }}
+                        {{ $targets = $targets | append . }}
+                    {{ else }}
+                        {{ $targets = $targets | append (slice .) }}
+                    {{ end }}
                 {{ end }}
-                {{ if .Params.communities }}
-                    {{ if or (in .Params.communities $commSlug) (in .Params.communities $commFile) (in .Params.communities $commTitle) }}
+                {{ with .Params.community }}
+                    {{ $targets = $targets | append . }}
+                {{ end }}
+
+                {{ range $targets }}
+                    {{ $t := . }}
+                    {{ if or (eq $t $commFile) (eq $t $commSlug) (eq (lower $t) (lower $commTitle)) (in $commAliases $t) }}
                         {{ $match = true }}
                     {{ end }}
                 {{ end }}
+
                 {{ if $match }}
                     {{ $associatedSessions = $associatedSessions | append . }}
                 {{ end }}
