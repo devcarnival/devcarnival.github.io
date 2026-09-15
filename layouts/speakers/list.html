@@ -27,24 +27,129 @@
     {{ $uniqueSlugs := sort ($speakerSlugs | uniq) }}
 
     {{ if gt (len $uniqueSlugs) 0 }}
-    <div class="row g-4 mb-5 align-items-start">
+    <!-- Speaker Search Bar -->
+    <div class="mb-4 p-3 p-md-4" style="background: var(--dc-surface); border: 1px solid var(--dc-line);">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-9 col-lg-10">
+                <label for="speakerSearchInput" class="dc-label">// SEARCH SPEAKERS</label>
+                <input type="search" id="speakerSearchInput" class="dc-input" placeholder="Search by name, company, role, topic, or session..." autocomplete="off">
+            </div>
+            <div class="col-md-3 col-lg-2 d-flex align-items-end pt-md-4">
+                <button type="button" class="btn btn-outline-minimal w-100" id="speakerResetBtn" onclick="resetSpeakerSearch()">Reset</button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top" style="border-color: var(--dc-line) !important;">
+            <span class="dc-mono small" id="speakerSearchStats" style="color: var(--dc-text-dim);">
+                Showing all {{ len $uniqueSlugs }} speakers
+            </span>
+        </div>
+    </div>
+
+    <!-- Speaker Grid -->
+    <div class="row g-4 mb-5 align-items-start" id="speakerGrid">
         {{ range $uniqueSlugs }}
             {{ $slug := . }}
             {{ $speakerPage := $.Site.GetPage (printf "people/%s.md" $slug) }}
             {{ with $speakerPage }}
                 {{ $speaker := . }}
                 {{ $speakerSessions := slice }}
+                {{ $sessionTitles := slice }}
+                {{ $sessionTracks := slice }}
                 {{ range $sessions }}
                     {{ if in .Params.speakers $slug }}
                         {{ $speakerSessions = $speakerSessions | append . }}
+                        {{ $sessionTitles = $sessionTitles | append .Title }}
+                        {{ with .Params.track }}
+                            {{ $sessionTracks = $sessionTracks | append . }}
+                        {{ end }}
                     {{ end }}
                 {{ end }}
-                <div class="col-lg-6 col-12 d-flex">
+                <div class="col-lg-6 col-12 d-flex speaker-card-item"
+                     data-name="{{ lower $speaker.Title }}"
+                     data-company="{{ lower (or $speaker.Params.company "") }}"
+                     data-designation="{{ lower (or $speaker.Params.designation "") }}"
+                     data-bio="{{ lower (plainify (or $speaker.Summary "")) }}"
+                     data-sessions="{{ lower (delimit $sessionTitles " ") }} {{ lower (delimit $sessionTracks " ") }}">
                     {{ partial "speaker-card.html" (dict "Site" $.Site "speaker" $speaker "sessions" $speakerSessions) }}
                 </div>
             {{ end }}
         {{ end }}
     </div>
+
+    <!-- No Speakers Found Message -->
+    <div id="noSpeakersMsg" class="row justify-content-center my-5 py-4 d-none">
+        <div class="col-md-8 col-lg-6 text-center">
+            <div class="p-5 border rounded-0 shadow-sm" style="background: var(--dc-surface-2); border-color: var(--dc-line) !important;">
+                <span class="dc-mono d-block mb-2" style="color: var(--dc-magenta);">// NO MATCHES</span>
+                <h3 class="h4 fw-bold mb-2" style="color: var(--dc-text);">No speakers found</h3>
+                <p class="text-secondary small mb-3">No speakers match your search query. Try searching for another keyword or reset the search.</p>
+                <button type="button" class="btn btn-outline-minimal btn-sm" onclick="resetSpeakerSearch()">Clear Search</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function filterSpeakers() {
+        var query = document.getElementById('speakerSearchInput').value.trim().toLowerCase();
+        var items = document.querySelectorAll('.speaker-card-item');
+        var visibleCount = 0;
+
+        items.forEach(function(item) {
+            var name = item.getAttribute('data-name') || '';
+            var company = item.getAttribute('data-company') || '';
+            var designation = item.getAttribute('data-designation') || '';
+            var bio = item.getAttribute('data-bio') || '';
+            var sessions = item.getAttribute('data-sessions') || '';
+
+            var match = !query ||
+                        name.indexOf(query) !== -1 ||
+                        company.indexOf(query) !== -1 ||
+                        designation.indexOf(query) !== -1 ||
+                        bio.indexOf(query) !== -1 ||
+                        sessions.indexOf(query) !== -1;
+
+            if (match) {
+                item.classList.remove('d-none');
+                visibleCount++;
+            } else {
+                item.classList.add('d-none');
+            }
+        });
+
+        var stats = document.getElementById('speakerSearchStats');
+        var noMsg = document.getElementById('noSpeakersMsg');
+        if (stats) {
+            if (query) {
+                stats.textContent = 'Showing ' + visibleCount + ' of ' + items.length + ' speakers';
+            } else {
+                stats.textContent = 'Showing all ' + items.length + ' speakers';
+            }
+        }
+        if (noMsg) {
+            if (visibleCount === 0) {
+                noMsg.classList.remove('d-none');
+            } else {
+                noMsg.classList.add('d-none');
+            }
+        }
+    }
+
+    function resetSpeakerSearch() {
+        var input = document.getElementById('speakerSearchInput');
+        if (input) {
+            input.value = '';
+            filterSpeakers();
+            input.focus();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var input = document.getElementById('speakerSearchInput');
+        if (input) {
+            input.addEventListener('input', filterSpeakers);
+        }
+    });
+    </script>
     {{ else }}
     <div class="row justify-content-center my-5 py-4">
         <div class="col-md-8 col-lg-6 text-center">

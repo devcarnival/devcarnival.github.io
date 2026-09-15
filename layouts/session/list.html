@@ -28,21 +28,96 @@
         {{ $sortedYears := sort ($allYears | uniq) "value" "desc" }}
         {{ $currentYear := index $sortedYears 0 }}
 
+        <!-- Session Search & Filter Bar -->
+        <div class="mb-4 p-3 p-md-4" style="background: var(--dc-surface); border: 1px solid var(--dc-line);">
+            <div class="row g-3 align-items-center">
+                <!-- Search Input -->
+                <div class="col-md-7 col-lg-8">
+                    <label for="sessionSearchInput" class="dc-label">// SEARCH SESSIONS</label>
+                    <input type="search" id="sessionSearchInput" class="dc-input" placeholder="Search by title, speaker, company, track, or topic..." autocomplete="off">
+                </div>
+
+                <!-- Track Filter -->
+                <div class="col-md-3 col-lg-2">
+                    <label for="sessionTrackFilter" class="dc-label">// TRACK</label>
+                    <div class="dc-select-wrap">
+                        <select id="sessionTrackFilter" class="dc-select" onchange="filterSessions()">
+                            <option value="all">All Tracks</option>
+                            {{ $tracks := slice }}
+                            {{ range $sessions }}
+                                {{ with .Params.track }}
+                                    {{ $tracks = $tracks | append . }}
+                                {{ end }}
+                            {{ end }}
+                            {{ range ($tracks | uniq | sort) }}
+                                <option value="{{ lower . }}">{{ . }}</option>
+                            {{ end }}
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Reset Button -->
+                <div class="col-md-2 col-lg-2 d-flex align-items-end pt-md-4">
+                    <button type="button" class="btn btn-outline-minimal w-100" id="sessionResetBtn" onclick="resetSessionSearch()">Reset</button>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top" style="border-color: var(--dc-line) !important;">
+                <span class="dc-mono small" id="sessionSearchStats" style="color: var(--dc-text-dim);">
+                    Showing all sessions
+                </span>
+            </div>
+        </div>
+
         <!-- Sessions Grid -->
-        <div class="row g-4 mb-5">
+        <div class="row g-4 mb-5" id="sessionGrid">
             {{ range $sessions }}
                 {{ if in .Params.years $currentYear }}
-                <div class="col-md-6">
+                {{ $speakerNames := slice }}
+                {{ $speakerCompanies := slice }}
+                {{ range .Params.speakers }}
+                    {{ with $.Site.GetPage (printf "people/%s.md" .) }}
+                        {{ $speakerNames = $speakerNames | append .Title }}
+                        {{ with .Params.company }}
+                            {{ $speakerCompanies = $speakerCompanies | append . }}
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+                <div class="col-md-6 session-card-item"
+                     data-title="{{ lower .Title }}"
+                     data-track="{{ lower (or .Params.track "") }}"
+                     data-type="{{ lower (or .Params.session_type "") }}"
+                     data-summary="{{ lower (plainify (or .Summary "")) }}"
+                     data-speakers="{{ lower (delimit $speakerNames " ") }}"
+                     data-companies="{{ lower (delimit $speakerCompanies " ") }}">
                     <div class="card h-100 border rounded-0 shadow-sm" style="background: var(--dc-surface); border-color: var(--dc-line) !important;">
                         <div class="card-body d-flex flex-column p-4">
                             <!-- Main Body: Text on Left, Speaker Image on Right -->
                             <div class="d-flex align-items-start gap-3 flex-grow-1">
                                 <div>
+                                    <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                        {{ if .Params.track }}
+                                        <span class="dc-mono" style="font-size:.72rem;color:var(--dc-cyan);border:1px solid var(--dc-line);padding:.2rem .5rem">
+                                            {{ .Params.track }}
+                                        </span>
+                                        {{ end }}
+                                        {{ if .Params.session_type }}
+                                        <span class="dc-mono" style="font-size:.72rem;color:var(--dc-text-dim);border:1px solid var(--dc-line);padding:.2rem .5rem">
+                                            {{ .Params.session_type }}
+                                        </span>
+                                        {{ end }}
+                                        {{ if .Params.duration }}
+                                        <span class="dc-mono" style="font-size:.72rem;color:var(--dc-text-dim);padding:.2rem 0">
+                                            &bull; {{ .Params.duration }}
+                                        </span>
+                                        {{ end }}
+                                    </div>
+
                                     <h3 class="h4 fw-bold mb-3">
-                                        <a href="{{ .RelPermalink }}" class="text-decoration-none text-dark hover-underline">{{ .Title }}</a>
+                                        <a href="{{ .RelPermalink }}" class="text-decoration-none hover-underline" style="color: var(--dc-text);">{{ .Title }}</a>
                                     </h3>
                                     <p class="text-secondary small mb-0">
-                                        {{ .Summary | truncate 140 }}
+                                        {{ .Summary | plainify | truncate 140 }}
                                     </p>
                                 </div>
                     
@@ -68,7 +143,7 @@
                                     {{ range $index, $speaker := .Params.speakers }}
                                         {{ with $.Site.GetPage (printf "people/%s.md" $speaker) }}
                                             {{ if $index }}<br>{{ end }}
-                                            <div class="fw-semibold text-dark">{{ .Title }}</div>
+                                            <div class="fw-semibold" style="color: var(--dc-text);">{{ .Title }}</div>
                                             {{ if .Params.company }}
                                                 <div class="text-muted" style="font-size: 0.75rem;">{{ .Params.company }}</div>
                                             {{ end }}
@@ -82,6 +157,87 @@
                 {{ end }}
             {{ end }}
         </div>
+
+        <!-- No Sessions Found Message -->
+        <div id="noSessionsMsg" class="row justify-content-center my-5 py-4 d-none">
+            <div class="col-md-8 col-lg-6 text-center">
+                <div class="p-5 border rounded-0 shadow-sm" style="background: var(--dc-surface-2); border-color: var(--dc-line) !important;">
+                    <span class="dc-mono d-block mb-2" style="color: var(--dc-magenta);">// NO MATCHES</span>
+                    <h3 class="h4 fw-bold mb-2" style="color: var(--dc-text);">No sessions found</h3>
+                    <p class="text-secondary small mb-3">No sessions match your search query or selected track. Try clearing your filters.</p>
+                    <button type="button" class="btn btn-outline-minimal btn-sm" onclick="resetSessionSearch()">Clear Search</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        function filterSessions() {
+            var query = document.getElementById('sessionSearchInput').value.trim().toLowerCase();
+            var track = document.getElementById('sessionTrackFilter').value;
+            var items = document.querySelectorAll('.session-card-item');
+            var visibleCount = 0;
+
+            items.forEach(function(item) {
+                var title = item.getAttribute('data-title') || '';
+                var itemTrack = item.getAttribute('data-track') || '';
+                var type = item.getAttribute('data-type') || '';
+                var summary = item.getAttribute('data-summary') || '';
+                var speakers = item.getAttribute('data-speakers') || '';
+                var companies = item.getAttribute('data-companies') || '';
+
+                var matchesQuery = !query ||
+                                   title.indexOf(query) !== -1 ||
+                                   itemTrack.indexOf(query) !== -1 ||
+                                   type.indexOf(query) !== -1 ||
+                                   summary.indexOf(query) !== -1 ||
+                                   speakers.indexOf(query) !== -1 ||
+                                   companies.indexOf(query) !== -1;
+
+                var matchesTrack = (track === 'all') || (itemTrack === track);
+
+                if (matchesQuery && matchesTrack) {
+                    item.classList.remove('d-none');
+                    visibleCount++;
+                } else {
+                    item.classList.add('d-none');
+                }
+            });
+
+            var stats = document.getElementById('sessionSearchStats');
+            var noMsg = document.getElementById('noSessionsMsg');
+            if (stats) {
+                if (query || track !== 'all') {
+                    stats.textContent = 'Showing ' + visibleCount + ' of ' + items.length + ' sessions';
+                } else {
+                    stats.textContent = 'Showing all ' + items.length + ' sessions';
+                }
+            }
+            if (noMsg) {
+                if (visibleCount === 0) {
+                    noMsg.classList.remove('d-none');
+                } else {
+                    noMsg.classList.add('d-none');
+                }
+            }
+        }
+
+        function resetSessionSearch() {
+            var input = document.getElementById('sessionSearchInput');
+            var track = document.getElementById('sessionTrackFilter');
+            if (input) input.value = '';
+            if (track) track.value = 'all';
+            filterSessions();
+            if (input) input.focus();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var input = document.getElementById('sessionSearchInput');
+            if (input) {
+                input.addEventListener('input', filterSessions);
+            }
+            filterSessions();
+        });
+        </script>
     {{ else }}
         <!-- Sessions Placeholder Message -->
         <div class="row justify-content-center my-5 py-4">
