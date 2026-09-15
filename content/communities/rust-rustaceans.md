@@ -2,6 +2,7 @@
 title: "Madras Rustaceans"
 logo: "images/communities/madras-rust.png"
 years: ["2025"]
+weight: 11
 socials:
   github: "madras-rustaceans"
   linkedin: "https://linkedin.com/company/madras-rust"

@@ -27,6 +27,117 @@
             <div class="article-content text-secondary fs-5 line-height-md mb-5">
                 {{ .Content }}
             </div>
+
+            {{/* Dynamic Resolution for Associated Talks / Sessions */}}
+            {{ $commSlug := .Slug | default .File.TranslationBaseName }}
+            {{ $commFile := .File.TranslationBaseName }}
+            {{ $commTitle := .Title }}
+            {{ $associatedSessions := slice }}
+
+            {{/* 1. Explicit talks defined in community frontmatter: talks: [...] or sessions: [...] */}}
+            {{ range (.Params.talks | default .Params.sessions) }}
+                {{ $sPage := $.Site.GetPage (printf "session/%s.md" .) }}
+                {{ if not $sPage }}
+                    {{ $sPage = $.Site.GetPage (printf "session/%s" .) }}
+                {{ end }}
+                {{ if not $sPage }}
+                    {{ range (where $.Site.RegularPages "Section" "session") }}
+                        {{ if or (eq .File.TranslationBaseName $) (eq .Slug $) }}
+                            {{ $sPage = . }}
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+                {{ if $sPage }}
+                    {{ $associatedSessions = $associatedSessions | append $sPage }}
+                {{ end }}
+            {{ end }}
+
+            {{/* 2. Sessions specifying this community in session frontmatter (community or communities) */}}
+            {{ range (where $.Site.RegularPages "Section" "session") }}
+                {{ $match := false }}
+                {{ if or (eq .Params.community $commSlug) (eq .Params.community $commFile) (eq .Params.community $commTitle) }}
+                    {{ $match = true }}
+                {{ end }}
+                {{ if .Params.communities }}
+                    {{ if or (in .Params.communities $commSlug) (in .Params.communities $commFile) (in .Params.communities $commTitle) }}
+                        {{ $match = true }}
+                    {{ end }}
+                {{ end }}
+                {{ if $match }}
+                    {{ $associatedSessions = $associatedSessions | append . }}
+                {{ end }}
+            {{ end }}
+
+            {{ $associatedSessions = $associatedSessions | uniq }}
+
+            {{ if $associatedSessions }}
+            <div class="mt-5 pt-4" style="border-top: 1px solid var(--dc-line);">
+                <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+                    <div>
+                        <span class="dc-mono d-block mb-1" style="color:var(--dc-cyan);font-size:.78rem;letter-spacing:.08em">// SESSIONS &amp; TALKS</span>
+                        <h2 class="h3 fw-bold mb-0" style="color:var(--dc-text)">Community Sessions</h2>
+                    </div>
+                    <span class="dc-mono px-2 py-1 small" style="border:1px solid var(--dc-line);color:var(--dc-text-dim)">
+                        {{ len $associatedSessions }} {{ if eq (len $associatedSessions) 1 }}Talk{{ else }}Talks{{ end }}
+                    </span>
+                </div>
+
+                <div class="d-flex flex-column gap-3">
+                    {{ range $associatedSessions }}
+                    <div class="card border rounded-0 shadow-sm p-4" style="background:var(--dc-surface);border-color:var(--dc-line) !important;">
+                        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                            {{ if .Params.track }}
+                            <span class="dc-mono" style="font-size:.72rem;color:var(--dc-cyan);border:1px solid var(--dc-line);padding:.2rem .5rem">
+                                {{ .Params.track }}
+                            </span>
+                            {{ end }}
+                            {{ if .Params.session_type }}
+                            <span class="dc-mono" style="font-size:.72rem;color:var(--dc-text-dim);border:1px solid var(--dc-line);padding:.2rem .5rem">
+                                {{ .Params.session_type }}
+                            </span>
+                            {{ end }}
+                            {{ if .Params.duration }}
+                            <span class="dc-mono" style="font-size:.72rem;color:var(--dc-text-dim);padding:.2rem 0">
+                                &bull; {{ .Params.duration }}
+                            </span>
+                            {{ end }}
+                        </div>
+                        
+                        <h3 class="h5 fw-bold mb-2">
+                            <a href="{{ .RelPermalink }}" class="text-decoration-none hover-underline" style="color:var(--dc-text)">{{ .Title }}</a>
+                        </h3>
+                        
+                        <div class="text-secondary small mb-3">
+                            {{ .Summary | plainify | truncate 150 }}
+                        </div>
+
+                        <div class="mt-2 pt-3 border-top d-flex justify-content-between align-items-center flex-wrap gap-2" style="border-color:var(--dc-line) !important;">
+                            <a href="{{ .RelPermalink }}" class="btn btn-outline-minimal btn-sm">
+                                View Session &rarr;
+                            </a>
+                            
+                            {{ if .Params.speakers }}
+                            <div class="d-flex align-items-center gap-2">
+                                {{ range .Params.speakers }}
+                                    {{ with $.Site.GetPage (printf "people/%s.md" .) }}
+                                        {{ if .Params.socials.github }}
+                                        <img src="https://github.com/{{ .Params.socials.github }}.png" 
+                                             alt="{{ .Title }}" 
+                                             class="rounded-circle object-fit-cover" 
+                                             width="28" 
+                                             height="28">
+                                        {{ end }}
+                                        <span class="small fw-semibold" style="color:var(--dc-text)">{{ .Title }}</span>
+                                    {{ end }}
+                                {{ end }}
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
         </div>
 
         <!-- Sidebar Panel for Social Links & Connection metadata -->
@@ -76,6 +187,22 @@
                     <span class="text-muted small italic">No social ecosystem links registered for this year.</span>
                     {{ end }}
                 </div>
+
+                {{ if $associatedSessions }}
+                <div class="mt-4 pt-3 border-top" style="border-color: var(--dc-line) !important;">
+                    <h5 class="fw-bold mb-2 small text-uppercase tracking-wider" style="color:var(--dc-text)">Associated Talks</h5>
+                    <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                        {{ range $associatedSessions }}
+                        <li>
+                            <a href="{{ .RelPermalink }}" class="small fw-semibold hover-underline text-decoration-none d-flex align-items-center justify-content-between" style="color:var(--dc-text)">
+                                <span>{{ .Title | truncate 32 }}</span>
+                                <span class="dc-mono text-muted">&rarr;</span>
+                            </a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+                {{ end }}
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@
 title: "Virudhunagar Techies"
 logo: "images/communities/virudhunagar-techies.png"
 years: ["2026"]
+weight: 10
 socials:
   website: "https://virudhunagartechies.in"
   linkedin: "https://www.linkedin.com/company/virudhunagar-techies/"

@@ -2,6 +2,7 @@
 title: "Google Developer Groups Madurai"
 logo: "images/communities/gdg-madurai.png"
 years: ["2026"]
+weight: 4
 socials:
   linkedin: "https://in.linkedin.com/company/google-developer-group-madurai"
   twitter: "https://x.com/gdgmadurai"

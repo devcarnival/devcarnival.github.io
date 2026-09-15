@@ -2,6 +2,7 @@
 title: "Digital Dreamers Den (D3)"
 logo: "images/communities/digital-dreamers-den.png"
 years: ["2026"]
+weight: 8
 socials:
   website: "https://digitaldreamersden.in"
   linkedin: "https://digitaldreamersden.in/linkedin"

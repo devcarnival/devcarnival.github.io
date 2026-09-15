@@ -2,6 +2,7 @@
 title: "Cyber Vattam"
 logo: "images/communities/cybervattam.png"
 years: ["2026"]
+weight: 7
 socials:
   website: "https://cybervattam.com"
   linkedin: "https://www.linkedin.com/company/cybervattam/"

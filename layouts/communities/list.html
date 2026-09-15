@@ -39,7 +39,7 @@
 
     <!-- Communities Grid -->
     <div class="row g-4 mb-5">
-        {{ range (where .Site.RegularPages "Section" "communities") }}
+        {{ range (where .Site.RegularPages.ByWeight "Section" "communities") }}
             {{ if in .Params.years $currentYear }}
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card h-100 d-flex flex-column">
