@@ -77,27 +77,5 @@
             {{ end }}
         {{ end }}
     </div>
-
-    {{/* Historical Communities Archive: link straight to each alumni community's
-         own page. There's no dedicated per-year index page to route to, so this
-         intentionally doesn't group by year the way the Cohort Partners grid does. */}}
-    {{ $archivePages := slice }}
-    {{ range (where .Site.RegularPages "Section" "communities") }}
-        {{ if not (in .Params.years $currentYear) }}
-            {{ $archivePages = $archivePages | append . }}
-        {{ end }}
-    {{ end }}
-    {{ if $archivePages }}
-    <div class="row mt-5 pt-4" style="border-top:1px solid var(--dc-line)">
-        <div class="col-12 text-center">
-            <div class="d-inline-flex align-items-center flex-wrap justify-content-center gap-3 px-4 py-2 small" style="border:1px solid var(--dc-line)">
-                <span class="dc-mono" style="color:var(--dc-text-dim);letter-spacing:.12em">COMMUNITIES ARCHIVE:</span>
-                {{ range $archivePages }}
-                    <a href="{{ .RelPermalink }}" class="dc-mono">{{ .Title }}</a>
-                {{ end }}
-            </div>
-        </div>
-    </div>
-    {{ end }}
 </div>
 {{ end }}
