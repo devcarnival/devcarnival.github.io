@@ -287,12 +287,44 @@ body.dc-page .navbar {
 .dc-nav:not(.is-stuck) .nav-link { color: var(--dc-text); }
 
 .navbar-toggler {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 42px;
   border: 1px solid var(--dc-line-bright);
-  border-radius: 0;
-  padding: .3rem .5rem;
+  border-radius: 4px;
+  padding: .4rem .55rem;
+  background-color: var(--dc-surface);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all .2s ease-in-out;
+}
+.dc-nav:not(.is-stuck) .navbar-toggler {
+  background-color: rgba(23, 23, 28, 0.85);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.navbar-toggler:hover,
+.navbar-toggler:focus-visible {
+  border-color: var(--dc-cyan);
+  background-color: var(--dc-surface-2);
+  box-shadow: 0 0 12px rgba(0, 229, 255, .25);
+  outline: none;
+}
+.navbar-toggler[aria-expanded="true"] {
+  border-color: var(--dc-cyan);
+  background-color: var(--dc-surface-2);
 }
 .navbar-toggler-icon {
-  filter: invert(1) opacity(.75);
+  width: 1.5rem;
+  height: 1.5rem;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: none;
+  opacity: 1;
+  /* High-contrast crisp white strokes for dark theme, transparent hero, and dark navbar states */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.6' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* mobile: the collapse needs its own dark plate over the canvas */
@@ -1499,16 +1531,12 @@ fieldset:disabled .dc-select {
   );
 }
 
-/* Bootstrap's dark hamburger icon, inverted to read on a dark navbar — needs
-   to go the other way once the navbar actually has a light, opaque
-   background: either an inner page (always opaque) or the home page once
-   scrolled past the hero (.is-stuck). Deliberately excludes the home page's
-   pre-scroll state, where the navbar is transparent over the still-dark
-   hero — see the nav legibility re-pin below. */
+/* High-contrast toggler icon when the navbar has a light background (inner pages or scrolled past hero) */
 :root[data-bs-theme="light"] body.dc-page .navbar-toggler-icon,
 :root[data-bs-theme="light"] .dc-nav.is-stuck .navbar-toggler-icon {
   filter: none;
-  opacity: .65;
+  opacity: 1;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%231a1a24' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.6' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* --------------------------------------------------------------------------
