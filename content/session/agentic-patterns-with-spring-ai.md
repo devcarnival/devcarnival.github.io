@@ -1,5 +1,7 @@
 ---
 title: "Agentic Patterns with Spring AI"
+communities:
+  - "tamilnadu-java-user-group"
 speakers:
   - "udayani"
 years: ["2026"]
