@@ -1,4 +1,44 @@
 {{ define "main" }}
+{{ $sessionSlug := .File.TranslationBaseName }}
+{{ $sessionTarget := .Slug | default $sessionSlug }}
+{{ $schedData := site.Data.schedule }}
+{{ $scheduleMatch := "" }}
+
+{{ if $schedData }}
+  {{ range $schedData.days }}
+    {{ $dayName := .name }}
+    {{ $dayDate := .date }}
+    {{ $dayId := .id }}
+
+    {{ with .keynotes }}
+      {{ $hall := .venue | default "Main Hall" }}
+      {{ range .slots }}
+        {{ if or (eq .session $sessionSlug) (eq .session $sessionTarget) }}
+          {{ $scheduleMatch = dict "day" $dayName "date" $dayDate "dayId" $dayId "time" .time "hall" $hall }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+    {{ range .rows }}
+      {{ $rowTime := .time }}
+      {{ range .cells }}
+        {{ if or (eq .session $sessionSlug) (eq .session $sessionTarget) }}
+          {{ $time := .range | default $rowTime }}
+          {{ $hall := .hall }}
+          {{ $scheduleMatch = dict "day" $dayName "date" $dayDate "dayId" $dayId "time" $time "hall" $hall }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* Fallback for explicit frontmatter override if specified */}}
+{{ if not $scheduleMatch }}
+  {{ with .Params.schedule }}
+    {{ $scheduleMatch = dict "day" (.day | default "Scheduled") "date" (.date | default "") "dayId" (.day_id | default "day1") "time" (.time | default "") "hall" (.hall | default .venue | default "") }}
+  {{ end }}
+{{ end }}
+
 <div class="container hero-section">
     <div class="row g-5">
         <!-- Abstract Column -->
@@ -20,6 +60,11 @@
                 {{ with .Params.duration }}
                 <span class="badge bg-light text-dark border font-monospace">{{ . }}</span>
                 {{ end }}
+                {{ with $scheduleMatch }}
+                <a href="/schedule/#{{ .dayId }}" class="badge text-decoration-none border font-monospace" style="background:rgba(0, 229, 255, 0.1);color:var(--dc-cyan);border-color:var(--dc-cyan) !important;">
+                    📅 {{ .day }} &middot; {{ .time }} &middot; {{ .hall }} Hall
+                </a>
+                {{ end }}
             </div>
 
             <hr class="my-4 section-divider">
@@ -32,6 +77,25 @@
         <!-- Speakers Dynamic Profile Column -->
         <div class="col-lg-5">
             <div class="p-4 bg-light border rounded-0 sticky-top" style="top: 100px; z-index: 10;">
+                {{ with $scheduleMatch }}
+                <div class="p-3 mb-4 border rounded-0 shadow-sm" style="background:var(--dc-surface);border-color:var(--dc-line) !important;border-left:4px solid var(--dc-cyan) !important;">
+                    <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-1">
+                        <span class="dc-mono" style="color:var(--dc-cyan);font-size:.72rem;letter-spacing:.08em">// SCHEDULE &amp; VENUE</span>
+                        <span class="badge bg-light text-dark border px-2 py-1 small">{{ .day }}</span>
+                    </div>
+                    <div class="h5 fw-bold mb-1" style="color:var(--dc-text)">
+                        {{ .time }}
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-secondary small mb-3">
+                        <span>📍 <strong style="color:var(--dc-text)">{{ .hall }} Hall</strong></span>
+                        {{ with .date }}<span>&middot; {{ . }}</span>{{ end }}
+                    </div>
+                    <a href="/schedule/#{{ .dayId }}" class="dc-btn dc-btn--ghost d-block text-center py-2">
+                        View in Full Schedule &rarr;
+                    </a>
+                </div>
+                {{ end }}
+
                 <h4 class="fw-bold text-dark mb-4 small text-uppercase tracking-wider">Presenting Speakers</h4>
                 
                 <div class="d-grid gap-3">

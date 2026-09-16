@@ -1,0 +1,264 @@
+header:
+  kicker: "// two days · four halls"
+  title: "Schedule"
+  lead: "Keynotes, Hands-on Workshops & Tech Talks"
+  badge: "9:00 AM – 5:20 PM"
+  speakers_link: "/speakers/"
+
+days:
+  - id: "day1"
+    name: "Day 1 · AI Day & Workshops"
+    date: "Jan 8, 2027"
+    active: true
+    keynotes:
+      venue: "Main Hall"
+      title: "Main Hall · Morning Keynotes"
+      slots:
+        - time: "09:00 AM – 09:20 AM"
+          title: "Keynote 1 — TBA"
+        - time: "09:20 AM – 09:40 AM"
+          title: "Keynote 2 — TBA"
+        - time: "09:40 AM – 10:00 AM"
+          title: "Keynote 3 — TBA"
+    section_title: "Workshops"
+    halls:
+      - name: "Nalantha"
+      - name: "Harvard"
+      - name: "Cambridge"
+      - name: "Ganga"
+    rows:
+      - time: "10:00 AM – 10:45 AM"
+        cells:
+          - hall: "Nalantha"
+            title: "Workshop 1A"
+            meta: "Cloud & DevOps"
+            range: "10:00 AM – 11:30 AM"
+            rowspan: 2
+          - hall: "Harvard"
+            title: "Workshop 1B"
+            meta: "Full Stack Development"
+            range: "10:00 AM – 11:30 AM"
+            rowspan: 2
+          - hall: "Cambridge"
+            session: "ai-process-architecture"
+          - hall: "Ganga"
+            session: "agentic-patterns-with-spring-ai"
+
+      - time: "10:45 AM – 11:30 AM"
+        cells:
+          - hall: "Cambridge"
+            session: "building-the-ai-native-workforce"
+          - hall: "Ganga"
+            session: "software-development-in-the-age-of-ai"
+
+      - is_break: true
+        time: "11:30 AM – 11:40 AM"
+        icon: "☕"
+        text: "Morning Tea Break (10 Mins)"
+
+      - time: "11:40 AM – 12:25 PM"
+        cells:
+          - hall: "Nalantha"
+            title: "Workshop 2A"
+            meta: "Docker & Kubernetes"
+            range: "11:40 AM – 01:10 PM"
+            rowspan: 2
+          - hall: "Harvard"
+            title: "Workshop 2B"
+            meta: "System Design"
+            range: "11:40 AM – 01:10 PM"
+            rowspan: 2
+          - hall: "Cambridge"
+            session: "model-context-protocol-in-enterprise-ai"
+          - hall: "Ganga"
+            session: "enhancing-ai-robustness-through-security-and-privacy-by-design"
+
+      - time: "12:25 PM – 01:10 PM"
+        cells:
+          - hall: "Cambridge"
+            title: "Workshop 2C"
+            meta: "Data Engineering"
+            range: "12:25 PM – 01:10 PM"
+          - hall: "Ganga"
+            session: "live-data-poisoning-and-backdoor-attacks"
+
+      - is_break: true
+        time: "01:10 PM – 01:55 PM"
+        icon: "🍃"
+        text: "Lunch Break (45 Mins)"
+
+      - time: "01:55 PM – 02:40 PM"
+        cells:
+          - hall: "Nalantha"
+            title: "Workshop 3A"
+            meta: "Cloud Native Development"
+            range: "01:55 PM – 03:25 PM"
+            rowspan: 2
+          - hall: "Harvard"
+            title: "Workshop 3B"
+            meta: "Modern Java"
+            range: "01:55 PM – 03:25 PM"
+            rowspan: 2
+          - hall: "Cambridge"
+            session: "trust-but-verify-building-ai-agents"
+            range: "01:55 PM – 03:25 PM · Hands-on Workshop"
+            rowspan: 2
+          - hall: "Ganga"
+            session: "from-dashboards-to-dialogue"
+
+      - time: "02:40 PM – 03:25 PM"
+        cells:
+          - hall: "Ganga"
+            session: "production-ready-model-optimization"
+
+      - is_break: true
+        time: "03:25 PM – 03:35 PM"
+        icon: "☕"
+        text: "Evening Tea Break (10 Mins)"
+
+      - time: "03:35 PM – 04:20 PM"
+        cells:
+          - hall: "Nalantha"
+            title: "Workshop 4A"
+            meta: "DevOps at Scale"
+            range: "03:35 PM – 05:05 PM"
+            rowspan: 2
+          - hall: "Harvard"
+            title: "Workshop 4B"
+            meta: "Architecture Patterns"
+            range: "03:35 PM – 05:05 PM"
+            rowspan: 2
+          - hall: "Cambridge"
+            session: "engineering-harness-for-enterprise-applications"
+            range: "03:35 PM – 05:05 PM · Hands-on Workshop"
+            rowspan: 2
+          - hall: "Ganga"
+            session: "enterprise-explainable-ai"
+
+      - time: "04:20 PM – 05:05 PM"
+        cells:
+          - hall: "Ganga"
+            session: "leading-in-the-ai-first-era"
+
+      - is_break: true
+        time: "05:05 PM – 05:20 PM"
+        icon: "🎉"
+        text: "Valedictory & Day 1 Wrap-up"
+
+  - id: "day2"
+    name: "Day 2 · Tech Talks"
+    date: "Jan 9, 2027"
+    keynotes:
+      venue: "Main Hall"
+      title: "Main Hall · Morning Keynotes"
+      slots:
+        - time: "09:00 AM – 09:20 AM"
+          title: "Keynote 1 — TBA"
+        - time: "09:20 AM – 09:40 AM"
+          title: "Keynote 2 — TBA"
+        - time: "09:40 AM – 10:00 AM"
+          title: "Keynote 3 — TBA"
+    section_title: "Parallel Tech Talks"
+    halls:
+      - name: "Nalantha"
+      - name: "Harvard"
+      - name: "Cambridge"
+      - name: "Ganga"
+        sub: "(Academia Track)"
+    rows:
+      - time: "10:00 AM – 10:45 AM"
+        cells:
+          - hall: "Nalantha"
+            title: "Talk 1A"
+          - hall: "Harvard"
+            title: "Talk 1B"
+          - hall: "Cambridge"
+            title: "Talk 1C"
+          - hall: "Ganga"
+            title: "Talk 1D"
+
+      - is_break: true
+        time: "10:45 AM – 10:55 AM"
+        icon: "☕"
+        text: "Morning Tea Break (10 Mins)"
+
+      - time: "10:55 AM – 11:40 AM"
+        cells:
+          - hall: "Nalantha"
+            title: "Talk 2A"
+          - hall: "Harvard"
+            title: "Talk 2B"
+          - hall: "Cambridge"
+            title: "Talk 2C"
+          - hall: "Ganga"
+            title: "Talk 2D"
+
+      - time: "11:40 AM – 12:25 PM"
+        cells:
+          - hall: "Nalantha"
+            title: "Talk 3A"
+          - hall: "Harvard"
+            title: "Talk 3B"
+          - hall: "Cambridge"
+            title: "Talk 3C"
+          - hall: "Ganga"
+            title: "Talk 3D"
+
+      - is_break: true
+        time: "12:25 PM – 01:10 PM"
+        icon: "🍃"
+        text: "Lunch Break (45 Mins)"
+
+      - time: "01:10 PM – 01:55 PM"
+        cells:
+          - hall: "Nalantha"
+            title: "Talk 4A"
+          - hall: "Harvard"
+            title: "Talk 4B"
+          - hall: "Cambridge"
+            title: "Talk 4C"
+          - hall: "Ganga"
+            title: "Talk 4D"
+
+      - time: "01:55 PM – 02:40 PM"
+        cells:
+          - hall: "Nalantha"
+            title: "Talk 5A"
+          - hall: "Harvard"
+            title: "Talk 5B"
+          - hall: "Cambridge"
+            title: "Talk 5C"
+          - hall: "Ganga"
+            title: "Talk 5D"
+
+      - time: "02:40 PM – 03:25 PM"
+        cells:
+          - hall: "Nalantha"
+            title: "Talk 6A"
+          - hall: "Harvard"
+            title: "Talk 6B"
+          - hall: "Cambridge"
+            title: "Talk 6C"
+          - hall: "Ganga"
+            title: "Talk 6D"
+
+      - is_break: true
+        time: "03:25 PM – 03:35 PM"
+        icon: "☕"
+        text: "Evening Tea Break (10 Mins)"
+
+      - time: "03:35 PM – 04:20 PM"
+        cells:
+          - hall: "Nalantha"
+            title: "Talk 7A"
+          - hall: "Harvard"
+            title: "Talk 7B"
+          - hall: "Cambridge"
+            title: "Talk 7C"
+          - hall: "Ganga"
+            title: "Talk 7D"
+
+      - is_break: true
+        time: "04:20 PM – 05:20 PM"
+        icon: "🤝"
+        text: "Networking Session & Community Connect (60 Mins)"

@@ -1,0 +1,135 @@
+{{ define "main" }}
+{{ $sched := site.Data.schedule }}
+<div class="container hero-section">
+  <!-- Event Header -->
+  <div class="text-center mb-5">
+    <span class="dc-kicker">{{ $sched.header.kicker }}</span>
+    <h1 class="dc-section-title mb-2">{{ $sched.header.title }}</h1>
+    <p class="dc-section-lead mx-auto">{{ $sched.header.lead }}</p>
+    <div class="d-flex justify-content-center flex-wrap gap-2 mt-3">
+      <span class="meta-badge">{{ $sched.header.badge }}</span>
+      <a class="meta-badge text-decoration-none" href="{{ $sched.header.speakers_link }}">Meet the Speakers &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Day Navigation Tabs -->
+  <ul class="nav nav-pills dc-days justify-content-center" id="scheduleTabs" role="tablist">
+    {{ range $index, $day := $sched.days }}
+    <li class="nav-item" role="presentation">
+      <button class="nav-link {{ if eq $index 0 }}active{{ end }}" id="{{ $day.id }}-tab" data-bs-toggle="pill"
+        data-bs-target="#{{ $day.id }}" type="button" role="tab">
+        {{ $day.name }}
+      </button>
+    </li>
+    {{ end }}
+  </ul>
+
+  <!-- Tab Contents -->
+  <div class="tab-content" id="scheduleTabContent">
+    {{ range $index, $day := $sched.days }}
+    <div class="tab-pane fade {{ if eq $index 0 }}show active{{ end }}" id="{{ $day.id }}" role="tabpanel">
+
+      {{/* Keynotes */}}
+      {{ with $day.keynotes }}
+      <div class="dc-panel mb-4">
+        <h2 class="dc-sched__bar">
+          <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>{{ .title }}</span>
+        </h2>
+        <div class="dc-panel__body">
+          <div class="row g-3">
+            {{ range .slots }}
+            <div class="col-md-4">
+              <div class="p-3" style="background:var(--dc-surface-2);border:1px solid var(--dc-line)">
+                <span class="dc-mono d-block mb-1" style="color:var(--dc-cyan);font-size:.78rem">{{ .time }}</span>
+                <h3 class="h5 mb-0 dc-neon-magenta">{{ .title }}</h3>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+
+      {{/* Grid / Table Section */}}
+      <div class="dc-sched">
+        <h2 class="dc-sched__bar">
+          <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>{{ $day.section_title }}</span>
+        </h2>
+
+        <div class="table-responsive">
+          <table class="dc-sched-table">
+            <thead>
+              <tr>
+                <th style="width:16%">Time Slot</th>
+                {{ range $day.halls }}
+                <th>{{ .name }}{{ with .sub }}<br><small>{{ . }}</small>{{ end }}</th>
+                {{ end }}
+              </tr>
+            </thead>
+            <tbody>
+              {{ range $day.rows }}
+                {{ if .is_break }}
+                <tr class="dc-sched-break">
+                  <td colspan="5">
+                    {{ .icon | safeHTML }} {{ .time }} &middot; {{ .text }}
+                  </td>
+                </tr>
+                {{ else }}
+                <tr>
+                  <td class="dc-sched-time">{{ .time }}</td>
+                  {{ range .cells }}
+                    <td {{ with .rowspan }}rowspan="{{ . }}"{{ end }}>
+                      {{ if .session }}
+                        {{ $sPage := site.GetPage (printf "session/%s.md" .session) }}
+                        {{ if not $sPage }}
+                          {{ $sPage = site.GetPage (printf "session/%s" .session) }}
+                        {{ end }}
+                        {{ with $sPage }}
+                          <a href="{{ .RelPermalink }}" class="text-decoration-none text-reset">
+                            <span class="dc-sched-slot__title">{{ .Title }}</span>
+                          </a>
+                          {{ $speakerNames := slice }}
+                          {{ range .Params.speakers }}
+                            {{ with site.GetPage (printf "people/%s.md" .) }}
+                              {{ $speakerText := .Title }}
+                              {{ with .Params.company }}
+                                {{ $speakerText = printf "%s · %s" $speakerText . }}
+                              {{ end }}
+                              {{ $speakerNames = $speakerNames | append $speakerText }}
+                            {{ end }}
+                          {{ end }}
+                          {{ if $speakerNames }}
+                            <span class="dc-sched-slot__meta">{{ delimit $speakerNames ", " }}</span>
+                          {{ end }}
+                          <span class="dc-sched-slot__range">{{ .Params.track | default "Tech Talk" }}</span>
+                        {{ else }}
+                          <span class="dc-sched-slot__title">{{ .session }}</span>
+                        {{ end }}
+                      {{ else }}
+                        {{ with .title }}
+                          <span class="dc-sched-slot__title">{{ . }}</span>
+                        {{ end }}
+                        {{ with .meta }}
+                          <span class="dc-sched-slot__meta">{{ . }}</span>
+                        {{ end }}
+                        {{ with .range }}
+                          <span class="dc-sched-slot__range">{{ . }}</span>
+                        {{ end }}
+                      {{ end }}
+                    </td>
+                  {{ end }}
+                </tr>
+                {{ end }}
+              {{ end }}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
