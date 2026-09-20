@@ -61,7 +61,7 @@
                 <span class="badge bg-light text-dark border font-monospace">{{ . }}</span>
                 {{ end }}
                 {{ with $scheduleMatch }}
-                <a href="/schedule/#{{ .dayId }}" class="badge text-decoration-none border font-monospace" style="background:rgba(0, 229, 255, 0.1);color:var(--dc-cyan);border-color:var(--dc-cyan) !important;">
+                <a href="{{ "schedule/" | relURL }}#{{ .dayId }}" class="badge text-decoration-none border font-monospace" style="background:rgba(0, 229, 255, 0.1);color:var(--dc-cyan);border-color:var(--dc-cyan) !important;">
                     📅 {{ .day }} &middot; {{ .time }} &middot; {{ .hall }} Hall
                 </a>
                 {{ end }}
@@ -90,7 +90,7 @@
                         <span>📍 <strong style="color:var(--dc-text)">{{ .hall }} Hall</strong></span>
                         {{ with .date }}<span>&middot; {{ . }}</span>{{ end }}
                     </div>
-                    <a href="/schedule/#{{ .dayId }}" class="dc-btn dc-btn--ghost d-block text-center py-2">
+                    <a href="{{ "schedule/" | relURL }}#{{ .dayId }}" class="dc-btn dc-btn--ghost d-block text-center py-2">
                         View in Full Schedule &rarr;
                     </a>
                 </div>

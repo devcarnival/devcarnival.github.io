@@ -8,7 +8,7 @@
     <p class="dc-section-lead mx-auto">{{ $sched.header.lead }}</p>
     <div class="d-flex justify-content-center flex-wrap gap-2 mt-3">
       <span class="meta-badge">{{ $sched.header.badge }}</span>
-      <a class="meta-badge text-decoration-none" href="{{ $sched.header.speakers_link }}">Meet the Speakers &rarr;</a>
+      <a class="meta-badge text-decoration-none" href="{{ $sched.header.speakers_link | relURL }}">Meet the Speakers &rarr;</a>
     </div>
   </div>
 
@@ -132,4 +132,20 @@
     {{ end }}
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function activateTabFromHash() {
+      var hash = window.location.hash;
+      if (hash) {
+        var triggerEl = document.querySelector('button[data-bs-target="' + hash + '"]');
+        if (triggerEl && window.bootstrap && window.bootstrap.Tab) {
+          var tab = window.bootstrap.Tab.getOrCreateInstance(triggerEl);
+          tab.show();
+        }
+      }
+    }
+    activateTabFromHash();
+    window.addEventListener('hashchange', activateTabFromHash);
+  });
+</script>
 {{ end }}
