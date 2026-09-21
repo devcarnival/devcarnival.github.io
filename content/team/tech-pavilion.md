@@ -1,5 +1,5 @@
 ---
-title: "Hackathon Team"
+title: "Tech Pavilion"
 people:
   - "thiru"
   - "rohan"
