@@ -1061,6 +1061,41 @@ fieldset:disabled .dc-select {
 }
 .dc-notice[hidden] { display: none; }
 
+.dc-notice--success {
+  border-color: var(--dc-cyan);
+  background: rgba(0, 243, 255, .08);
+  color: var(--dc-cyan);
+}
+
+.dc-notice--error {
+  border-color: var(--dc-magenta);
+  background: rgba(255, 0, 85, .08);
+  color: var(--dc-magenta);
+}
+
+.dc-field-hint {
+  font-family: var(--dc-font-mono);
+  font-size: .68rem;
+  letter-spacing: .04em;
+  color: var(--dc-text-mute);
+  margin-top: .35rem;
+}
+
+.dc-konfhub-frame-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  background: var(--dc-asphalt);
+  border: 1px solid var(--dc-line);
+}
+
+.dc-konfhub-frame {
+  width: 100%;
+  min-height: 500px;
+  border: none;
+  display: block;
+}
+
 /* --------------------------------------------------------------------------
    11. Footer
    -------------------------------------------------------------------------- */

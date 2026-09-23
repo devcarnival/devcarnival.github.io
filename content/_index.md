@@ -70,8 +70,15 @@ stats:
 
 passport:
   tiers:
-    - "Conference Attendee — access to all parallel tracks, talks, & workshops"
-    - "Pavilion Exhibitor — showcase your project or tool in the Tech Pavilion"
-    - "Student & Researcher — special academia & research access (ID required)"
-    - "Speaker & Host — session speakers, track hosts & community leads"
+    - "AI Day Ticket (Day 1 Only) — ₹850"
+    - "Day 2 Talks Ticket (Day 2 Only) — ₹500"
+    - "Full Access Pass (Both Days) — ₹1,000"
+  tshirt_sizes:
+    - "XS (36\")"
+    - "S (38\")"
+    - "M (40\")"
+    - "L (42\")"
+    - "XL (44\")"
+    - "2XL (46\")"
+    - "3XL (48\")"
 ---

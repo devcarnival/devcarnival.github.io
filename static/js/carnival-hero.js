@@ -41,6 +41,7 @@
 
   bindNav();
   bindForm();
+  checkRegistrationSuccess();
   bindTheme();
 
   if (!hero) return;
@@ -437,17 +438,23 @@
   function bindForm() {
     var form = document.querySelector('[data-dc-form]');
     if (!form) return;
-    var notice = form.querySelector('[data-dc-notice]');
-    form.addEventListener('submit', function (e) {
-      // No endpoint is wired yet — see the comment in layouts/index.html.
-      if (!form.getAttribute('action')) {
-        e.preventDefault();
-        if (notice) {
-          notice.hidden = false;
-          notice.focus();
+  }
+
+  function checkRegistrationSuccess() {
+    function evaluate() {
+      var isSuccess = window.location.hash === '#success' ||
+                      window.location.search.indexOf('status=success') !== -1 ||
+                      window.location.search.indexOf('registered=true') !== -1;
+      if (isSuccess) {
+        var banner = document.getElementById('dc-success-banner');
+        if (banner) {
+          banner.hidden = false;
+          banner.scrollIntoView({ behavior: 'smooth' });
         }
       }
-    });
+    }
+    evaluate();
+    window.addEventListener('hashchange', evaluate);
   }
 
   function bindTheme() {

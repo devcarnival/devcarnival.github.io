@@ -2,28 +2,24 @@
 {{ $frameCount := 260 }}
 
 {{/* ======================================================================
-     HERO — 350vh scroll track, sticky canvas stage, frame-sequence scrub.
-     Ships in the reduced-motion / no-JS state (static poster + stacked
-     overlays); carnival-hero.js removes .dc-hero--static to take over.
-     ====================================================================== */}}
-<section class="dc-hero dc-hero--static"
-         data-dc-hero
-         data-count="{{ $frameCount }}"
-         data-frames="{{ `frames/dc-` | relURL }}"
-         data-frames-sm="{{ `frames-sm/dc-` | relURL }}"
-         aria-label="Dev Carnival grounds">
+HERO — 350vh scroll track, sticky canvas stage, frame-sequence scrub.
+Ships in the reduced-motion / no-JS state (static poster + stacked
+overlays); carnival-hero.js removes .dc-hero--static to take over.
+====================================================================== */}}
+<section class="dc-hero dc-hero--static" data-dc-hero data-count="{{ $frameCount }}"
+    data-frames="{{ `frames/dc-` | relURL }}" data-frames-sm="{{ `frames-sm/dc-` | relURL }}"
+    aria-label="Dev Carnival grounds">
     <div class="dc-hero__stage">
         <canvas class="dc-hero__canvas" data-dc-canvas role="img"
-                aria-label="Isometric night view of the Dev Carnival grounds assembling as you scroll"></canvas>
+            aria-label="Isometric night view of the Dev Carnival grounds assembling as you scroll"></canvas>
 
-        <img class="dc-hero__poster" data-dc-poster
-             src="{{ `img/hero-static.webp` | relURL }}"
-             data-src="{{ `img/hero-static.webp` | relURL }}"
-             alt="DevCarnival grounds at night: parallel track halls for tech talks and workshops, hands-on Tech Pavilion with 100+ projects and tools, and vibrant crowds.">
+        <img class="dc-hero__poster" data-dc-poster src="{{ `img/hero-static.webp` | relURL }}"
+            data-src="{{ `img/hero-static.webp` | relURL }}"
+            alt="DevCarnival grounds at night: parallel track halls for tech talks and workshops, hands-on Tech Pavilion with 100+ projects and tools, and vibrant crowds.">
 
         {{/* Brand tile. Sits between the frame and the scrim so it dims with
-             the imagery; carnival-hero.js positions it and slides it in. The
-             static poster has it baked in already, so CSS hides it there. */}}
+        the imagery; carnival-hero.js positions it and slides it in. The
+        static poster has it baked in already, so CSS hides it there. */}}
         <div class="dc-hero__bug" data-dc-bug aria-hidden="true"></div>
 
         <div class="dc-hero__scrim"></div>
@@ -31,9 +27,7 @@
         <div class="dc-beats">
             {{ range $i, $beat := .Params.hero_beats }}
             <div class="dc-beat dc-beat--{{ $beat.side | default `center` }} dc-beat--{{ $beat.accent | default `cyan` }}{{ if $beat.hero }} dc-beat--hero{{ end }}"
-                 data-dc-beat
-                 data-start="{{ $beat.start }}"
-                 data-end="{{ $beat.end }}">
+                data-dc-beat data-start="{{ $beat.start }}" data-end="{{ $beat.end }}">
                 <div class="dc-panel">
                     <div class="dc-panel__bar">
                         <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -57,11 +51,11 @@
                             <span class="meta-badge">2 Days &middot; {{ $.Params.event.date }}</span>
                             <span class="meta-badge">{{ $.Params.event.location }}</span>
                         </div>
-                        <button class="dc-btn dc-btn--lg mt-3" type="button" disabled>
+                        <a class="dc-btn dc-btn--lg mt-3" href="{{ $beat.cta_link | default `#passport` }}">
                             {{ . }} &rarr;
-                        </button>
-                        <div class="dc-mono mt-2" style="color:var(--dc-amber); font-size: 0.82rem;">
-                            // Registrations are not open yet
+                        </a>
+                        <div class="dc-mono mt-2" style="color:var(--dc-cyan); font-size: 0.82rem;">
+                            // Passes &amp; Swag hosted on KonfHub
                         </div>
                         {{ end }}
                     </div>
@@ -96,9 +90,9 @@
 {{ end }}
 
 {{/* ====================== ATTRACTIONS ======================
-     Booths live in content/attractions/ and are pulled relationally:
-     Site.GetPage for the section, `where` to drop hidden ones, and the
-     repo's people-join contract (§4.1) for booth hosts.
+Booths live in content/attractions/ and are pulled relationally:
+Site.GetPage for the section, `where` to drop hidden ones, and the
+repo's people-join contract (§4.1) for booth hosts.
 
 <section class="dc-section" id="attractions" style="background:var(--dc-surface-2)">
     <div class="container">
@@ -126,19 +120,20 @@
                     {{ range . }}
                     {{ with $.Site.GetPage (printf "people/%s.md" .) }}
                     -- several people records store a full URL instead of a handle — normalise --
-                    {{ $handle := trim (replaceRE `^https?://(www\.)?github\.com/` "" (.Params.socials.github | default "")) "/" }}
+                    {{ $handle := trim (replaceRE `^https?://(www\.)?github\.com/` "" (.Params.socials.github | default
+                    "")) "/" }}
                     <span class="d-inline-flex align-items-center gap-2 dc-mono"
-                          style="font-size:.68rem;letter-spacing:.1em;color:var(--dc-text-mute)"
-                          title="{{ .Title }} — {{ .Params.designation }}">
+                        style="font-size:.68rem;letter-spacing:.1em;color:var(--dc-text-mute)"
+                        title="{{ .Title }} — {{ .Params.designation }}">
                         {{ with $handle }}
-                        <img src="https://github.com/{{ . }}.png?size=48" alt=""
-                             width="22" height="22" loading="lazy"
-                             style="border:1px solid var(--dc-line-bright)">
+                        <img src="https://github.com/{{ . }}.png?size=48" alt="" width="22" height="22" loading="lazy"
+                            style="border:1px solid var(--dc-line-bright)">
                         {{ end }}
                         {{ .Title }}
                     </span>
                     {{ else }}
-                    <span class="dc-note border-dashed" style="border:1px dashed var(--dc-line-bright);padding:.15rem .4rem">
+                    <span class="dc-note border-dashed"
+                        style="border:1px dashed var(--dc-line-bright);padding:.15rem .4rem">
                         Host profile missing (<code>people/{{ . }}.md</code>)
                     </span>
                     {{ end }}
@@ -187,18 +182,19 @@
     <span class="dc-kicker">// community partners</span>
     <h2 class="dc-section-title mb-5">Our <span class="dc-neon-magenta">Sponsors.</span></h2>
     <div class="row g-4 align-items-stretch">
-        
+
         <!-- Venue Sponsor -->
         <div class="col-md-4">
             <div class="feature-card h-100 d-flex flex-column">
                 <span class="feature-number">VENUE SPONSOR /</span>
                 <h3 class="h5 fw-bold text-uppercase mb-3">Infosys</h3>
                 <p class="mb-0 flex-grow-1" style="color:var(--dc-text-dim);font-size:.95rem">
-                    Providing state-of-the-art infrastructure and campus facilities to host our developers, speakers, and community tracks.
+                    Providing state-of-the-art infrastructure and campus facilities to host our developers, speakers,
+                    and community tracks.
                 </p>
             </div>
         </div>
-        
+
         <!-- T-Shirt Sponsor -->
         <div class="col-md-4">
             <div class="feature-card h-100 d-flex flex-column">
@@ -209,100 +205,95 @@
                 </p>
             </div>
         </div>
-        
+
         <!-- Food Sponsor (Call for Sponsor) -->
         <div class="col-md-4">
             <div class="feature-card h-100 d-flex flex-column">
                 <span class="feature-number">FOOD SPONSOR /</span>
                 <h3 class="h5 fw-bold text-uppercase mb-3">It Could Be You!</h3>
                 <p class="mb-0 flex-grow-1" style="color:var(--dc-text-dim);font-size:.95rem">
-                    Fuel the minds building the future. Partner with us to sponsor meals, coffee, and networking breaks for the attendees.
+                    Fuel the minds building the future. Partner with us to sponsor meals, coffee, and networking breaks
+                    for the attendees.
                 </p>
             </div>
         </div>
-        
+
     </div>
 </div>
 {{/* ====================== REGISTRATION ====================== */}}
+{{ $konfhubUrl := $.Site.Params.konfhub.event_url | default "https://konfhub.com/dev-carnival" }}
+{{ $checkoutUrl := $.Site.Params.konfhub.checkout_url | default "https://konfhub.com/checkout/dev-carnival" }}
+{{ $widgetUrl := $.Site.Params.konfhub.widget_url | default "https://konfhub.com/widget/dev-carnival" }}
+
+<!-- Post-Registration Success Banner (Shown when returning from KonfHub) -->
+<div id="dc-success-banner" class="container pt-4" hidden aria-live="polite">
+    <div class="p-4 mb-4"
+        style="background: rgba(0, 243, 255, 0.08); border: 2px solid var(--dc-cyan); box-shadow: var(--dc-glow-cyan); font-family: var(--dc-font-mono);">
+        <div class="d-flex align-items-center gap-3">
+            <span style="font-size: 2.2rem;">🎉</span>
+            <div>
+                <h3 class="h5 mb-1"
+                    style="color: var(--dc-cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
+                    Pass Registration Confirmed!
+                </h3>
+                <p class="mb-0" style="color: var(--dc-text); font-size: 0.92rem;">
+                    Thank you for registering for DevCarnival! Your official QR e-ticket and booking receipt have been
+                    dispatched to your email and WhatsApp by KonfHub. Your T-shirt size has been secured. See you on the
+                    grounds!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section class="dc-section" id="passport" style="background:var(--dc-surface-2)">
     <div class="container">
-        <div class="row g-5 align-items-center">
+        <div class="row g-5 align-items-start">
             <div class="col-lg-5">
-                <span class="dc-kicker">// registrations opening soon</span>
+                <span class="dc-kicker">// official ticketing &middot; powered by konfhub</span>
                 <h2 class="dc-section-title">Get Your <span class="dc-neon-magenta">Dev Passport</span></h2>
-                <p class="dc-section-lead">
-                    One pass, both days, access every track hall and the Tech Pavilion. Connect learning from tech talks and workshops with 100+ practical hands-on project experiences.
+                <p class="dc-section-lead mb-4">
+                    Choose your pass: deep-dive into AI on Day 1, attend parallel engineering tracks on Day 2, or unlock
+                    full festival access for both days including the hands-on Tech Pavilion.
                 </p>
-                {{ with .Params.passport.tiers }}
-                <ul class="list-unstyled dc-mono mt-4 mb-0" style="font-size:.8rem;color:var(--dc-text-dim)">
-                    {{ range . }}
-                    <li class="d-flex gap-2 mb-2"><span style="color:var(--dc-cyan)">&rarr;</span>{{ . }}</li>
-                    {{ end }}
-                </ul>
-                {{ end }}
+
+
+
+                <div class="p-3 mt-3"
+                    style="border: 1px dashed var(--dc-line-bright); background: rgba(0, 243, 255, 0.04);">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span class="badge rounded-0"
+                            style="background: var(--dc-cyan); color: #000; font-family: var(--dc-font-mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em;">
+                            OFFICIAL SWAG
+                        </span>
+                        <span class="dc-mono small" style="color: var(--dc-cyan);">// Powered by Azul</span>
+                    </div>
+                    <p class="small mb-0" style="color: var(--dc-text-dim);">
+                        All pass holders receive the official DevCarnival welcome kit, badge, and conference T-shirt.
+                        Select your T-shirt size during registration on the portal!
+                    </p>
+                </div>
             </div>
 
             <div class="col-lg-7">
                 <div class="dc-register">
-                    <div class="dc-panel__bar">
-                        <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                        <span>registration/booth &middot; main gate</span>
-                    </div>
-                    <div class="dc-register__body">
-                        <div class="p-3 mb-4 d-flex align-items-center gap-2"
-                             style="background: rgba(255, 182, 46, 0.1); border: 1px solid var(--dc-amber); color: var(--dc-amber); font-family: var(--dc-font-mono); font-size: 0.88rem;">
-                            <span>&#9888; Registrations are not open yet. Check back soon for pass announcements!</span>
+                    <div class="dc-panel__bar d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span>registration/booth &middot; main gate</span>
                         </div>
-                        <form data-dc-form novalidate>
-                            <fieldset disabled>
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <label class="dc-label" for="dc-name">Name</label>
-                                        <input class="dc-input" id="dc-name" name="name" type="text"
-                                               placeholder="ada.lovelace">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="dc-label" for="dc-email">Email</label>
-                                        <input class="dc-input" id="dc-email" name="email" type="email"
-                                               placeholder="you@stack.dev">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="dc-label" for="dc-tier">Passport type</label>
-                                        <div class="dc-select-wrap">
-                                            <select class="dc-select" id="dc-tier" name="tier">
-                                                {{ range .Params.passport.tiers }}
-                                                {{/* the full tier copy is too long for the control —
-                                                     show the name, submit the whole line */}}
-                                                <option value="{{ . }}">{{ index (split . " — ") 0 }}</option>
-                                                {{ end }}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="dc-label" for="dc-track">Home track</label>
-                                        <div class="dc-select-wrap">
-                                            <select class="dc-select" id="dc-track" name="track">
-                                                <option>AI &amp; Emerging Tech</option>
-                                                <option>Cloud-Native &amp; DevOps</option>
-                                                <option>Backend &amp; Full-Stack</option>
-                                                <option>Data &amp; System Design</option>
-                                                <option>Java &amp; JVM</option>
-                                                <option>Tech Pavilion &amp; Open Source</option>
-                                                <option>Academia &amp; Research</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 d-flex flex-wrap gap-3 align-items-center">
-                                        <button class="dc-btn dc-btn--lg" type="button" disabled>
-                                            Get Your Dev Passport &rarr;
-                                        </button>
-                                        <span class="dc-mono small" style="color: var(--dc-amber);">
-                                            // Registrations are not open yet
-                                        </span>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
+                        <span class="dc-mono d-inline-flex align-items-center gap-2"
+                            style="font-size: 0.7rem; color: var(--dc-cyan);">
+                            <span
+                                style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--dc-cyan);box-shadow:0 0 8px var(--dc-cyan);"></span>
+                            KONFHUB LIVE TICKETING
+                        </span>
+                    </div>
+
+                    <div class="dc-register__body p-0">
+                        <iframe src="https://konfhub.com/widget/id/c4d4ff60-ab04-42af-aaf8-fba02b893bd6"
+                            id="konfhub-widget" class="dc-konfhub-frame" title="Register for Dev Carnival" width="100%"
+                            height="500" frameborder="0" allow="payment"></iframe>
                     </div>
                 </div>
             </div>

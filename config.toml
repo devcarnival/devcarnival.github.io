@@ -8,6 +8,13 @@ languageCode = "en-us"
   linkedin = "https://www.linkedin.com/company/dev-carnival"
   email = "contact@devcarnival.com"
 
+[params.konfhub]
+  enabled = true
+  event_url = "https://konfhub.com/dev-carnival"
+  checkout_url = "https://konfhub.com/checkout/dev-carnival"
+  widget_url = "https://konfhub.com/widget/id/c4d4ff60-ab04-42af-aaf8-fba02b893bd6"
+  status_note = "Official Passes Hosted on KonfHub"
+
 [menu]
   [[menu.main]]
     name = "Sessions"
