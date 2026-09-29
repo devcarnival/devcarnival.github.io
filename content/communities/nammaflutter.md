@@ -8,7 +8,7 @@ aliases:
   - "/communities/nammaflutter-flutter-chennai/"
   - "/communities/flutter-chennai/"
 socials:
-  website: "https://linktr.ee/nammaflutter"
+  website: "http://nammaflutter.com"
   linkedin: "https://www.linkedin.com/company/nammaflutter/"
   twitter: "https://x.com/nammaflutter"
   instagram: "https://www.instagram.com/nammaflutter"
