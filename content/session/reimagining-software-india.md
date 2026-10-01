@@ -4,10 +4,10 @@ slug: "indias-next-it-opportunity"
 weight: 2
 speakers:
   - "rajendran"
-years: ["2027"]
+years: ["2026"]
 track: "AI & Future of Software"
 session_type: "Keynote"
-duration: "45 mins"
+duration: "20 mins"
 ---
 
 For more than three decades, India's IT industry has been built on a successful combination of talent, engineering excellence, and global service delivery. However, the rise of AI is reshaping how software is built, deployed, and consumed, creating both disruption and unprecedented opportunities.

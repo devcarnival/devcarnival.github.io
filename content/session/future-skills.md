@@ -4,10 +4,10 @@ slug: "skills-for-the-future"
 weight: 1
 speakers:
   - "kamakoti"
-years: ["2027"]
+years: ["2026"]
 track: "AI & Future of Software"
 session_type: "Keynote"
-duration: "45 mins"
+duration: "20 mins"
 ---
 
 As artificial intelligence, quantum computing, and advanced hardware paradigms reshape global industries, the traditional models of engineering education and technical workforce preparation must fundamentally evolve. India's vast tech talent pool faces a critical juncture: transitioning from conventional software maintenance and service delivery to pioneering deep-tech innovation and AI-native architecture.

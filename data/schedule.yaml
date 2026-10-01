@@ -15,11 +15,14 @@ days:
       title: "Main Hall · Morning Keynotes"
       slots:
         - time: "09:00 AM – 09:20 AM"
-          title: "Keynote 1 — TBA"
+          title: "Skills for the Future: Engineering Talent for the AI & Deep-Tech Era"
+          session: "future-skills"
         - time: "09:20 AM – 09:40 AM"
-          title: "Keynote 2 — TBA"
+          title: "India's Next IT Opportunity: Reimagining Software in the AI Era"
+          session: "reimagining-software-india"
         - time: "09:40 AM – 10:00 AM"
-          title: "Keynote 3 — TBA"
+          title: "Redefining the Future and Our Role as Technologists in the AI Era"
+          session: "role-as-technologists"
     section_title: "Workshops"
     halls:
       - name: "Nalantha"

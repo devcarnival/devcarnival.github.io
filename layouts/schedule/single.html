@@ -40,9 +40,57 @@
           <div class="row g-3">
             {{ range .slots }}
             <div class="col-md-4">
-              <div class="p-3" style="background:var(--dc-surface-2);border:1px solid var(--dc-line)">
-                <span class="dc-mono d-block mb-1" style="color:var(--dc-cyan);font-size:.78rem">{{ .time }}</span>
-                <h3 class="h5 mb-0 dc-neon-magenta">{{ .title }}</h3>
+              <div class="p-3 h-100 d-flex flex-column" style="background:var(--dc-surface-2);border:1px solid var(--dc-line)">
+                <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-1">
+                  <span class="dc-mono" style="color:var(--dc-cyan);font-size:.78rem;font-weight:600;">{{ .time }}</span>
+                  <span class="badge" style="background:rgba(255, 47, 185, 0.12);color:var(--dc-neon-magenta);border:1px solid rgba(255, 47, 185, 0.3);font-family:var(--dc-font-mono);font-size:.65rem;letter-spacing:.05em;">KEYNOTE</span>
+                </div>
+                {{ if .session }}
+                  {{ $sPage := site.GetPage (printf "session/%s.md" .session) }}
+                  {{ if not $sPage }}
+                    {{ $sPage = site.GetPage (printf "session/%s" .session) }}
+                  {{ end }}
+                  {{ with $sPage }}
+                    <h3 class="h6 mb-2 fw-bold" style="line-height:1.35;">
+                      <a href="{{ .RelPermalink }}" class="text-decoration-none hover-underline dc-neon-magenta" style="display:block;">
+                        {{ .Title }}
+                      </a>
+                    </h3>
+                    {{ $speakerDetails := slice }}
+                    {{ range .Params.speakers }}
+                      {{ with site.GetPage (printf "people/%s.md" .) }}
+                        {{ $spText := .Title }}
+                        {{ with .Params.company }}
+                          {{ $spText = printf "%s · %s" $spText . }}
+                        {{ else }}
+                          {{ with .Params.designation }}
+                            {{ $spText = printf "%s · %s" $spText . }}
+                          {{ end }}
+                        {{ end }}
+                        {{ $speakerDetails = $speakerDetails | append (dict "name" .Title "page" . "text" $spText) }}
+                      {{ end }}
+                    {{ end }}
+                    {{ if $speakerDetails }}
+                      <div class="mt-auto pt-3 border-top" style="border-color:var(--dc-line) !important;">
+                        {{ range $speakerDetails }}
+                          <div class="d-flex align-items-center gap-2 mb-1">
+                            <span style="font-size:0.85rem;" aria-hidden="true">🎙️</span>
+                            <a href="{{ .page.RelPermalink }}" class="text-decoration-none hover-underline dc-mono" style="font-size:.78rem;color:var(--dc-text);font-weight:600;">
+                              {{ .text }}
+                            </a>
+                          </div>
+                        {{ end }}
+                      </div>
+                    {{ end }}
+                  {{ else }}
+                    <h3 class="h6 mb-0 dc-neon-magenta">{{ or .title .session }}</h3>
+                  {{ end }}
+                {{ else }}
+                  <h3 class="h6 mb-0 dc-neon-magenta">{{ .title }}</h3>
+                  {{ with .speaker }}
+                    <span class="dc-mono d-block mt-2" style="font-size:.78rem;color:var(--dc-text-dim);">🎙️ {{ . }}</span>
+                  {{ end }}
+                {{ end }}
               </div>
             </div>
             {{ end }}

@@ -1,6 +1,6 @@
 ---
 title: "Udayani V"
-designation: "AI Team Organizer"
+designation: "Software Engineer"
 company: "Broadcom"
 weight: 1
 socials:

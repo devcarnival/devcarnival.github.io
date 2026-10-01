@@ -4,10 +4,10 @@ slug: "redefining-the-future-and-our-role-as-technologists"
 weight: 3
 speakers:
   - "mohammed-rafee-tarafdar"
-years: ["2027"]
+years: ["2026"]
 track: "AI & Future of Software"
 session_type: "Keynote"
-duration: "45 mins"
+duration: "20 mins"
 ---
 
 The rapid advancement of generative AI, autonomous agent networks, and modern enterprise platforms is fundamentally transforming the digital landscape. As systems shift from human-executed code to AI-augmented and self-healing architectures, the responsibility placed on technological leaders and engineers is expanding beyond code delivery to driving ethical, resilient, and scalable systems.

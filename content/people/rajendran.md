@@ -1,6 +1,7 @@
 ---
 title: "Rajendran Dandapani"
-designation: "Director, Zoho Corporation | President, Zoho Schools of Learning"
+designation: "Director | President, Zoho Schools of Learning"
+company: "Zoho Corporation"
 socials:
   linkedin: "https://www.linkedin.com/in/rajendran/"
 ---
