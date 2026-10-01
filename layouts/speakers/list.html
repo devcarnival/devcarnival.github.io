@@ -32,12 +32,29 @@
         {{ end }}
     {{ end }}
 
-    {{/* Build and sort the speaker entries by session weight */}}
+    {{/* Flag speakers who have at least one Keynote session, so they can be surfaced first */}}
+    {{ $keynoteSlugs := dict }}
+    {{ range $sessions }}
+        {{ if eq .Params.session_type "Keynote" }}
+            {{ with .Params.speakers }}
+                {{ range . }}
+                    {{ $keynoteSlugs = merge $keynoteSlugs (dict . true) }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    {{/* Build and sort the speaker entries: Keynote speakers first, then by session weight */}}
     {{ $speakerEntries := slice }}
     {{ range $slug, $weight := $speakerMap }}
         {{ $page := $.Site.GetPage (printf "people/%s.md" $slug) }}
         {{ with $page }}
-            {{ $speakerEntries = $speakerEntries | append (dict "slug" $slug "weight" $weight "page" .) }}
+            {{ $isKeynote := index $keynoteSlugs $slug }}
+            {{ $sortWeight := $weight }}
+            {{ if $isKeynote }}
+                {{ $sortWeight = sub $weight 100000 }}
+            {{ end }}
+            {{ $speakerEntries = $speakerEntries | append (dict "slug" $slug "weight" $sortWeight "keynote" $isKeynote "page" .) }}
         {{ end }}
     {{ end }}
 
