@@ -2,6 +2,7 @@
 title: "Enhancing AI Robustness through Security and Privacy by Design"
 speakers:
   - "reshmi-tr"
+weight: 4
 years: ["2026"]
 track: "AI Security, Infrastructure & DevOps"
 session_type: "Talk"
