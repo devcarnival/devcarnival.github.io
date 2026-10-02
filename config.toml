@@ -12,7 +12,7 @@ languageCode = "en-us"
   enabled = true
   event_url = "https://konfhub.com/dev-carnival"
   checkout_url = "https://konfhub.com/checkout/dev-carnival"
-  widget_url = "https://konfhub.com/widget/dev-carnival"
+  widget_url = "https://konfhub.com/widget/id/c4d4ff60-ab04-42af-aaf8-fba02b893bd6"
   status_note = "Official Passes Hosted on KonfHub"
 
 [menu]
