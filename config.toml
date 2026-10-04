@@ -17,25 +17,21 @@ languageCode = "en-us"
 
 [menu]
   [[menu.main]]
-    name = "About Us"
-    url = "/about"
-    weight = 1
-  [[menu.main]]
     name = "Speakers"
     url = "/speakers"
-    weight = 2
+    weight = 1
   [[menu.main]]
     name = "Schedule"
     url = "/schedule"
-    weight = 3
+    weight = 2
   [[menu.main]]
     name = "Tech Pavilion"
     url = "/projects"
-    weight = 4
+    weight = 3
   [[menu.main]]
     name = "Community"
     url = "/communities"
-    weight = 5
+    weight = 4
 
 [taxonomies]
   year = "years"
