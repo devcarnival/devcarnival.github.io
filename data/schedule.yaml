@@ -188,7 +188,7 @@ days:
       - time: "10:55 AM – 11:40 AM"
         cells:
           - hall: "Nalantha"
-            title: "Talk 2A"
+            session: "zero-trust-for-application-security-sdlc"
           - hall: "Harvard"
             title: "Talk 2B"
           - hall: "Cambridge"

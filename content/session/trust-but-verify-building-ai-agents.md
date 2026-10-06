@@ -3,6 +3,8 @@ title: "Trust, but Verify - Building AI Agents Your Startup Can Actually Delegat
 slug: "trust-but-verify-building-ai-agents"
 speakers:
   - "abdul-salam"
+communities:
+  - "cybervattam"
 years: ["2026"]
 track: "Building AI-Powered Applications"
 session_type: "Workshop"
