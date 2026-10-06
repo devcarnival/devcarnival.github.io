@@ -121,10 +121,16 @@
                                     </p>
                                 </div>
                     
-                                <!-- Speaker Avatar from GitHub Handle (First Speaker) -->
+                                <!-- Speaker Avatar from Image or GitHub Handle (First Speaker) -->
                                 {{ range first 1 .Params.speakers }}
                                     {{ with $.Site.GetPage (printf "people/%s.md" .) }}
-                                        {{ if .Params.socials.github }}
+                                        {{ if .Params.image }}
+                                            <img src="{{ .Params.image | relURL }}" 
+                                                 alt="{{ .Title }}" 
+                                                 class="rounded-circle object-fit-cover flex-shrink-0" 
+                                                 width="110" 
+                                                 height="110">
+                                        {{ else if .Params.socials.github }}
                                             <img src="https://github.com/{{ .Params.socials.github }}.png" 
                                                  alt="{{ .Title }}" 
                                                  class="rounded-circle object-fit-cover flex-shrink-0" 

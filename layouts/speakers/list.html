@@ -32,7 +32,7 @@
         {{ end }}
     {{ end }}
 
-    {{/* Flag speakers who have at least one Keynote session, so they can be surfaced first */}}
+    {{/* Flag speakers who have at least one Keynote session or keynote: true in frontmatter */}}
     {{ $keynoteSlugs := dict }}
     {{ range $sessions }}
         {{ if eq .Params.session_type "Keynote" }}
@@ -41,6 +41,11 @@
                     {{ $keynoteSlugs = merge $keynoteSlugs (dict . true) }}
                 {{ end }}
             {{ end }}
+        {{ end }}
+    {{ end }}
+    {{ range (where .Site.RegularPages "Section" "people") }}
+        {{ if .Params.keynote }}
+            {{ $keynoteSlugs = merge $keynoteSlugs (dict .File.TranslationBaseName true) }}
         {{ end }}
     {{ end }}
 
@@ -84,6 +89,7 @@
         {{ range $sortedSpeakers }}
             {{ $slug := .slug }}
             {{ $speaker := .page }}
+            {{ $isKeynote := .keynote }}
             {{ $speakerSessions := slice }}
             {{ $sessionTitles := slice }}
             {{ $sessionTracks := slice }}
@@ -96,13 +102,13 @@
                     {{ end }}
                 {{ end }}
             {{ end }}
-            <div class="col-lg-6 col-12 d-flex speaker-card-item"
+            <div class="col-lg-6 col-12 d-flex speaker-card-item {{ if $isKeynote }}speaker-card-item--keynote{{ end }}"
                  data-name="{{ lower $speaker.Title }}"
                  data-company="{{ lower (or $speaker.Params.company "") }}"
                  data-designation="{{ lower (or $speaker.Params.designation "") }}"
                  data-bio="{{ lower (plainify (or $speaker.Summary "")) }}"
-                 data-sessions="{{ lower (delimit $sessionTitles " ") }} {{ lower (delimit $sessionTracks " ") }}">
-                {{ partial "speaker-card.html" (dict "Site" $.Site "speaker" $speaker "sessions" $speakerSessions) }}
+                 data-sessions="{{ lower (delimit $sessionTitles " ") }} {{ lower (delimit $sessionTracks " ") }} {{ if $isKeynote }}keynote{{ end }}">
+                {{ partial "speaker-card.html" (dict "Site" $.Site "speaker" $speaker "sessions" $speakerSessions "isKeynote" $isKeynote) }}
             </div>
         {{ end }}
     </div>

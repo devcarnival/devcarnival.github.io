@@ -2,6 +2,7 @@
 title: "K Siva Prasad Reddy"
 designation: "Developer Advocate"
 company: "JetBrains"
+image: "images/people/ksivaprasadreddy.jpeg"
 weight: 1
 socials:
   github: "sivaprasadreddy"

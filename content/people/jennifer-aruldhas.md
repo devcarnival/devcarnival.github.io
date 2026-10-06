@@ -2,6 +2,7 @@
 title: "Jennifer Aruldhas"
 designation: "Senior Project Manager & Scrum Master"
 company: "Infosys"
+image: "images/people/jennifer-aruldhas.jpeg"
 socials:
   linkedin: "https://www.linkedin.com/in/jennifer-aruldhas-485081a5/"
 ---

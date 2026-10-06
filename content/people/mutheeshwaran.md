@@ -2,6 +2,7 @@
 title: "Mutheeshwaran S"
 designation: "AI Initiatives & Adoption Lead"
 company: "Infosys"
+image: "images/people/mutheeshwaran.jpeg"
 weight: 3
 socials:
   linkedin: "https://www.linkedin.com/in/mutheeshwaran/"

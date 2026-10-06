@@ -1,6 +1,7 @@
 ---
 title: "Shaama M"
 designation: "Full-Stack Engineer"
+image: "images/people/shaama.jpeg"
 socials:
   github: "Shaamam"
   linkedin: "https://www.linkedin.com/in/shaama-m-030115237"

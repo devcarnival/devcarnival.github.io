@@ -136,7 +136,13 @@
                             <div class="d-flex align-items-center gap-2">
                                 {{ range .Params.speakers }}
                                     {{ with $.Site.GetPage (printf "people/%s.md" .) }}
-                                        {{ if .Params.socials.github }}
+                                        {{ if .Params.image }}
+                                        <img src="{{ .Params.image | relURL }}" 
+                                             alt="{{ .Title }}" 
+                                             class="rounded-circle object-fit-cover" 
+                                             width="28" 
+                                             height="28">
+                                        {{ else if .Params.socials.github }}
                                         <img src="https://github.com/{{ .Params.socials.github }}.png" 
                                              alt="{{ .Title }}" 
                                              class="rounded-circle object-fit-cover" 

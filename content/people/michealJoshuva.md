@@ -2,6 +2,7 @@
 title: "Micheal Joshuva"
 designation: "Founder & CEO"
 company: "MICH JOSH CYBERSECURITY"
+image: "images/people/michealJoshuva.jpeg"
 weight: 1
 socials:
   linkedin: "https://www.linkedin.com/in/micheal-joshuva/"

@@ -2,6 +2,7 @@
 title: "Geethayazhini K"
 designation: "Technology & AI Architect"
 company: "Infosys"
+image: "images/people/geethayazhini.png"
 socials:
   linkedin: "https://www.linkedin.com/in/geethayazhini-k-28b6261a3"
 ---

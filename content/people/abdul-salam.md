@@ -1,6 +1,7 @@
 ---
 title: "Abdul Salam Mohamed Kani"
 designation: "Engineering Director"
+image: "images/people/abdul-salam.jpeg"
 socials:
   linkedin: "https://www.linkedin.com/in/abdul-salam-mohamed-kani-92110913/"
 ---

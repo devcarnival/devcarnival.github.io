@@ -2,6 +2,7 @@
 title: "Udayani V"
 designation: "Software Engineer"
 company: "Broadcom"
+image: "images/people/udayani.jpeg"
 weight: 1
 socials:
   github: "vudayani"

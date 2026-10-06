@@ -8,20 +8,52 @@
             <!-- Main Member Identifier Block with Profile Avatar -->
             <div class="d-flex align-items-center justify-content-between gap-4 mb-4">
                 <div>
+                    {{ $isKeynote := .Params.keynote }}
+                    {{ if not $isKeynote }}
+                        {{ $personSlug := .File.TranslationBaseName }}
+                        {{ range (where .Site.RegularPages "Section" "session") }}
+                            {{ if and (eq .Params.session_type "Keynote") (in .Params.speakers $personSlug) }}
+                                {{ $isKeynote = true }}
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                    {{ if $isKeynote }}
+                    <span class="badge mb-2 d-inline-flex align-items-center gap-1" style="background: rgba(255, 47, 185, 0.12); color: var(--dc-magenta); border: 1px solid rgba(255, 47, 185, 0.4); font-family: var(--dc-font-mono); font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.3rem 0.65rem;">
+                        &#10022; KEYNOTE SPEAKER
+                    </span>
+                    {{ end }}
                     <h1 class="display-4 fw-bold text-dark mb-1">{{ .Title }}</h1>
                     {{ if .Params.designation }}
-                    <span class="text-uppercase tracking-wider small fw-bold text-muted d-block">{{ .Params.designation }}</span>
+                    <span class="text-uppercase tracking-wider small fw-bold text-muted d-block">{{ .Params.designation }}{{ with .Params.company }} &middot; <span style="color: var(--dc-cyan);">{{ . }}</span>{{ end }}</span>
                     {{ end }}
                 </div>
 
-                {{ if .Params.socials.github }}
+                {{ if .Params.image }}
+                <div class="flex-shrink-0">
+                    <img src="{{ .Params.image | relURL }}" 
+                         class="rounded-circle border border-secondary-subtle object-fit-cover shadow-sm" 
+                         width="112" 
+                         height="112" 
+                         alt="{{ .Title }}" 
+                         loading="eager"
+                         style="{{ if $isKeynote }}border-color: var(--dc-magenta) !important; box-shadow: 0 0 16px rgba(255, 47, 185, 0.35) !important;{{ end }}">
+                </div>
+                {{ else if .Params.socials.github }}
                 <div class="flex-shrink-0">
                     <img src="https://github.com/{{ .Params.socials.github }}.png?size=200" 
                          class="rounded-circle border border-secondary-subtle object-fit-cover shadow-sm" 
                          width="112" 
                          height="112" 
                          alt="{{ .Title }}" 
-                         loading="eager">
+                         loading="eager"
+                         style="{{ if $isKeynote }}border-color: var(--dc-magenta) !important; box-shadow: 0 0 16px rgba(255, 47, 185, 0.35) !important;{{ end }}">
+                </div>
+                {{ else }}
+                <div class="flex-shrink-0">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 112px; height: 112px; background: var(--dc-surface-2); border: 2px solid {{ if $isKeynote }}var(--dc-magenta){{ else }}var(--dc-line-bright){{ end }}; color: {{ if $isKeynote }}var(--dc-magenta){{ else }}var(--dc-cyan){{ end }}; font-family: var(--dc-font-mono); font-weight: 700; font-size: 2.2rem; {{ if $isKeynote }}box-shadow: 0 0 16px rgba(255, 47, 185, 0.35);{{ end }}">
+                        {{ substr .Title 0 1 }}
+                    </div>
                 </div>
                 {{ end }}
             </div>
@@ -37,6 +69,12 @@
             <div class="pt-4 border-top">
                 <span class="d-block small fw-bold text-dark text-uppercase tracking-wider mb-3">Professional Profiles</span>
                 <div class="d-flex flex-wrap gap-3">
+                    {{ if .Params.socials.website }}
+                    <a href="{{ .Params.socials.website }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal btn-sm">
+                        Official Website
+                    </a>
+                    {{ end }}
+
                     {{ if .Params.socials.linkedin }}
                     <a href="{{ .Params.socials.linkedin }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal btn-sm">
                         LinkedIn Profile
@@ -49,7 +87,7 @@
                     </a>
                     {{ end }}
 
-                    {{ if not (or .Params.socials.linkedin .Params.socials.github) }}
+                    {{ if not (or .Params.socials.website .Params.socials.linkedin .Params.socials.github) }}
                     <span class="text-muted small italic">No public code or career metrics registered.</span>
                     {{ end }}
                 </div>

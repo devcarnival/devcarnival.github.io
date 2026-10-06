@@ -2,6 +2,7 @@
 title: "Madhanraj Jeyapragasam"
 designation: "Enterprise Architect & IT Strategist"
 company: "Infosys"
+image: "images/people/madhanraj.jpeg"
 socials:
   linkedin: "https://www.linkedin.com/in/jmadhanraj/"
 ---

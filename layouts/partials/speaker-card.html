@@ -1,8 +1,39 @@
-<article class="dc-speaker-card h-100 w-100">
+{{ $isKeynote := or .isKeynote .speaker.Params.keynote }}
+{{ if not $isKeynote }}
+    {{ range .sessions }}
+        {{ if eq .Params.session_type "Keynote" }}
+            {{ $isKeynote = true }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+<article class="dc-speaker-card {{ if $isKeynote }}dc-speaker-card--keynote{{ end }} h-100 w-100 position-relative">
+    {{ if $isKeynote }}
+    <!-- Keynote Marquee Badge Header -->
+    <div class="dc-speaker-keynote-banner mb-3 d-flex align-items-center justify-content-between">
+        <span class="dc-keynote-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="me-1" aria-hidden="true">
+                <path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/>
+            </svg>
+            KEYNOTE SPEAKER
+        </span>
+        <span class="dc-mono small dc-keynote-tag">// FEATURED</span>
+    </div>
+    {{ end }}
+
     <!-- Header: Avatar + Name + Designation & Company -->
     <div class="dc-speaker-header d-flex align-items-center gap-3 mb-3">
-        <!-- Avatar: GitHub Avatar or Styled Initials Fallback -->
-        {{ if .speaker.Params.socials.github }}
+        <!-- Avatar: Local Image, GitHub Avatar, or Styled Initials Fallback -->
+        {{ if .speaker.Params.image }}
+        <a href="{{ .speaker.RelPermalink }}" class="flex-shrink-0" aria-label="{{ .speaker.Title }}">
+            <img src="{{ .speaker.Params.image | relURL }}" 
+                 alt="{{ .speaker.Title }}" 
+                 class="rounded-circle dc-speaker-avatar object-fit-cover" 
+                 width="64" 
+                 height="64" 
+                 loading="lazy">
+        </a>
+        {{ else if .speaker.Params.socials.github }}
         <a href="{{ .speaker.RelPermalink }}" class="flex-shrink-0" aria-label="{{ .speaker.Title }}">
             <img src="https://github.com/{{ .speaker.Params.socials.github }}.png?size=160" 
                  alt="{{ .speaker.Title }}" 
@@ -30,14 +61,14 @@
             <div class="dc-mono" style="font-size: 0.78rem; color: var(--dc-text-mute); line-height: 1.35;">
                 {{ with .speaker.Params.designation }}<span>{{ . }}</span>{{ end }}
                 {{ if and .speaker.Params.designation .speaker.Params.company }} &middot; {{ end }}
-                {{ with .speaker.Params.company }}<span style="color: var(--dc-cyan);">{{ . }}</span>{{ end }}
+                {{ with .speaker.Params.company }}<span style="color: {{ if $isKeynote }}var(--dc-cyan){{ else }}var(--dc-cyan){{ end }};">{{ . }}</span>{{ end }}
             </div>
         </div>
     </div>
 
     <!-- About Speaker Section -->
     <div class="dc-speaker-about mb-3">
-        <span class="dc-mono d-block text-uppercase mb-2" style="font-size: 0.68rem; letter-spacing: 0.14em; color: var(--dc-cyan);">
+        <span class="dc-mono d-block text-uppercase mb-2" style="font-size: 0.68rem; letter-spacing: 0.14em; color: {{ if $isKeynote }}var(--dc-magenta){{ else }}var(--dc-cyan){{ end }};">
             // About the speaker
         </span>
         <div class="dc-speaker-bio text-secondary">
@@ -53,7 +84,8 @@
         </span>
         <div class="d-flex flex-column gap-2">
             {{ range . }}
-            <div class="dc-speaker-session-box">
+            {{ $isKeynoteSession := eq .Params.session_type "Keynote" }}
+            <div class="dc-speaker-session-box {{ if $isKeynoteSession }}dc-speaker-session-box--keynote{{ end }}">
                 <div class="d-flex flex-wrap gap-2 align-items-center mb-1">
                     {{ with .Params.track }}
                     <span class="badge" style="background: rgba(34, 224, 255, 0.08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, 0.25); font-family: var(--dc-font-mono); font-size: 0.65rem;">
@@ -61,7 +93,7 @@
                     </span>
                     {{ end }}
                     {{ with or .Params.session_type .Params.sessionType }}
-                    <span class="badge" style="background: rgba(255, 47, 185, 0.08); color: var(--dc-magenta); border: 1px solid rgba(255, 47, 185, 0.25); font-family: var(--dc-font-mono); font-size: 0.65rem;">
+                    <span class="badge" style="background: rgba(255, 47, 185, 0.12); color: var(--dc-magenta); border: 1px solid rgba(255, 47, 185, 0.35); font-family: var(--dc-font-mono); font-size: 0.65rem; font-weight: 700;">
                         {{ . }}
                     </span>
                     {{ end }}
@@ -83,6 +115,14 @@
     <!-- Professional Profile Links & Action Bar -->
     <div class="dc-speaker-footer pt-3 mt-auto border-top d-flex align-items-center justify-content-between gap-2" style="border-color: var(--dc-line) !important;">
         <div class="d-flex flex-wrap gap-2 align-items-center">
+            {{ if .speaker.Params.socials.website }}
+            <a href="{{ .speaker.Params.socials.website }}" target="_blank" rel="noopener noreferrer" 
+               class="btn btn-outline-minimal btn-sm py-0 px-2 d-inline-flex align-items-center gap-1"
+               style="font-size: 0.72rem; height: 26px;">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <span>Website</span>
+            </a>
+            {{ end }}
             {{ if .speaker.Params.socials.linkedin }}
             <a href="{{ .speaker.Params.socials.linkedin }}" target="_blank" rel="noopener noreferrer" 
                class="btn btn-outline-minimal btn-sm py-0 px-2 d-inline-flex align-items-center gap-1"

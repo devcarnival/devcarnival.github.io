@@ -2,6 +2,7 @@
 title: "Dr. T. R. Reshmi"
 designation: "Scientist ‘F’"
 company: "SETS"
+image: "images/people/reshmi-tr.png"
 socials:
   linkedin: "https://in.linkedin.com/in/reshmi-tr-2323a862"
 ---

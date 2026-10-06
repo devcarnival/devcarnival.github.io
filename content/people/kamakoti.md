@@ -2,6 +2,8 @@
 title: "Prof. Kamakoti Veezhinathan"
 designation: "Director"
 company: "IIT Madras"
+image: "images/people/prof-kamakoti.png"
+keynote: true
 socials:
   website: "https://www.iitm.ac.in/"
 ---

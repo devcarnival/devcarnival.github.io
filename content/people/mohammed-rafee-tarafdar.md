@@ -2,6 +2,8 @@
 title: "Mohammed Rafee Tarafdar"
 designation: "Executive Vice President & CTO"
 company: "Infosys"
+image: "images/people/mohammed-rafee-tarafdar.jpeg"
+keynote: true
 socials:
   linkedin: "https://in.linkedin.com/in/rafeetarafdar"
 ---

@@ -2,6 +2,7 @@
 title: "Perumal Natarajan Krishnamoorthy"
 designation: "Automation & AI Consultant"
 company: "Infosys"
+image: "images/people/perumal-krishnamoorthy.jpeg"
 socials:
   linkedin: "https://www.linkedin.com/in/perumal-krishnamoorthy-25958a98/"
 ---

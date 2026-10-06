@@ -2,6 +2,7 @@
 title: "Manjunathan Raman"
 designation: "Enterprise Technology Leader"
 company: "Lowe’s India"
+image: "images/people/manjunathan.jpeg"
 socials:
   linkedin: "https://www.linkedin.com/in/manjunathan-raman-57737818/"
 ---

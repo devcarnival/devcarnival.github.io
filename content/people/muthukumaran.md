@@ -1,6 +1,7 @@
 ---
 title: "Muthukumaran Navaneethakrishnan"
 designation: "Author & Enterprise Architect"
+image: "images/people/muthukumaran.jpeg"
 socials:
   github: "muthuishere"
   linkedin: "https://www.linkedin.com/in/muthuishere"
