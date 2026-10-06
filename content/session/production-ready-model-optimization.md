@@ -3,7 +3,7 @@ title: "Production-ready model optimization - pruning, quantization and knowledg
 slug: "production-ready-model-optimization"
 speakers:
   - "jennifer-aruldhas"
-years: ["2027"]
+years: ["2026"]
 track: "AI Agents & Developer Productivity"
 session_type: "Talk"
 duration: "45 mins"
