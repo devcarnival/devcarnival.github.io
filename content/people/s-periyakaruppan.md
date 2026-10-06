@@ -1,6 +1,6 @@
 ---
 title: "S Periyakaruppan"
-designation: "Enterprise Security Architect & CISM"
+designation: "Global Competency Leader - Enterprise Cybersecurity Solutions"
 image: "images/people/s-periyakaruppan.png"
 socials:
   linkedin: "https://www.linkedin.com/in/s-periyakaruppan-cism/"
