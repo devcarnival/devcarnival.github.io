@@ -172,7 +172,7 @@ days:
       - time: "10:00 AM – 10:45 AM"
         cells:
           - hall: "Nalantha"
-            title: "Talk 1A"
+            session: "enterprise-quantum-safe-computing"
           - hall: "Harvard"
             title: "Talk 1B"
           - hall: "Cambridge"
