@@ -3,6 +3,8 @@ title: "Enterprise Quantum-Safe Computing: Architecture, Resilience, and the Pat
 slug: "enterprise-quantum-safe-computing"
 speakers:
   - "s-periyakaruppan"
+communities:
+  - "cybervattam"
 years: ["2026"]
 track: "Security Architecture & Emerging Threats"
 session_type: "Talk"
