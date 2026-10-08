@@ -123,19 +123,21 @@
                                 <!-- Speaker Avatar from Image or GitHub Handle (First Speaker) -->
                                 {{ range first 1 .Params.speakers }}
                                     {{ with $.Site.GetPage (printf "people/%s.md" .) }}
-                                        {{ if .Params.image }}
-                                            <img src="{{ .Params.image | relURL }}" 
-                                                 alt="{{ .Title }}" 
-                                                 class="rounded-circle object-fit-cover flex-shrink-0" 
-                                                 width="110" 
-                                                 height="110">
-                                        {{ else if .Params.socials.github }}
-                                            <img src="https://github.com/{{ .Params.socials.github }}.png" 
-                                                 alt="{{ .Title }}" 
-                                                 class="rounded-circle object-fit-cover flex-shrink-0" 
-                                                 width="110" 
-                                                 height="110">
-                                        {{ end }}
+                                        <a href="{{ .RelPermalink }}" aria-label="{{ .Title }}" class="flex-shrink-0">
+                                            {{ if .Params.image }}
+                                                <img src="{{ .Params.image | relURL }}" 
+                                                     alt="{{ .Title }}" 
+                                                     class="rounded-circle object-fit-cover hover-opacity" 
+                                                     width="110" 
+                                                     height="110">
+                                            {{ else if .Params.socials.github }}
+                                                <img src="https://github.com/{{ .Params.socials.github }}.png" 
+                                                     alt="{{ .Title }}" 
+                                                     class="rounded-circle object-fit-cover hover-opacity" 
+                                                     width="110" 
+                                                     height="110">
+                                            {{ end }}
+                                        </a>
                                     {{ end }}
                                 {{ end }}
                             </div>
@@ -148,7 +150,7 @@
                                     {{ range $index, $speaker := .Params.speakers }}
                                         {{ with $.Site.GetPage (printf "people/%s.md" $speaker) }}
                                             {{ if $index }}<br>{{ end }}
-                                            <div class="fw-semibold" style="color: var(--dc-text);">{{ .Title }}</div>
+                                            <a href="{{ .RelPermalink }}" class="fw-semibold text-decoration-none hover-underline d-inline-block" style="color: var(--dc-text);">{{ .Title }}</a>
                                             {{ if .Params.company }}
                                                 <div class="text-muted" style="font-size: 0.75rem;">{{ .Params.company }}</div>
                                             {{ end }}

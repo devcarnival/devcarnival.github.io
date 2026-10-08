@@ -1,22 +1,48 @@
 {{ define "main" }}
+{{ $personSlug := .File.TranslationBaseName }}
+{{ $personTarget := .Slug | default $personSlug }}
+{{ $allSessions := where .Site.RegularPages "Section" "session" }}
+{{ $speakerSessions := slice }}
+
+{{ range $allSessions }}
+    {{ $match := false }}
+    {{ range .Params.speakers }}
+        {{ if or (eq . $personSlug) (eq . $personTarget) (eq (lower .) (lower $personSlug)) (eq (lower .) (lower $personTarget)) }}
+            {{ $match = true }}
+        {{ end }}
+    {{ end }}
+    {{ if $match }}
+        {{ $speakerSessions = $speakerSessions | append . }}
+    {{ end }}
+{{ end }}
+{{ $speakerSessions = $speakerSessions | uniq }}
+
+{{ $isKeynote := .Params.keynote }}
+{{ if not $isKeynote }}
+    {{ range $speakerSessions }}
+        {{ if eq .Params.session_type "Keynote" }}
+            {{ $isKeynote = true }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ $schedData := site.Data.schedule }}
+
 <div class="container hero-section">
     <div class="row justify-content-center">
-        <div class="col-lg-7">
+        <div class="col-lg-8">
             <!-- Back Navigation -->
-            <a href="{{ "" | relURL }}" class="text-muted text-decoration-none small fw-bold mb-5 d-inline-block">&larr; Return Home</a>
+            <div class="d-flex align-items-center gap-3 mb-5">
+                {{ if $speakerSessions }}
+                <a href="{{ "speakers/" | relURL }}" class="text-muted text-decoration-none small fw-bold hover-underline">&larr; Back to all speakers</a>
+                <span class="text-muted small">&middot;</span>
+                {{ end }}
+                <a href="{{ "" | relURL }}" class="text-muted text-decoration-none small fw-bold hover-underline">Return Home</a>
+            </div>
             
             <!-- Main Member Identifier Block with Profile Avatar -->
             <div class="d-flex align-items-center justify-content-between gap-4 mb-4">
                 <div>
-                    {{ $isKeynote := .Params.keynote }}
-                    {{ if not $isKeynote }}
-                        {{ $personSlug := .File.TranslationBaseName }}
-                        {{ range (where .Site.RegularPages "Section" "session") }}
-                            {{ if and (eq .Params.session_type "Keynote") (in .Params.speakers $personSlug) }}
-                                {{ $isKeynote = true }}
-                            {{ end }}
-                        {{ end }}
-                    {{ end }}
                     {{ if $isKeynote }}
                     <span class="badge mb-2 d-inline-flex align-items-center gap-1" style="background: rgba(255, 47, 185, 0.12); color: var(--dc-magenta); border: 1px solid rgba(255, 47, 185, 0.4); font-family: var(--dc-font-mono); font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.3rem 0.65rem;">
                         &#10022; KEYNOTE SPEAKER
@@ -64,6 +90,130 @@
             <div class="article-content text-secondary fs-5 line-height-md mb-5">
                 {{ .Content }}
             </div>
+
+            <!-- Associated Sessions / Talks Section -->
+            {{ if $speakerSessions }}
+            <div class="mt-5 pt-4 border-top" style="border-color: var(--dc-line) !important;">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <span class="dc-mono text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.14em; color: var(--dc-magenta);">
+                        // Delivering {{ if gt (len $speakerSessions) 1 }}Sessions ({{ len $speakerSessions }}){{ else }}Session{{ end }}
+                    </span>
+                    <a href="{{ "session/" | relURL }}" class="dc-mono small text-decoration-none hover-underline" style="font-size: 0.72rem; color: var(--dc-text-mute);">
+                        All Sessions &rarr;
+                    </a>
+                </div>
+
+                <div class="d-flex flex-column gap-3 mb-5">
+                    {{ range $speakerSessions }}
+                    {{ $sSlug := .File.TranslationBaseName }}
+                    {{ $sTarget := .Slug | default $sSlug }}
+                    {{ $schedMatch := "" }}
+                    {{ if $schedData }}
+                        {{ range $schedData.days }}
+                            {{ $dName := .name }}
+                            {{ $dDate := .date }}
+                            {{ $dId := .id }}
+                            {{ with .keynotes }}
+                                {{ $hall := .venue | default "Main Hall" }}
+                                {{ range .slots }}
+                                    {{ if or (eq .session $sSlug) (eq .session $sTarget) }}
+                                        {{ $schedMatch = dict "day" $dName "date" $dDate "dayId" $dId "time" .time "hall" $hall }}
+                                    {{ end }}
+                                {{ end }}
+                            {{ end }}
+                            {{ range .rows }}
+                                {{ $rTime := .time }}
+                                {{ range .cells }}
+                                    {{ if or (eq .session $sSlug) (eq .session $sTarget) }}
+                                        {{ $t := .range | default $rTime }}
+                                        {{ $h := .hall }}
+                                        {{ $schedMatch = dict "day" $dName "date" $dDate "dayId" $dId "time" $t "hall" $h }}
+                                    {{ end }}
+                                {{ end }}
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                    {{ if not $schedMatch }}
+                        {{ with .Params.schedule }}
+                            {{ $schedMatch = dict "day" (.day | default "Scheduled") "date" (.date | default "") "dayId" (.day_id | default "day1") "time" (.time | default "") "hall" (.hall | default .venue | default "") }}
+                        {{ end }}
+                    {{ end }}
+
+                    <article class="p-4 border rounded-0" style="background: var(--dc-surface); border-color: var(--dc-line) !important;">
+                        <!-- Badges Header -->
+                        <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                            {{ with .Params.track }}
+                            <span class="badge" style="background: rgba(34, 224, 255, 0.08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, 0.25); font-family: var(--dc-font-mono); font-size: 0.68rem;">
+                                {{ . }}
+                            </span>
+                            {{ end }}
+                            {{ with or .Params.session_type .Params.sessionType }}
+                            <span class="badge" style="background: rgba(255, 47, 185, 0.12); color: var(--dc-magenta); border: 1px solid rgba(255, 47, 185, 0.35); font-family: var(--dc-font-mono); font-size: 0.68rem; font-weight: 700;">
+                                {{ . }}
+                            </span>
+                            {{ end }}
+                            {{ with .Params.duration }}
+                            <span class="badge text-secondary border" style="border-color: var(--dc-line) !important; font-family: var(--dc-font-mono); font-size: 0.68rem;">
+                                {{ . }}
+                            </span>
+                            {{ end }}
+                            {{ with $schedMatch }}
+                            <a href="{{ "schedule/" | relURL }}#{{ .dayId }}" class="badge text-decoration-none border font-monospace ms-auto" style="background: rgba(0, 229, 255, 0.1); color: var(--dc-cyan); border-color: var(--dc-cyan) !important; font-size: 0.68rem;">
+                                📅 {{ .day }} &middot; {{ .time }} &middot; {{ .hall }} Hall
+                            </a>
+                            {{ end }}
+                        </div>
+
+                        <!-- Session Title -->
+                        <h3 class="h4 fw-bold mb-2">
+                            <a href="{{ .RelPermalink }}" class="text-decoration-none hover-underline" style="color: var(--dc-text);">
+                                {{ .Title }}
+                            </a>
+                        </h3>
+
+                        <!-- Session Abstract / Summary -->
+                        <p class="text-secondary small mb-3" style="line-height: 1.6;">
+                            {{ or .Params.summary (.Summary | plainify | truncate 220) }}
+                        </p>
+
+                        <!-- Bottom Metadata: Co-speakers & Action Button -->
+                        <div class="pt-3 border-top d-flex justify-content-between align-items-center flex-wrap gap-2" style="border-color: var(--dc-line) !important;">
+                            {{ $otherSpeakers := slice }}
+                            {{ range .Params.speakers }}
+                                {{ if and (ne . $personSlug) (ne . $personTarget) (ne (lower .) (lower $personSlug)) (ne (lower .) (lower $personTarget)) }}
+                                    {{ $otherSpeakers = $otherSpeakers | append . }}
+                                {{ end }}
+                            {{ end }}
+
+                            {{ if gt (len $otherSpeakers) 0 }}
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="dc-mono text-muted" style="font-size: 0.72rem;">Co-presented with:</span>
+                                {{ range $otherSpeakers }}
+                                    {{ with $.Site.GetPage (printf "people/%s.md" .) }}
+                                    <a href="{{ .RelPermalink }}" class="d-inline-flex align-items-center gap-1 text-decoration-none small fw-semibold hover-underline" style="color: var(--dc-cyan);">
+                                        {{ if .Params.image }}
+                                        <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" width="20" height="20" class="rounded-circle object-fit-cover">
+                                        {{ else if .Params.socials.github }}
+                                        <img src="https://github.com/{{ .Params.socials.github }}.png?size=40" alt="{{ .Title }}" width="20" height="20" class="rounded-circle object-fit-cover">
+                                        {{ end }}
+                                        <span>{{ .Title }}</span>
+                                    </a>
+                                    {{ end }}
+                                {{ end }}
+                            </div>
+                            {{ else }}
+                            <div></div>
+                            {{ end }}
+
+                            <a href="{{ .RelPermalink }}" class="dc-btn dc-btn--ghost py-1 px-3" style="font-size: 0.8rem;">
+                                View Session Details &rarr;
+                            </a>
+                        </div>
+                    </article>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
 
             <!-- Horizontal Clean Connectivity Badges -->
             <div class="pt-4 border-top">

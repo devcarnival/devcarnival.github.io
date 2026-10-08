@@ -178,7 +178,7 @@ days:
           - hall: "Cambridge"
             title: "Talk 1C"
           - hall: "Ganga"
-            title: "Talk 1D"
+            session: "the-ai-native-developer"
 
       - is_break: true
         time: "10:45 AM – 10:55 AM"

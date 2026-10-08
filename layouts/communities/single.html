@@ -136,20 +136,22 @@
                             <div class="d-flex align-items-center gap-2">
                                 {{ range .Params.speakers }}
                                     {{ with $.Site.GetPage (printf "people/%s.md" .) }}
-                                        {{ if .Params.image }}
-                                        <img src="{{ .Params.image | relURL }}" 
-                                             alt="{{ .Title }}" 
-                                             class="rounded-circle object-fit-cover" 
-                                             width="28" 
-                                             height="28">
-                                        {{ else if .Params.socials.github }}
-                                        <img src="https://github.com/{{ .Params.socials.github }}.png" 
-                                             alt="{{ .Title }}" 
-                                             class="rounded-circle object-fit-cover" 
-                                             width="28" 
-                                             height="28">
-                                        {{ end }}
-                                        <span class="small fw-semibold" style="color:var(--dc-text)">{{ .Title }}</span>
+                                        <a href="{{ .RelPermalink }}" class="d-inline-flex align-items-center gap-1 text-decoration-none hover-underline" style="color:var(--dc-text)">
+                                            {{ if .Params.image }}
+                                            <img src="{{ .Params.image | relURL }}" 
+                                                 alt="{{ .Title }}" 
+                                                 class="rounded-circle object-fit-cover" 
+                                                 width="28" 
+                                                 height="28">
+                                            {{ else if .Params.socials.github }}
+                                            <img src="https://github.com/{{ .Params.socials.github }}.png" 
+                                                 alt="{{ .Title }}" 
+                                                 class="rounded-circle object-fit-cover" 
+                                                 width="28" 
+                                                 height="28">
+                                            {{ end }}
+                                            <span class="small fw-semibold">{{ .Title }}</span>
+                                        </a>
                                     {{ end }}
                                 {{ end }}
                             </div>

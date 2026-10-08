@@ -44,7 +44,16 @@
                             </div>
                         
                             <!-- Profile Picture (Right Side) -->
-                            {{ if .Params.socials.github }}
+                            {{ if .Params.image }}
+                                <div class="flex-shrink-0">
+                                    <img src="{{ .Params.image | relURL }}" 
+                                         class="rounded-circle border border-secondary-subtle object-fit-cover" 
+                                         width="56" 
+                                         height="56" 
+                                         alt="{{ .Title }}" 
+                                         loading="lazy">
+                                </div>
+                            {{ else if .Params.socials.github }}
                                 <div class="flex-shrink-0">
                                     <img src="https://github.com/{{ .Params.socials.github }}.png?size=80" 
                                          class="rounded-circle border border-secondary-subtle object-fit-cover" 
