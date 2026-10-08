@@ -4,9 +4,9 @@ date: 2026-07-29T10:30:00+05:30
 draft: false
 summary: "A high-scale digital textbook and educational content repository delivering accessible learning resources to millions of students across Tamil Nadu."
 hero_image: "/images/projects/tnebooks.jpg"
-demo_url: "https://tnebooks.tn.gov.in"
-github_url: ""
-booth_number: "TP-08"
+demo_url: "https://tnebooks.github.io/"
+github_url: "https://github.com/tnebooks"
+booth_number: "TP-01"
 
 business_domains:
   - "Education"
