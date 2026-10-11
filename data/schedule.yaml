@@ -141,7 +141,7 @@ days:
       - time: "04:20 PM – 05:05 PM"
         cells:
           - hall: "Ganga"
-            session: "leading-in-the-ai-first-era"
+            session: "role-of-technology"
 
       - is_break: true
         time: "05:05 PM – 05:20 PM"
