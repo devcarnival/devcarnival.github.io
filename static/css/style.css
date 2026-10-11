@@ -1856,3 +1856,604 @@ body:not(.dc-page) .dc-nav:not(.is-stuck) {
   background: #fff5fa;
   border-color: rgba(216, 27, 156, 0.2);
 }
+
+/* --------------------------------------------------------------------------
+   18. Schedule Venue Cards & Interactive Timelines
+   -------------------------------------------------------------------------- */
+.dc-venue-grid {
+  margin-bottom: 2rem;
+}
+
+.dc-venue-card {
+  position: relative;
+  background: var(--dc-surface);
+  border: 1px solid var(--dc-line);
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  border-radius: 0;
+  color: var(--dc-text);
+  cursor: pointer;
+  transition: var(--dc-transition-fast);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.dc-venue-card:hover {
+  border-color: var(--dc-cyan);
+  background: var(--dc-surface-2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 243, 255, 0.12);
+}
+
+.dc-venue-card.active {
+  border-color: var(--dc-cyan);
+  background: linear-gradient(135deg, rgba(0, 243, 255, 0.12) 0%, var(--dc-surface-2) 100%);
+  box-shadow: var(--dc-glow-cyan);
+}
+
+.dc-venue-card__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: transparent;
+  transition: var(--dc-transition-fast);
+}
+
+.dc-venue-card.active .dc-venue-card__indicator {
+  background: var(--dc-cyan);
+  box-shadow: 0 0 10px var(--dc-cyan);
+}
+
+.dc-venue-card__icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.dc-venue-card__content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.dc-venue-card__title {
+  font-family: var(--dc-font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--dc-text);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dc-venue-card.active .dc-venue-card__title {
+  color: var(--dc-ink-cyan);
+}
+
+.dc-venue-card__sub {
+  font-size: 0.7rem;
+  color: var(--dc-text-mute);
+  letter-spacing: 0.04em;
+  margin-top: 0.15rem;
+}
+
+.dc-venue-card.active .dc-venue-card__sub {
+  color: var(--dc-cyan);
+}
+
+/* Timeline Layout */
+.dc-timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin-left: 0.5rem;
+}
+
+.dc-timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 14px;
+  bottom: 24px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--dc-cyan), var(--dc-magenta) 70%, var(--dc-amber));
+  opacity: 0.45;
+}
+
+.dc-timeline-node {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.dc-timeline-marker {
+  position: absolute;
+  left: -2rem;
+  top: 1.15rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--dc-asphalt);
+  border: 2px solid var(--dc-cyan);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+  z-index: 2;
+  transition: var(--dc-transition-fast);
+}
+
+.dc-timeline-node:hover .dc-timeline-marker {
+  background: var(--dc-cyan);
+  box-shadow: 0 0 14px var(--dc-cyan);
+  transform: scale(1.15);
+}
+
+.dc-timeline-marker--alt {
+  border-color: var(--dc-amber);
+  box-shadow: 0 0 10px rgba(255, 182, 46, 0.6);
+}
+
+.dc-timeline-node:hover .dc-timeline-marker--alt {
+  background: var(--dc-amber);
+  box-shadow: 0 0 14px var(--dc-amber);
+}
+
+.dc-timeline-card {
+  background: var(--dc-surface);
+  border: 1px solid var(--dc-line);
+  padding: 1.25rem 1.4rem;
+  transition: var(--dc-transition-fast);
+  position: relative;
+}
+
+.dc-timeline-card:hover {
+  border-color: var(--dc-cyan);
+  box-shadow: 0 4px 20px rgba(0, 243, 255, 0.08);
+  transform: translateX(4px);
+}
+
+.dc-timeline-card--workshop {
+  border-left: 3px solid var(--dc-amber);
+}
+
+.dc-timeline-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--dc-line);
+  flex-wrap: wrap;
+}
+
+.dc-timeline-time {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--dc-cyan);
+  letter-spacing: 0.02em;
+}
+
+.dc-timeline-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--dc-surface-2);
+  border: 1px solid var(--dc-line);
+  color: var(--dc-text-dim);
+}
+
+.dc-timeline-badge--hall {
+  background: rgba(0, 243, 255, 0.08);
+  border-color: rgba(0, 243, 255, 0.3);
+  color: var(--dc-ink-cyan);
+}
+
+.dc-timeline-badge--track {
+  background: rgba(255, 47, 185, 0.08);
+  border-color: rgba(255, 47, 185, 0.3);
+  color: var(--dc-ink-magenta);
+}
+
+.dc-timeline-badge--type {
+  background: rgba(255, 182, 46, 0.08);
+  border-color: rgba(255, 182, 46, 0.3);
+  color: var(--dc-ink-amber);
+}
+
+.dc-timeline-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+  color: var(--dc-text);
+}
+
+.dc-timeline-title__link {
+  color: var(--dc-text);
+  transition: var(--dc-transition-fast);
+}
+
+.dc-timeline-title__link:hover {
+  color: var(--dc-cyan);
+  text-shadow: var(--dc-text-glow-cyan);
+}
+
+/* Timeline Speakers List */
+.dc-timeline-speakers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.dc-timeline-speaker-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--dc-text);
+  transition: var(--dc-transition-fast);
+}
+
+.dc-timeline-speaker-chip:hover .dc-timeline-speaker-name {
+  color: var(--dc-cyan);
+  text-decoration: underline;
+}
+
+.dc-timeline-speaker-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--dc-line-bright);
+  flex-shrink: 0;
+}
+
+.dc-timeline-speaker-avatar--fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dc-surface-2);
+  font-size: 0.85rem;
+}
+
+.dc-timeline-speaker-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.dc-timeline-speaker-name {
+  font-family: var(--dc-font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--dc-text);
+}
+
+.dc-timeline-speaker-company {
+  font-family: var(--dc-font-mono);
+  font-size: 0.68rem;
+  color: var(--dc-text-mute);
+}
+
+/* Timeline Description & Expand/Collapse */
+.dc-timeline-desc {
+  background: rgba(0, 0, 0, 0.15);
+  border-left: 2px solid var(--dc-line-bright);
+  padding: 0.65rem 0.85rem;
+  margin-top: 0.75rem;
+}
+
+.dc-timeline-desc__text {
+  font-size: 0.84rem;
+  color: var(--dc-text-dim);
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.dc-desc-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dc-desc-toggle {
+  background: transparent;
+  border: 1px dashed var(--dc-line-bright);
+  color: var(--dc-text-mute);
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  cursor: pointer;
+  transition: var(--dc-transition-fast);
+}
+
+.dc-desc-toggle:hover {
+  color: var(--dc-cyan);
+  border-color: var(--dc-cyan);
+}
+
+.dc-desc-toggle .dc-desc-toggle__less {
+  display: none;
+}
+
+.dc-desc-toggle.is-expanded .dc-desc-toggle__more {
+  display: none;
+}
+
+.dc-desc-toggle.is-expanded .dc-desc-toggle__less {
+  display: inline;
+}
+
+.dc-timeline-more {
+  font-size: 0.74rem;
+  color: var(--dc-cyan);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--dc-transition-fast);
+}
+
+.dc-timeline-more:hover {
+  color: var(--dc-ink-cyan);
+  text-decoration: underline;
+}
+
+/* Timeline Interstitial Break */
+.dc-timeline-break {
+  position: relative;
+  background: rgba(255, 182, 46, 0.08);
+  border: 1px dashed rgba(255, 182, 46, 0.4);
+  padding: 0.65rem 1.1rem;
+  margin: 1.5rem 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--dc-amber);
+}
+
+.dc-timeline-break::before {
+  content: "";
+  position: absolute;
+  left: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--dc-amber);
+  box-shadow: 0 0 10px var(--dc-amber);
+}
+
+.dc-timeline-break__icon {
+  font-size: 1.1rem;
+}
+
+.dc-timeline-break__time {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--dc-amber);
+}
+
+.dc-timeline-break__title {
+  font-family: var(--dc-font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dc-ink-amber);
+}
+
+/* Light Theme Overrides */
+:root[data-bs-theme="light"] .dc-venue-card {
+  background: #ffffff;
+  border-color: #e0e0e8;
+}
+
+:root[data-bs-theme="light"] .dc-venue-card:hover {
+  background: #f8fafc;
+  border-color: var(--dc-cyan);
+}
+
+:root[data-bs-theme="light"] .dc-venue-card.active {
+  background: #f0fdf4;
+  border-color: #0284c7;
+}
+
+:root[data-bs-theme="light"] .dc-venue-card.active .dc-venue-card__indicator {
+  background: #0284c7;
+}
+
+:root[data-bs-theme="light"] .dc-venue-card.active .dc-venue-card__title {
+  color: #0369a1;
+}
+
+:root[data-bs-theme="light"] .dc-venue-card.active .dc-venue-card__sub {
+  color: #0284c7;
+}
+
+:root[data-bs-theme="light"] .dc-timeline-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+:root[data-bs-theme="light"] .dc-timeline-desc {
+  background: #f8fafc;
+  border-left-color: #cbd5e1;
+}
+
+:root[data-bs-theme="light"] .dc-timeline-break__title {
+  color: #b45309;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile View Corner & Edge Padding Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .hero-section {
+    padding-top: 6.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  /* Schedule Day tabs spacing */
+  .dc-days .nav-link {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.78rem;
+  }
+
+  /* Keynotes & Panels corner padding */
+  .dc-panel__body {
+    padding: 1rem 0.85rem;
+  }
+
+  /* Venue selector cards on mobile */
+  .dc-venue-card {
+    padding: 0.75rem 0.85rem;
+    gap: 0.65rem;
+  }
+
+  .dc-venue-card__icon {
+    font-size: 1.2rem;
+  }
+
+  .dc-venue-card__title {
+    font-size: 0.88rem;
+  }
+
+  .dc-venue-card__sub {
+    font-size: 0.66rem;
+  }
+
+  /* Timeline mobile gutter & corner padding */
+  .dc-venue-section {
+    margin-top: 1.5rem !important;
+  }
+
+  .dc-timelines-wrap {
+    overflow-x: hidden;
+  }
+
+  .dc-timeline {
+    padding-left: 1.75rem;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .dc-timeline::before {
+    left: 7px;
+  }
+
+  .dc-timeline-node {
+    margin-bottom: 1.25rem;
+  }
+
+  .dc-timeline-marker {
+    left: -1.75rem;
+    top: 1.1rem;
+    width: 14px;
+    height: 14px;
+  }
+
+  .dc-timeline-card {
+    padding: 0.85rem 0.95rem;
+    border-radius: 0;
+  }
+
+  .dc-timeline-card:hover {
+    transform: none; /* Avoid horizontal shift causing overflow on mobile */
+  }
+
+  .dc-timeline-card__header {
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .dc-timeline-time {
+    font-size: 0.76rem;
+  }
+
+  .dc-timeline-badge {
+    padding: 0.18rem 0.42rem;
+    font-size: 0.62rem;
+  }
+
+  .dc-timeline-title {
+    font-size: 0.96rem;
+    line-height: 1.35;
+    margin-bottom: 0.6rem;
+  }
+
+  .dc-timeline-break {
+    padding: 0.6rem 0.85rem;
+    gap: 0.55rem;
+    margin: 1.25rem 0;
+    font-size: 0.72rem;
+  }
+
+  .dc-timeline-break::before {
+    left: -1.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+  }
+
+  .dc-timeline-break__icon {
+    font-size: 1rem;
+  }
+
+  .dc-timeline-break__time {
+    font-size: 0.72rem;
+  }
+
+  .dc-timeline-break__title {
+    font-size: 0.72rem;
+  }
+
+  .dc-timeline-desc {
+    padding: 0.55rem 0.75rem;
+    margin-top: 0.6rem;
+  }
+
+  .dc-timeline-desc__text {
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+
+  .dc-timeline-speakers {
+    gap: 0.5rem 0.75rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .dc-timeline-speaker-chip {
+    gap: 0.45rem;
+  }
+
+  .dc-timeline-speaker-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .dc-timeline-speaker-avatar--fallback {
+    font-size: 0.72rem;
+  }
+
+  .dc-timeline-speaker-name {
+    font-size: 0.74rem;
+  }
+
+  .dc-timeline-speaker-company {
+    font-size: 0.65rem;
+  }
+
+  .dc-timeline-view__header {
+    padding: 0.75rem 0.85rem !important;
+  }
+}

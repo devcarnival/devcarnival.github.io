@@ -1,0 +1,163 @@
+{{/* Schedule Timeline Item Partial */}}
+{{/* Expects context dict: (dict "slot" $slot "time" $time "showHall" $showHall) */}}
+{{ $slot := .slot }}
+{{ $time := .time }}
+{{ $showHall := .showHall }}
+
+{{ if $slot }}
+  {{ if $slot.session }}
+    {{ $sPage := site.GetPage (printf "session/%s.md" $slot.session) }}
+    {{ if not $sPage }}
+      {{ $sPage = site.GetPage (printf "session/%s" $slot.session) }}
+    {{ end }}
+
+    <div class="dc-timeline-node">
+      <div class="dc-timeline-marker" aria-hidden="true"></div>
+      <div class="dc-timeline-card">
+        {{/* Header: Time, Hall badge, Track / Type badges */}}
+        <div class="dc-timeline-card__header">
+          <div class="d-flex align-items-center flex-wrap gap-2">
+            <span class="dc-timeline-time dc-mono">
+              <span aria-hidden="true">⏱️</span> {{ $slot.range | default $time }}
+            </span>
+            {{ if and $showHall $slot.hall }}
+              <span class="dc-timeline-badge dc-timeline-badge--hall dc-mono">
+                🏛️ {{ $slot.hall }}
+              </span>
+            {{ end }}
+          </div>
+          <div class="d-flex align-items-center flex-wrap gap-1">
+            {{ with $sPage }}
+              {{ with .Params.track }}
+                <span class="dc-timeline-badge dc-timeline-badge--track dc-mono">{{ . }}</span>
+              {{ end }}
+              {{ with .Params.session_type }}
+                <span class="dc-timeline-badge dc-timeline-badge--type dc-mono">{{ . }}</span>
+              {{ end }}
+            {{ end }}
+          </div>
+        </div>
+
+        {{/* Content: Title & Speakers */}}
+        <div class="dc-timeline-card__body">
+          {{ with $sPage }}
+            <h3 class="dc-timeline-title">
+              <a href="{{ .RelPermalink }}" class="text-decoration-none dc-timeline-title__link">
+                {{ .Title }}
+              </a>
+            </h3>
+
+            {{/* Speakers with avatar and link to people profile */}}
+            {{ with .Params.speakers }}
+              <div class="dc-timeline-speakers">
+                {{ range . }}
+                  {{ $spSlug := . }}
+                  {{ $pPage := site.GetPage (printf "people/%s.md" $spSlug) }}
+                  {{ if not $pPage }}
+                    {{ $pPage = site.GetPage (printf "people/%s" $spSlug) }}
+                  {{ end }}
+                  {{ with $pPage }}
+                    {{ $imgSrc := "" }}
+                    {{ with .Params.image }}
+                      {{ $imgSrc = . | relURL }}
+                    {{ else }}
+                      {{ with .Params.images }}
+                        {{ $imgSrc = (index . 0) | relURL }}
+                      {{ else }}
+                        {{ with .Params.socials.github }}
+                          {{ $imgSrc = printf "https://github.com/%s.png?size=100" . }}
+                        {{ end }}
+                      {{ end }}
+                    {{ end }}
+                    <a href="{{ .RelPermalink }}" class="dc-timeline-speaker-chip text-decoration-none">
+                      {{ if $imgSrc }}
+                        <img src="{{ $imgSrc }}" alt="{{ .Title }}" class="dc-timeline-speaker-avatar" loading="lazy">
+                      {{ else }}
+                        <span class="dc-timeline-speaker-avatar dc-timeline-speaker-avatar--fallback">{{ substr .Title 0 1 }}</span>
+                      {{ end }}
+                      <span class="dc-timeline-speaker-info">
+                        <span class="dc-timeline-speaker-name">{{ .Title }}</span>
+                        {{ with .Params.company }}
+                          <span class="dc-timeline-speaker-company">{{ . }}</span>
+                        {{ else }}
+                          {{ with .Params.designation }}
+                            <span class="dc-timeline-speaker-company">{{ . }}</span>
+                          {{ end }}
+                        {{ end }}
+                      </span>
+                    </a>
+                  {{ else }}
+                    <span class="dc-timeline-speaker-chip">
+                      <span class="dc-timeline-speaker-avatar dc-timeline-speaker-avatar--fallback">🎙️</span>
+                      <span class="dc-timeline-speaker-info">
+                        <span class="dc-timeline-speaker-name">{{ $spSlug }}</span>
+                      </span>
+                    </span>
+                  {{ end }}
+                {{ end }}
+              </div>
+            {{ end }}
+
+            {{/* Description preview with expand toggle if long */}}
+            {{ with .Description }}
+              <div class="dc-timeline-desc">
+                <p class="dc-timeline-desc__text dc-desc-clamp">
+                  {{ . }}
+                </p>
+                <div class="d-flex align-items-center justify-content-between mt-2 flex-wrap gap-2">
+                  <button type="button" class="btn btn-sm dc-desc-toggle dc-mono" onclick="toggleTimelineDesc(this)">
+                    <span class="dc-desc-toggle__more">+ Read synopsis</span>
+                    <span class="dc-desc-toggle__less">- Show less</span>
+                  </button>
+                  <a href="{{ $sPage.RelPermalink }}" class="dc-timeline-more dc-mono">
+                    View Talk Details &rarr;
+                  </a>
+                </div>
+              </div>
+            {{ else }}
+              <div class="mt-2 text-end">
+                <a href="{{ .RelPermalink }}" class="dc-timeline-more dc-mono">
+                  View Talk Details &rarr;
+                </a>
+              </div>
+            {{ end }}
+
+          {{ else }}
+            <h3 class="dc-timeline-title text-reset">{{ $slot.session }}</h3>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+  {{ else }}
+    {{/* Workshop or placeholder cell without dedicated session page */}}
+    <div class="dc-timeline-node">
+      <div class="dc-timeline-marker dc-timeline-marker--alt" aria-hidden="true"></div>
+      <div class="dc-timeline-card dc-timeline-card--workshop">
+        <div class="dc-timeline-card__header">
+          <div class="d-flex align-items-center flex-wrap gap-2">
+            <span class="dc-timeline-time dc-mono">
+              <span aria-hidden="true">⏱️</span> {{ $slot.range | default $time }}
+            </span>
+            {{ if and $showHall $slot.hall }}
+              <span class="dc-timeline-badge dc-timeline-badge--hall dc-mono">
+                🏛️ {{ $slot.hall }}
+              </span>
+            {{ end }}
+          </div>
+          {{ with $slot.meta }}
+            <span class="dc-timeline-badge dc-timeline-badge--track dc-mono">{{ . }}</span>
+          {{ end }}
+        </div>
+        <div class="dc-timeline-card__body">
+          <h3 class="dc-timeline-title text-reset">{{ $slot.title | default "Workshop" }}</h3>
+          {{ with $slot.meta }}
+            <p class="dc-timeline-desc__text mb-0" style="color:var(--dc-text-dim);">
+              {{ . }}
+            </p>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  {{ end }}
+{{ end }}

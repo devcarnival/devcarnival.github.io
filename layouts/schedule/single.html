@@ -58,7 +58,23 @@
                     </h3>
                     {{ $speakerDetails := slice }}
                     {{ range .Params.speakers }}
-                      {{ with site.GetPage (printf "people/%s.md" .) }}
+                      {{ $spPage := site.GetPage (printf "people/%s.md" .) }}
+                      {{ if not $spPage }}
+                        {{ $spPage = site.GetPage (printf "people/%s" .) }}
+                      {{ end }}
+                      {{ with $spPage }}
+                        {{ $imgSrc := "" }}
+                        {{ with .Params.image }}
+                          {{ $imgSrc = . | relURL }}
+                        {{ else }}
+                          {{ with .Params.images }}
+                            {{ $imgSrc = (index . 0) | relURL }}
+                          {{ else }}
+                            {{ with .Params.socials.github }}
+                              {{ $imgSrc = printf "https://github.com/%s.png?size=100" . }}
+                            {{ end }}
+                          {{ end }}
+                        {{ end }}
                         {{ $spText := .Title }}
                         {{ with .Params.company }}
                           {{ $spText = printf "%s · %s" $spText . }}
@@ -67,14 +83,18 @@
                             {{ $spText = printf "%s · %s" $spText . }}
                           {{ end }}
                         {{ end }}
-                        {{ $speakerDetails = $speakerDetails | append (dict "name" .Title "page" . "text" $spText) }}
+                        {{ $speakerDetails = $speakerDetails | append (dict "name" .Title "page" . "text" $spText "img" $imgSrc) }}
                       {{ end }}
                     {{ end }}
                     {{ if $speakerDetails }}
                       <div class="mt-auto pt-3 border-top" style="border-color:var(--dc-line) !important;">
                         {{ range $speakerDetails }}
-                          <div class="d-flex align-items-center gap-2 mb-1">
-                            <span style="font-size:0.85rem;" aria-hidden="true">🎙️</span>
+                          <div class="d-flex align-items-center gap-2 mb-2">
+                            {{ if .img }}
+                              <img src="{{ .img }}" alt="{{ .name }}" class="rounded-circle object-fit-cover flex-shrink-0" width="28" height="28" style="border:1px solid var(--dc-line-bright);">
+                            {{ else }}
+                              <span class="rounded-circle d-inline-flex align-items-center justify-content-center flex-shrink-0 dc-mono" style="width:28px;height:28px;background:var(--dc-surface);border:1px solid var(--dc-line-bright);font-size:0.75rem;color:var(--dc-cyan);">{{ substr .name 0 1 }}</span>
+                            {{ end }}
                             <a href="{{ .page.RelPermalink }}" class="text-decoration-none hover-underline dc-mono" style="font-size:.78rem;color:var(--dc-text);font-weight:600;">
                               {{ .text }}
                             </a>
@@ -99,80 +119,132 @@
       </div>
       {{ end }}
 
-      {{/* Grid / Table Section */}}
-      <div class="dc-sched">
-        <h2 class="dc-sched__bar">
-          <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span>{{ $day.section_title }}</span>
-        </h2>
+      {{/* Venue Selector & Timelines Section */}}
+      <div class="dc-venue-section mt-4 mb-5">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+          <div>
+            <h2 class="h5 mb-0 fw-bold" style="color:var(--dc-text);font-family:var(--dc-font-sans);">
+              {{ $day.section_title }}
+            </h2>
+            <span class="dc-mono" style="font-size:0.75rem;color:var(--dc-text-mute);">
+              Select a venue to explore its schedule timeline, or view all parallel tracks.
+            </span>
+          </div>
+        </div>
 
-        <div class="table-responsive">
-          <table class="dc-sched-table">
-            <thead>
-              <tr>
-                <th style="width:16%">Time Slot</th>
-                {{ range $day.halls }}
-                <th>{{ .name }}{{ with .sub }}<br><small>{{ . }}</small>{{ end }}</th>
-                {{ end }}
-              </tr>
-            </thead>
-            <tbody>
-              {{ range $day.rows }}
-                {{ if .is_break }}
-                <tr class="dc-sched-break">
-                  <td colspan="5">
-                    {{ .icon | safeHTML }} {{ .time }} &middot; {{ .text }}
-                  </td>
-                </tr>
-                {{ else }}
-                <tr>
-                  <td class="dc-sched-time">{{ .time }}</td>
-                  {{ range .cells }}
-                    <td {{ with .rowspan }}rowspan="{{ . }}"{{ end }}>
-                      {{ if .session }}
-                        {{ $sPage := site.GetPage (printf "session/%s.md" .session) }}
-                        {{ if not $sPage }}
-                          {{ $sPage = site.GetPage (printf "session/%s" .session) }}
-                        {{ end }}
-                        {{ with $sPage }}
-                          <a href="{{ .RelPermalink }}" class="text-decoration-none text-reset">
-                            <span class="dc-sched-slot__title">{{ .Title }}</span>
-                          </a>
-                          {{ $speakerNames := slice }}
-                          {{ range .Params.speakers }}
-                            {{ with site.GetPage (printf "people/%s.md" .) }}
-                              {{ $speakerText := .Title }}
-                              {{ with .Params.company }}
-                                {{ $speakerText = printf "%s · %s" $speakerText . }}
-                              {{ end }}
-                              {{ $speakerNames = $speakerNames | append $speakerText }}
-                            {{ end }}
-                          {{ end }}
-                          {{ if $speakerNames }}
-                            <span class="dc-sched-slot__meta">{{ delimit $speakerNames ", " }}</span>
-                          {{ end }}
-                          <span class="dc-sched-slot__range">{{ .Params.track | default "Tech Talk" }}</span>
-                        {{ else }}
-                          <span class="dc-sched-slot__title">{{ .session }}</span>
-                        {{ end }}
-                      {{ else }}
-                        {{ with .title }}
-                          <span class="dc-sched-slot__title">{{ . }}</span>
-                        {{ end }}
-                        {{ with .meta }}
-                          <span class="dc-sched-slot__meta">{{ . }}</span>
-                        {{ end }}
-                        {{ with .range }}
-                          <span class="dc-sched-slot__range">{{ . }}</span>
-                        {{ end }}
-                      {{ end }}
-                    </td>
+        {{/* Venue Selector Cards */}}
+        <div class="row g-2 g-md-3 mb-4 dc-venue-grid" id="{{ $day.id }}-venue-cards" role="tablist">
+          {{/* "All Venues" Card */}}
+          <div class="col-6 col-md-auto flex-md-fill">
+            <button type="button"
+                    class="dc-venue-card active w-100 text-start"
+                    data-day="{{ $day.id }}"
+                    data-hall="all"
+                    onclick="switchVenueTimeline('{{ $day.id }}', 'all', this)">
+              <div class="dc-venue-card__icon" aria-hidden="true">🌐</div>
+              <div class="dc-venue-card__content">
+                <span class="dc-venue-card__title">All Venues</span>
+                <span class="dc-venue-card__sub dc-mono">Full Overview</span>
+              </div>
+              <span class="dc-venue-card__indicator"></span>
+            </button>
+          </div>
+
+          {{/* Individual Hall Cards */}}
+          {{ range $hIndex, $hall := $day.halls }}
+            {{ $hallSlug := $hall.name | urlize }}
+            {{/* Count sessions/slots in this hall for this day */}}
+            {{ $hallCount := 0 }}
+            {{ range $day.rows }}
+              {{ if not .is_break }}
+                {{ range .cells }}
+                  {{ if eq .hall $hall.name }}
+                    {{ $hallCount = add $hallCount 1 }}
                   {{ end }}
-                </tr>
                 {{ end }}
               {{ end }}
-            </tbody>
-          </table>
+            {{ end }}
+
+            <div class="col-6 col-md-auto flex-md-fill">
+              <button type="button"
+                      class="dc-venue-card w-100 text-start"
+                      data-day="{{ $day.id }}"
+                      data-hall="{{ $hallSlug }}"
+                      onclick="switchVenueTimeline('{{ $day.id }}', '{{ $hallSlug }}', this)">
+                <div class="dc-venue-card__icon" aria-hidden="true">🏛️</div>
+                <div class="dc-venue-card__content">
+                  <span class="dc-venue-card__title">{{ $hall.name }}</span>
+                  <span class="dc-venue-card__sub dc-mono">
+                    {{ with $hall.sub }}{{ . }}{{ else }}{{ $hallCount }} sessions{{ end }}
+                  </span>
+                </div>
+                <span class="dc-venue-card__indicator"></span>
+              </button>
+            </div>
+          {{ end }}
+        </div>
+
+        {{/* Timelines Container */}}
+        <div class="dc-timelines-wrap">
+
+          {{/* View: All Venues Timeline */}}
+          <div class="dc-timeline-view active" id="{{ $day.id }}-view-all">
+            <div class="dc-timeline">
+              {{ range $day.rows }}
+                {{ if .is_break }}
+                  <div class="dc-timeline-break">
+                    <span class="dc-timeline-break__icon" aria-hidden="true">{{ .icon }}</span>
+                    <span class="dc-timeline-break__time dc-mono">{{ .time }}</span>
+                    <span class="dc-timeline-break__title">{{ .text }}</span>
+                  </div>
+                {{ else }}
+                  {{ $rowTime := .time }}
+                  {{ range .cells }}
+                    {{ partial "schedule-timeline-item.html" (dict "slot" . "time" $rowTime "showHall" true) }}
+                  {{ end }}
+                {{ end }}
+              {{ end }}
+            </div>
+          </div>
+
+          {{/* Views: Individual Hall Timelines */}}
+          {{ range $day.halls }}
+            {{ $hallName := .name }}
+            {{ $hallSlug := .name | urlize }}
+            <div class="dc-timeline-view" id="{{ $day.id }}-view-{{ $hallSlug }}" style="display:none;">
+              <div class="dc-timeline-view__header mb-3 p-3" style="background:var(--dc-surface-2);border:1px solid var(--dc-line);">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                  <div>
+                    <span class="dc-mono" style="color:var(--dc-cyan);font-size:0.75rem;font-weight:600;">VENUE TIMELINE</span>
+                    <h3 class="h5 mb-0 fw-bold" style="color:var(--dc-text);">🏛️ {{ $hallName }} {{ with .sub }}<small class="text-muted fw-normal">· {{ . }}</small>{{ end }}</h3>
+                  </div>
+                  <button type="button" class="btn btn-sm dc-mono" style="background:var(--dc-surface);color:var(--dc-cyan);border:1px solid var(--dc-line);" onclick="switchVenueTimeline('{{ $day.id }}', 'all')">
+                    &larr; Back to All Venues
+                  </button>
+                </div>
+              </div>
+
+              <div class="dc-timeline">
+                {{ range $day.rows }}
+                  {{ if .is_break }}
+                    <div class="dc-timeline-break">
+                      <span class="dc-timeline-break__icon" aria-hidden="true">{{ .icon }}</span>
+                      <span class="dc-timeline-break__time dc-mono">{{ .time }}</span>
+                      <span class="dc-timeline-break__title">{{ .text }}</span>
+                    </div>
+                  {{ else }}
+                    {{ $rowTime := .time }}
+                    {{ range .cells }}
+                      {{ if eq .hall $hallName }}
+                        {{ partial "schedule-timeline-item.html" (dict "slot" . "time" $rowTime "showHall" false) }}
+                      {{ end }}
+                    {{ end }}
+                  {{ end }}
+                {{ end }}
+              </div>
+            </div>
+          {{ end }}
+
         </div>
       </div>
 
@@ -180,12 +252,60 @@
     {{ end }}
   </div>
 </div>
+
 <script>
+  function switchVenueTimeline(dayId, hallSlug, clickedBtn) {
+    // 1. Update active button in the card grid
+    var grid = document.getElementById(dayId + '-venue-cards');
+    if (grid) {
+      var buttons = grid.querySelectorAll('.dc-venue-card');
+      buttons.forEach(function (btn) {
+        if (btn.getAttribute('data-hall') === hallSlug) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // 2. Hide all views for this day and show target view
+    var viewsWrap = grid ? grid.nextElementSibling : null;
+    if (viewsWrap) {
+      var views = viewsWrap.querySelectorAll('.dc-timeline-view');
+      views.forEach(function (v) {
+        v.style.display = 'none';
+        v.classList.remove('active');
+      });
+      var targetView = document.getElementById(dayId + '-view-' + hallSlug);
+      if (targetView) {
+        targetView.style.display = 'block';
+        targetView.classList.add('active');
+      }
+    }
+  }
+
+  function toggleTimelineDesc(button) {
+    var descContainer = button.closest('.dc-timeline-desc');
+    if (!descContainer) return;
+    var textEl = descContainer.querySelector('.dc-timeline-desc__text');
+    if (!textEl) return;
+
+    if (textEl.classList.contains('dc-desc-clamp')) {
+      textEl.classList.remove('dc-desc-clamp');
+      button.classList.add('is-expanded');
+    } else {
+      textEl.classList.add('dc-desc-clamp');
+      button.classList.remove('is-expanded');
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     function activateTabFromHash() {
       var hash = window.location.hash;
       if (hash) {
-        var triggerEl = document.querySelector('button[data-bs-target="' + hash + '"]');
+        // Support #day1 or #day2 or venue subhashes
+        var cleanHash = hash.split('?')[0];
+        var triggerEl = document.querySelector('button[data-bs-target="' + cleanHash + '"]');
         if (triggerEl && window.bootstrap && window.bootstrap.Tab) {
           var tab = window.bootstrap.Tab.getOrCreateInstance(triggerEl);
           tab.show();
