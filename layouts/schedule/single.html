@@ -134,23 +134,7 @@
 
         {{/* Venue Selector Cards */}}
         <div class="row g-2 g-md-3 mb-4 dc-venue-grid" id="{{ $day.id }}-venue-cards" role="tablist">
-          {{/* "All Venues" Card */}}
-          <div class="col-6 col-md-auto flex-md-fill">
-            <button type="button"
-                    class="dc-venue-card active w-100 text-start"
-                    data-day="{{ $day.id }}"
-                    data-hall="all"
-                    onclick="switchVenueTimeline('{{ $day.id }}', 'all', this)">
-              <div class="dc-venue-card__icon" aria-hidden="true">🌐</div>
-              <div class="dc-venue-card__content">
-                <span class="dc-venue-card__title">All Venues</span>
-                <span class="dc-venue-card__sub dc-mono">Full Overview</span>
-              </div>
-              <span class="dc-venue-card__indicator"></span>
-            </button>
-          </div>
-
-          {{/* Individual Hall Cards */}}
+          {{/* Individual Hall Cards first */}}
           {{ range $hIndex, $hall := $day.halls }}
             {{ $hallSlug := $hall.name | urlize }}
             {{/* Count sessions/slots in this hall for this day */}}
@@ -167,7 +151,7 @@
 
             <div class="col-6 col-md-auto flex-md-fill">
               <button type="button"
-                      class="dc-venue-card w-100 text-start"
+                      class="dc-venue-card {{ if eq $hIndex 0 }}active{{ end }} w-100 text-start"
                       data-day="{{ $day.id }}"
                       data-hall="{{ $hallSlug }}"
                       onclick="switchVenueTimeline('{{ $day.id }}', '{{ $hallSlug }}', this)">
@@ -182,36 +166,33 @@
               </button>
             </div>
           {{ end }}
+
+          {{/* "All Venues" Card at the end */}}
+          <div class="col-6 col-md-auto flex-md-fill">
+            <button type="button"
+                    class="dc-venue-card w-100 text-start"
+                    data-day="{{ $day.id }}"
+                    data-hall="all"
+                    onclick="switchVenueTimeline('{{ $day.id }}', 'all', this)">
+              <div class="dc-venue-card__icon" aria-hidden="true">🌐</div>
+              <div class="dc-venue-card__content">
+                <span class="dc-venue-card__title">All Venues</span>
+                <span class="dc-venue-card__sub dc-mono">Full Overview</span>
+              </div>
+              <span class="dc-venue-card__indicator"></span>
+            </button>
+          </div>
         </div>
 
         {{/* Timelines Container */}}
         <div class="dc-timelines-wrap">
 
-          {{/* View: All Venues Timeline */}}
-          <div class="dc-timeline-view active" id="{{ $day.id }}-view-all">
-            <div class="dc-timeline">
-              {{ range $day.rows }}
-                {{ if .is_break }}
-                  <div class="dc-timeline-break">
-                    <span class="dc-timeline-break__icon" aria-hidden="true">{{ .icon }}</span>
-                    <span class="dc-timeline-break__time dc-mono">{{ .time }}</span>
-                    <span class="dc-timeline-break__title">{{ .text }}</span>
-                  </div>
-                {{ else }}
-                  {{ $rowTime := .time }}
-                  {{ range .cells }}
-                    {{ partial "schedule-timeline-item.html" (dict "slot" . "time" $rowTime "showHall" true) }}
-                  {{ end }}
-                {{ end }}
-              {{ end }}
-            </div>
-          </div>
-
-          {{/* Views: Individual Hall Timelines */}}
-          {{ range $day.halls }}
-            {{ $hallName := .name }}
-            {{ $hallSlug := .name | urlize }}
-            <div class="dc-timeline-view" id="{{ $day.id }}-view-{{ $hallSlug }}" style="display:none;">
+          {{/* Views: Individual Hall Timelines (First hall active by default) */}}
+          {{ range $hIndex, $hall := $day.halls }}
+            {{ $hallName := $hall.name }}
+            {{ $hallSlug := $hall.name | urlize }}
+            {{ $isFirstHall := eq $hIndex 0 }}
+            <div class="dc-timeline-view {{ if $isFirstHall }}active{{ end }}" id="{{ $day.id }}-view-{{ $hallSlug }}" {{ if not $isFirstHall }}style="display:none;"{{ end }}>
               <div class="dc-timeline-view__header mb-3 p-3" style="background:var(--dc-surface-2);border:1px solid var(--dc-line);">
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
                   <div>
@@ -219,7 +200,7 @@
                     <h3 class="h5 mb-0 fw-bold" style="color:var(--dc-text);">🏛️ {{ $hallName }} {{ with .sub }}<small class="text-muted fw-normal">· {{ . }}</small>{{ end }}</h3>
                   </div>
                   <button type="button" class="btn btn-sm dc-mono" style="background:var(--dc-surface);color:var(--dc-cyan);border:1px solid var(--dc-line);" onclick="switchVenueTimeline('{{ $day.id }}', 'all')">
-                    &larr; Back to All Venues
+                    View All Venues &rarr;
                   </button>
                 </div>
               </div>
@@ -244,6 +225,40 @@
               </div>
             </div>
           {{ end }}
+
+          {{/* View: All Venues Timeline (Placed after individual hall views, hidden by default) */}}
+          <div class="dc-timeline-view" id="{{ $day.id }}-view-all" style="display:none;">
+            <div class="dc-timeline-view__header mb-3 p-3" style="background:var(--dc-surface-2);border:1px solid var(--dc-line);">
+              <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <div>
+                  <span class="dc-mono" style="color:var(--dc-cyan);font-size:0.75rem;font-weight:600;">FULL SCHEDULE OVERVIEW</span>
+                  <h3 class="h5 mb-0 fw-bold" style="color:var(--dc-text);">🌐 All Parallel Halls &amp; Tracks</h3>
+                </div>
+                {{ with index $day.halls 0 }}
+                  <button type="button" class="btn btn-sm dc-mono" style="background:var(--dc-surface);color:var(--dc-cyan);border:1px solid var(--dc-line);" onclick="switchVenueTimeline('{{ $day.id }}', '{{ .name | urlize }}')">
+                    &larr; Back to {{ .name }}
+                  </button>
+                {{ end }}
+              </div>
+            </div>
+
+            <div class="dc-timeline">
+              {{ range $day.rows }}
+                {{ if .is_break }}
+                  <div class="dc-timeline-break">
+                    <span class="dc-timeline-break__icon" aria-hidden="true">{{ .icon }}</span>
+                    <span class="dc-timeline-break__time dc-mono">{{ .time }}</span>
+                    <span class="dc-timeline-break__title">{{ .text }}</span>
+                  </div>
+                {{ else }}
+                  {{ $rowTime := .time }}
+                  {{ range .cells }}
+                    {{ partial "schedule-timeline-item.html" (dict "slot" . "time" $rowTime "showHall" true) }}
+                  {{ end }}
+                {{ end }}
+              {{ end }}
+            </div>
+          </div>
 
         </div>
       </div>
