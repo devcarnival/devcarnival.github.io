@@ -20,7 +20,7 @@
       <!-- Tags Section -->
       <div class="p-3 mb-4" style="border-radius: var(--dc-radius-sm); background: var(--dc-surface); border: 1px solid var(--dc-line);">
         <div class="row g-3">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <strong class="dc-mono d-block text-uppercase mb-2" style="font-size: .68rem; letter-spacing: .12em; color: var(--dc-text-dim);">Business Domain</strong>
             <div class="d-flex flex-wrap gap-2">
               {{ range .Params.business_domains }}
@@ -28,7 +28,7 @@
               {{ end }}
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <strong class="dc-mono d-block text-uppercase mb-2" style="font-size: .68rem; letter-spacing: .12em; color: var(--dc-text-dim);">Tech Domain</strong>
             <div class="d-flex flex-wrap gap-2">
               {{ range .Params.tech_domains }}
@@ -36,18 +36,116 @@
               {{ end }}
             </div>
           </div>
+          <div class="col-md-4">
+            <strong class="dc-mono d-block text-uppercase mb-2" style="font-size: .68rem; letter-spacing: .12em; color: var(--dc-text-dim);">Stall Details</strong>
+            <div class="d-flex flex-wrap gap-2">
+              {{ with .Params.project_type }}
+                <span class="badge" style="background: rgba(255, 182, 46, .08); color: var(--dc-amber); border: 1px solid rgba(255, 182, 46, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</span>
+              {{ end }}
+              {{ with .Params.community }}
+                <span class="badge" style="background: rgba(34, 224, 255, .08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</span>
+              {{ end }}
+              {{ with .Params.institution }}
+                <span class="badge" style="background: rgba(157, 92, 255, .08); color: var(--dc-purple); border: 1px solid rgba(157, 92, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</span>
+              {{ end }}
+              {{ with .Params.participant_type }}
+                <span class="badge" style="background: rgba(255, 47, 185, .08); color: var(--dc-magenta); border: 1px solid rgba(255, 47, 185, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</span>
+              {{ end }}
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Links & CTAs -->
-      <div class="d-flex gap-3 mb-5">
+      <div class="d-flex gap-3 mb-4">
         {{ if .Params.demo_url }}
-          <a href="{{ .Params.demo_url }}" target="_blank" class="btn btn-minimal">Live Demo / Site ↗</a>
+          <a href="{{ .Params.demo_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-minimal">Live Demo / Site ↗</a>
         {{ end }}
         {{ if .Params.github_url }}
-          <a href="{{ .Params.github_url }}" target="_blank" class="btn btn-outline-minimal">GitHub Repo ↗</a>
+          <a href="{{ .Params.github_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal">GitHub Repo ↗</a>
         {{ end }}
       </div>
+
+      <!-- Participants / Stall Presenters Section -->
+      {{ with .Params.participants }}
+        <div class="p-4 mb-5" style="border-radius: var(--dc-radius-sm); background: var(--dc-surface); border: 1px solid var(--dc-line-bright);">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h2 class="h5 fw-bold mb-0" style="color: var(--dc-text);">
+              Stall Participants &amp; Presenters
+            </h2>
+            <span class="meta-badge">{{ $.Params.booth_number | default "Tech Pavilion Stall" }}</span>
+          </div>
+
+          <div class="row g-3">
+            {{ range . }}
+              {{ $ghUser := "" }}
+              {{ with .github }}
+                {{ $cleanGh := replaceRE `^https?://(www\.)?github\.com/` "" . }}
+                {{ $ghUser = index (split $cleanGh "/") 0 }}
+              {{ end }}
+
+              <div class="col-md-6">
+                <div class="p-3 h-100 d-flex flex-column" style="background: var(--dc-surface-2); border: 1px solid var(--dc-line); border-radius: var(--dc-radius-sm);">
+                  <div class="d-flex align-items-center gap-3 mb-3">
+                    <!-- Profile Avatar: GitHub picture with fallback -->
+                    {{ if $ghUser }}
+                      <a href="{{ .github }}" target="_blank" rel="noopener noreferrer" class="flex-shrink-0" aria-label="{{ .name }} on GitHub">
+                        <img src="https://github.com/{{ $ghUser }}.png?size=160"
+                             alt="{{ .name }}"
+                             class="rounded-circle object-fit-cover"
+                             width="56"
+                             height="56"
+                             loading="lazy"
+                             style="border: 2px solid var(--dc-line-bright);"
+                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'rounded-circle d-flex align-items-center justify-content-center dc-mono fw-bold\' style=\'width:56px;height:56px;background:var(--dc-surface);border:2px solid var(--dc-cyan);color:var(--dc-cyan);font-size:1.25rem;\'>{{ substr .name 0 1 }}</div>';">
+                      </a>
+                    {{ else }}
+                      <div class="rounded-circle d-flex align-items-center justify-content-center dc-mono fw-bold flex-shrink-0"
+                           style="width: 56px; height: 56px; background: var(--dc-surface); border: 2px solid var(--dc-cyan); color: var(--dc-cyan); font-size: 1.25rem;">
+                        {{ substr .name 0 1 }}
+                      </div>
+                    {{ end }}
+
+                    <div class="min-w-0 flex-grow-1">
+                      <div class="d-flex align-items-center justify-content-between flex-wrap gap-1">
+                        <h3 class="h6 fw-bold mb-0 text-truncate" style="color: var(--dc-text);" title="{{ .name }}">{{ .name }}</h3>
+                        {{ with .role }}
+                          <span class="badge" style="background: rgba(34, 224, 255, 0.1); color: var(--dc-cyan); font-family: var(--dc-font-mono); font-size: 0.62rem;">{{ . }}</span>
+                        {{ end }}
+                      </div>
+                      <span class="dc-mono d-block mt-1" style="font-size: 0.72rem; color: var(--dc-text-mute);">Team Member</span>
+                    </div>
+                  </div>
+
+                  <!-- Contact Details -->
+                  <div class="d-flex flex-column gap-1 dc-mono mb-3" style="font-size: 0.76rem; color: var(--dc-text-dim);">
+                    {{ with .email }}
+                      <div>
+                        <span style="color: var(--dc-text-mute);">Email:</span>
+                        <a href="mailto:{{ . }}" class="text-decoration-none hover-underline text-reset">{{ . }}</a>
+                      </div>
+                    {{ end }}
+                  </div>
+
+                  <!-- Social Links: GitHub & LinkedIn -->
+                  <div class="d-flex gap-2 mt-auto pt-2 border-top" style="border-color: var(--dc-line) !important;">
+                    {{ with .github }}
+                      <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-minimal py-1 px-2" style="font-size: 0.72rem;">
+                        GitHub Profile ↗
+                      </a>
+                    {{ end }}
+                    {{ with .linkedin }}
+                      <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-minimal py-1 px-2" style="font-size: 0.72rem; color: var(--dc-cyan);">
+                        LinkedIn ↗
+                      </a>
+                    {{ end }}
+                  </div>
+                </div>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
 
       <hr class="section-divider my-5">
 
