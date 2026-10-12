@@ -1,16 +1,89 @@
 {{ define "main" }}
 <section class="hero-section text-center position-relative">
   <div class="container">
-    
-    <h1 class="display-4 fw-bold mb-3">Tech  <span class="text-gradient">Pavilion</span></h1>
-    <p class="lead text-secondary mx-auto" style="max-width: 800px;">
-        Tech Pavilion is a showcase of 100+ hand-picked projects from communities,  academia, enterprises, and open-source ecosystems.
+    <span class="dc-kicker">// devcarnival 2027 · showcase</span>
+    <h1 class="display-4 fw-bold mb-3">Tech <span class="text-gradient">Pavilion</span></h1>
+    <p class="lead dc-mono mb-4" style="color: var(--dc-cyan); font-size: 1.15rem; letter-spacing: 0.04em;">
+      Build. Showcase. Connect.
     </p>
-    <a class="dc-btn dc-btn--ghost" href="https://forms.gle/a77oHXnPpqQs6CTD8" target="_blank" rel="noopener noreferrer">Apply for Tech Pavilion here</a>
+    <p class="lead text-secondary mx-auto mb-4" style="max-width: 780px; font-size: 1.05rem;">
+      Have a project you're proud of? Bring it to DevCarnival! The <strong>Tech Pavilion</strong> is an opportunity for student innovators and developer teams to showcase their projects to the developer community, interact with industry professionals, and share their ideas with a wider audience.
+    </p>
+    <div class="d-flex justify-content-center flex-wrap gap-3">
+      <a class="dc-btn" href="https://forms.gle/a77oHXnPpqQs6CTD8" target="_blank" rel="noopener noreferrer">Apply for Tech Pavilion &rarr;</a>
+      <a class="dc-btn dc-btn--ghost" href="#showcase">Explore Projects</a>
+    </div>
   </div>
 </section>
 
+<!-- Tech Pavilion Details & Expectations -->
 <section class="container mb-5">
+  <div class="row g-4 mb-5">
+    <!-- What You Can Expect Cards -->
+    <div class="col-md-4">
+      <div class="feature-card h-100 p-4" style="background: var(--dc-surface); border: 1px solid var(--dc-line);">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span style="font-size: 1.5rem;" aria-hidden="true">👥</span>
+          <h2 class="h5 fw-bold mb-0" style="color: var(--dc-text);">Team Up</h2>
+        </div>
+        <p class="mb-0" style="color: var(--dc-text-dim); font-size: 0.95rem; line-height: 1.6;">
+          Participate as a team of at least <strong>2 members</strong> and collaborate to bring your ideas to life.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="feature-card h-100 p-4" style="background: var(--dc-surface); border: 1px solid var(--dc-line);">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span style="font-size: 1.5rem;" aria-hidden="true">💡</span>
+          <h2 class="h5 fw-bold mb-0" style="color: var(--dc-text);">Professional Mentorship</h2>
+        </div>
+        <p class="mb-0" style="color: var(--dc-text-dim); font-size: 0.95rem; line-height: 1.6;">
+          Get guidance and mentorship from industry professionals to help refine your ideas and strengthen your projects.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="feature-card h-100 p-4" style="background: var(--dc-surface); border: 1px solid var(--dc-line);">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span style="font-size: 1.5rem;" aria-hidden="true">🎪</span>
+          <h2 class="h5 fw-bold mb-0" style="color: var(--dc-text);">Showcase for 2 Days</h2>
+        </div>
+        <p class="mb-0" style="color: var(--dc-text-dim); font-size: 0.95rem; line-height: 1.6;">
+          Get your own stall at DevCarnival to demonstrate your project, interact with attendees, share your work, and receive feedback throughout the <strong>two-day event</strong>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Who Can Participate & Bring Your Ideas Banner -->
+  <div class="p-4 p-md-5 mb-5" style="border: 1px solid var(--dc-line-bright); background: linear-gradient(135deg, rgba(34, 224, 255, 0.06) 0%, rgba(29, 29, 35, 0.95) 50%, rgba(255, 47, 185, 0.06) 100%);">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-8">
+        <span class="dc-mono d-block text-uppercase mb-2" style="font-size: 0.72rem; letter-spacing: 0.12em; color: var(--dc-cyan);">// Who Can Participate?</span>
+        <h3 class="h4 fw-bold mb-3" style="color: var(--dc-text);">Bring Your Ideas to the Pavilion</h3>
+        <p style="color: var(--dc-text-dim); font-size: 0.98rem; line-height: 1.65;" class="mb-3">
+          Teams with a minimum of <strong>two members</strong> who have a project to demonstrate and a passion for technology and innovation. Turn your work into an experience others can explore. Connect with developers, learn from professionals, and let the community see what you've built.
+        </p>
+        <span class="fw-bold dc-mono" style="color: var(--dc-ink-magenta); font-size: 0.92rem;">
+          Have something to showcase? Join the Tech Pavilion at DevCarnival 2027!
+        </span>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a class="dc-btn dc-btn--primary" href="https://forms.gle/a77oHXnPpqQs6CTD8" target="_blank" rel="noopener noreferrer">
+          Apply Now &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="showcase" class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+    <div>
+      <h2 class="h4 fw-bold mb-1" style="color: var(--dc-text);">Featured Pavilion Projects</h2>
+      <span class="dc-mono" style="font-size: 0.75rem; color: var(--dc-text-mute);">Explore accepted projects and prototypes</span>
+    </div>
+  </div>
   <!-- Filter Bar -->
   <div class="p-4 mb-5" style="border-radius: var(--dc-radius-md); background: var(--dc-surface); border: 1px solid var(--dc-line);">
     <div class="row g-3 align-items-center">
