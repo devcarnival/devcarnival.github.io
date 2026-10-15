@@ -218,7 +218,7 @@ days:
           - hall: "Cambridge"
             title: "Talk 2C"
           - hall: "Ganga"
-            title: "Talk 2D"
+            session: "algo-thinking-in-ai-world"
           - hall: "Warren buffet"
             title: "Talk 2E"
 

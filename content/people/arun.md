@@ -1,6 +1,8 @@
 ---
-title: "Arun Prakash"
-designation: "Founder & CEO, GUVI"
+title: "Arun Prakash M"
+designation: "Founder"
+company: "GUVI"
+image: "images/people/arun-prakash.webp"
 weight: 3
 socials:
   linkedin: "https://www.linkedin.com/in/arunprakashm/"
