@@ -1,5 +1,5 @@
 header:
-  kicker: "// two days · four halls"
+  kicker: "// two days · five halls"
   title: "Schedule"
   lead: "Keynotes, Hands-on Workshops & Tech Talks"
   badge: "9:00 AM – 5:20 PM"
@@ -28,6 +28,7 @@ days:
       - name: "Harvard"
       - name: "Cambridge"
       - name: "Ganga"
+      - name: "Warren buffet"
     rows:
       - time: "10:00 AM – 10:45 AM"
         cells:
@@ -45,6 +46,11 @@ days:
             session: "ai-process-architecture"
           - hall: "Ganga"
             session: "agentic-patterns-with-spring-ai"
+          - hall: "Warren buffet"
+            title: "Workshop 1E"
+            meta: "Hands-on Workshop"
+            range: "10:00 AM – 11:30 AM"
+            rowspan: 2
 
       - time: "10:45 AM – 11:30 AM"
         cells:
@@ -73,7 +79,12 @@ days:
           - hall: "Cambridge"
             session: "model-context-protocol-in-enterprise-ai"
           - hall: "Ganga"
-            session: "enhancing-ai-robustness-through-security-and-privacy-by-design"
+            title: "Talk 3D"
+          - hall: "Warren buffet"
+            title: "Workshop 2E"
+            meta: "Hands-on Workshop"
+            range: "11:40 AM – 01:10 PM"
+            rowspan: 2
 
       - time: "12:25 PM – 01:10 PM"
         cells:
@@ -82,7 +93,7 @@ days:
             meta: "Data Engineering"
             range: "12:25 PM – 01:10 PM"
           - hall: "Ganga"
-            session: "live-data-poisoning-and-backdoor-attacks"
+            title: "Talk 4D"
 
       - is_break: true
         time: "01:10 PM – 01:55 PM"
@@ -107,6 +118,11 @@ days:
             rowspan: 2
           - hall: "Ganga"
             session: "from-dashboards-to-dialogue"
+          - hall: "Warren buffet"
+            title: "Workshop 3E"
+            meta: "Hands-on Workshop"
+            range: "01:55 PM – 03:25 PM"
+            rowspan: 2
 
       - time: "02:40 PM – 03:25 PM"
         cells:
@@ -136,6 +152,11 @@ days:
             rowspan: 2
           - hall: "Ganga"
             session: "enterprise-explainable-ai"
+          - hall: "Warren buffet"
+            title: "Workshop 4E"
+            meta: "Hands-on Workshop"
+            range: "03:35 PM – 05:05 PM"
+            rowspan: 2
 
       - time: "04:20 PM – 05:05 PM"
         cells:
@@ -168,6 +189,7 @@ days:
       - name: "Cambridge"
       - name: "Ganga"
         sub: "(Academia Track)"
+      - name: "Warren buffet"
     rows:
       - time: "10:00 AM – 10:45 AM"
         cells:
@@ -179,6 +201,8 @@ days:
             title: "Talk 1C"
           - hall: "Ganga"
             session: "the-ai-native-developer"
+          - hall: "Warren buffet"
+            title: "Talk 1E"
 
       - is_break: true
         time: "10:45 AM – 10:55 AM"
@@ -195,17 +219,21 @@ days:
             title: "Talk 2C"
           - hall: "Ganga"
             title: "Talk 2D"
+          - hall: "Warren buffet"
+            title: "Talk 2E"
 
       - time: "11:40 AM – 12:25 PM"
         cells:
           - hall: "Nalantha"
-            title: "Talk 3A"
+            session: "enhancing-ai-robustness-through-security-and-privacy-by-design"
           - hall: "Harvard"
             title: "Talk 3B"
           - hall: "Cambridge"
             title: "Talk 3C"
           - hall: "Ganga"
             title: "Talk 3D"
+          - hall: "Warren buffet"
+            title: "Talk 3E"
 
       - is_break: true
         time: "12:25 PM – 01:10 PM"
@@ -215,13 +243,15 @@ days:
       - time: "01:10 PM – 01:55 PM"
         cells:
           - hall: "Nalantha"
-            title: "Talk 4A"
+            session: "live-data-poisoning-and-backdoor-attacks"
           - hall: "Harvard"
             title: "Talk 4B"
           - hall: "Cambridge"
             title: "Talk 4C"
           - hall: "Ganga"
             title: "Talk 4D"
+          - hall: "Warren buffet"
+            title: "Talk 4E"
 
       - time: "01:55 PM – 02:40 PM"
         cells:
@@ -233,6 +263,8 @@ days:
             title: "Talk 5C"
           - hall: "Ganga"
             title: "Talk 5D"
+          - hall: "Warren buffet"
+            title: "Talk 5E"
 
       - time: "02:40 PM – 03:25 PM"
         cells:
@@ -244,6 +276,8 @@ days:
             title: "Talk 6C"
           - hall: "Ganga"
             title: "Talk 6D"
+          - hall: "Warren buffet"
+            title: "Talk 6E"
 
       - is_break: true
         time: "03:25 PM – 03:35 PM"
@@ -260,6 +294,8 @@ days:
             title: "Talk 7C"
           - hall: "Ganga"
             title: "Talk 7D"
+          - hall: "Warren buffet"
+            title: "Talk 7E"
 
       - is_break: true
         time: "04:20 PM – 05:20 PM"
