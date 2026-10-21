@@ -1,0 +1,157 @@
+{{/* Structured Data (Schema.org / JSON-LD) for Search Engines */}}
+{{ if .IsHome }}
+{{ $website := dict
+  "@context" "https://schema.org"
+  "@type" "WebSite"
+  "name" .Site.Title
+  "url" .Site.BaseURL
+  "description" .Site.Params.description
+}}
+<script type="application/ld+json">
+{{ $website | jsonify | safeJS }}
+</script>
+
+{{ $sameAs := slice }}
+{{ with .Site.Params.linkedin }}{{ $sameAs = $sameAs | append . }}{{ end }}
+{{ with .Site.Params.github }}{{ $sameAs = $sameAs | append . }}{{ end }}
+
+{{ $org := dict
+  "@context" "https://schema.org"
+  "@type" "Organization"
+  "name" .Site.Title
+  "url" .Site.BaseURL
+  "logo" ("img/logo.svg" | absURL)
+  "sameAs" $sameAs
+}}
+{{ with .Site.Params.email }}
+  {{ $contact := dict "@type" "ContactPoint" "email" . "contactType" "customer service" }}
+  {{ $org = merge $org (dict "contactPoint" $contact) }}
+{{ end }}
+<script type="application/ld+json">
+{{ $org | jsonify | safeJS }}
+</script>
+
+{{ $event := dict
+  "@context" "https://schema.org"
+  "@type" "Event"
+  "name" "DevCarnival 2027 — Chennai Global Tech Festival"
+  "description" (.Description | default .Site.Params.description)
+  "startDate" "2027-01-08T09:00:00+05:30"
+  "endDate" "2027-01-09T18:00:00+05:30"
+  "eventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode"
+  "eventStatus" "https://schema.org/EventScheduled"
+  "location" (dict
+    "@type" "Place"
+    "name" "Infosys, Mahindra World City"
+    "address" (dict
+      "@type" "PostalAddress"
+      "streetAddress" "Mahindra World City, Paranur"
+      "addressLocality" "Chennai"
+      "addressRegion" "Tamil Nadu"
+      "postalCode" "603004"
+      "addressCountry" "IN"
+    )
+  )
+  "image" (slice ("img/social-card.jpg" | absURL))
+  "organizer" (dict
+    "@type" "Organization"
+    "name" .Site.Title
+    "url" .Site.BaseURL
+  )
+  "offers" (dict
+    "@type" "AggregateOffer"
+    "url" (.Site.Params.konfhub.event_url | default "https://konfhub.com/dev-carnival")
+    "priceCurrency" "INR"
+    "lowPrice" "500"
+    "highPrice" "1000"
+    "offerCount" "3"
+    "availability" "https://schema.org/InStock"
+    "validFrom" "2024-01-01T00:00:00+05:30"
+  )
+}}
+<script type="application/ld+json">
+{{ $event | jsonify | safeJS }}
+</script>
+{{ end }}
+
+{{/* Per-session / talk Event Schema */}}
+{{ if and (eq .Section "session") .IsPage }}
+{{ $performers := slice }}
+{{ range .Params.speakers }}
+  {{ with $.Site.GetPage (printf "people/%s.md" .) }}
+    {{ $p := dict "@type" "Person" "name" .Title "url" .Permalink }}
+    {{ with .Params.designation }}{{ $p = merge $p (dict "jobTitle" .) }}{{ end }}
+    {{ $performers = $performers | append $p }}
+  {{ else }}
+    {{ $performers = $performers | append (dict "@type" "Person" "name" .) }}
+  {{ end }}
+{{ end }}
+
+{{ $eduEvent := dict
+  "@context" "https://schema.org"
+  "@type" "EducationEvent"
+  "name" .Title
+  "description" (.Summary | default .Description | default .Title | plainify)
+  "url" .Permalink
+  "superEvent" (dict
+    "@type" "Event"
+    "name" "DevCarnival 2027"
+    "url" .Site.BaseURL
+  )
+  "location" (dict
+    "@type" "Place"
+    "name" "Infosys, Mahindra World City, Chennai"
+  )
+}}
+{{ if gt (len $performers) 0 }}
+  {{ $eduEvent = merge $eduEvent (dict "performer" $performers) }}
+{{ end }}
+<script type="application/ld+json">
+{{ $eduEvent | jsonify | safeJS }}
+</script>
+{{ end }}
+
+{{/* Per-person Profile Schema */}}
+{{ if and (eq .Section "people") .IsPage }}
+{{ $socials := slice }}
+{{ with .Params.socials.linkedin }}{{ $socials = $socials | append . }}{{ end }}
+{{ with .Params.socials.github }}
+  {{ $handle := trim (replaceRE `^https?://(www\.)?github\.com/` "" .) "/" }}
+  {{ $socials = $socials | append (printf "https://github.com/%s" $handle) }}
+{{ end }}
+
+{{ $personImage := "" }}
+{{ if .Params.image }}
+  {{ $personImage = .Params.image | absURL }}
+{{ else if .Params.socials.github }}
+  {{ $personImage = printf "https://github.com/%s.png?size=400" .Params.socials.github }}
+{{ end }}
+
+{{ $person := dict
+  "@context" "https://schema.org"
+  "@type" "Person"
+  "name" .Title
+  "url" .Permalink
+}}
+{{ with .Params.designation }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end }}
+{{ with $personImage }}{{ $person = merge $person (dict "image" .) }}{{ end }}
+{{ if gt (len $socials) 0 }}{{ $person = merge $person (dict "sameAs" $socials) }}{{ end }}
+<script type="application/ld+json">
+{{ $person | jsonify | safeJS }}
+</script>
+{{ end }}
+
+{{/* Breadcrumbs Schema for non-home pages */}}
+{{ if not .IsHome }}
+{{ $breadcrumb := dict
+  "@context" "https://schema.org"
+  "@type" "BreadcrumbList"
+  "itemListElement" (slice
+    (dict "@type" "ListItem" "position" 1 "name" "Home" "item" .Site.BaseURL)
+    (dict "@type" "ListItem" "position" 2 "name" .Title "item" .Permalink)
+  )
+}}
+<script type="application/ld+json">
+{{ $breadcrumb | jsonify | safeJS }}
+</script>
+{{ end }}

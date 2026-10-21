@@ -1,6 +1,11 @@
 ---
 title: "Tech Pavilion at DevCarnival 2027"
-description: "Build. Showcase. Connect. Have a project you're proud of? Bring it to the Tech Pavilion at DevCarnival 2027!"
+description: "Showcase your developer tools, open-source projects, and innovations at the DevCarnival Tech Pavilion in Chennai. Connect with mentors and industry leaders."
+keywords:
+  - "DevCarnival Tech Pavilion"
+  - "Tech Expo Chennai"
+  - "Student Innovator Showcase"
+  - "Developer Projects Expo"
 ---
 
 # Tech Pavilion at DevCarnival 2027

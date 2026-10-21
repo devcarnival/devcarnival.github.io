@@ -21,9 +21,14 @@
     <meta name="theme-color" content="#121214">
 
 {{/* 1. Dynamic Variables Setup */}}
-{{ $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) }}
-{{ $defaultDesc := "Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia for purpose-oriented engineering." }}
-{{ $description := .Description | default .Summary | default .Site.Params.description | default $defaultDesc | plainify | truncate 160 }}
+{{ $siteName := .Site.Title }}
+{{ $defaultDesc := "DevCarnival is a two-day global developer tech festival in Chennai uniting industry, developers, students, and academia for talks, workshops, and hands-on Tech Pavilion." }}
+{{ $title := cond .IsHome (printf "%s — Chennai Tech Festival 2027 | Technology. People. Purpose." $siteName) (printf "%s | %s" .Title $siteName) }}
+{{ $rawDesc := .Description | default .Summary | default .Site.Params.description | default $defaultDesc | plainify }}
+{{ $description := $rawDesc }}
+{{ if gt (len $rawDesc) 160 }}
+  {{ $description = $rawDesc | truncate 155 }}
+{{ end }}
     {{/* 2. Dynamic Image Handling for Social Sharing */}}
     {{ $ogImage := "img/social-card.jpg" | absURL }}
     {{ if .Params.hero_image }}
@@ -35,11 +40,21 @@
     <!-- Page Title -->
     <title>{{ $title }}</title>
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ .Permalink }}">
+
     <!-- Primary Meta Tags -->
     <meta name="title" content="{{ $title }}">
     <meta name="description" content="{{ $description }}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="DevCarnival">
+    {{ with .Params.keywords | default .Site.Params.keywords }}
+    <meta name="keywords" content="{{ delimit . ", " }}">
+    {{ end }}
 
-    <!-- Open Graph / Facebook & WhatsApp -->
+    <!-- Open Graph / Facebook & LinkedIn -->
+    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:locale" content="en_US">
     <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
     <meta property="og:title" content="{{ $title }}">
@@ -50,11 +65,14 @@
     <meta property="og:image:height" content="630">
 
     <!-- Twitter Preview -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ .Permalink }}">
-    <meta property="twitter:title" content="{{ $title }}">
-    <meta property="twitter:description" content="{{ $description }}">
-    <meta property="twitter:image" content="{{ $ogImage }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ .Permalink }}">
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $description }}">
+    <meta name="twitter:image" content="{{ $ogImage }}">
+
+    <!-- Structured Data (JSON-LD) -->
+    {{ partial "schema.html" . }}
 
     <!-- Favicon Links -->
     <link rel="icon" type="image/x-icon" href="{{ `favicon.ico` | relURL }}">

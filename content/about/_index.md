@@ -1,4 +1,8 @@
 ---
-title: "About Us"
-description: "DevCarnival is a two-day developer-focused technology festival in Chennai uniting developers, technology communities, students, researchers, and industry professionals for purpose-oriented engineering."
+title: "About DevCarnival — Technology. People. Purpose."
+description: "Learn about DevCarnival, Chennai's premier developer festival uniting tech communities, academia, and industry for purpose-driven engineering."
+keywords:
+  - "About DevCarnival"
+  - "Chennai Tech Festival Mission"
+  - "Purpose-Oriented Engineering"
 ---

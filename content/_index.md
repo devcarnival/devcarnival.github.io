@@ -1,6 +1,15 @@
 ---
 title: "DevCarnival | Technology. People. Purpose."
-description: "DevCarnival is a two-day developer-focused technology conference in Chennai bringing together developers, tech communities, students, researchers, and industry professionals for parallel tracks, talks, workshops, and hands-on Tech Pavilion. Jan 8–9, 2027."
+description: "DevCarnival is a two-day developer-focused technology festival in Chennai (Jan 8–9, 2027) uniting developers, tech communities, students, researchers, and industry for parallel tracks, talks, workshops, and Tech Pavilion."
+keywords:
+  - "DevCarnival"
+  - "DevCarnival Chennai"
+  - "Tech Conference Chennai"
+  - "Chennai Developer Festival 2027"
+  - "Infosys Mahindra City"
+  - "Tech Talks Chennai"
+  - "AI Conference India"
+  - "Tech Pavilion"
 
 # --- pinned hero: narrative beats over the frame sequence -------------------
 # start/end are fractions of scroll progress through the 350vh hero track.

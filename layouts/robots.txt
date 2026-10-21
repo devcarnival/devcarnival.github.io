@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow non-public or preview assets if any
+Disallow: /tools/
+
+# Sitemap location
+Sitemap: {{ "sitemap.xml" | absURL }}

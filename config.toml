@@ -1,9 +1,28 @@
 title = "DevCarnival"
-baseURL = "https://example.com/"
+baseURL = "https://devcarnival.github.io/"
 languageCode = "en-us"
+enableRobotsTXT = true
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.8
+  filename = "sitemap.xml"
 
 [params]
-  description = "Inspired by the spirit of a true carnival, DevCarnival is a two-day global tech festival in Chennai uniting industry, developers, and academia for purpose-oriented engineering."
+  description = "DevCarnival is a two-day global developer tech festival in Chennai (Jan 8–9, 2027) uniting industry, developers, students, and academia for tech talks, workshops, and hands-on Tech Pavilion."
+  keywords = [
+    "DevCarnival",
+    "Dev Carnival",
+    "DevCarnival Chennai",
+    "Chennai Tech Conference",
+    "Tech Festival Chennai",
+    "Infosys Mahindra City",
+    "Developer Conference India",
+    "AI Conference Chennai",
+    "Cloud Native Chennai",
+    "Tech Pavilion",
+    "Software Engineering Festival"
+  ]
   github = "https://github.com/devcarnival"
   linkedin = "https://www.linkedin.com/company/dev-carnival"
   email = "contact@devcarnival.com"
