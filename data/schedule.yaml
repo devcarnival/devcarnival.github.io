@@ -28,15 +28,13 @@ days:
       - name: "Harvard"
       - name: "Cambridge"
       - name: "Ganga"
+        sub: "(Academia Track)"
       - name: "Warren buffet"
     rows:
       - time: "10:00 AM – 10:45 AM"
         cells:
           - hall: "Nalantha"
-            title: "Workshop 1A"
-            meta: "Cloud & DevOps"
-            range: "10:00 AM – 11:30 AM"
-            rowspan: 2
+            session: "agentic-patterns-with-spring-ai"
           - hall: "Harvard"
             title: "Workshop 1B"
             meta: "Full Stack Development"
@@ -45,7 +43,7 @@ days:
           - hall: "Cambridge"
             session: "ai-process-architecture"
           - hall: "Ganga"
-            session: "agentic-patterns-with-spring-ai"
+            session: "the-ai-native-developer"
           - hall: "Warren buffet"
             title: "Workshop 1E"
             meta: "Hands-on Workshop"
@@ -54,10 +52,12 @@ days:
 
       - time: "10:45 AM – 11:30 AM"
         cells:
+          - hall: "Nalantha"
+            session: "software-development-in-the-age-of-ai"
           - hall: "Cambridge"
             session: "building-the-ai-native-workforce"
           - hall: "Ganga"
-            session: "software-development-in-the-age-of-ai"
+            session: "algo-thinking-in-ai-world"
 
       - is_break: true
         time: "11:30 AM – 11:40 AM"
@@ -67,10 +67,7 @@ days:
       - time: "11:40 AM – 12:25 PM"
         cells:
           - hall: "Nalantha"
-            title: "Workshop 2A"
-            meta: "Docker & Kubernetes"
-            range: "11:40 AM – 01:10 PM"
-            rowspan: 2
+            session: "from-dashboards-to-dialogue"
           - hall: "Harvard"
             title: "Workshop 2B"
             meta: "System Design"
@@ -79,7 +76,7 @@ days:
           - hall: "Cambridge"
             session: "model-context-protocol-in-enterprise-ai"
           - hall: "Ganga"
-            title: "Talk 3D"
+            session: "from-prompt-to-patch-how-ai-coding-agents-work"
           - hall: "Warren buffet"
             title: "Workshop 2E"
             meta: "Hands-on Workshop"
@@ -92,8 +89,6 @@ days:
             title: "Workshop 2C"
             meta: "Data Engineering"
             range: "12:25 PM – 01:10 PM"
-          - hall: "Ganga"
-            title: "Talk 4D"
 
       - is_break: true
         time: "01:10 PM – 01:55 PM"
@@ -103,10 +98,7 @@ days:
       - time: "01:55 PM – 02:40 PM"
         cells:
           - hall: "Nalantha"
-            title: "Workshop 3A"
-            meta: "Cloud Native Development"
-            range: "01:55 PM – 03:25 PM"
-            rowspan: 2
+            session: "production-ready-model-optimization"
           - hall: "Harvard"
             title: "Workshop 3B"
             meta: "Modern Java"
@@ -117,7 +109,7 @@ days:
             range: "01:55 PM – 03:25 PM · Hands-on Workshop"
             rowspan: 2
           - hall: "Ganga"
-            session: "from-dashboards-to-dialogue"
+            session: "kubernetes-meets-ai-agents"
           - hall: "Warren buffet"
             title: "Workshop 3E"
             meta: "Hands-on Workshop"
@@ -126,8 +118,10 @@ days:
 
       - time: "02:40 PM – 03:25 PM"
         cells:
+          - hall: "Nalantha"
+            session: "enterprise-explainable-ai"
           - hall: "Ganga"
-            session: "production-ready-model-optimization"
+            session: "sound-you-hear-and-the-engineering-behind-it"
 
       - is_break: true
         time: "03:25 PM – 03:35 PM"
@@ -137,10 +131,7 @@ days:
       - time: "03:35 PM – 04:20 PM"
         cells:
           - hall: "Nalantha"
-            title: "Workshop 4A"
-            meta: "DevOps at Scale"
-            range: "03:35 PM – 05:05 PM"
-            rowspan: 2
+            session: "role-of-technology"
           - hall: "Harvard"
             title: "Workshop 4B"
             meta: "Architecture Patterns"
@@ -151,7 +142,7 @@ days:
             range: "03:35 PM – 05:05 PM · Hands-on Workshop"
             rowspan: 2
           - hall: "Ganga"
-            session: "enterprise-explainable-ai"
+            title: "Talk 6D"
           - hall: "Warren buffet"
             title: "Workshop 4E"
             meta: "Hands-on Workshop"
@@ -159,9 +150,7 @@ days:
             rowspan: 2
 
       - time: "04:20 PM – 05:05 PM"
-        cells:
-          - hall: "Ganga"
-            session: "role-of-technology"
+        cells: []
 
       - is_break: true
         time: "05:05 PM – 05:20 PM"
@@ -185,7 +174,6 @@ days:
     section_title: "Parallel Tech Talks"
     halls:
       - name: "Nalantha"
-        sub: "(Academia Track)"
       - name: "Harvard"
       - name: "Cambridge"
       - name: "Ganga"
@@ -195,7 +183,7 @@ days:
       - time: "10:00 AM – 10:45 AM"
         cells:
           - hall: "Nalantha"
-            session: "the-ai-native-developer"
+            title: "Talk 1A"
           - hall: "Harvard"
             title: "Talk 1B"
           - hall: "Cambridge"
@@ -213,7 +201,7 @@ days:
       - time: "10:55 AM – 11:40 AM"
         cells:
           - hall: "Nalantha"
-            session: "algo-thinking-in-ai-world"
+            title: "Talk 2A"
           - hall: "Harvard"
             title: "Talk 2B"
           - hall: "Cambridge"
