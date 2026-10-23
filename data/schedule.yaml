@@ -36,9 +36,8 @@ days:
           - hall: "Nalantha"
             session: "agentic-patterns-with-spring-ai"
           - hall: "Harvard"
-            title: "Workshop 1B"
-            meta: "Full Stack Development"
-            range: "10:00 AM – 11:30 AM"
+            session: "open-source-eda-with-esim"
+            range: "10:00 AM – 11:30 AM · Hands-on Workshop"
             rowspan: 2
           - hall: "Cambridge"
             session: "ai-process-architecture"
@@ -69,10 +68,7 @@ days:
           - hall: "Nalantha"
             session: "from-dashboards-to-dialogue"
           - hall: "Harvard"
-            title: "Workshop 2B"
-            meta: "System Design"
-            range: "11:40 AM – 01:10 PM"
-            rowspan: 2
+            session: "leveraging-enterprise-context-brain"
           - hall: "Cambridge"
             session: "model-context-protocol-in-enterprise-ai"
           - hall: "Ganga"
@@ -85,6 +81,8 @@ days:
 
       - time: "12:25 PM – 01:10 PM"
         cells:
+          - hall: "Harvard"
+            session: "the-agent-said-it-succeeded-database-says-otherwise"
           - hall: "Cambridge"
             title: "Workshop 2C"
             meta: "Data Engineering"
@@ -142,7 +140,7 @@ days:
             range: "03:35 PM – 05:05 PM · Hands-on Workshop"
             rowspan: 2
           - hall: "Ganga"
-            title: "Talk 6D"
+            session: "java-apis-to-ai-agents"
           - hall: "Warren buffet"
             title: "Workshop 4E"
             meta: "Hands-on Workshop"
