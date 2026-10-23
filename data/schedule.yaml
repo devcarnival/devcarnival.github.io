@@ -185,22 +185,23 @@ days:
     section_title: "Parallel Tech Talks"
     halls:
       - name: "Nalantha"
+        sub: "(Academia Track)"
       - name: "Harvard"
       - name: "Cambridge"
       - name: "Ganga"
-        sub: "(Academia Track)"
+        sub: "(Cyber Security Track)"
       - name: "Warren buffet"
     rows:
       - time: "10:00 AM – 10:45 AM"
         cells:
           - hall: "Nalantha"
-            session: "enterprise-quantum-safe-computing"
+            session: "the-ai-native-developer"
           - hall: "Harvard"
             title: "Talk 1B"
           - hall: "Cambridge"
             title: "Talk 1C"
           - hall: "Ganga"
-            session: "the-ai-native-developer"
+            session: "enterprise-quantum-safe-computing"
           - hall: "Warren buffet"
             title: "Talk 1E"
 
@@ -212,48 +213,58 @@ days:
       - time: "10:55 AM – 11:40 AM"
         cells:
           - hall: "Nalantha"
-            session: "zero-trust-for-application-security-sdlc"
+            session: "algo-thinking-in-ai-world"
           - hall: "Harvard"
             title: "Talk 2B"
           - hall: "Cambridge"
             title: "Talk 2C"
           - hall: "Ganga"
-            session: "algo-thinking-in-ai-world"
+            session: "zero-trust-for-application-security-sdlc"
           - hall: "Warren buffet"
             title: "Talk 2E"
 
-      - time: "11:40 AM – 12:25 PM"
+      - is_break: true
+        time: "11:40 AM – 11:50 AM"
+        icon: "🔄"
+        text: "Buffer & Speaker Transition (10 Mins)"
+
+      - time: "11:50 AM – 12:35 PM"
         cells:
           - hall: "Nalantha"
-            session: "enhancing-ai-robustness-through-security-and-privacy-by-design"
+            title: "Talk 3A"
           - hall: "Harvard"
             title: "Talk 3B"
           - hall: "Cambridge"
             title: "Talk 3C"
           - hall: "Ganga"
-            title: "Talk 3D"
+            session: "enhancing-ai-robustness-through-security-and-privacy-by-design"
           - hall: "Warren buffet"
             title: "Talk 3E"
 
       - is_break: true
-        time: "12:25 PM – 01:10 PM"
+        time: "12:35 PM – 01:25 PM"
         icon: "🍃"
-        text: "Lunch Break (45 Mins)"
+        text: "Lunch Break (50 Mins)"
 
-      - time: "01:10 PM – 01:55 PM"
+      - time: "01:25 PM – 02:10 PM"
         cells:
           - hall: "Nalantha"
-            session: "live-data-poisoning-and-backdoor-attacks"
+            title: "Talk 4A"
           - hall: "Harvard"
             title: "Talk 4B"
           - hall: "Cambridge"
             title: "Talk 4C"
           - hall: "Ganga"
-            title: "Talk 4D"
+            session: "live-data-poisoning-and-backdoor-attacks"
           - hall: "Warren buffet"
             title: "Talk 4E"
 
-      - time: "01:55 PM – 02:40 PM"
+      - is_break: true
+        time: "02:10 PM – 02:20 PM"
+        icon: "🔄"
+        text: "Buffer & Speaker Transition (10 Mins)"
+
+      - time: "02:20 PM – 03:05 PM"
         cells:
           - hall: "Nalantha"
             title: "Talk 5A"
@@ -266,7 +277,12 @@ days:
           - hall: "Warren buffet"
             title: "Talk 5E"
 
-      - time: "02:40 PM – 03:25 PM"
+      - is_break: true
+        time: "03:05 PM – 03:25 PM"
+        icon: "☕"
+        text: "Evening Tea Break (20 Mins)"
+
+      - time: "03:25 PM – 04:10 PM"
         cells:
           - hall: "Nalantha"
             title: "Talk 6A"
@@ -280,22 +296,9 @@ days:
             title: "Talk 6E"
 
       - is_break: true
-        time: "03:25 PM – 03:35 PM"
-        icon: "☕"
-        text: "Evening Tea Break (10 Mins)"
-
-      - time: "03:35 PM – 04:20 PM"
-        cells:
-          - hall: "Nalantha"
-            title: "Talk 7A"
-          - hall: "Harvard"
-            title: "Talk 7B"
-          - hall: "Cambridge"
-            title: "Talk 7C"
-          - hall: "Ganga"
-            title: "Talk 7D"
-          - hall: "Warren buffet"
-            title: "Talk 7E"
+        time: "04:10 PM – 04:20 PM"
+        icon: "🔄"
+        text: "Hall Wrap-up & Transition (10 Mins)"
 
       - is_break: true
         time: "04:20 PM – 05:20 PM"
