@@ -2,7 +2,7 @@
 title: "LaserData"
 logo: "images/communities/laserdata.png"
 years: ["2026"]
-weight: 15
+weight: 23
 aliases:
   - "/communities/laserdata/"
 socials:

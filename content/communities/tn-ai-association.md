@@ -2,7 +2,7 @@
 title: "TN AI Association"
 logo: "images/communities/tnaia.png"
 years: ["2026"]
-weight: 12
+weight: 13
 aliases:
   - "/communities/tnaia/"
 socials:

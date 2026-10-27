@@ -2,7 +2,7 @@
 title: "SheBuilds Chennai"
 logo: "images/communities/shebuilds-chennai.png"
 years: ["2026"]
-weight: 21
+weight: 7
 slug: "shebuilds-chennai"
 aliases:
   - "/communities/shebuilds/"

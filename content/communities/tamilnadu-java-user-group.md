@@ -2,7 +2,7 @@
 title: "Tamilnadu Java User Group"
 logo: "images/communities/tamil-jug.png"
 years: ["2026"]
-weight: 5
+weight: 3
 aliases:
   - "/communities/tamil-jug/"
 socials:

@@ -2,7 +2,7 @@
 title: "NexGenCyberWomen"
 logo: "images/communities/nexgencyberwomen.png"
 years: ["2026"]
-weight: 23
+weight: 15
 slug: "nexgencyberwomen"
 aliases:
   - "/communities/ngcyberwomen/"

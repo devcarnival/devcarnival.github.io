@@ -2,7 +2,7 @@
 title: "NammaFlutter | Flutter Chennai"
 logo: "images/communities/nammaflutter.png"
 years: ["2026"]
-weight: 17
+weight: 8
 slug: "nammaflutter"
 aliases:
   - "/communities/nammaflutter-flutter-chennai/"

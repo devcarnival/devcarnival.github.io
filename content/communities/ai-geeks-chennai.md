@@ -2,7 +2,7 @@
 title: "AI Geeks Chennai"
 logo: "images/communities/ai-geeks-chennai.png"
 years: ["2026"]
-weight: 16
+weight: 12
 aliases:
   - "/communities/ai-geeks-chennai/"
   - "/communities/ai-geeks/"

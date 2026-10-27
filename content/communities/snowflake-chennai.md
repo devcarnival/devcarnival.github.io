@@ -2,7 +2,7 @@
 title: "Snowflake Chennai User Group"
 logo: "images/communities/snowflake-chennai.png"
 years: ["2026"]
-weight: 22
+weight: 6
 slug: "snowflake-chennai"
 aliases:
   - "/communities/snowflake-chennai-user-group/"

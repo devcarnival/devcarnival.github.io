@@ -2,7 +2,7 @@
 title: "Azure Developer Community Tamilnadu"
 logo: "images/communities/azure-tamilnadu.png"
 years: ["2026"]
-weight: 13
+weight: 5
 aliases:
   - "/communities/azure-tamilnadu/"
   - "/communities/azure-developer-community-chennai/"

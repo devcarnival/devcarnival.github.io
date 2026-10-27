@@ -2,7 +2,7 @@
 title: "ByteChapter Chennai"
 logo: "images/communities/bytechapter-chennai.png"
 years: ["2026"]
-weight: 20
+weight: 17
 slug: "bytechapter-chennai"
 draft: true
 aliases:
