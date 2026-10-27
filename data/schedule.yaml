@@ -259,7 +259,7 @@ days:
           - hall: "Cambridge"
             title: "Talk 5C"
           - hall: "Ganga"
-            title: "Talk 5D"
+            session: "securing-the-ai-stack"
           - hall: "Warren buffet"
             title: "Talk 5E"
 
