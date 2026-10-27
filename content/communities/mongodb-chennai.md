@@ -2,7 +2,7 @@
 title: "MongoDB User Group Chennai"
 logo: "images/communities/mongodb-chennai.png"
 years: ["2026"]
-weight: 18
+weight: 9
 slug: "mongodb-chennai"
 aliases:
   - "/communities/mongodb-user-group-chennai/"

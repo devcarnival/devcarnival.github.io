@@ -2,7 +2,7 @@
 title: "Code On JVM Chennai"
 logo: "images/communities/code-on-jvm.png"
 years: ["2026"]
-weight: 19
+weight: 16
 slug: "code-on-jvm-chennai"
 aliases:
   - "/communities/code-on-jvm/"

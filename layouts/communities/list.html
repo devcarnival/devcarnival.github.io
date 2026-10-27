@@ -41,7 +41,7 @@
                 {{ $activeCommunities = $activeCommunities | append . }}
             {{ end }}
         {{ end }}
-        {{ range ($activeCommunities | shuffle) }}
+        {{ range (sort $activeCommunities "Weight" "asc") }}
             <div class="col-md-6 col-lg-4 community-item">
                 <div class="feature-card h-100 d-flex flex-column">
                     {{ if .Params.logo }}
@@ -114,34 +114,4 @@
     </div>
 </div>
 
-<script>
-(function() {
-    function shuffleCommunities() {
-        var grid = document.getElementById("communitiesGrid");
-        if (!grid) return;
-        var cards = Array.from(grid.children);
-        if (cards.length <= 1) return;
-
-        // Fisher-Yates shuffle
-        for (var i = cards.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            var temp = cards[i];
-            cards[i] = cards[j];
-            cards[j] = temp;
-        }
-
-        cards.forEach(function(card) {
-            grid.appendChild(card);
-        });
-    }
-
-    shuffleCommunities();
-
-    window.addEventListener("pageshow", function(event) {
-        if (event.persisted) {
-            shuffleCommunities();
-        }
-    });
-})();
-</script>
 {{ end }}

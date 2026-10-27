@@ -2,7 +2,7 @@
 title: "Google Developer Group Chennai (GDG Chennai)"
 logo: "images/communities/gdg-chennai.png"
 years: ["2026"]
-weight: 2
+weight: 1
 aliases:
   - "/communities/gdg-chennai/"
 socials:
