@@ -44,7 +44,7 @@ Through specialized training programs, industry mentorship circles, resume and c
 - **Pavithra Jayaprakash** — Vice President
 - **Riveta Das** — General Secretary
 - **Karthikeyan K** — Advisory Board
-- **Kasthuri Ganeshguru** — Innovation Strategist
+- **Dr. Kasthuri Ganeshguru** — Innovation Strategist
 - **Shyleja** — Content Creator
 - **D S Tarun** — Student Co-ordinator
 
