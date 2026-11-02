@@ -237,7 +237,13 @@
                     </a>
                     {{ end }}
 
-                    {{ if not (or .Params.socials.website .Params.socials.linkedin .Params.socials.github) }}
+                    {{ if .Params.socials.email }}
+                    <a href="mailto:{{ .Params.socials.email }}" class="btn btn-outline-minimal btn-sm">
+                        Email
+                    </a>
+                    {{ end }}
+
+                    {{ if not (or .Params.socials.website .Params.socials.linkedin .Params.socials.github .Params.socials.email) }}
                     <span class="text-muted small italic">No public code or career metrics registered.</span>
                     {{ end }}
                 </div>

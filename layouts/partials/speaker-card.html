@@ -139,6 +139,14 @@
                 <span>GitHub</span>
             </a>
             {{ end }}
+            {{ if .speaker.Params.socials.email }}
+            <a href="mailto:{{ .speaker.Params.socials.email }}" 
+               class="btn btn-outline-minimal btn-sm py-0 px-2 d-inline-flex align-items-center gap-1"
+               style="font-size: 0.72rem; height: 26px;">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <span>Email</span>
+            </a>
+            {{ end }}
         </div>
         <a href="{{ .speaker.RelPermalink }}" 
            class="btn btn-outline-minimal btn-sm py-0 px-2 flex-shrink-0"

@@ -238,7 +238,7 @@ days:
             title: "Talk 2C"
             meta: "Kubernetes & Multi-Cloud DevOps"
           - hall: "Ganga"
-            session: "zero-trust-for-application-security-sdlc"
+            session: "local-first-office-agents"
           - hall: "Warren buffet"
             title: "Talk 2E"
             meta: "Applied Machine Learning"
