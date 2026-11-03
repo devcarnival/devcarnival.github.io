@@ -6,7 +6,7 @@ speakers:
 communities:
   - "techkoodaram"
 years: ["2026"]
-track: "Cyber Security"
+track: "AI Agents & Developer Productivity"
 session_type: "Talk"
 duration: "30-45 mins"
 ---
