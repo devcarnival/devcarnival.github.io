@@ -2,6 +2,7 @@
 title: "Swathi Kanthraj"
 designation: "Chief Information Security Officer (CISO)"
 company: "JazzX AI"
+image: "images/people/swathi-kanthraj.jpeg"
 weight: 1
 socials:
   linkedin: "https://www.linkedin.com/in/swathi-kanthraj-a9116911b/"
