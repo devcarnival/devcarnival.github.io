@@ -216,7 +216,7 @@ Two kinds. **(A) Chrome** = hardcoded in templates, you will rewrite it.
 
 **`communities/single.html`** — back `← Back to all communities` · badge `<year> Cohort` · sidebar `Connect & Engage` + *"Follow this community's updates, collaborative repositories, and active social channels."* · buttons `Twitter / X` `GitHub Ecosystem` `LinkedIn Page` · empty *"No social ecosystem links registered for this year."*
 
-**`projects/list.html`** — badge `Innovation Expo` · h1 `Tech Pavilion` (`Pavilion` gradient; note double space in source) · lead *"Tech Pavilion is a showcase of 100 carefully selected projects from communities,  academia, enterprises, and open-source ecosystems."* · filter labels `Business Domain` / `Technical Domain`, options `All Business Domains` / `All Technical Domains`, button `Reset` · card: booth badge (default `Tech Pavilion`), `Expo 2026` **hardcoded**, CTA `View Project →`
+**`projects/list.html`** — badge `Innovation Expo` · h1 `Tech Pavilion` (`Pavilion` gradient; note double space in source) · lead *"Tech Pavilion is a showcase of 100 carefully selected projects from communities,  academia, enterprises, and open-source ecosystems."* · filter labels `Business Domain` / `Technical Domain`, options `All Business Domains` / `All Technical Domains`, button `Reset` · card: booth badge (default `Tech Pavilion`), `Expo 2027`, CTA `View Project →`
 
 **`projects/single.html`** — back `← Back to Pavilion Projects` · badge `Booth <n>` · labels `Business Domain:` `Tech Domain:` · CTAs `Live Demo / Site ↗` `GitHub Repo ↗`
 
@@ -447,7 +447,7 @@ All four of those are open improvements for a redesign.
 5. **7 missing image files** (§2.2), incl. every project hero and 2 community logos.
 6. **Dead CTAs** — `Submit a Talk` → `#cfp`, `Register Now` → `#register`. Both anchors nonexistent. The two primary conversions do nothing.
 7. **4 of 5 sessions credit the same speaker** — looks like copy-paste; confirm with organizers.
-8. **Edition/date mismatch** — sessions all `years: ["2026"]` + hardcoded `Expo 2026`, but the event is **Jan 2027**. Communities span 2025/2026, so the archive path *is* live.
+8. **Edition/date mismatch** — sessions all `years: ["2026"]`, but the event and Tech Pavilion Expo are **2027**. Communities span 2025/2026, so the archive path *is* live.
 9. **`/years/` won't render** — no `_default/terms.html` / `list.html`.
 10. **`taxonomy.html` copy is community-only** but serves sessions/tags/categories/domains too.
 11. **Duplicate booth `TP-42`** (raithu + sqlcomponents).
