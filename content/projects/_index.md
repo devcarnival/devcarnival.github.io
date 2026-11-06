@@ -19,7 +19,7 @@ The **Tech Pavilion** is an opportunity for student innovators and developer tea
 ### What You Can Expect
 
 **👥 Team Up**  
-Participate as a team of at least **2 members** and collaborate to bring your ideas to life.
+Participate as a team of at most **2 members** and collaborate to bring your ideas to life.
 
 **💡 Professional Mentorship**  
 Get guidance and mentorship from industry professionals to help refine your ideas and strengthen your projects.
