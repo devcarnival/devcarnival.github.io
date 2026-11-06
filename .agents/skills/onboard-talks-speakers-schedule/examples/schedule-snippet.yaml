@@ -1,0 +1,19 @@
+# Example: Adding a Talk or Workshop to data/schedule.yaml
+
+# 1. For a Keynote Slot (Main Hall):
+# Under days -> [id: "day1" or "day2"] -> keynotes -> slots:
+# - time: "09:00 AM – 09:40 AM"
+#   title: "Keynote Title"
+#   session: "architecting-resilient-multi-agent-ai-workflows"
+
+# 2. For a Parallel Track Talk:
+# Under days -> [id: "day1" or "day2"] -> rows -> [matching time slot] -> cells:
+- hall: "Harvard"
+  session: "architecting-resilient-multi-agent-ai-workflows"
+
+# 3. For an Extended / Hands-on Workshop:
+# Under days -> [id: "day1" or "day2"] -> rows -> [matching start time] -> cells:
+- hall: "Warren buffet"
+  session: "architecting-resilient-multi-agent-ai-workflows"
+  range: "10:00 AM – 11:30 AM · Hands-on Workshop"
+  rowspan: 2
