@@ -29,7 +29,7 @@ Get your own stall at DevCarnival to demonstrate your project, interact with att
 
 ### Who Can Participate?
 
-Teams with a minimum of two members who have a project to demonstrate and a passion for technology and innovation.
+Teams with a maximum of two members who have a project to demonstrate and a passion for technology and innovation.
 
 ### Bring Your Ideas to the Pavilion
 
