@@ -85,6 +85,8 @@ days:
 
       - time: "12:25 PM – 01:10 PM"
         cells:
+          - hall: "Nalantha"
+            session: "when-agents-become-the-users"
           - hall: "Harvard"
             session: "the-agent-said-it-succeeded-database-says-otherwise"
           - hall: "Cambridge"
