@@ -31,6 +31,16 @@ Get your own stall at DevCarnival to demonstrate your project, interact with att
 
 Teams with a maximum of two members who have a project to demonstrate and a passion for technology and innovation.
 
+### Focus Technical Skills & Domains
+
+We welcome developer tools, functional prototypes, and innovative projects across key technical skills:
+- **Software Testing & UI Quality:** Test automation frameworks, UI/UX visual validation, AI-powered test generation, self-healing locators, API contract testing, and CI/CD quality gates.
+- **AI & Intelligent Systems:** Applied machine learning, agentic workflows, LLM developer tooling, and computer vision.
+- **Cloud & DevOps:** Cloud infrastructure, microservices, container orchestration, and observability platforms.
+- **Web & Mobile Systems:** High-performance web applications, cross-platform mobile frameworks, and full-stack solutions.
+- **IoT & Embedded Systems:** Smart hardware prototypes, edge compute devices, and sensor networks.
+- **Cybersecurity & Trust:** Application security, threat defense, identity management, and cryptography.
+
 ### Bring Your Ideas to the Pavilion
 
 Turn your work into an experience others can explore. Connect with developers, learn from professionals, and let the community see what you've built.

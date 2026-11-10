@@ -204,7 +204,7 @@ days:
       - name: "Ganga"
         sub: "(Cyber Security Track)"
       - name: "Warren buffet"
-        sub: "(Applied AI & Deep Tech Track)"
+        sub: "(AI Testing & Quality Engineering Track)"
     rows:
       - time: "10:00 AM – 10:45 AM"
         cells:
@@ -221,7 +221,7 @@ days:
             session: "enterprise-quantum-safe-computing"
           - hall: "Warren buffet"
             title: "Talk 1E"
-            meta: "Emerging AI Technologies"
+            meta: "AI-Powered Test Automation & Frameworks"
 
       - is_break: true
         time: "10:45 AM – 10:55 AM"
@@ -242,7 +242,7 @@ days:
             session: "from-vulnerability-to-explanatory-patch"
           - hall: "Warren buffet"
             title: "Talk 2E"
-            meta: "Applied Machine Learning"
+            meta: "UI Quality, Visual Testing & Self-Healing Locators"
 
       - is_break: true
         time: "11:40 AM – 11:50 AM"
@@ -264,7 +264,7 @@ days:
             session: "enhancing-ai-robustness-through-security-and-privacy-by-design"
           - hall: "Warren buffet"
             title: "Talk 3E"
-            meta: "Deep Learning Architectures"
+            meta: "Agentic Evaluation & LLM Testing Harnesses"
 
       - is_break: true
         time: "12:35 PM – 01:25 PM"
@@ -286,7 +286,7 @@ days:
             session: "live-data-poisoning-and-backdoor-attacks"
           - hall: "Warren buffet"
             title: "Talk 4E"
-            meta: "AI Safety & Alignment"
+            meta: "Continuous Quality & Shift-Left CI/CD Gates"
 
       - is_break: true
         time: "02:10 PM – 02:20 PM"
@@ -308,7 +308,7 @@ days:
             session: "securing-the-ai-stack"
           - hall: "Warren buffet"
             title: "Talk 5E"
-            meta: "Generative Media & Systems"
+            meta: "API, Microservices & Performance Quality"
 
       - is_break: true
         time: "03:05 PM – 03:25 PM"
@@ -330,7 +330,7 @@ days:
             session: "from-code-to-detection"
           - hall: "Warren buffet"
             title: "Talk 6E"
-            meta: "Open Source AI Innovation"
+            meta: "Autonomous Testing & Cognitive QA"
 
       - is_break: true
         time: "04:10 PM – 04:20 PM"

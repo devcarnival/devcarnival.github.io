@@ -323,7 +323,7 @@ Contract: `title`, `date`, `draft`, `summary`, `hero_image`, `github_url`, `demo
 
 Distinct taxonomy terms available for filter UI:
 **business_domains** — AgriTech, Banking, Developer Tools, E-Commerce, Education, Enterprise Infrastructure, Enterprise Software, Government
-**tech_domains** — AI, Cloud, Code Generation, Data Analytics, Database, Developer Tools, Java, Open Source, Remote Sensing, SQL, Web Systems
+**tech_domains** — AI, Cloud, Code Generation, Data Analytics, Database, Developer Tools, Java, Open Source, Remote Sensing, SQL, Testing, Web Systems
 
 #### Schedule — `content/schedule.html`, 393 lines of hand-written Bootstrap
 

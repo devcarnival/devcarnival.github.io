@@ -59,7 +59,7 @@ event:
   location: "Infosys, Mahindra City, Chennai"
 pillars:
   - title: "Parallel Tech Tracks"
-    description: "Deep-dive tech talks and workshops spread across multiple parallel tracks covering AI, cloud-native technologies, backend and full-stack engineering, DevOps, data, system design, Java, and emerging technologies."
+    description: "Deep-dive tech talks and workshops spread across multiple parallel tracks covering AI, cloud-native technologies, backend and full-stack engineering, DevOps, software testing & UI quality, Java, and emerging technologies."
   - title: "Hands-on Tech Pavilion"
     description: "Explore and interact with 100+ technology projects, developer tools, community initiatives, and real-world implementations—connecting learning from talks with practical technology experiences."
   - title: "Shared Learning Ecosystem"

@@ -24,7 +24,7 @@ Before creating a project file, inspect the user's provided input. If **any** re
 | **Participants (1–2 members max)** | • Full Name<br>• Role (default: "Student Innovator")<br>• Email address<br>• GitHub username or URL (critical for avatar)<br>• LinkedIn profile URL | **Ask user** if missing name, email, or GitHub |
 | **Institution** | College / University / Organization (e.g., "Kongu Engineering College") | **Ask user** |
 | **Business Domain** | List of domains (e.g., "Education", "Developer Tools", "AgriTech", "FinTech", "HealthTech") | Infer from project description or **ask user** |
-| **Tech Domain** | List of tech categories (e.g., "Web Systems", "Cloud", "AI/ML", "DevOps", "IoT") | Infer from tech stack or **ask user** |
+| **Tech Domain** | List of tech categories (e.g., "Web Systems", "Cloud", "AI/ML", "DevOps", "IoT", "Testing") | Infer from tech stack or **ask user** |
 | **Tech Stack / Tags** | Technologies and frameworks used (e.g. `React`, `Node.js`, `Go`, `Docker`) | Extract from description or **ask user** |
 | **Project Type** | e.g. `"OPEN SOURCE"`, `"Friendly Coders"`, `"Student Innovation"`, `"Prototype"` | Default to `"Student Innovation"` or `"OPEN SOURCE"` |
 
@@ -50,7 +50,7 @@ I have reviewed the project details for **[Project Title]**. To complete the Tec
 2. **Institution / College Name:** (e.g. Kongu Engineering College, Anna University)
 3. **Target Domains:**
    - Business Domain: (e.g. Developer Tools, Education, HealthTech, etc.)
-   - Technical Domain: (e.g. Web Systems, Cloud, AI/ML, DevOps, etc.)
+   - Technical Domain: (e.g. Web Systems, Cloud, AI/ML, DevOps, Testing, etc.)
 4. **Links (Optional but recommended):**
    - Live Demo URL:
    - GitHub Repository URL:

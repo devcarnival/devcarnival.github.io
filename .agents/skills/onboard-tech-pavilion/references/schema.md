@@ -20,7 +20,7 @@ This document defines the data schema, conventions, and formatting requirements 
 | `institution` | string | **Yes** | University or college name (e.g., `"Kongu Engineering College"`, `"IIT Madras"`). |
 | `participant_type` | string | **Yes** | Primary participant demographic (`"Students"`, `"Professionals"`, `"Researchers"`). Default: `"Students"`. |
 | `business_domains` | list of strings | **Yes** | Business domains used by the list page filter dropdown (e.g., `["Education"]`, `["Developer Tools"]`, `["AgriTech"]`). |
-| `tech_domains` | list of strings | **Yes** | Technical domains used by the list page filter dropdown (e.g., `["Web Systems"]`, `["Cloud"]`, `["AI/ML"]`). |
+| `tech_domains` | list of strings | **Yes** | Technical domains used by the list page filter dropdown (e.g., `["Web Systems"]`, `["Cloud"]`, `["AI/ML"]`, `["Testing"]`). |
 | `tags` | list of strings | Recommended | Technologies, frameworks, and architecture tags (e.g., `["React", "Node.js", "Docker"]`). |
 | `demo_url` | string (URL) | Optional | Live deployment or demo site URL. |
 | `github_url` | string (URL) | Optional | Project source repository URL. |
@@ -47,7 +47,7 @@ The DevCarnival site (`config.toml`) indexes two dedicated taxonomies for Tech P
 1. `business_domains`: Powers `<select id="businessFilter">` on `/projects/`.
    - Examples: `Education`, `Developer Tools`, `AgriTech`, `HealthTech`, `FinTech`, `Cybersecurity`, `E-Commerce`.
 2. `tech_domains`: Powers `<select id="techFilter">` on `/projects/`.
-   - Examples: `Web Systems`, `Cloud`, `DevOps`, `AI/ML`, `Mobile`, `IoT & Embedded`, `Distributed Systems`.
+   - Examples: `Web Systems`, `Cloud`, `DevOps`, `AI/ML`, `Mobile`, `IoT & Embedded`, `Distributed Systems`, `Testing`.
 
 New values added to these arrays in project markdown files automatically appear in the filter dropdowns upon Hugo build.
 

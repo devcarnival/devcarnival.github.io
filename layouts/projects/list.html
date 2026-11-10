@@ -75,6 +75,17 @@
           technology and innovation. Turn your work into an experience others can explore. Connect with developers,
           learn from professionals, and let the community see what you've built.
         </p>
+        <div class="mb-3">
+          <span class="dc-mono d-block text-uppercase mb-2" style="font-size: 0.68rem; letter-spacing: 0.1em; color: var(--dc-text-mute);">Key Focus Technical Skills &amp; Domains</span>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge" style="background: rgba(34, 224, 255, 0.08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, 0.25); font-family: var(--dc-font-mono); font-size: 0.72rem;">Software Testing &amp; UI Quality</span>
+            <span class="badge" style="background: rgba(157, 92, 255, 0.08); color: var(--dc-purple); border: 1px solid rgba(157, 92, 255, 0.25); font-family: var(--dc-font-mono); font-size: 0.72rem;">AI &amp; Machine Learning</span>
+            <span class="badge" style="background: rgba(0, 245, 160, 0.08); color: #00f5a0; border: 1px solid rgba(0, 245, 160, 0.25); font-family: var(--dc-font-mono); font-size: 0.72rem;">Cloud &amp; DevOps</span>
+            <span class="badge" style="background: rgba(255, 182, 46, 0.08); color: var(--dc-amber); border: 1px solid rgba(255, 182, 46, 0.25); font-family: var(--dc-font-mono); font-size: 0.72rem;">Web &amp; Mobile Systems</span>
+            <span class="badge" style="background: rgba(255, 47, 185, 0.08); color: var(--dc-ink-magenta); border: 1px solid rgba(255, 47, 185, 0.25); font-family: var(--dc-font-mono); font-size: 0.72rem;">IoT &amp; Embedded Systems</span>
+            <span class="badge" style="background: rgba(34, 224, 255, 0.08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, 0.25); font-family: var(--dc-font-mono); font-size: 0.72rem;">Cybersecurity</span>
+          </div>
+        </div>
         <span class="fw-bold dc-mono" style="color: var(--dc-ink-magenta); font-size: 0.92rem;">
           Have something to showcase? Join the Tech Pavilion at DevCarnival 2027!
         </span>
@@ -120,8 +131,13 @@
         <select id="techFilter" class="form-select bg-light" style="border: 1px solid var(--dc-line);"
           onchange="filterProjects()">
           <option value="all">All Technical Domains</option>
+          {{ $hasTesting := false }}
           {{ range $name, $taxonomy := .Site.Taxonomies.tech_domains }}
+          {{ if or (eq ($name | lower) "testing") (eq ($name | lower) "software-testing") }}{{ $hasTesting = true }}{{ end }}
           <option value="{{ $name | urlize }}">{{ $name | humanize }}</option>
+          {{ end }}
+          {{ if not $hasTesting }}
+          <option value="testing">Testing</option>
           {{ end }}
         </select>
       </div>
@@ -200,6 +216,21 @@
 
     </div>
     {{ end }}
+
+    <!-- Empty State Alert (Hidden by default) -->
+    <div id="noProjectsAlert" class="col-12 text-center py-5" style="display: none;">
+      <div class="p-4 mx-auto" style="max-width: 680px; background: var(--dc-surface); border: 1px dashed var(--dc-line-bright); border-radius: var(--dc-radius-md);">
+        <span style="font-size: 2rem;" class="d-block mb-2" aria-hidden="true">🔍</span>
+        <h3 class="h5 fw-bold mb-2" style="color: var(--dc-text);">No projects currently match this filter</h3>
+        <p class="text-secondary mb-3" style="font-size: 0.95rem; color: var(--dc-text-dim) !important;">
+          Have a project demonstrating testing frameworks, UI quality, or modern developer craft? Tech Pavilion submissions are currently open!
+        </p>
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
+          <a class="dc-btn dc-btn--primary" href="https://forms.gle/a77oHXnPpqQs6CTD8" target="_blank" rel="noopener noreferrer">Apply for Tech Pavilion &rarr;</a>
+          <button class="dc-btn dc-btn--ghost" onclick="resetFilters()">Reset Filter</button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -209,6 +240,7 @@
     const selectedBusiness = document.getElementById('businessFilter').value;
     const selectedTech = document.getElementById('techFilter').value;
     const items = document.querySelectorAll('.project-item');
+    let visibleCount = 0;
 
     items.forEach(item => {
       const itemBusiness = item.getAttribute('data-business').split(' ');
@@ -219,10 +251,16 @@
 
       if (matchesBusiness && matchesTech) {
         item.style.display = 'block';
+        visibleCount++;
       } else {
         item.style.display = 'none';
       }
     });
+
+    const noAlert = document.getElementById('noProjectsAlert');
+    if (noAlert) {
+      noAlert.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
   }
 
   function resetFilters() {
