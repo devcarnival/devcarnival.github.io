@@ -152,7 +152,7 @@
 
   <!-- Project Grid -->
   <div class="row g-4" id="projectGrid">
-    {{ range .Pages }}
+    {{ range shuffle .Pages }}
     {{ $bDomains := apply .Params.business_domains "urlize" "." }}
     {{ $tDomains := apply .Params.tech_domains "urlize" "." }}
 
@@ -234,8 +234,44 @@
   </div>
 </section>
 
-<!-- Filter Logic JS -->
+<!-- Project Shuffling & Filter Logic JS -->
 <script>
+  // Fisher-Yates (Knuth) Shuffle Algorithm
+  function shuffleProjects() {
+    const grid = document.getElementById('projectGrid');
+    if (!grid) return;
+    const items = Array.from(grid.querySelectorAll('.project-item'));
+    if (items.length <= 1) return;
+
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+
+    const noAlert = document.getElementById('noProjectsAlert');
+    items.forEach(item => {
+      if (noAlert) {
+        grid.insertBefore(item, noAlert);
+      } else {
+        grid.appendChild(item);
+      }
+    });
+  }
+
+  // Shuffle projects when page opens
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', shuffleProjects);
+  } else {
+    shuffleProjects();
+  }
+
+  // Handle re-shuffling on browser cache navigation (bfcache)
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+      shuffleProjects();
+    }
+  });
+
   function filterProjects() {
     const selectedBusiness = document.getElementById('businessFilter').value;
     const selectedTech = document.getElementById('techFilter').value;
