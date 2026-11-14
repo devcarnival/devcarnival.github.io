@@ -106,47 +106,60 @@
         prototypes</span>
     </div>
   </div>
-  <!-- Filter Bar -->
-  <div class="p-4 mb-5"
+  <!-- Project Search & Filter Bar -->
+  <div class="p-3 p-md-4 mb-5"
     style="border-radius: var(--dc-radius-md); background: var(--dc-surface); border: 1px solid var(--dc-line);">
-    <div class="row g-3 align-items-center">
+    
+    <!-- Search Bar Row -->
+    <div class="mb-3">
+      <label for="projectSearchInput" class="dc-label">// SEARCH TECH PAVILION</label>
+      <input type="search" id="projectSearchInput" class="dc-input" placeholder="Search by title, booth (e.g. TP-01), team, tags, college, domain, presenter..." autocomplete="off">
+    </div>
 
+    <!-- Filter Dropdowns Row -->
+    <div class="row g-3 align-items-end">
       <!-- Business Domain Filter -->
       <div class="col-md-5">
-        <label for="businessFilter" class="dc-mono d-block text-uppercase mb-2"
-          style="font-size: .68rem; letter-spacing: .12em; color: var(--dc-text-dim);">Business Domain</label>
-        <select id="businessFilter" class="form-select bg-light" style="border: 1px solid var(--dc-line);"
-          onchange="filterProjects()">
-          <option value="all">All Business Domains</option>
-          {{ range $name, $taxonomy := .Site.Taxonomies.business_domains }}
-          <option value="{{ $name | urlize }}">{{ $name | humanize }}</option>
-          {{ end }}
-        </select>
+        <label for="businessFilter" class="dc-label">// BUSINESS DOMAIN</label>
+        <div class="dc-select-wrap">
+          <select id="businessFilter" class="dc-select" onchange="filterProjects()">
+            <option value="all">All Business Domains</option>
+            {{ range $name, $taxonomy := .Site.Taxonomies.business_domains }}
+            <option value="{{ $name | urlize }}">{{ $name | humanize }}</option>
+            {{ end }}
+          </select>
+        </div>
       </div>
 
       <!-- Technical Domain Filter -->
       <div class="col-md-5">
-        <label for="techFilter" class="dc-mono d-block text-uppercase mb-2"
-          style="font-size: .68rem; letter-spacing: .12em; color: var(--dc-text-dim);">Technical Domain</label>
-        <select id="techFilter" class="form-select bg-light" style="border: 1px solid var(--dc-line);"
-          onchange="filterProjects()">
-          <option value="all">All Technical Domains</option>
-          {{ $hasTesting := false }}
-          {{ range $name, $taxonomy := .Site.Taxonomies.tech_domains }}
-          {{ if or (eq ($name | lower) "testing") (eq ($name | lower) "software-testing") }}{{ $hasTesting = true }}{{ end }}
-          <option value="{{ $name | urlize }}">{{ $name | humanize }}</option>
-          {{ end }}
-          {{ if not $hasTesting }}
-          <option value="testing">Testing</option>
-          {{ end }}
-        </select>
+        <label for="techFilter" class="dc-label">// TECHNICAL DOMAIN</label>
+        <div class="dc-select-wrap">
+          <select id="techFilter" class="dc-select" onchange="filterProjects()">
+            <option value="all">All Technical Domains</option>
+            {{ $hasTesting := false }}
+            {{ range $name, $taxonomy := .Site.Taxonomies.tech_domains }}
+            {{ if or (eq ($name | lower) "testing") (eq ($name | lower) "software-testing") }}{{ $hasTesting = true }}{{ end }}
+            <option value="{{ $name | urlize }}">{{ $name | humanize }}</option>
+            {{ end }}
+            {{ if not $hasTesting }}
+            <option value="testing">Testing</option>
+            {{ end }}
+          </select>
+        </div>
       </div>
 
       <!-- Reset Button -->
-      <div class="col-md-2 d-flex align-items-end">
-        <button class="btn btn-outline-minimal w-100" onclick="resetFilters()">Reset</button>
+      <div class="col-md-2">
+        <button class="btn btn-outline-minimal w-100" id="projectResetBtn" onclick="resetFilters()">Reset</button>
       </div>
+    </div>
 
+    <!-- Search / Filter Stats Bar -->
+    <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top" style="border-color: var(--dc-line) !important;">
+      <span class="dc-mono small" id="projectSearchStats" style="color: var(--dc-text-dim);">
+        Showing all {{ len .Pages }} projects
+      </span>
     </div>
   </div>
 
@@ -156,8 +169,23 @@
     {{ $bDomains := apply .Params.business_domains "urlize" "." }}
     {{ $tDomains := apply .Params.tech_domains "urlize" "." }}
 
+    {{ $searchTerms := slice .Title (.Params.booth_number | default "") (.Params.summary | default "") (.Params.institution | default "") (.Params.community | default "") (.Params.project_type | default "") }}
+    {{ range .Params.tags }}
+      {{ $searchTerms = $searchTerms | append . }}
+    {{ end }}
+    {{ range .Params.business_domains }}
+      {{ $searchTerms = $searchTerms | append . }}
+    {{ end }}
+    {{ range .Params.tech_domains }}
+      {{ $searchTerms = $searchTerms | append . }}
+    {{ end }}
+    {{ range .Params.participants }}
+      {{ $searchTerms = $searchTerms | append .name }}
+    {{ end }}
+    {{ $searchData := lower (delimit $searchTerms " ") }}
+
     <div class="col-md-6 col-lg-4 project-item" data-business="{{ delimit $bDomains " " }}"
-      data-tech="{{ delimit $tDomains " " }}">
+      data-tech="{{ delimit $tDomains " " }}" data-search="{{ $searchData }}">
 
       <div class="feature-card d-flex flex-column h-100">
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -194,8 +222,6 @@
           </div>
         </div>
 
-
-
         <div class="mt-2 text-start d-flex flex-column gap-1">
           {{ with .Params.institution }}
           <div>
@@ -221,20 +247,20 @@
     <div id="noProjectsAlert" class="col-12 text-center py-5" style="display: none;">
       <div class="p-4 mx-auto" style="max-width: 680px; background: var(--dc-surface); border: 1px dashed var(--dc-line-bright); border-radius: var(--dc-radius-md);">
         <span style="font-size: 2rem;" class="d-block mb-2" aria-hidden="true">🔍</span>
-        <h3 class="h5 fw-bold mb-2" style="color: var(--dc-text);">No projects currently match this filter</h3>
+        <h3 class="h5 fw-bold mb-2" style="color: var(--dc-text);">No projects match your search or filters</h3>
         <p class="text-secondary mb-3" style="font-size: 0.95rem; color: var(--dc-text-dim) !important;">
-          Have a project demonstrating testing frameworks, UI quality, or modern developer craft? Tech Pavilion submissions are currently open!
+          Try searching for another keyword, selecting different domains, or reset your filters. Have an innovative project of your own? Tech Pavilion submissions are open!
         </p>
         <div class="d-flex justify-content-center gap-2 flex-wrap">
-          <a class="dc-btn dc-btn--primary" href="https://forms.gle/a77oHXnPpqQs6CTD8" target="_blank" rel="noopener noreferrer">Apply for Tech Pavilion &rarr;</a>
-          <button class="dc-btn dc-btn--ghost" onclick="resetFilters()">Reset Filter</button>
+          <button class="dc-btn dc-btn--primary" onclick="resetFilters()">Reset Search &amp; Filters</button>
+          <a class="dc-btn dc-btn--ghost" href="https://forms.gle/a77oHXnPpqQs6CTD8" target="_blank" rel="noopener noreferrer">Apply for Tech Pavilion &rarr;</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Project Shuffling & Filter Logic JS -->
+<!-- Project Shuffling, Search & Filter Logic JS -->
 <script>
   // Fisher-Yates (Knuth) Shuffle Algorithm
   function shuffleProjects() {
@@ -273,25 +299,38 @@
   });
 
   function filterProjects() {
-    const selectedBusiness = document.getElementById('businessFilter').value;
-    const selectedTech = document.getElementById('techFilter').value;
+    const searchInput = document.getElementById('projectSearchInput');
+    const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    const selectedBusiness = document.getElementById('businessFilter') ? document.getElementById('businessFilter').value : 'all';
+    const selectedTech = document.getElementById('techFilter') ? document.getElementById('techFilter').value : 'all';
     const items = document.querySelectorAll('.project-item');
     let visibleCount = 0;
 
     items.forEach(item => {
-      const itemBusiness = item.getAttribute('data-business').split(' ');
-      const itemTech = item.getAttribute('data-tech').split(' ');
+      const itemBusiness = (item.getAttribute('data-business') || '').split(' ');
+      const itemTech = (item.getAttribute('data-tech') || '').split(' ');
+      const itemSearch = item.getAttribute('data-search') || '';
 
       const matchesBusiness = (selectedBusiness === 'all') || itemBusiness.includes(selectedBusiness);
       const matchesTech = (selectedTech === 'all') || itemTech.includes(selectedTech);
+      const matchesSearch = !query || itemSearch.indexOf(query) !== -1;
 
-      if (matchesBusiness && matchesTech) {
-        item.style.display = 'block';
+      if (matchesBusiness && matchesTech && matchesSearch) {
+        item.style.display = '';
         visibleCount++;
       } else {
         item.style.display = 'none';
       }
     });
+
+    const stats = document.getElementById('projectSearchStats');
+    if (stats) {
+      if (query || selectedBusiness !== 'all' || selectedTech !== 'all') {
+        stats.textContent = 'Showing ' + visibleCount + ' of ' + items.length + ' projects';
+      } else {
+        stats.textContent = 'Showing all ' + items.length + ' projects';
+      }
+    }
 
     const noAlert = document.getElementById('noProjectsAlert');
     if (noAlert) {
@@ -300,9 +339,37 @@
   }
 
   function resetFilters() {
-    document.getElementById('businessFilter').value = 'all';
-    document.getElementById('techFilter').value = 'all';
+    const searchInput = document.getElementById('projectSearchInput');
+    if (searchInput) {
+      searchInput.value = '';
+    }
+    const businessFilter = document.getElementById('businessFilter');
+    if (businessFilter) {
+      businessFilter.value = 'all';
+    }
+    const techFilter = document.getElementById('techFilter');
+    if (techFilter) {
+      techFilter.value = 'all';
+    }
     filterProjects();
+    if (searchInput) {
+      searchInput.focus();
+    }
+  }
+
+  // Bind live search input events
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindSearchEvents);
+  } else {
+    bindSearchEvents();
+  }
+
+  function bindSearchEvents() {
+    const searchInput = document.getElementById('projectSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', filterProjects);
+      searchInput.addEventListener('search', filterProjects);
+    }
   }
 </script>
 {{ end }}
