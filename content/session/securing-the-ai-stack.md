@@ -2,7 +2,7 @@
 title: "Securing the AI Stack: Beyond AppSec to End-to-End Product Security"
 slug: "securing-the-ai-stack"
 speakers:
-  - "vimalasree"
+  - "vimalaasree"
 communities:
   - "cybervattam"
 years: ["2026"]
