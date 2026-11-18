@@ -119,7 +119,7 @@
     <!-- Filter Dropdowns Row -->
     <div class="row g-3 align-items-end">
       <!-- Business Domain Filter -->
-      <div class="col-md-5">
+      <div class="col-12 col-md-5">
         <label for="businessFilter" class="dc-label">// BUSINESS DOMAIN</label>
         <div class="dc-select-wrap">
           <select id="businessFilter" class="dc-select" onchange="filterProjects()">
@@ -132,7 +132,7 @@
       </div>
 
       <!-- Technical Domain Filter -->
-      <div class="col-md-5">
+      <div class="col-12 col-md-5">
         <label for="techFilter" class="dc-label">// TECHNICAL DOMAIN</label>
         <div class="dc-select-wrap">
           <select id="techFilter" class="dc-select" onchange="filterProjects()">
@@ -150,7 +150,7 @@
       </div>
 
       <!-- Reset Button -->
-      <div class="col-md-2">
+      <div class="col-12 col-md-2">
         <button class="btn btn-outline-minimal w-100" id="projectResetBtn" onclick="resetFilters()">Reset</button>
       </div>
     </div>
@@ -184,7 +184,7 @@
     {{ end }}
     {{ $searchData := lower (delimit $searchTerms " ") }}
 
-    <div class="col-md-6 col-lg-4 project-item" data-business="{{ delimit $bDomains " " }}"
+    <div class="col-12 col-md-6 col-lg-4 project-item" data-business="{{ delimit $bDomains " " }}"
       data-tech="{{ delimit $tDomains " " }}" data-search="{{ $searchData }}">
 
       <div class="feature-card d-flex flex-column h-100">
@@ -193,7 +193,7 @@
           <small class="dc-mono" style="color: var(--dc-text-mute); font-size: .72rem;">Expo 2027</small>
         </div>
 
-        <h3 class="h5 fw-bold mb-2">
+        <h3 class="h5 fw-bold mb-2 text-break" style="word-break: break-word;">
           <a href="{{ .RelPermalink }}" class="text-decoration-none hover-underline" style="color: var(--dc-text);">{{
             .Title }}</a>
         </h3>
@@ -205,18 +205,18 @@
         <div class="mt-2">
           <div class="d-flex flex-wrap gap-2 mb-2">
             {{ range .Params.business_domains }}
-            <span class="badge"
-              style="background: rgba(34, 224, 255, .08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{
+            <span class="badge text-wrap text-start"
+              style="background: rgba(34, 224, 255, .08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem; white-space: normal; word-break: break-word; max-width: 100%; line-height: 1.35;">{{
               . }}</span>
             {{ end }}
             {{ range .Params.tech_domains }}
-            <span class="badge"
-              style="background: rgba(157, 92, 255, .08); color: var(--dc-purple); border: 1px solid rgba(157, 92, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{
+            <span class="badge text-wrap text-start"
+              style="background: rgba(157, 92, 255, .08); color: var(--dc-purple); border: 1px solid rgba(157, 92, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem; white-space: normal; word-break: break-word; max-width: 100%; line-height: 1.35;">{{
               . }}</span>
             {{ end }}
             {{ with .Params.project_type }}
-            <span class="badge"
-              style="background: rgba(255, 182, 46, .08); color: var(--dc-amber); border: 1px solid rgba(255, 182, 46, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{
+            <span class="badge text-wrap text-start"
+              style="background: rgba(255, 182, 46, .08); color: var(--dc-amber); border: 1px solid rgba(255, 182, 46, .25); font-family: var(--dc-font-mono); font-size: .65rem; white-space: normal; word-break: break-word; max-width: 100%; line-height: 1.35;">{{
               . }}</span>
             {{ end }}
           </div>
@@ -225,13 +225,13 @@
         <div class="mt-2 text-start d-flex flex-column gap-1">
           {{ with .Params.institution }}
           <div>
-            <span class="dc-mono" style="font-size: .68rem; color: var(--dc-text-mute);">College: <span
+            <span class="dc-mono text-break" style="font-size: .68rem; color: var(--dc-text-mute); word-break: break-word;">College: <span
                 style="color: var(--dc-text);">{{ . }}</span></span>
           </div>
           {{ end }}
           {{ with .Params.community }}
           <div>
-            <span class="dc-mono" style="font-size: .68rem; color: var(--dc-text-mute);">Community: <span
+            <span class="dc-mono text-break" style="font-size: .68rem; color: var(--dc-text-mute); word-break: break-word;">Community: <span
                 style="color: var(--dc-cyan);">{{ . }}</span></span>
           </div>
           {{ end }}

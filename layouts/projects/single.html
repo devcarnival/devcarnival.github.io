@@ -1,10 +1,10 @@
 {{ define "main" }}
-<article class="container py-5 mt-4">
+<article class="container py-4 py-md-5 mt-3 mt-md-4">
   <div class="row justify-content-center">
-    <div class="col-lg-9">
+    <div class="col-12 col-lg-9">
       
       <!-- Back Link & Booth Number -->
-      <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
         <a href="{{ "/projects/" | relURL }}" class="text-decoration-none text-secondary fw-semibold">
           ← Back to Pavilion Projects
         </a>
@@ -14,42 +14,42 @@
       </div>
 
       <!-- Title & Summary -->
-      <h1 class="display-5 fw-bold mb-3">{{ .Title }}</h1>
+      <h1 class="display-5 fw-bold mb-3 text-break" style="word-break: break-word;">{{ .Title }}</h1>
       <p class="lead text-secondary mb-4">{{ .Params.summary }}</p>
 
       <!-- Tags Section -->
-      <div class="p-3 mb-4" style="border-radius: var(--dc-radius-sm); background: var(--dc-surface); border: 1px solid var(--dc-line);">
+      <div class="p-3 mb-4" style="border-radius: var(--dc-radius-sm); background: var(--dc-surface); border: 1px solid var(--dc-line); overflow: hidden;">
         <div class="row g-3">
-          <div class="col-md-4">
+          <div class="col-12 col-sm-6 col-lg-3">
             <strong class="dc-mono d-block text-uppercase mb-2" style="font-size: .68rem; letter-spacing: .12em; color: var(--dc-text-dim);">Business Domain</strong>
             <div class="d-flex flex-wrap gap-2">
               {{ range .Params.business_domains }}
-                <a href="{{ "/business_domains/" | relURL }}{{ . | urlize }}" class="badge text-decoration-none" style="background: rgba(34, 224, 255, .08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</a>
+                <a href="{{ "/business_domains/" | relURL }}{{ . | urlize }}" class="badge text-decoration-none text-wrap text-start" style="background: rgba(34, 224, 255, .08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem; white-space: normal; word-break: break-word; max-width: 100%; line-height: 1.35;">{{ . }}</a>
               {{ end }}
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-12 col-sm-6 col-lg-3">
             <strong class="dc-mono d-block text-uppercase mb-2" style="font-size: .68rem; letter-spacing: .12em; color: var(--dc-text-dim);">Tech Domain</strong>
             <div class="d-flex flex-wrap gap-2">
               {{ range .Params.tech_domains }}
-                <a href="{{ "/tech_domains/" | relURL }}{{ . | urlize }}" class="badge text-decoration-none" style="background: rgba(157, 92, 255, .08); color: var(--dc-purple); border: 1px solid rgba(157, 92, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</a>
+                <a href="{{ "/tech_domains/" | relURL }}{{ . | urlize }}" class="badge text-decoration-none text-wrap text-start" style="background: rgba(157, 92, 255, .08); color: var(--dc-purple); border: 1px solid rgba(157, 92, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem; white-space: normal; word-break: break-word; max-width: 100%; line-height: 1.35;">{{ . }}</a>
               {{ end }}
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-12 col-lg-6">
             <strong class="dc-mono d-block text-uppercase mb-2" style="font-size: .68rem; letter-spacing: .12em; color: var(--dc-text-dim);">Stall Details</strong>
             <div class="d-flex flex-wrap gap-2">
               {{ with .Params.project_type }}
-                <span class="badge" style="background: rgba(255, 182, 46, .08); color: var(--dc-amber); border: 1px solid rgba(255, 182, 46, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</span>
+                <span class="badge text-wrap text-start" style="background: rgba(255, 182, 46, .08); color: var(--dc-amber); border: 1px solid rgba(255, 182, 46, .25); font-family: var(--dc-font-mono); font-size: .65rem; white-space: normal; word-break: break-word; max-width: 100%; line-height: 1.35;">{{ . }}</span>
               {{ end }}
               {{ with .Params.community }}
-                <span class="badge" style="background: rgba(34, 224, 255, .08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</span>
+                <span class="badge text-wrap text-start" style="background: rgba(34, 224, 255, .08); color: var(--dc-cyan); border: 1px solid rgba(34, 224, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem; white-space: normal; word-break: break-word; max-width: 100%; line-height: 1.35;">{{ . }}</span>
               {{ end }}
               {{ with .Params.institution }}
-                <span class="badge" style="background: rgba(157, 92, 255, .08); color: var(--dc-purple); border: 1px solid rgba(157, 92, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</span>
+                <span class="badge text-wrap text-start" style="background: rgba(157, 92, 255, .08); color: var(--dc-purple); border: 1px solid rgba(157, 92, 255, .25); font-family: var(--dc-font-mono); font-size: .65rem; white-space: normal; word-break: break-word; max-width: 100%; line-height: 1.35;">{{ . }}</span>
               {{ end }}
               {{ with .Params.participant_type }}
-                <span class="badge" style="background: rgba(255, 47, 185, .08); color: var(--dc-magenta); border: 1px solid rgba(255, 47, 185, .25); font-family: var(--dc-font-mono); font-size: .65rem;">{{ . }}</span>
+                <span class="badge text-wrap text-start" style="background: rgba(255, 47, 185, .08); color: var(--dc-magenta); border: 1px solid rgba(255, 47, 185, .25); font-family: var(--dc-font-mono); font-size: .65rem; white-space: normal; word-break: break-word; max-width: 100%; line-height: 1.35;">{{ . }}</span>
               {{ end }}
             </div>
           </div>
@@ -57,19 +57,19 @@
       </div>
 
       <!-- Links & CTAs -->
-      <div class="d-flex gap-3 mb-4">
+      <div class="d-flex gap-2 gap-sm-3 mb-4 flex-wrap">
         {{ if .Params.demo_url }}
-          <a href="{{ .Params.demo_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-minimal">Live Demo / Site ↗</a>
+          <a href="{{ .Params.demo_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-minimal flex-grow-1 flex-sm-grow-0 text-center">Live Demo / Site ↗</a>
         {{ end }}
         {{ if .Params.github_url }}
-          <a href="{{ .Params.github_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal">GitHub Repo ↗</a>
+          <a href="{{ .Params.github_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal flex-grow-1 flex-sm-grow-0 text-center">GitHub Repo ↗</a>
         {{ end }}
       </div>
 
       <!-- Participants / Stall Presenters Section -->
       {{ with .Params.participants }}
-        <div class="p-4 mb-5" style="border-radius: var(--dc-radius-sm); background: var(--dc-surface); border: 1px solid var(--dc-line-bright);">
-          <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="p-3 p-md-4 mb-5" style="border-radius: var(--dc-radius-sm); background: var(--dc-surface); border: 1px solid var(--dc-line-bright);">
+          <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
             <h2 class="h5 fw-bold mb-0" style="color: var(--dc-text);">
               Stall Participants &amp; Presenters
             </h2>
@@ -84,7 +84,7 @@
                 {{ $ghUser = index (split $cleanGh "/") 0 }}
               {{ end }}
 
-              <div class="col-md-6">
+              <div class="col-12 col-md-6">
                 <div class="p-3 h-100 d-flex flex-column" style="background: var(--dc-surface-2); border: 1px solid var(--dc-line); border-radius: var(--dc-radius-sm);">
                   <div class="d-flex align-items-center gap-3 mb-3">
                     <!-- Profile Avatar: GitHub picture with fallback -->
@@ -110,24 +110,22 @@
                       <div class="d-flex align-items-center justify-content-between flex-wrap gap-1">
                         <h3 class="h6 fw-bold mb-0 text-truncate" style="color: var(--dc-text);" title="{{ .name }}">{{ .name }}</h3>
                         {{ with .role }}
-                          <span class="badge" style="background: rgba(34, 224, 255, 0.1); color: var(--dc-cyan); font-family: var(--dc-font-mono); font-size: 0.62rem;">{{ . }}</span>
+                          <span class="badge text-wrap" style="background: rgba(34, 224, 255, 0.1); color: var(--dc-cyan); font-family: var(--dc-font-mono); font-size: 0.62rem; white-space: normal;">{{ . }}</span>
                         {{ end }}
                       </div>
                       <span class="dc-mono d-block mt-1" style="font-size: 0.72rem; color: var(--dc-text-mute);">Team Member</span>
                     </div>
                   </div>
 
-
-
                   <!-- Social Links: GitHub & LinkedIn -->
-                  <div class="d-flex gap-2 mt-auto pt-2 border-top" style="border-color: var(--dc-line) !important;">
+                  <div class="d-flex gap-2 mt-auto pt-2 border-top flex-wrap" style="border-color: var(--dc-line) !important;">
                     {{ with .github }}
-                      <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-minimal py-1 px-2" style="font-size: 0.72rem;">
+                      <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-minimal py-1 px-2 flex-grow-1 flex-sm-grow-0 text-center" style="font-size: 0.72rem;">
                         GitHub Profile ↗
                       </a>
                     {{ end }}
                     {{ with .linkedin }}
-                      <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-minimal py-1 px-2" style="font-size: 0.72rem; color: var(--dc-cyan);">
+                      <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-minimal py-1 px-2 flex-grow-1 flex-sm-grow-0 text-center" style="font-size: 0.72rem; color: var(--dc-cyan);">
                         LinkedIn ↗
                       </a>
                     {{ end }}
@@ -139,10 +137,10 @@
         </div>
       {{ end }}
 
-      <hr class="section-divider my-5">
+      <hr class="section-divider my-4 my-md-5">
 
       <!-- Markdown Body Content -->
-      <div class="content lh-lg">
+      <div class="content lh-lg text-break" style="word-break: break-word;">
         {{ .Content }}
       </div>
 

@@ -1319,6 +1319,15 @@ fieldset:disabled .dc-select {
   font-size: .78rem;
 }
 
+.badge {
+  white-space: normal;
+  text-align: left;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.35;
+  max-width: 100%;
+}
+
 .meta-badge {
   display: inline-flex;
   align-items: center;
@@ -1332,6 +1341,10 @@ fieldset:disabled .dc-select {
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--dc-cyan);
+  white-space: normal;
+  word-break: break-word;
+  max-width: 100%;
+  line-height: 1.35;
 }
 
 /* Bootstrap utility overrides that assumed a light page */
