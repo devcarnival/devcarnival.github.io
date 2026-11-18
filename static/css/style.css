@@ -1328,6 +1328,59 @@ fieldset:disabled .dc-select {
   max-width: 100%;
 }
 
+/* --- Venue Map Component --- */
+.dc-venue-map-panel {
+  border: 1px solid var(--dc-line);
+  background: var(--dc-surface);
+  transition: var(--dc-transition-smooth);
+  overflow: hidden;
+}
+
+.dc-venue-map-panel:hover {
+  border-color: var(--dc-cyan);
+  box-shadow: var(--dc-glow-cyan);
+}
+
+.dc-venue-map-container {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.dc-venue-map-link {
+  display: block;
+  cursor: pointer;
+  position: relative;
+}
+
+.dc-venue-map-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 243, 255, 0);
+  transition: background 0.25s ease;
+  pointer-events: none;
+}
+
+.dc-venue-map-link:hover::after {
+  background: rgba(0, 243, 255, 0.03);
+}
+
+.dc-map-badge-overlay {
+  background: rgba(10, 14, 23, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--dc-line-bright);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  border-radius: var(--dc-radius-sm);
+  transition: var(--dc-transition-smooth);
+}
+
+.dc-venue-map-link:hover .dc-map-badge-overlay {
+  border-color: var(--dc-cyan);
+  background: rgba(10, 14, 23, 0.98);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.25);
+}
+
 .meta-badge {
   display: inline-flex;
   align-items: center;

@@ -176,6 +176,55 @@ repo's people-join contract (§4.1) for booth hosts.
 </section>
 {{ end }}
 
+{{/* ====================== VENUE ====================== */}}
+<section class="dc-section" id="venue">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end mb-4 gap-2">
+            <div>
+                <span class="dc-kicker mb-1">// festival grounds &middot; mahindra world city</span>
+                <h2 class="dc-section-title mb-0">Venue <span class="dc-neon-magenta">Location.</span></h2>
+            </div>
+            <div>
+                <a href="https://maps.app.goo.gl/v62oEYjTPccU9wpP9" target="_blank" rel="noopener noreferrer" class="btn btn-outline-minimal">
+                    Open in Google Maps ↗
+                </a>
+            </div>
+        </div>
+
+        <div class="dc-panel dc-venue-map-panel">
+            <div class="dc-panel__bar d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <span>venue/map &middot; infosys limited, paranur</span>
+                </div>
+                <a href="https://maps.app.goo.gl/v62oEYjTPccU9wpP9" target="_blank" rel="noopener noreferrer" class="dc-mono text-decoration-none" style="font-size:.72rem; color:var(--dc-cyan);">
+                    Pin Location ↗
+                </a>
+            </div>
+
+            <div class="dc-panel__body p-0 position-relative dc-venue-map-container" style="min-height: 420px; height: 480px;">
+                <a href="https://maps.app.goo.gl/v62oEYjTPccU9wpP9" target="_blank" rel="noopener noreferrer" class="dc-venue-map-link d-block w-100 h-100 position-relative text-decoration-none" title="Click to open Infosys Paranur in Google Maps">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.696155553064!2d80.00661561069732!3d12.73323418750863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52fbde5247a5b5%3A0xd1f9eb10dd110e01!2sInfosys%20Limited!5e0!3m2!1sen!2sin!4v1795006011207!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; pointer-events: none; width: 100%; height: 100%; min-height: 420px; display: block;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        title="Infosys Limited Paranur Venue Map">
+                    </iframe>
+                    <div class="dc-map-badge-overlay position-absolute bottom-0 end-0 m-3 p-2 px-3">
+                        <span class="dc-mono d-inline-flex align-items-center gap-2" style="font-size: .78rem; color: var(--dc-cyan);">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            Click Map to Open in Google Maps ↗
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
 {{/* ====================== Sponsors ====================== */}}
 <div class="container" id="sponsors">
@@ -264,6 +313,8 @@ repo's people-join contract (§4.1) for booth hosts.
 
     </div>
 </div>
+
+
 {{/* ====================== REGISTRATION ====================== */}}
 {{ $konfhubUrl := $.Site.Params.konfhub.event_url | default "https://konfhub.com/dev-carnival" }}
 {{ $checkoutUrl := $.Site.Params.konfhub.checkout_url | default "https://konfhub.com/checkout/dev-carnival" }}

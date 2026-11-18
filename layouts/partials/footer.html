@@ -8,7 +8,7 @@
                     <span class="dc-brand__mark">Dev<em>Carnival</em></span>
                 </span>
                 <p class="dc-note mb-0">
-                    {{ with .Site.GetPage "/" }}{{ .Params.event.date }}<br>{{ .Params.event.location }}{{ end }}
+                    {{ with .Site.GetPage "/" }}{{ .Params.event.date }}<br><a href="{{ "" | relURL }}#venue" class="text-decoration-none hover-underline" style="color: inherit;">{{ .Params.event.location }} ↗</a>{{ end }}
                 </p>
             </div>
 
@@ -17,6 +17,7 @@
                 <div class="d-flex flex-wrap gap-3 gap-md-4 justify-content-lg-end">
                     <a href="{{ "/about" | relURL }}">About</a>
                     <a href="{{ "team/" | relURL }}">Team</a>
+                    <a href="{{ "" | relURL }}#venue">Venue</a>
                     
                     {{ with .Site.Params.github }}
                     <a href="{{ . }}" target="_blank" rel="noopener noreferrer">GitHub</a>

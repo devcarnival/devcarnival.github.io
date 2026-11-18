@@ -51,6 +51,10 @@ enableRobotsTXT = true
     name = "Community"
     url = "/communities"
     weight = 4
+  [[menu.main]]
+    name = "Venue"
+    url = "/#venue"
+    weight = 5
 
 [taxonomies]
   year = "years"
