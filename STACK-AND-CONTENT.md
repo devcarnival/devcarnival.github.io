@@ -274,8 +274,8 @@ Contract: `title`, `people: [slug…]`, body = purpose statement.
 | file | title | members |
 | --- | --- | --- |
 | `core-organizers` | Core Organizing Committee | anandbabur, ravindran, mutheeshwaran |
-| `academia` | Academia | samir, sree-sharmila *(`sathish` commented out)* |
-| `corporate` | Corporate Connect | manickalai |
+| `academia` | Academia | geetha, karthika, balaji |
+| `promotion` | Promotion Team | crystal, malik, avinash |
 | `ai` | AI Team | thamaraikanni, udayani, ksivaprasadreddy |
 | `hackathon` | Hackathon Team | thiru, rohan |
 | `technical-committee` | Technical Review Committee | hari-nikesh, saro |

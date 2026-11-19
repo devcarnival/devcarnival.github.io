@@ -1,10 +1,9 @@
 ---
 title: "Academia"
 people:
-  - "samir"
-  - "sree-sharmila"
-  - "arun"
-  - "dinesh"
+  - "geetha"
+  - "karthika"
+  - "balaji"
 ---
 
 The **Academia Team** is responsible for building strong relationships with academic institutions, faculty leaders, and student communities. The team collaborates across colleges and universities nationwide to organize technical events, hands-on workshops, faculty hackathons, and learning initiatives that bridge the gap between theoretical computer science and modern software engineering practices.

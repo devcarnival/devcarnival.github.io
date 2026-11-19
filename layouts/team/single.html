@@ -62,6 +62,13 @@
                                          alt="{{ .Title }}" 
                                          loading="lazy">
                                 </div>
+                            {{ else }}
+                                <div class="flex-shrink-0">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center border" 
+                                         style="width: 56px; height: 56px; background: var(--dc-surface-2); border-color: var(--dc-line) !important; color: var(--dc-cyan); font-family: var(--dc-font-mono); font-weight: 700; font-size: 1.25rem;">
+                                        {{ substr .Title 0 1 }}
+                                    </div>
+                                </div>
                             {{ end }}
                         </div>
                         {{ else }}
@@ -70,6 +77,10 @@
                                 Member profile reference missing (`people/{{ . }}.md`).
                             </div>
                         {{ end }}
+                    {{ else }}
+                        <div class="p-3 border rounded-0 border-dashed text-muted small text-center">
+                            No team members listed yet.
+                        </div>
                     {{ end }}
                 </div>
             </div>

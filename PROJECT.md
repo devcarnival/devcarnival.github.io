@@ -207,7 +207,7 @@ card tag sets are present — social sharing was clearly a priority.
 
 - **Event dates**: Fri Jan 8 – Sat Jan 9, 2027, at Infosys Mahindra City, Chennai.
 - **14 people**, grouped into **6 teams**: Core Organizing Committee, Academia,
-  Corporate Connect, AI Team, Hackathon Team, Technical Review Committee.
+  Promotion Team, AI Team, Hackathon Team, Technical Review Committee.
 - **4 sessions** published (Spring AI agentic patterns, designing for the AI age,
   AI robustness/security & privacy by design, software development in the AI age)
   — all tagged `years: ["2026"]`. The programme is heavily AI-oriented.
