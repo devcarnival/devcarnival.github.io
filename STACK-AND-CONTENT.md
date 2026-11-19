@@ -273,12 +273,12 @@ Contract: `title`, `people: [slug…]`, body = purpose statement.
 
 | file | title | members |
 | --- | --- | --- |
-| `core-organizers` | Core Organizing Committee | anandbabur, ravindran, mutheeshwaran |
+| `core-organizers` | Core Organizing Committee | — |
 | `academia` | Academia | geetha, karthika, balaji |
 | `promotion` | Promotion Team | crystal, malik, avinash |
-| `ai` | AI Team | thamaraikanni, udayani, ksivaprasadreddy |
-| `hackathon` | Hackathon Team | thiru, rohan |
-| `technical-committee` | Technical Review Committee | hari-nikesh, saro |
+| `ai` | AI Team | — |
+| `hackathon` | Hackathon Team | — |
+| `technical-committee` | Technical Review Committee | — |
 
 #### Sessions — 5 files, `content/session/<slug>.md`
 
