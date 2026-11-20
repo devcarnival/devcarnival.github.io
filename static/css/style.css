@@ -338,6 +338,39 @@ body.dc-page .navbar {
   }
 }
 
+/* Navbar Register button: compact and prominent on mobile outside the hamburger */
+.dc-nav-register {
+  padding: .45rem .85rem;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+@media (max-width: 991.98px) {
+  .dc-nav-register {
+    border-color: rgba(34, 224, 255, .6);
+    color: var(--dc-cyan);
+    background: rgba(34, 224, 255, 0.08);
+  }
+  .dc-nav-register:hover,
+  .dc-nav-register:focus {
+    background: rgba(34, 224, 255, 0.18);
+    border-color: var(--dc-cyan);
+    color: #fff;
+    box-shadow: var(--dc-glow-cyan);
+  }
+}
+
+@media (min-width: 992px) {
+  .dc-nav-register {
+    padding: .8rem 1.4rem;
+    font-size: .78rem;
+    letter-spacing: .14em;
+    margin-left: .5rem;
+  }
+}
+
 /* --------------------------------------------------------------------------
    4. Hero — 350vh scroll track, sticky canvas stage
    -------------------------------------------------------------------------- */

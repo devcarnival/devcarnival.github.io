@@ -9,23 +9,22 @@
             <span class="dc-brand__tag d-none d-sm-inline">Jan 8–9, 2027 &middot; Chennai</span>
         </a>
 
-        <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#dcNav" aria-controls="dcNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="d-flex align-items-center gap-2 order-lg-3">
+            <a class="dc-btn dc-btn--ghost dc-nav-register" href="{{ "" | relURL }}#passport">Register</a>
+            <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#dcNav" aria-controls="dcNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
 
-        <div class="collapse navbar-collapse" id="dcNav">
+        <div class="collapse navbar-collapse order-lg-2" id="dcNav">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mt-2 mt-lg-0">
 
                 {{ range .Site.Menus.main }}
                 <li class="nav-item"><a class="nav-link" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-                    {{ end }}
+                {{ end }}
 
-                
-                <li class="nav-item ms-lg-2">
-                    <a class="dc-btn dc-btn--ghost" href="{{ "" | relURL }}#passport">Register</a>
-                </li>
             </ul>
         </div>
     </div>
