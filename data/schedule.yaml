@@ -24,7 +24,7 @@ days:
   section_title: Workshops & Parallel Tracks
   halls:
   - name: Nalantha
-    sub: (Enterprise AI Track)
+    sub: (Enterprise AI)
   - name: Cambridge
     sub: (AIOps Track)
   - name: Harvard
@@ -32,7 +32,7 @@ days:
   - name: Warren buffet
     sub: (AI Engineering Track)
   - name: Ganga
-    sub: (Academia Track)
+    sub: (AIpedagogy Track)
   rows:
   - time: 10:00 AM – 10:45 AM
     cells:
@@ -185,7 +185,7 @@ days:
   section_title: Parallel Tech Talks
   halls:
   - name: Nalantha
-    sub: (Enterprise AI Track)
+    sub: (Enterprise AI)
   - name: Cambridge
     sub: (AIOps Track)
   - name: Harvard
