@@ -1,7 +1,7 @@
 ---
 title: "TN AI Association"
 logo: "images/communities/tnaia.png"
-years: ["2026"]
+years: ["2027"]
 weight: 13
 aliases:
   - "/communities/tnaia/"
@@ -41,6 +41,6 @@ To position Tamil Nadu as a global benchmark in artificial intelligence, TNAIA h
 - **Deep-Tech Entrepreneurship & Startup Cohorts:** Hosting targeted hackathons, venture cohorts, and demo days to connect founders with capital, compute resources, and enterprise pilots.
 - **Global Ecosystem Partnerships:** Establishing bilateral collaborations with international AI clusters, research consortiums, and technology leaders to position Tamil Nadu as a prime destination for global AI investments.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem community collaborator for DevCarnival 2026, the TN AI Association champions applied intelligence, machine learning workshops, and deep-tech discussions—empowering developers to build state-of-the-art AI systems while honoring regional engineering strengths.
+As an ecosystem community collaborator for DevCarnival 2027, the TN AI Association champions applied intelligence, machine learning workshops, and deep-tech discussions—empowering developers to build state-of-the-art AI systems while honoring regional engineering strengths.

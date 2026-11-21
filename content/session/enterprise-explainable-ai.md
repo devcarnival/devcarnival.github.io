@@ -3,7 +3,7 @@ title: "Enterprise Explainable AI"
 slug: "enterprise-explainable-ai"
 speakers:
   - "perumal-krishnamoorthy"
-years: ["2026"]
+years: ["2027"]
 track: "AI Security, Infrastructure & DevOps"
 session_type: "Talk"
 duration: "45 mins"

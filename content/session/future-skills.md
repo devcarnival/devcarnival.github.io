@@ -4,7 +4,7 @@ slug: "skills-for-the-future"
 weight: 1
 speakers:
   - "kamakoti"
-years: ["2026"]
+years: ["2027"]
 track: "AI & Future of Software"
 session_type: "Keynote"
 duration: "20 mins"

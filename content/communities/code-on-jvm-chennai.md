@@ -1,7 +1,7 @@
 ---
 title: "Code On JVM Chennai"
 logo: "images/communities/code-on-jvm.png"
-years: ["2026"]
+years: ["2027"]
 weight: 16
 slug: "code-on-jvm-chennai"
 aliases:
@@ -32,6 +32,6 @@ Through regular meetups, hands-on coding labs, hackathons, and architecture disc
 - **Data Structures in Production:** Deep-dive studies into production-grade structures including Bloom Filters, Log-Structured Merge-trees (LSM-trees), and vector indexing.
 - **Mentorship & Community Enablement:** Bridging academia and industry through practical workshops, open-source collaboration, and developer networking.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem community partner for DevCarnival 2026, Code On JVM Chennai collaborates to empower developers with high-scale enterprise engineering insights, hands-on JVM masterclasses, and vibrant community-driven learning tracks.
+As an ecosystem community partner for DevCarnival 2027, Code On JVM Chennai collaborates to empower developers with high-scale enterprise engineering insights, hands-on JVM masterclasses, and vibrant community-driven learning tracks.

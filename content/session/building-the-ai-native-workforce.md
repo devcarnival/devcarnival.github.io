@@ -3,7 +3,7 @@ title: "Building the AI-native workforce"
 slug: "building-the-ai-native-workforce"
 speakers:
   - "yamuna-kannaian"
-years: ["2026"]
+years: ["2027"]
 track: "AI Agents & Developer Productivity"
 session_type: "Talk"
 duration: "45 mins"

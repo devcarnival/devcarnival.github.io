@@ -1,7 +1,7 @@
 ---
 title: "Snowflake Chennai User Group"
 logo: "images/communities/snowflake-chennai.png"
-years: ["2026"]
+years: ["2027"]
 weight: 6
 slug: "snowflake-chennai"
 aliases:
@@ -37,6 +37,6 @@ Guided by local chapter leads, community advocates, and Snowflake Data Superhero
 - **Superhero Insights & Peer Knowledge Sharing:** Interactive discussions led by Snowflake Data Superheroes and enterprise practice leaders addressing real-world implementation challenges, performance tuning, and architectural patterns.
 - **Data Community Networking:** Fostering long-term mentorship, peer problem-solving, and career connections across Chennai's rapidly growing cloud and data ecosystem.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem collaborator for DevCarnival 2026, the Snowflake Chennai User Group collaborates to bring deep technical sessions and masterclasses in cloud data architecture, data engineering, and agentic AI on enterprise data platforms, connecting developers with seasoned cloud data leaders and architects across the conference.
+As an ecosystem collaborator for DevCarnival 2027, the Snowflake Chennai User Group collaborates to bring deep technical sessions and masterclasses in cloud data architecture, data engineering, and agentic AI on enterprise data platforms, connecting developers with seasoned cloud data leaders and architects across the conference.

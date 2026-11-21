@@ -5,7 +5,7 @@ speakers:
   - "kasthuri-ganeshguru"
 communities:
   - "cybervattam"
-years: ["2026"]
+years: ["2027"]
 track: "Cyber Security"
 session_type: "Talk"
 duration: "45 mins"

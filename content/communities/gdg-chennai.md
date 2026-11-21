@@ -1,7 +1,7 @@
 ---
 title: "Google Developer Group Chennai (GDG Chennai)"
 logo: "images/communities/gdg-chennai.png"
-years: ["2026"]
+years: ["2027"]
 weight: 1
 aliases:
   - "/communities/gdg-chennai/"
@@ -38,6 +38,6 @@ Through regular meetups, developer roadshows, hackathons, and marquee conference
 - **Women Techmakers (WTM) Chennai:** An active chapter dedicated to empowering women technologists through dedicated conferences (such as International Women's Day celebrations), technical mentorship, and leadership development.
 - **Collegiate Enablement & GDG on Campus:** Mentoring and partnering with student-led campus chapters across Chennai institutions (including Chennai Institute of Technology, VIT Chennai, Anna University, and SRM) to guide aspiring engineers into active industry contributors.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem community partner for DevCarnival 2026, Google Developer Group Chennai collaborates to foster regional engineering talent, deliver deep-dive sessions across modern web, cloud, and generative AI ecosystems, and connect Chennai's developer community with the wider tech festival.
+As an ecosystem community partner for DevCarnival 2027, Google Developer Group Chennai collaborates to foster regional engineering talent, deliver deep-dive sessions across modern web, cloud, and generative AI ecosystems, and connect Chennai's developer community with the wider tech festival.

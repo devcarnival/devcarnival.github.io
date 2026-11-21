@@ -1,7 +1,7 @@
 ---
 title: "fromDevtoOps"
 logo: "images/communities/fromdevtoops.png"
-years: ["2026"]
+years: ["2027"]
 weight: 24
 slug: "fromdevtoops"
 aliases:
@@ -36,6 +36,6 @@ Through regular in-person technical meetups, panel discussions, and collaborativ
 - **Hands-on Labs & Architecture Deep Dives:** Practical workshops and live walkthroughs guiding engineers through container orchestration, observability setup, and infrastructure automation.
 - **Community Chat & Peer Mentorship:** A thriving local network connecting hundreds of engineers through the [fromDevtoOps WhatsApp Community](https://chat.whatsapp.com/CdncnTs8rfpDUyayfJMSS1) for troubleshooting, peer learning, and career mentorship.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem collaborator for DevCarnival 2026, fromDevtoOps joins the festival to champion resilient production engineering, lead discussions on DevOps and SRE best practices, and mentor attendees on building, scaling, and operating reliable systems in production.
+As an ecosystem collaborator for DevCarnival 2027, fromDevtoOps joins the festival to champion resilient production engineering, lead discussions on DevOps and SRE best practices, and mentor attendees on building, scaling, and operating reliable systems in production.

@@ -5,7 +5,7 @@ speakers:
   - "manukumar-vs"
 communities:
   - "tamilnadu-java-user-group"
-years: ["2026"]
+years: ["2027"]
 track: "AI Agents & Developer Productivity"
 session_type: "Talk"
 duration: "45 mins"

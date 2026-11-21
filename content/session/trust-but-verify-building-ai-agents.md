@@ -5,7 +5,7 @@ speakers:
   - "abdul-salam"
 communities:
   - "cybervattam"
-years: ["2026"]
+years: ["2027"]
 track: "Building AI-Powered Applications"
 session_type: "Workshop"
 duration: "90 mins"

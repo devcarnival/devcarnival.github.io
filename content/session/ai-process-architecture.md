@@ -3,7 +3,7 @@ title: "AI process architecture - transforming to AI-first enterprise"
 slug: "ai-process-architecture"
 speakers:
   - "madhanraj"
-years: ["2026"]
+years: ["2027"]
 track: "AI Security, Infrastructure & DevOps"
 session_type: "Talk"
 duration: "45 mins"

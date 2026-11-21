@@ -5,7 +5,7 @@ aliases:
   - "/session/leading-in-the-ai-first-era/"
 speakers:
   - "mutheeshwaran"
-years: ["2026"]
+years: ["2027"]
 track: "AI & Future of Software"
 session_type: "Talk"
 duration: "45 mins"

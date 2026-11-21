@@ -3,7 +3,7 @@ title: "From Dashboards to Dialogue"
 slug: "from-dashboards-to-dialogue"
 speakers:
   - "manjunathan"
-years: ["2026"]
+years: ["2027"]
 track: "Building AI-Powered Applications"
 session_type: "Talk"
 duration: "45 mins"

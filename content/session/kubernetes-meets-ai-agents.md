@@ -6,7 +6,7 @@ speakers:
   - "suriya-r"
 communities:
   - "virudhunagar-techies"
-years: ["2026"]
+years: ["2027"]
 track: "AI Security, Infrastructure & DevOps"
 session_type: "Talk"
 duration: "45 mins"

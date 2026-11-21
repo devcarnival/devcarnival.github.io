@@ -3,7 +3,7 @@ title: "Ready to Hack Your Circuits? Discover Open-Source EDA with eSim!"
 slug: "open-source-eda-with-esim"
 speakers:
   - "sumanto-kar"
-years: ["2026"]
+years: ["2027"]
 track: "AI & Future of Software"
 session_type: "Workshop"
 duration: "90 mins"

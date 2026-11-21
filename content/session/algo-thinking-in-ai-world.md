@@ -3,7 +3,7 @@ title: "Algo Thinking in AI World"
 slug: "algo-thinking-in-ai-world"
 speakers:
   - "arun"
-years: ["2026"]
+years: ["2027"]
 track: "AI & Future of Software"
 session_type: "Talk"
 duration: "45 mins"

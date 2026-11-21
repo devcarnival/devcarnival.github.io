@@ -1,7 +1,7 @@
 ---
 title: "Elastic User Group Chennai"
 logo: "images/communities/elastic-chennai.png"
-years: ["2026"]
+years: ["2027"]
 weight: 29
 slug: "elastic-chennai"
 aliases:
@@ -38,6 +38,6 @@ The community regularly convenes for free in-person technical meetups, architect
 - **Speaker Enablement & Call for Meetups:** Encouraging local practitioners and students to share real-world use cases, giving first-time speakers a supportive stage to present their work.
 - **Regional & Global Collaboration:** Connecting Chennai builders with the wider Elastic India User Groups network and international open-source maintainers.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem collaborator for DevCarnival 2026, Elastic User Group Chennai joins the festival to bring hands-on search, log analytics, vector retrieval, and AI observability expertise—connecting attendees with real-world architectural patterns and community leaders from Chennai's search and data engineering ecosystem.
+As an ecosystem collaborator for DevCarnival 2027, Elastic User Group Chennai joins the festival to bring hands-on search, log analytics, vector retrieval, and AI observability expertise—connecting attendees with real-world architectural patterns and community leaders from Chennai's search and data engineering ecosystem.

@@ -1,7 +1,7 @@
 ---
 title: "techKoodaram"
 logo: "images/communities/techkoodaram.png"
-years: ["2026"]
+years: ["2027"]
 weight: 20
 socials:
   website: "https://www.techkoodaram.in"

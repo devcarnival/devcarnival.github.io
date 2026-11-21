@@ -282,7 +282,7 @@ Contract: `title`, `people: [slug…]`, body = purpose statement.
 
 #### Sessions — 5 files, `content/session/<slug>.md`
 
-Contract: `title`, `speakers: [slug…]`, `years: ["2026"]`, body = abstract.
+Contract: `title`, `speakers: [slug…]`, `years: ["2027"]`, body = abstract.
 `_index.md` title = `Festival Sessions`. Permalink `/session/:slug/`.
 
 | slug | title | speaker |
@@ -293,7 +293,7 @@ Contract: `title`, `speakers: [slug…]`, `years: ["2026"]`, body = abstract.
 | `enhancing-ai-robustness-through-security-and-privacy-by-design` | Enhancing AI Robustness through Security and Privacy by Design | ksivaprasadreddy ⚠️ likely placeholder |
 | `live-data-poisoning-and-backdoor-attacks` | When AI Learns the Wrong Lessons: Live Data Poisoning and Backdoor Attacks with ART | michealJoshuva |
 
-All `years: ["2026"]`. All AI-themed.
+All `years: ["2027"]`. All AI-themed.
 
 #### Communities — 4 files, `content/communities/<slug>.md`
 
@@ -302,8 +302,8 @@ Contract: `title`, `logo`, `years[]`, `socials.{github,linkedin,twitter}`, body 
 
 | slug | title | years | logo |
 | --- | --- | --- | --- |
-| `tamil-jug` | Tamilnadu Java User Group | 2026 | external (tamilnadujug.org) |
-| `tech-cohere` | TechCohere | 2025, 2026 | external (javafest.org) |
+| `tamil-jug` | Tamilnadu Java User Group | 2027 | external (tamilnadujug.org) |
+| `tech-cohere` | TechCohere | 2025, 2027 | external (javafest.org) |
 | `cloud-native` | Cloud Native Chennai | 2025 | `images/communities/cnc-logo.png` **missing** |
 | `rust-rustaceans` | Madras Rustaceans | 2025 | `images/communities/madras-rust.png` **missing** |
 
@@ -327,7 +327,7 @@ Distinct taxonomy terms available for filter UI:
 
 #### Schedule — `content/schedule.html`, 393 lines of hand-written Bootstrap
 
-Front matter: `title: "Schedule"`, `date: 2026-08-03`, `draft: false`.
+Front matter: `title: "Schedule"`, `date: 2027-01-08`, `draft: false`.
 Rendered through `_default/single.html` (raw HTML body, **no Hugo data model**).
 A UI redesign either rewrites this HTML by hand or promotes it to front-matter data +
 a real template. Content today:
@@ -447,7 +447,7 @@ All four of those are open improvements for a redesign.
 5. **7 missing image files** (§2.2), incl. every project hero and 2 community logos.
 6. **Dead CTAs** — `Submit a Talk` → `#cfp`, `Register Now` → `#register`. Both anchors nonexistent. The two primary conversions do nothing.
 7. **4 of 5 sessions credit the same speaker** — looks like copy-paste; confirm with organizers.
-8. **Edition/date mismatch** — sessions all `years: ["2026"]`, but the event and Tech Pavilion Expo are **2027**. Communities span 2025/2026, so the archive path *is* live.
+8. **Edition/date alignment** — sessions all `years: ["2027"]`, matching the event and Tech Pavilion Expo (**2027**). Communities span 2025/2027, so the archive path *is* live.
 9. **`/years/` won't render** — no `_default/terms.html` / `list.html`.
 10. **`taxonomy.html` copy is community-only** but serves sessions/tags/categories/domains too.
 11. **Duplicate booth `TP-42`** (raithu + sqlcomponents).

@@ -1,7 +1,7 @@
 ---
 title: "Cybervattam"
 logo: "images/communities/cybervattam.png"
-years: ["2026"]
+years: ["2027"]
 weight: 14
 aliases: ["/communities/cyber-vattam/"]
 socials:

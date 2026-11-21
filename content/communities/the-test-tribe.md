@@ -1,7 +1,7 @@
 ---
 title: "The Test Tribe"
 logo: "images/communities/the-test-tribe.png"
-years: ["2026"]
+years: ["2027"]
 weight: 26
 slug: "the-test-tribe"
 aliases:
@@ -41,6 +41,6 @@ Through community-driven meetups, hackathons, and immersive cohort learning prog
 - **Bugathons & Live Testing Hackathons:** Competitive, real-time testing challenges allowing practitioners to test real products, identify critical edge cases, and learn from peer methodologies.
 - **Expert Cohorts & Masterclasses:** Hands-on, mentor-led cohorts guiding engineers through mastering test automation, SDET transition tracks, and modern quality architectures.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem collaborator for DevCarnival 2026, The Test Tribe joins the conference to champion modern software quality, lead discussions on AI-driven test engineering and scalable test architectures, and mentor engineers and testers navigating modern cloud-native systems.
+As an ecosystem collaborator for DevCarnival 2027, The Test Tribe joins the conference to champion modern software quality, lead discussions on AI-driven test engineering and scalable test architectures, and mentor engineers and testers navigating modern cloud-native systems.

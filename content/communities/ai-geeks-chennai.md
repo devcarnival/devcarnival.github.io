@@ -1,7 +1,7 @@
 ---
 title: "AI Geeks Chennai"
 logo: "images/communities/ai-geeks-chennai.png"
-years: ["2026"]
+years: ["2027"]
 weight: 12
 aliases:
   - "/communities/ai-geeks-chennai/"
@@ -33,6 +33,6 @@ Through regular in-person meetups, interactive technical workshops, and cross-co
 - **Hackathons & Ecosystem Partnerships:** Collaborating with regional and national developer conferences, collegiate chapters, and tech communities to drive innovation and support regional hackathons.
 - **Peer Networking & Career Acceleration:** A welcoming platform where budding developers, career switchers, and seasoned practitioners connect, exchange insights, and discover collaborative project opportunities.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem collaborator for DevCarnival 2026, AI Geeks Chennai joins the festival to drive hands-on workshops on Agentic AI, share best practices for deploying production LLMs, and mentor developers exploring cutting-edge artificial intelligence across the conference grounds.
+As an ecosystem collaborator for DevCarnival 2027, AI Geeks Chennai joins the festival to drive hands-on workshops on Agentic AI, share best practices for deploying production LLMs, and mentor developers exploring cutting-edge artificial intelligence across the conference grounds.

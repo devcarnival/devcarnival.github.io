@@ -1,7 +1,7 @@
 ---
 title: "Madurai Open TE(A)CH Club"
 logo: "images/communities/madurai-open-tech-club.png"
-years: ["2026"]
+years: ["2027"]
 weight: 22
 aliases:
   - "/communities/madurai-open-tech-club/"

@@ -1,7 +1,7 @@
 ---
 title: "LaserData"
 logo: "images/communities/laserdata.png"
-years: ["2026"]
+years: ["2027"]
 weight: 23
 aliases:
   - "/communities/laserdata/"
@@ -33,6 +33,6 @@ With the advent of autonomous AI workflows and multi-agent coordination, traditi
 - **Open Standards for AI Communication:** Driving community adoption and collaborative development around AGDX, establishing open data contracts and SDKs (Rust, Python, TypeScript) for autonomous AI agents.
 - **Developer Enablement & Research:** Publishing technical guides, open architectural benchmarks, and best practices for building fault-tolerant, low-latency streaming infrastructure for modern enterprise AI applications.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem collaborator for DevCarnival 2026, LaserData joins forces to showcase next-generation Rust-native systems engineering, explore streaming architectures for autonomous multi-agent systems, and demonstrate high-throughput distributed data foundations at the conference.
+As an ecosystem collaborator for DevCarnival 2027, LaserData joins forces to showcase next-generation Rust-native systems engineering, explore streaming architectures for autonomous multi-agent systems, and demonstrate high-throughput distributed data foundations at the conference.

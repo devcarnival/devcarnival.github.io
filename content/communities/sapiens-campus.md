@@ -1,7 +1,7 @@
 ---
 title: "Sapiens Campus"
 logo: "images/communities/sapiens-campus.png"
-years: ["2026"]
+years: ["2027"]
 weight: 28
 slug: "sapiens-campus"
 aliases:
@@ -39,6 +39,6 @@ Through hands-on hackathons, technical symposiums, student developer meetups, an
 - **Technical Meetups & Expert Sessions:** Regular offline and virtual sessions featuring software engineers, architects, and open-source contributors sharing insights on modern tech stacks, distributed systems, and industry expectations.
 - **Student Hackathons & Summer of Code:** Collaborative hackathons and buildathon cohorts encouraging undergraduates to solve regional challenges, build portfolios, and earn recognition.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem collaborator for DevCarnival 2026, Sapiens Campus connects collegiate developers, campus tech clubs, and student builders across Tamil Nadu with the broader technology festival. Through collaborative sessions, student showcases, and community meetups, Sapiens Campus empowers the next generation of software engineers to engage directly with industry leaders, open-source maintainers, and the wider developer community.
+As an ecosystem collaborator for DevCarnival 2027, Sapiens Campus connects collegiate developers, campus tech clubs, and student builders across Tamil Nadu with the broader technology festival. Through collaborative sessions, student showcases, and community meetups, Sapiens Campus empowers the next generation of software engineers to engage directly with industry leaders, open-source maintainers, and the wider developer community.

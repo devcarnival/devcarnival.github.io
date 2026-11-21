@@ -1,7 +1,7 @@
 ---
 title: "NexGenCyberWomen"
 logo: "images/communities/nexgencyberwomen.png"
-years: ["2026"]
+years: ["2027"]
 weight: 15
 slug: "nexgencyberwomen"
 aliases:
@@ -48,6 +48,6 @@ Through specialized training programs, industry mentorship circles, resume and c
 - **Shyleja** — Content Creator
 - **D S Tarun** — Student Co-ordinator
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem community partner for DevCarnival 2026, NexGenCyberWomen collaborates to champion diversity, women leadership, and technical excellence across cybersecurity and application defense tracks, connecting attendees with leading practitioners shaping the future of digital trust.
+As an ecosystem community partner for DevCarnival 2027, NexGenCyberWomen collaborates to champion diversity, women leadership, and technical excellence across cybersecurity and application defense tracks, connecting attendees with leading practitioners shaping the future of digital trust.

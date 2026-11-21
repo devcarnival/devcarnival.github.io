@@ -1,7 +1,7 @@
 ---
 title: "MongoDB User Group Bengaluru"
 logo: "images/communities/mongodb-bengaluru.png"
-years: ["2026"]
+years: ["2027"]
 weight: 10
 socials:
   website: "https://www.meetup.com/mongodb-usergroup-bengaluru/"

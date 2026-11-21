@@ -128,13 +128,13 @@ people: ["slug", "slug"]        # → resolved against people/
 # session/<slug>.md
 title: "Talk Title"
 speakers: ["slug"]              # → resolved against people/
-years: ["2026"]                 # → edition filtering + taxonomy
+years: ["2027"]                 # → edition filtering + taxonomy
 # body = abstract
 
 # communities/<slug>.md
 title: "Community Name"
 logo: "https://..."             # external URL
-years: ["2026"]
+years: ["2027"]
 socials: { github: "org", linkedin: "https://...", twitter: "https://..." }
 
 # projects/<slug>.md
@@ -210,7 +210,7 @@ card tag sets are present — social sharing was clearly a priority.
   Promotion Team, AI Team, Hackathon Team, Technical Review Committee.
 - **4 sessions** published (Spring AI agentic patterns, designing for the AI age,
   AI robustness/security & privacy by design, software development in the AI age)
-  — all tagged `years: ["2026"]`. The programme is heavily AI-oriented.
+  — all tagged `years: ["2027"]`. The programme is heavily AI-oriented.
 - **4 communities**: Tamilnadu JUG, Cloud Native, Rust Rustaceans,
   Tech Cohere.
 - **4 projects** in the Tech Pavilion (Raithu AgriTech platform, Azul JDK,
@@ -244,14 +244,13 @@ Ordered roughly by user impact.
    "Register Now" to `#register`; neither anchor exists anywhere on the site.
    The two primary conversion actions currently do nothing.
 
-4. **Edition-year vs. event-date mismatch.** All content is tagged
-   `years: ["2026"]` and project cards read "Expo 2026", but the advertised
-   event is January **2027**. Whichever convention is intended, it should be
-   consistent — the year taxonomy is what drives archive/current-edition logic.
+4. **Edition-year vs. event-date alignment.** All current edition content is tagged
+   `years: ["2027"]` and project cards read "Expo 2027" aligned with the January **2027**
+   event — the year taxonomy drives archive/current-edition logic.
 
 5. **`/years/` term-list page won't render.** There is no
    `_default/terms.html` *or* `_default/list.html`, so Hugo has no template for
-   the taxonomy index. Individual `/years/2026/` pages work (`taxonomy.html`);
+   the taxonomy index. Individual `/years/2027/` pages work (`taxonomy.html`);
    the parent listing does not.
 
 6. **`_default/taxonomy.html` copy is community-specific.** It reads

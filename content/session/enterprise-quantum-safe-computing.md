@@ -5,7 +5,7 @@ speakers:
   - "s-periyakaruppan"
 communities:
   - "cybervattam"
-years: ["2026"]
+years: ["2027"]
 track: "Security Architecture & Emerging Threats"
 session_type: "Talk"
 duration: "45 mins"

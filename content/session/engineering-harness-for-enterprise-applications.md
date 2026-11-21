@@ -4,7 +4,7 @@ slug: "engineering-harness-for-enterprise-applications"
 speakers:
   - "muthukumaran"
   - "shaama"
-years: ["2026"]
+years: ["2027"]
 track: "AI Agents & Developer Productivity"
 session_type: "Workshop"
 duration: "90 mins"

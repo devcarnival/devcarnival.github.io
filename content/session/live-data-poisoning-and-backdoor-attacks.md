@@ -3,10 +3,12 @@ title: "When AI Learns the Wrong Lessons: Live Data Poisoning and Backdoor Attac
 slug: "live-data-poisoning-and-backdoor-attacks"
 speakers:
   - "michealJoshuva"
-years: ["2026"]
+years: ["2027"]
 track: "AI Security, Infrastructure & DevOps"
 session_type: "Talk"
 duration: "30 mins"
+communities:
+  - "ai-sec-community"
 ---
 
 Artificial Intelligence is only as trustworthy as the data it learns from. As organizations increasingly adopt AI and Large Language Models (LLMs) for critical business functions, attackers are shifting their focus from exploiting deployed models to compromising the training data itself. Data poisoning and backdoor attacks represent a growing class of threats capable of manipulating AI behavior without altering the underlying algorithms, making them difficult to detect through traditional security controls.

@@ -1,7 +1,7 @@
 ---
 title: "Grafana and Friends Chennai"
 logo: "images/communities/grafana-chennai.png"
-years: ["2026"]
+years: ["2027"]
 weight: 27
 slug: "grafana-and-friends-chennai"
 aliases:
@@ -38,6 +38,6 @@ The community hosts regular, 100% free offline meetups, interactive technical de
 - **Production War Stories & Runbooks:** Blameless discussions where practitioners unpack past system outages, share real diagnostic traces, and break down the observability strategies that resolved them.
 - **Student & Career Enablement:** Mentoring aspiring engineers, cloud newcomers, and students to build foundational SRE and observability skill sets, preparing them for modern platform engineering careers.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem community partner for DevCarnival 2026, Grafana and Friends Chennai collaborates to bring deep observability and reliability expertise to the festival. Through technical sessions, interactive demonstrations in the Tech Pavilion, and discussions on production-grade telemetry, the community empowers festival attendees to build observable, resilient, and high-performance software systems.
+As an ecosystem community partner for DevCarnival 2027, Grafana and Friends Chennai collaborates to bring deep observability and reliability expertise to the festival. Through technical sessions, interactive demonstrations in the Tech Pavilion, and discussions on production-grade telemetry, the community empowers festival attendees to build observable, resilient, and high-performance software systems.

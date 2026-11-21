@@ -1,7 +1,7 @@
 ---
 title: "Digital Dreamers Den (D3)"
 logo: "images/communities/digital-dreamers-den.png"
-years: ["2026"]
+years: ["2027"]
 weight: 19
 socials:
   website: "https://digitaldreamersden.in"
@@ -33,4 +33,4 @@ Founded by Aravind Kumar J and supported by a dedicated community team, Digital 
 
 ### DevCarnival Collaboration
 
-As an ecosystem partner for DevCarnival 2026, Digital Dreamers Den (D3) partners to drive interactive full-stack and AI tracks, live demonstrations, and collaborative technical sessions—connecting creators and engineers with the tools and mindsets needed for the next wave of software innovation.
+As an ecosystem partner for DevCarnival 2027, Digital Dreamers Den (D3) partners to drive interactive full-stack and AI tracks, live demonstrations, and collaborative technical sessions—connecting creators and engineers with the tools and mindsets needed for the next wave of software innovation.

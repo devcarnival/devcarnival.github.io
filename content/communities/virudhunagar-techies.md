@@ -1,7 +1,7 @@
 ---
 title: "Virudhunagar Techies"
 logo: "images/communities/virudhunagar-techies.png"
-years: ["2026"]
+years: ["2027"]
 weight: 21
 socials:
   website: "https://virudhunagartechies.in"

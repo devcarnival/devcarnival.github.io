@@ -3,7 +3,7 @@ title: "The Agent Said It Succeeded. The Database Says Otherwise."
 slug: "the-agent-said-it-succeeded-database-says-otherwise"
 speakers:
   - "srinithi-loganathan"
-years: ["2026"]
+years: ["2027"]
 track: "AI Agents & Developer Productivity"
 session_type: "Talk"
 duration: "45 mins"

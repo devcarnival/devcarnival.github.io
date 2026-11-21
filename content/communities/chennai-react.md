@@ -1,7 +1,7 @@
 ---
 title: "Chennai React"
 logo: "images/communities/chennai-react.png"
-years: ["2026"]
+years: ["2027"]
 weight: 25
 slug: "chennai-react"
 aliases:
@@ -42,6 +42,6 @@ Through regular in-person technical meetups, code teardowns, lightning talks, an
 - **National & Regional Partnerships:** Collaborative events with leading tech conferences such as React India and React Nexus, offering regional developers direct access to global frontend leaders.
 - **Active Peer Communities:** Round-the-clock discussions, project showcases, and peer support across the [Chennai React WhatsApp Community](https://chat.whatsapp.com/GVVDcSrckq2FTBXtKBwVbd?mode=r_c) and [Discord](https://bit.ly/chennaireactjs).
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem collaborator for DevCarnival 2026, Chennai React brings vibrant web and frontend engineering expertise to the festival—driving deep-dive discussions on modern UI architecture, performance optimization, and cross-platform application delivery.
+As an ecosystem collaborator for DevCarnival 2027, Chennai React brings vibrant web and frontend engineering expertise to the festival—driving deep-dive discussions on modern UI architecture, performance optimization, and cross-platform application delivery.

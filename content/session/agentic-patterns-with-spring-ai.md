@@ -4,7 +4,7 @@ communities:
   - "tamilnadu-java-user-group"
 speakers:
   - "udayani"
-years: ["2026"]
+years: ["2027"]
 track: "AI Agents & Developer Productivity"
 session_type: "Talk"
 duration: "60 mins"

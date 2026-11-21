@@ -1,7 +1,7 @@
 ---
 title: "NammaFlutter | Flutter Chennai"
 logo: "images/communities/nammaflutter.png"
-years: ["2026"]
+years: ["2027"]
 weight: 8
 slug: "nammaflutter"
 aliases:
@@ -41,6 +41,6 @@ Through interactive in-person meetups, hands-on code-alongs, collaborative hacka
 - **Hands-on Workshops & Codelabs:** Interactive, code-along workshops focusing on practical app development, AI integrations, state management deep dives, and open-source contribution sprints.
 - **Collegiate Enablement & Mentorship:** Partnering with student developers and campus chapters to provide foundational workshops, portfolio reviews, and career guidance for launching careers in software engineering.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem community partner for DevCarnival 2026, NammaFlutter | Flutter Chennai brings the vibrant world of multi-platform engineering and Dart development to the festival grounds. Through collaborative sessions, cross-platform architecture showcases, and hands-on workshops, NammaFlutter empowers attendees to build modern, beautiful, and intelligent applications for mobile, web, and beyond.
+As an ecosystem community partner for DevCarnival 2027, NammaFlutter | Flutter Chennai brings the vibrant world of multi-platform engineering and Dart development to the festival grounds. Through collaborative sessions, cross-platform architecture showcases, and hands-on workshops, NammaFlutter empowers attendees to build modern, beautiful, and intelligent applications for mobile, web, and beyond.

@@ -4,7 +4,7 @@ slug: "redefining-the-future-and-our-role-as-technologists"
 weight: 3
 speakers:
   - "mohammed-rafee-tarafdar"
-years: ["2026"]
+years: ["2027"]
 track: "AI & Future of Software"
 session_type: "Keynote"
 duration: "20 mins"

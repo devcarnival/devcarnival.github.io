@@ -1,7 +1,7 @@
 ---
 title: "SheBuilds Chennai"
 logo: "images/communities/shebuilds-chennai.png"
-years: ["2026"]
+years: ["2027"]
 weight: 7
 slug: "shebuilds-chennai"
 aliases:
@@ -38,6 +38,6 @@ From grassroots university workshops to large-scale conferences and hackathons, 
 - **Technical Devrooms & Hands-On Codelabs:** Interactive, deep-dive workshops on specialized technical tracks—including open data systems, web development, and cloud tools—hosted across leading engineering campuses in Chennai.
 - **Inclusive Mentorship & Community Cohorts:** Structured peer-learning circles, resume review clinics, and mentorship pairings that guide early-career developers toward internships, fellowships, and full-time technical roles.
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem community partner for DevCarnival 2026, SheBuilds Chennai joins the festival to champion diversity and technical craftsmanship across the conference. The community collaborates with DevCarnival to host inclusive tech sessions, mentor emerging builders in hands-on pavilions, and celebrate women leading engineering innovation across Tamil Nadu.
+As an ecosystem community partner for DevCarnival 2027, SheBuilds Chennai joins the festival to champion diversity and technical craftsmanship across the conference. The community collaborates with DevCarnival to host inclusive tech sessions, mentor emerging builders in hands-on pavilions, and celebrate women leading engineering innovation across Tamil Nadu.

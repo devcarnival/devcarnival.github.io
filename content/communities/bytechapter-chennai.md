@@ -1,7 +1,7 @@
 ---
 title: "ByteChapter Chennai"
 logo: "images/communities/bytechapter-chennai.png"
-years: ["2026"]
+years: ["2027"]
 weight: 17
 slug: "bytechapter-chennai"
 draft: true
@@ -42,6 +42,6 @@ Led by experienced Cloud Architects, DevOps leads, SRE practitioners, and AI spe
 - **Mentorship & Career Roadmaps:** Dedicated guidance from chapter leads to assist engineers in clearing certifications (such as CKA and Azure Solutions Architect), cracking system design interviews, and transitioning into specialized Cloud/AI roles.
 - **Community Chat & Regional Networking:** A vibrant local peer group fostering collaboration, peer troubleshooting, and event coordination via the [ByteChapter Chennai WhatsApp Group](https://chat.whatsapp.com/IJPo8fjowvU3ktbdm1UKVL).
 
-### DevCarnival 2026 Collaboration
+### DevCarnival 2027 Collaboration
 
-As an ecosystem collaborator for DevCarnival 2026, ByteChapter Chennai collaborates with DevCarnival to bring practical hands-on masterclasses in Cloud Infrastructure, DevSecOps, and Agentic AI, connecting developers with seasoned industry architects and mentors across the conference.
+As an ecosystem collaborator for DevCarnival 2027, ByteChapter Chennai collaborates with DevCarnival to bring practical hands-on masterclasses in Cloud Infrastructure, DevSecOps, and Agentic AI, connecting developers with seasoned industry architects and mentors across the conference.
