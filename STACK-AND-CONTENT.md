@@ -327,7 +327,7 @@ Distinct taxonomy terms available for filter UI:
 
 #### Schedule — `content/schedule.html`, 393 lines of hand-written Bootstrap
 
-Front matter: `title: "Schedule"`, `date: 2027-01-08`, `draft: false`.
+Front matter: `title: "Conference Schedule & Agenda"`, `type: "schedule"`, `layout: "single"`, `draft: false`.
 Rendered through `_default/single.html` (raw HTML body, **no Hugo data model**).
 A UI redesign either rewrites this HTML by hand or promotes it to front-matter data +
 a real template. Content today:

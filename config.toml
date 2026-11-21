@@ -2,6 +2,7 @@ title = "DevCarnival"
 baseURL = "https://devcarnival.github.io/"
 languageCode = "en-us"
 enableRobotsTXT = true
+buildFuture = true
 
 [sitemap]
   changefreq = "weekly"
