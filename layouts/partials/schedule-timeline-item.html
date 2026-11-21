@@ -11,7 +11,50 @@
       {{ $sPage = site.GetPage (printf "session/%s" $slot.session) }}
     {{ end }}
 
-    <div class="dc-timeline-node">
+    {{ $sTitle := "" }}
+    {{ $sSummary := "" }}
+    {{ $sTrack := or $slot.meta "" }}
+    {{ $sType := "talk" }}
+    {{ $sSpeakers := slice }}
+    {{ $sCompanies := slice }}
+
+    {{ with $sPage }}
+      {{ $sTitle = .Title }}
+      {{ $sSummary = plainify (or .Description .Summary "") }}
+      {{ with .Params.track }}{{ $sTrack = . }}{{ end }}
+      {{ with .Params.session_type }}{{ $sType = . }}{{ end }}
+      {{ range .Params.speakers }}
+        {{ $spSlug := . }}
+        {{ $pPage := site.GetPage (printf "people/%s.md" $spSlug) }}
+        {{ if not $pPage }}
+          {{ $pPage = site.GetPage (printf "people/%s" $spSlug) }}
+        {{ end }}
+        {{ with $pPage }}
+          {{ $sSpeakers = $sSpeakers | append .Title }}
+          {{ with .Params.company }}
+            {{ $sCompanies = $sCompanies | append . }}
+          {{ else }}
+            {{ with .Params.designation }}
+              {{ $sCompanies = $sCompanies | append . }}
+            {{ end }}
+          {{ end }}
+        {{ else }}
+          {{ $sSpeakers = $sSpeakers | append $spSlug }}
+        {{ end }}
+      {{ end }}
+    {{ else }}
+      {{ $sTitle = or $slot.title $slot.session }}
+      {{ with $slot.speaker }}{{ $sSpeakers = $sSpeakers | append . }}{{ end }}
+    {{ end }}
+
+    <div class="dc-timeline-node schedule-item"
+         data-title="{{ lower $sTitle }}"
+         data-speakers="{{ lower (delimit $sSpeakers " ") }}"
+         data-company="{{ lower (delimit $sCompanies " ") }}"
+         data-track="{{ lower $sTrack }}"
+         data-hall="{{ lower (or $slot.hall "") }}"
+         data-type="{{ lower $sType }}"
+         data-summary="{{ lower $sSummary }}">
       <div class="dc-timeline-marker" aria-hidden="true"></div>
       <div class="dc-timeline-card">
         {{/* Header: Time, Hall badge, Track / Type badges */}}
@@ -131,7 +174,16 @@
 
   {{ else }}
     {{/* Workshop or placeholder cell without dedicated session page */}}
-    <div class="dc-timeline-node">
+    {{ $isWs := or (strings.Contains (lower (or $slot.range "")) "workshop") (strings.Contains (lower (or $slot.meta "")) "workshop") (strings.Contains (lower (or $slot.title "")) "workshop") }}
+    {{ $placeholderType := cond $isWs "workshop" "talk" }}
+    <div class="dc-timeline-node schedule-item"
+         data-title="{{ lower (or $slot.title "workshop") }}"
+         data-speakers="{{ lower (or $slot.speaker "") }}"
+         data-company=""
+         data-track="{{ lower (or $slot.meta "") }}"
+         data-hall="{{ lower (or $slot.hall "") }}"
+         data-type="{{ $placeholderType }}"
+         data-summary="{{ lower (or $slot.meta "") }}">
       <div class="dc-timeline-marker dc-timeline-marker--alt" aria-hidden="true"></div>
       <div class="dc-timeline-card dc-timeline-card--workshop">
         <div class="dc-timeline-card__header">

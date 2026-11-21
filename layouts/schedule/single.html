@@ -25,14 +25,94 @@
     {{ end }}
   </ul>
 
+  <!-- Schedule Search & Filter Bar -->
+  <div class="dc-panel mb-4 p-3 p-md-4" style="background: var(--dc-surface); border: 1px solid var(--dc-line);">
+    <div class="row g-3 align-items-center">
+      <!-- Search Input -->
+      <div class="col-lg-5 col-md-6">
+        <label for="scheduleSearchInput" class="dc-label">// SEARCH SCHEDULE</label>
+        <div class="position-relative">
+          <input type="search" id="scheduleSearchInput" class="dc-input" placeholder="Search by title, speaker, company, track, or topic..." autocomplete="off">
+        </div>
+      </div>
+
+      <!-- Track / Hall Filter -->
+      <div class="col-lg-3 col-md-3">
+        <label for="scheduleTrackFilter" class="dc-label">// TRACK / VENUE</label>
+        <div class="dc-select-wrap">
+          <select id="scheduleTrackFilter" class="dc-select" onchange="filterSchedule()">
+            <option value="all">All Tracks &amp; Venues</option>
+            <optgroup label="Tracks">
+              <option value="enterprise ai">Enterprise AI</option>
+              <option value="aiops">AIOps Track</option>
+              <option value="ai workshops">AI Workshops</option>
+              <option value="ai engineering">AI Engineering Track</option>
+              <option value="aipedagogy">AIpedagogy Track</option>
+              <option value="aisecops">AISecOps Track</option>
+            </optgroup>
+            <optgroup label="Halls / Venues">
+              <option value="hall:nalantha">🏛️ Nalantha</option>
+              <option value="hall:cambridge">🏛️ Cambridge</option>
+              <option value="hall:harvard">🏛️ Harvard</option>
+              <option value="hall:warren buffet">🏛️ Warren buffet</option>
+              <option value="hall:ganga">🏛️ Ganga</option>
+              <option value="hall:main hall">🏛️ Main Hall (Keynotes)</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <!-- Format Filter -->
+      <div class="col-lg-2 col-md-3">
+        <label for="scheduleTypeFilter" class="dc-label">// FORMAT</label>
+        <div class="dc-select-wrap">
+          <select id="scheduleTypeFilter" class="dc-select" onchange="filterSchedule()">
+            <option value="all">All Formats</option>
+            <option value="keynote">Keynotes</option>
+            <option value="talk">Tech Talks</option>
+            <option value="workshop">Workshops</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Reset Button -->
+      <div class="col-lg-2 col-md-12 d-flex align-items-end pt-lg-4">
+        <button type="button" class="btn btn-outline-minimal w-100" id="scheduleResetBtn" onclick="resetScheduleFilter()">
+          Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- Active stats & quick tags bar -->
+    <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top flex-wrap gap-2" style="border-color: var(--dc-line) !important;">
+      <span class="dc-mono small" id="scheduleFilterStats" style="color: var(--dc-text-dim);">
+        Showing full conference schedule
+      </span>
+      <div class="d-flex align-items-center gap-2">
+        <span class="dc-mono text-muted" style="font-size:0.75rem;">Quick:</span>
+        <button type="button" class="btn btn-xs dc-mono" style="font-size:0.72rem;padding:2px 8px;border:1px solid var(--dc-line);background:var(--dc-surface-2);color:var(--dc-text-dim);" onclick="setQuickTypeFilter('workshop')">Workshops</button>
+        <button type="button" class="btn btn-xs dc-mono" style="font-size:0.72rem;padding:2px 8px;border:1px solid var(--dc-line);background:var(--dc-surface-2);color:var(--dc-text-dim);" onclick="setQuickTypeFilter('keynote')">Keynotes</button>
+        <button type="button" class="btn btn-xs dc-mono" style="font-size:0.72rem;padding:2px 8px;border:1px solid var(--dc-line);background:var(--dc-surface-2);color:var(--dc-text-dim);" onclick="setQuickTypeFilter('talk')">Talks</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Tab Contents -->
   <div class="tab-content" id="scheduleTabContent">
     {{ range $index, $day := $sched.days }}
     <div class="tab-pane fade {{ if eq $index 0 }}show active{{ end }}" id="{{ $day.id }}" role="tabpanel">
 
+      <!-- Empty state when no search results match -->
+      <div class="schedule-no-results d-none text-center p-5 my-4" style="background:var(--dc-surface-2);border:1px dashed var(--dc-line);">
+        <div class="mb-2" style="font-size:2rem;">🔍</div>
+        <h4 class="h6 fw-bold mb-2" style="color:var(--dc-text);">No matching sessions found</h4>
+        <p class="small text-muted mb-3">Try adjusting your keywords or clearing the track and format filters.</p>
+        <button type="button" class="btn btn-sm btn-outline-minimal dc-mono" onclick="resetScheduleFilter()">Reset Filters</button>
+      </div>
+
       {{/* Keynotes */}}
       {{ with $day.keynotes }}
-      <div class="dc-panel mb-4">
+      <div class="dc-panel mb-4 dc-sched-keynotes-panel">
         <h2 class="dc-sched__bar">
           <span class="dc-panel__dots" aria-hidden="true"><i></i><i></i><i></i></span>
           <span>{{ .title }}</span>
@@ -40,7 +120,50 @@
         <div class="dc-panel__body">
           <div class="row g-3">
             {{ range .slots }}
-            <div class="col-md-4">
+            {{ $kTitle := .title }}
+            {{ $kSpeakers := slice }}
+            {{ $kCompanies := slice }}
+            {{ $kSummary := "" }}
+            {{ if .session }}
+              {{ $sPage := site.GetPage (printf "session/%s.md" .session) }}
+              {{ if not $sPage }}
+                {{ $sPage = site.GetPage (printf "session/%s" .session) }}
+              {{ end }}
+              {{ with $sPage }}
+                {{ $kTitle = .Title }}
+                {{ $kSummary = plainify (or .Description .Summary "") }}
+                {{ range .Params.speakers }}
+                  {{ $spPage := site.GetPage (printf "people/%s.md" .) }}
+                  {{ if not $spPage }}
+                    {{ $spPage = site.GetPage (printf "people/%s" .) }}
+                  {{ end }}
+                  {{ with $spPage }}
+                    {{ $kSpeakers = $kSpeakers | append .Title }}
+                    {{ with .Params.company }}
+                      {{ $kCompanies = $kCompanies | append . }}
+                    {{ else }}
+                      {{ with .Params.designation }}
+                        {{ $kCompanies = $kCompanies | append . }}
+                      {{ end }}
+                    {{ end }}
+                  {{ else }}
+                    {{ $kSpeakers = $kSpeakers | append . }}
+                  {{ end }}
+                {{ end }}
+              {{ end }}
+            {{ else }}
+              {{ with .speaker }}
+                {{ $kSpeakers = $kSpeakers | append . }}
+              {{ end }}
+            {{ end }}
+            <div class="col-md-4 schedule-item schedule-keynote-item"
+                 data-title="{{ lower $kTitle }}"
+                 data-speakers="{{ lower (delimit $kSpeakers " ") }}"
+                 data-company="{{ lower (delimit $kCompanies " ") }}"
+                 data-track="keynote"
+                 data-hall="main hall"
+                 data-type="keynote"
+                 data-summary="{{ lower $kSummary }}">
               <div class="p-3 h-100 d-flex flex-column" style="background:var(--dc-surface-2);border:1px solid var(--dc-line)">
                 <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-1">
                   <span class="dc-mono" style="color:var(--dc-cyan);font-size:.78rem;font-weight:600;">{{ .time }}</span>
@@ -285,9 +408,9 @@
     }
 
     // 2. Hide all views for this day and show target view
-    var viewsWrap = grid ? grid.nextElementSibling : null;
-    if (viewsWrap) {
-      var views = viewsWrap.querySelectorAll('.dc-timeline-view');
+    var activeDayPane = document.getElementById(dayId);
+    if (activeDayPane) {
+      var views = activeDayPane.querySelectorAll('.dc-timeline-view');
       views.forEach(function (v) {
         v.style.display = 'none';
         v.classList.remove('active');
@@ -298,6 +421,9 @@
         targetView.classList.add('active');
       }
     }
+
+    // 3. Update stats if filtering is active
+    updateFilterStats(dayId);
   }
 
   function toggleTimelineDesc(button) {
@@ -315,7 +441,194 @@
     }
   }
 
+  function getActiveDayPane() {
+    var activePane = document.querySelector('#scheduleTabContent .tab-pane.active');
+    if (!activePane) {
+      activePane = document.querySelector('#scheduleTabContent .tab-pane');
+    }
+    return activePane;
+  }
+
+  function setQuickTypeFilter(typeVal) {
+    var typeSelect = document.getElementById('scheduleTypeFilter');
+    if (typeSelect) {
+      typeSelect.value = typeVal;
+      filterSchedule();
+    }
+  }
+
+  function updateFilterStats(dayId) {
+    var activePane = dayId ? document.getElementById(dayId) : getActiveDayPane();
+    if (!activePane) return;
+
+    var searchInput = document.getElementById('scheduleSearchInput');
+    var trackFilter = document.getElementById('scheduleTrackFilter');
+    var typeFilter = document.getElementById('scheduleTypeFilter');
+
+    var query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    var track = trackFilter ? trackFilter.value.toLowerCase() : 'all';
+    var type = typeFilter ? typeFilter.value.toLowerCase() : 'all';
+    var isFiltering = (query !== '' || track !== 'all' || type !== 'all');
+
+    var stats = document.getElementById('scheduleFilterStats');
+    var emptyNotice = activePane.querySelector('.schedule-no-results');
+
+    if (!isFiltering) {
+      if (stats) stats.textContent = 'Showing full conference schedule';
+      if (emptyNotice) emptyNotice.classList.add('d-none');
+      return;
+    }
+
+    // Count visible keynote items + visible items in active timeline view
+    var visibleKeynotes = activePane.querySelectorAll('.dc-sched-keynotes-panel .schedule-keynote-item:not(.d-none)').length;
+    var activeView = activePane.querySelector('.dc-timeline-view.active');
+    var visibleTimelineItems = activeView ? activeView.querySelectorAll('.schedule-item:not(.d-none)').length : 0;
+    var totalVisible = visibleKeynotes + visibleTimelineItems;
+
+    if (stats) {
+      var dayLabel = (activePane.id === 'day1') ? 'Day 1' : 'Day 2';
+      stats.textContent = 'Found ' + totalVisible + ' matching session' + (totalVisible === 1 ? '' : 's') + ' in ' + dayLabel;
+    }
+
+    if (emptyNotice) {
+      if (totalVisible === 0) {
+        emptyNotice.classList.remove('d-none');
+      } else {
+        emptyNotice.classList.add('d-none');
+      }
+    }
+  }
+
+  function filterSchedule() {
+    var searchInput = document.getElementById('scheduleSearchInput');
+    var trackFilter = document.getElementById('scheduleTrackFilter');
+    var typeFilter = document.getElementById('scheduleTypeFilter');
+
+    var query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    var track = trackFilter ? trackFilter.value.toLowerCase() : 'all';
+    var type = typeFilter ? typeFilter.value.toLowerCase() : 'all';
+
+    var isFiltering = (query !== '' || track !== 'all' || type !== 'all');
+    var activePane = getActiveDayPane();
+    if (!activePane) return;
+    var dayId = activePane.id;
+
+    // View auto-switch:
+    if (track.startsWith('hall:')) {
+      var hallTarget = track.replace('hall:', '').trim();
+      var hallSlug = hallTarget.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      switchVenueTimeline(dayId, hallSlug);
+    } else if (isFiltering) {
+      var currentActiveBtn = activePane.querySelector('.dc-venue-card.active');
+      var currentHall = currentActiveBtn ? currentActiveBtn.getAttribute('data-hall') : '';
+      if (currentHall !== 'all') {
+        switchVenueTimeline(dayId, 'all');
+      }
+    }
+
+    // Filter all items in active day
+    var allItems = activePane.querySelectorAll('.schedule-item');
+    allItems.forEach(function (item) {
+      var title = (item.getAttribute('data-title') || '').toLowerCase();
+      var speakers = (item.getAttribute('data-speakers') || '').toLowerCase();
+      var company = (item.getAttribute('data-company') || '').toLowerCase();
+      var itemTrack = (item.getAttribute('data-track') || '').toLowerCase();
+      var hall = (item.getAttribute('data-hall') || '').toLowerCase();
+      var itemType = (item.getAttribute('data-type') || '').toLowerCase();
+      var summary = (item.getAttribute('data-summary') || '').toLowerCase();
+
+      var matchesQuery = !query ||
+        title.indexOf(query) !== -1 ||
+        speakers.indexOf(query) !== -1 ||
+        company.indexOf(query) !== -1 ||
+        summary.indexOf(query) !== -1 ||
+        itemTrack.indexOf(query) !== -1 ||
+        hall.indexOf(query) !== -1;
+
+      var matchesTrack = true;
+      if (track !== 'all') {
+        if (track.startsWith('hall:')) {
+          var targetHall = track.replace('hall:', '').trim();
+          matchesTrack = (hall.indexOf(targetHall) !== -1);
+        } else {
+          matchesTrack = (itemTrack.indexOf(track) !== -1) ||
+                         (hall.indexOf(track) !== -1) ||
+                         (title.indexOf(track) !== -1);
+        }
+      }
+
+      var matchesType = true;
+      if (type !== 'all') {
+        matchesType = (itemType === type) || (itemType.indexOf(type) !== -1);
+      }
+
+      if (matchesQuery && matchesTrack && matchesType) {
+        item.classList.remove('d-none');
+      } else {
+        item.classList.add('d-none');
+      }
+    });
+
+    // Handle keynote panel visibility
+    var keynotePanel = activePane.querySelector('.dc-sched-keynotes-panel');
+    if (keynotePanel) {
+      var visibleKeynotes = keynotePanel.querySelectorAll('.schedule-keynote-item:not(.d-none)');
+      if (visibleKeynotes.length === 0) {
+        keynotePanel.classList.add('d-none');
+      } else {
+        keynotePanel.classList.remove('d-none');
+      }
+    }
+
+    // Handle break blocks
+    var breaks = activePane.querySelectorAll('.dc-timeline-break');
+    breaks.forEach(function (b) {
+      if (isFiltering) {
+        b.classList.add('d-none');
+      } else {
+        b.classList.remove('d-none');
+      }
+    });
+
+    updateFilterStats(dayId);
+  }
+
+  function resetScheduleFilter() {
+    var searchInput = document.getElementById('scheduleSearchInput');
+    var trackFilter = document.getElementById('scheduleTrackFilter');
+    var typeFilter = document.getElementById('scheduleTypeFilter');
+
+    if (searchInput) searchInput.value = '';
+    if (trackFilter) trackFilter.value = 'all';
+    if (typeFilter) typeFilter.value = 'all';
+
+    var activePane = getActiveDayPane();
+    if (activePane) {
+      var firstHallBtn = activePane.querySelector('.dc-venue-card[data-hall]:not([data-hall="all"])');
+      if (firstHallBtn) {
+        var firstHallSlug = firstHallBtn.getAttribute('data-hall');
+        switchVenueTimeline(activePane.id, firstHallSlug);
+      }
+    }
+
+    filterSchedule();
+    if (searchInput) searchInput.focus();
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    var searchInput = document.getElementById('scheduleSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', filterSchedule);
+    }
+
+    // Re-filter when day tab changes
+    var dayTabs = document.querySelectorAll('button[data-bs-toggle="pill"]');
+    dayTabs.forEach(function (tabEl) {
+      tabEl.addEventListener('shown.bs.tab', function () {
+        filterSchedule();
+      });
+    });
+
     function activateTabFromHash() {
       var hash = window.location.hash;
       if (hash) {
