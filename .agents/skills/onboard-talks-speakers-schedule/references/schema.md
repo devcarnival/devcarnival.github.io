@@ -138,7 +138,7 @@ Sessions must strictly follow this 4-part structure:
 
 #### Day 2 · Tech Talks (Jan 9, 2027)
 - `Main Hall`: Morning Keynotes (9:00 AM – 10:00 AM)
-- `Nalantha`: Core Java & Systems Track
+- `Nalantha`: Enterprise Track
 - `Harvard`: AI Systems & Engineering Track
 - `Cambridge`: Cloud & DevOps Track
 - `Ganga`: Cyber Security Track
