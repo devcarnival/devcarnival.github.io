@@ -100,6 +100,11 @@
   <!-- Tab Contents -->
   <div class="tab-content" id="scheduleTabContent">
     {{ range $index, $day := $sched.days }}
+    {{ $hallTracks := dict }}
+    {{ range $day.halls }}
+      {{ $cleanTrack := .sub | default "" | strings.TrimPrefix "(" | strings.TrimSuffix ")" }}
+      {{ $hallTracks = merge $hallTracks (dict .name $cleanTrack) }}
+    {{ end }}
     <div class="tab-pane fade {{ if eq $index 0 }}show active{{ end }}" id="{{ $day.id }}" role="tabpanel">
 
       <!-- Empty state when no search results match -->
@@ -341,7 +346,8 @@
                     {{ $rowTime := .time }}
                     {{ range .cells }}
                       {{ if eq .hall $hallName }}
-                        {{ partial "schedule-timeline-item.html" (dict "slot" . "time" $rowTime "showHall" false) }}
+                        {{ $hTrack := index $hallTracks $hallName }}
+                        {{ partial "schedule-timeline-item.html" (dict "slot" . "time" $rowTime "showHall" false "hallTrack" $hTrack) }}
                       {{ end }}
                     {{ end }}
                   {{ end }}
@@ -377,7 +383,8 @@
                 {{ else }}
                   {{ $rowTime := .time }}
                   {{ range .cells }}
-                    {{ partial "schedule-timeline-item.html" (dict "slot" . "time" $rowTime "showHall" true) }}
+                    {{ $hTrack := index $hallTracks .hall }}
+                    {{ partial "schedule-timeline-item.html" (dict "slot" . "time" $rowTime "showHall" true "hallTrack" $hTrack) }}
                   {{ end }}
                 {{ end }}
               {{ end }}
@@ -457,61 +464,62 @@
     }
   }
 
-  function updateFilterStats(dayId) {
-    var activePane = dayId ? document.getElementById(dayId) : getActiveDayPane();
-    if (!activePane) return;
+  function normalizeSearchText(str) {
+    if (!str) return '';
+    return str.toLowerCase()
+      // Fix common typos and phonetics for pedagogy
+      .replace(/petagog[a-z]*/g, 'pedagogy')
+      .replace(/petogog[a-z]*/g, 'pedagogy')
+      .replace(/pedagog[a-z]*/g, 'pedagogy')
+      // Treat academia/academic as pedagogy track keywords
+      .replace(/academ[a-z]*/g, 'pedagogy')
+      // Normalize AI track prefixes
+      .replace(/ai[\s-_]*pedagogy/g, 'aipedagogy')
+      .replace(/ai[\s-_]*sec[\s-_]*ops/g, 'aisecops')
+      .replace(/ai[\s-_]*ops/g, 'aiops')
+      .replace(/ai[\s-_]*eng[a-z]*/g, 'aiengineering')
+      .replace(/enterprise[\s-_]*ai/g, 'enterpriseai');
+  }
 
-    var searchInput = document.getElementById('scheduleSearchInput');
-    var trackFilter = document.getElementById('scheduleTrackFilter');
-    var typeFilter = document.getElementById('scheduleTypeFilter');
-
-    var query = searchInput ? searchInput.value.trim().toLowerCase() : '';
-    var track = trackFilter ? trackFilter.value.toLowerCase() : 'all';
-    var type = typeFilter ? typeFilter.value.toLowerCase() : 'all';
-    var isFiltering = (query !== '' || track !== 'all' || type !== 'all');
-
-    var stats = document.getElementById('scheduleFilterStats');
-    var emptyNotice = activePane.querySelector('.schedule-no-results');
-
-    if (!isFiltering) {
-      if (stats) stats.textContent = 'Showing full conference schedule';
-      if (emptyNotice) emptyNotice.classList.add('d-none');
-      return;
-    }
-
-    // Count visible keynote items + visible items in active timeline view
-    var visibleKeynotes = activePane.querySelectorAll('.dc-sched-keynotes-panel .schedule-keynote-item:not(.d-none)').length;
-    var activeView = activePane.querySelector('.dc-timeline-view.active');
-    var visibleTimelineItems = activeView ? activeView.querySelectorAll('.schedule-item:not(.d-none)').length : 0;
-    var totalVisible = visibleKeynotes + visibleTimelineItems;
-
-    if (stats) {
-      var dayLabel = (activePane.id === 'day1') ? 'Day 1' : 'Day 2';
-      stats.textContent = 'Found ' + totalVisible + ' matching session' + (totalVisible === 1 ? '' : 's') + ' in ' + dayLabel;
-    }
-
-    if (emptyNotice) {
-      if (totalVisible === 0) {
-        emptyNotice.classList.remove('d-none');
+  function switchToDay(targetDayId) {
+    var tabBtn = document.querySelector('button[data-bs-target="#' + targetDayId + '"]');
+    if (tabBtn) {
+      if (window.bootstrap && window.bootstrap.Tab) {
+        var tabInstance = window.bootstrap.Tab.getOrCreateInstance(tabBtn);
+        tabInstance.show();
       } else {
-        emptyNotice.classList.add('d-none');
+        tabBtn.click();
       }
     }
   }
 
-  function filterSchedule() {
+  function filterSchedule(fromDaySwitch) {
     var searchInput = document.getElementById('scheduleSearchInput');
     var trackFilter = document.getElementById('scheduleTrackFilter');
     var typeFilter = document.getElementById('scheduleTypeFilter');
 
-    var query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    var rawQuery = searchInput ? searchInput.value.trim() : '';
+    var normQuery = normalizeSearchText(rawQuery);
     var track = trackFilter ? trackFilter.value.toLowerCase() : 'all';
+    var normTrack = normalizeSearchText(track);
     var type = typeFilter ? typeFilter.value.toLowerCase() : 'all';
 
-    var isFiltering = (query !== '' || track !== 'all' || type !== 'all');
+    var isFiltering = (rawQuery !== '' || track !== 'all' || type !== 'all');
     var activePane = getActiveDayPane();
     if (!activePane) return;
     var dayId = activePane.id;
+
+    // Day auto-switch for day-specific track filters:
+    // aipedagogy is Day 1 only!
+    if (!fromDaySwitch) {
+      if ((normTrack.indexOf('pedagogy') !== -1 || normQuery.indexOf('pedagogy') !== -1) && dayId === 'day2') {
+        switchToDay('day1');
+        return;
+      } else if ((normTrack.indexOf('aisecops') !== -1 || normQuery.indexOf('aisecops') !== -1) && dayId === 'day1') {
+        switchToDay('day2');
+        return;
+      }
+    }
 
     // View auto-switch:
     if (track.startsWith('hall:')) {
@@ -526,43 +534,52 @@
       }
     }
 
-    // Filter all items in active day
-    var allItems = activePane.querySelectorAll('.schedule-item');
-    allItems.forEach(function (item) {
-      var title = (item.getAttribute('data-title') || '').toLowerCase();
-      var speakers = (item.getAttribute('data-speakers') || '').toLowerCase();
-      var company = (item.getAttribute('data-company') || '').toLowerCase();
-      var itemTrack = (item.getAttribute('data-track') || '').toLowerCase();
-      var hall = (item.getAttribute('data-hall') || '').toLowerCase();
+    // Function to test if an element matches filters
+    function testItemMatch(item) {
+      var title = item.getAttribute('data-title') || '';
+      var speakers = item.getAttribute('data-speakers') || '';
+      var company = item.getAttribute('data-company') || '';
+      var itemTrack = item.getAttribute('data-track') || '';
+      var hall = item.getAttribute('data-hall') || '';
       var itemType = (item.getAttribute('data-type') || '').toLowerCase();
-      var summary = (item.getAttribute('data-summary') || '').toLowerCase();
+      var summary = item.getAttribute('data-summary') || '';
 
-      var matchesQuery = !query ||
-        title.indexOf(query) !== -1 ||
-        speakers.indexOf(query) !== -1 ||
-        company.indexOf(query) !== -1 ||
-        summary.indexOf(query) !== -1 ||
-        itemTrack.indexOf(query) !== -1 ||
-        hall.indexOf(query) !== -1;
+      var fullItemText = normalizeSearchText(title + ' ' + speakers + ' ' + company + ' ' + itemTrack + ' ' + hall + ' ' + summary);
+      var normItemTrack = normalizeSearchText(itemTrack);
+      var normHall = normalizeSearchText(hall);
 
+      // 1. Text Query Match
+      var matchesQuery = true;
+      if (normQuery) {
+        matchesQuery = (fullItemText.indexOf(normQuery) !== -1);
+      }
+
+      // 2. Track / Venue Match
       var matchesTrack = true;
       if (track !== 'all') {
         if (track.startsWith('hall:')) {
-          var targetHall = track.replace('hall:', '').trim();
-          matchesTrack = (hall.indexOf(targetHall) !== -1);
+          var targetHall = track.replace('hall:', '').trim().toLowerCase();
+          matchesTrack = (hall.toLowerCase().indexOf(targetHall) !== -1);
         } else {
-          matchesTrack = (itemTrack.indexOf(track) !== -1) ||
-                         (hall.indexOf(track) !== -1) ||
-                         (title.indexOf(track) !== -1);
+          matchesTrack = (normItemTrack.indexOf(normTrack) !== -1) ||
+                         (normHall.indexOf(normTrack) !== -1) ||
+                         (fullItemText.indexOf(normTrack) !== -1);
         }
       }
 
+      // 3. Type / Format Match
       var matchesType = true;
       if (type !== 'all') {
         matchesType = (itemType === type) || (itemType.indexOf(type) !== -1);
       }
 
-      if (matchesQuery && matchesTrack && matchesType) {
+      return matchesQuery && matchesTrack && matchesType;
+    }
+
+    // Filter all items in active day
+    var allItems = activePane.querySelectorAll('.schedule-item');
+    allItems.forEach(function (item) {
+      if (testItemMatch(item)) {
         item.classList.remove('d-none');
       } else {
         item.classList.add('d-none');
@@ -590,7 +607,70 @@
       }
     });
 
-    updateFilterStats(dayId);
+    // Check count for active day
+    var visibleKeynotesCount = activePane.querySelectorAll('.dc-sched-keynotes-panel .schedule-keynote-item:not(.d-none)').length;
+    var activeView = activePane.querySelector('.dc-timeline-view.active');
+    var visibleTimelineItemsCount = activeView ? activeView.querySelectorAll('.schedule-item:not(.d-none)').length : 0;
+    var totalVisible = visibleKeynotesCount + visibleTimelineItemsCount;
+
+    // Check other day count if active day has 0 matches
+    var otherDayId = (dayId === 'day1') ? 'day2' : 'day1';
+    var otherPane = document.getElementById(otherDayId);
+    var otherMatchesCount = 0;
+    if (otherPane && isFiltering) {
+      var otherItems = otherPane.querySelectorAll('.schedule-item');
+      otherItems.forEach(function (item) {
+        if (testItemMatch(item)) {
+          otherMatchesCount++;
+        }
+      });
+    }
+
+    // If active day has 0 matches but other day has matches and user just typed/filtered, auto-switch to other day!
+    if (!fromDaySwitch && isFiltering && totalVisible === 0 && otherMatchesCount > 0) {
+      switchToDay(otherDayId);
+      return;
+    }
+
+    // Update Stats Badge
+    var stats = document.getElementById('scheduleFilterStats');
+    var emptyNotice = activePane.querySelector('.schedule-no-results');
+
+    if (!isFiltering) {
+      if (stats) stats.textContent = 'Showing full conference schedule';
+      if (emptyNotice) emptyNotice.classList.add('d-none');
+      return;
+    }
+
+    var dayLabel = (dayId === 'day1') ? 'Day 1' : 'Day 2';
+    if (stats) {
+      var statText = 'Found ' + totalVisible + ' matching session' + (totalVisible === 1 ? '' : 's') + ' in ' + dayLabel;
+      if (otherMatchesCount > 0) {
+        var otherLabel = (otherDayId === 'day1') ? 'Day 1' : 'Day 2';
+        statText += ' (' + otherMatchesCount + ' in ' + otherLabel + ')';
+      }
+      stats.textContent = statText;
+    }
+
+    if (emptyNotice) {
+      if (totalVisible === 0) {
+        var emptyHtml = '<div class="mb-2" style="font-size:2rem;">🔍</div>';
+        if (otherMatchesCount > 0) {
+          var otherLabel = (otherDayId === 'day1') ? 'Day 1' : 'Day 2';
+          emptyHtml += '<h4 class="h6 fw-bold mb-2" style="color:var(--dc-text);">No matching sessions found in ' + dayLabel + '</h4>';
+          emptyHtml += '<p class="small text-muted mb-3">Found <strong>' + otherMatchesCount + '</strong> matching session' + (otherMatchesCount === 1 ? '' : 's') + ' in ' + otherLabel + '.</p>';
+          emptyHtml += '<button type="button" class="btn btn-sm btn-outline-minimal dc-mono me-2" onclick="switchToDay(\'' + otherDayId + '\')">Switch to ' + otherLabel + ' &rarr;</button>';
+        } else {
+          emptyHtml += '<h4 class="h6 fw-bold mb-2" style="color:var(--dc-text);">No matching sessions found</h4>';
+          emptyHtml += '<p class="small text-muted mb-3">Try adjusting your keywords or clearing the track and format filters.</p>';
+        }
+        emptyHtml += '<button type="button" class="btn btn-sm btn-outline-minimal dc-mono" onclick="resetScheduleFilter()">Reset Filters</button>';
+        emptyNotice.innerHTML = emptyHtml;
+        emptyNotice.classList.remove('d-none');
+      } else {
+        emptyNotice.classList.add('d-none');
+      }
+    }
   }
 
   function resetScheduleFilter() {
@@ -618,14 +698,16 @@
   document.addEventListener('DOMContentLoaded', function () {
     var searchInput = document.getElementById('scheduleSearchInput');
     if (searchInput) {
-      searchInput.addEventListener('input', filterSchedule);
+      searchInput.addEventListener('input', function() {
+        filterSchedule(false);
+      });
     }
 
     // Re-filter when day tab changes
     var dayTabs = document.querySelectorAll('button[data-bs-toggle="pill"]');
     dayTabs.forEach(function (tabEl) {
       tabEl.addEventListener('shown.bs.tab', function () {
-        filterSchedule();
+        filterSchedule(true);
       });
     });
 

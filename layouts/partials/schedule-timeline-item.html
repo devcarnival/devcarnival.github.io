@@ -1,8 +1,9 @@
 {{/* Schedule Timeline Item Partial */}}
-{{/* Expects context dict: (dict "slot" $slot "time" $time "showHall" $showHall) */}}
+{{/* Expects context dict: (dict "slot" $slot "time" $time "showHall" $showHall "hallTrack" $hallTrack) */}}
 {{ $slot := .slot }}
 {{ $time := .time }}
 {{ $showHall := .showHall }}
+{{ $hallTrack := .hallTrack | default "" }}
 
 {{ if $slot }}
   {{ if $slot.session }}
@@ -47,11 +48,30 @@
       {{ with $slot.speaker }}{{ $sSpeakers = $sSpeakers | append . }}{{ end }}
     {{ end }}
 
+    {{ $combinedTrack := $sTrack }}
+    {{ if $hallTrack }}
+      {{ $combinedTrack = printf "%s %s" $combinedTrack $hallTrack }}
+      {{ $lowerHt := lower $hallTrack }}
+      {{ if or (strings.Contains $lowerHt "pedagogy") (strings.Contains $lowerHt "aipedagogy") }}
+        {{ $combinedTrack = printf "%s aipedagogy aipetagogy pedagogy petagogy academia academic" $combinedTrack }}
+      {{ else if strings.Contains $lowerHt "aisecops" }}
+        {{ $combinedTrack = printf "%s aisecops secops cybersecurity cyber security" $combinedTrack }}
+      {{ else if strings.Contains $lowerHt "aiops" }}
+        {{ $combinedTrack = printf "%s aiops sre devops infrastructure" $combinedTrack }}
+      {{ else if strings.Contains $lowerHt "enterprise ai" }}
+        {{ $combinedTrack = printf "%s enterprise ai" $combinedTrack }}
+      {{ else if strings.Contains $lowerHt "ai engineering" }}
+        {{ $combinedTrack = printf "%s ai engineering" $combinedTrack }}
+      {{ else if strings.Contains $lowerHt "workshop" }}
+        {{ $combinedTrack = printf "%s workshop hands-on" $combinedTrack }}
+      {{ end }}
+    {{ end }}
+
     <div class="dc-timeline-node schedule-item"
          data-title="{{ lower $sTitle }}"
          data-speakers="{{ lower (delimit $sSpeakers " ") }}"
          data-company="{{ lower (delimit $sCompanies " ") }}"
-         data-track="{{ lower $sTrack }}"
+         data-track="{{ lower $combinedTrack }}"
          data-hall="{{ lower (or $slot.hall "") }}"
          data-type="{{ lower $sType }}"
          data-summary="{{ lower $sSummary }}">
@@ -70,9 +90,14 @@
             {{ end }}
           </div>
           <div class="d-flex align-items-center flex-wrap gap-1">
+            {{ with $hallTrack }}
+              <span class="dc-timeline-badge dc-timeline-badge--track dc-mono">{{ . }}</span>
+            {{ end }}
             {{ with $sPage }}
               {{ with .Params.track }}
-                <span class="dc-timeline-badge dc-timeline-badge--track dc-mono">{{ . }}</span>
+                {{ if ne . $hallTrack }}
+                  <span class="dc-timeline-badge dc-timeline-badge--topic dc-mono" style="opacity:0.85;">{{ . }}</span>
+                {{ end }}
               {{ end }}
               {{ with .Params.session_type }}
                 <span class="dc-timeline-badge dc-timeline-badge--type dc-mono">{{ . }}</span>
@@ -176,11 +201,29 @@
     {{/* Workshop or placeholder cell without dedicated session page */}}
     {{ $isWs := or (strings.Contains (lower (or $slot.range "")) "workshop") (strings.Contains (lower (or $slot.meta "")) "workshop") (strings.Contains (lower (or $slot.title "")) "workshop") }}
     {{ $placeholderType := cond $isWs "workshop" "talk" }}
+    {{ $combinedPlaceholderTrack := or $slot.meta "" }}
+    {{ if $hallTrack }}
+      {{ $combinedPlaceholderTrack = printf "%s %s" $combinedPlaceholderTrack $hallTrack }}
+      {{ $lowerHt := lower $hallTrack }}
+      {{ if or (strings.Contains $lowerHt "pedagogy") (strings.Contains $lowerHt "aipedagogy") }}
+        {{ $combinedPlaceholderTrack = printf "%s aipedagogy aipetagogy pedagogy petagogy academia academic" $combinedPlaceholderTrack }}
+      {{ else if strings.Contains $lowerHt "aisecops" }}
+        {{ $combinedPlaceholderTrack = printf "%s aisecops secops cybersecurity cyber security" $combinedPlaceholderTrack }}
+      {{ else if strings.Contains $lowerHt "aiops" }}
+        {{ $combinedPlaceholderTrack = printf "%s aiops sre devops infrastructure" $combinedPlaceholderTrack }}
+      {{ else if strings.Contains $lowerHt "enterprise ai" }}
+        {{ $combinedPlaceholderTrack = printf "%s enterprise ai" $combinedPlaceholderTrack }}
+      {{ else if strings.Contains $lowerHt "ai engineering" }}
+        {{ $combinedPlaceholderTrack = printf "%s ai engineering" $combinedPlaceholderTrack }}
+      {{ else if strings.Contains $lowerHt "workshop" }}
+        {{ $combinedPlaceholderTrack = printf "%s workshop hands-on" $combinedPlaceholderTrack }}
+      {{ end }}
+    {{ end }}
     <div class="dc-timeline-node schedule-item"
          data-title="{{ lower (or $slot.title "workshop") }}"
          data-speakers="{{ lower (or $slot.speaker "") }}"
          data-company=""
-         data-track="{{ lower (or $slot.meta "") }}"
+         data-track="{{ lower $combinedPlaceholderTrack }}"
          data-hall="{{ lower (or $slot.hall "") }}"
          data-type="{{ $placeholderType }}"
          data-summary="{{ lower (or $slot.meta "") }}">
@@ -197,9 +240,16 @@
               </span>
             {{ end }}
           </div>
-          {{ with $slot.meta }}
-            <span class="dc-timeline-badge dc-timeline-badge--track dc-mono">{{ . }}</span>
-          {{ end }}
+          <div class="d-flex align-items-center flex-wrap gap-1">
+            {{ with $hallTrack }}
+              <span class="dc-timeline-badge dc-timeline-badge--track dc-mono">{{ . }}</span>
+            {{ end }}
+            {{ with $slot.meta }}
+              {{ if ne . $hallTrack }}
+                <span class="dc-timeline-badge dc-timeline-badge--type dc-mono">{{ . }}</span>
+              {{ end }}
+            {{ end }}
+          </div>
         </div>
         <div class="dc-timeline-card__body">
           <h3 class="dc-timeline-title text-reset">{{ $slot.title | default "Workshop" }}</h3>
