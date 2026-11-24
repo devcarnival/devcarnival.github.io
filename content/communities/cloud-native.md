@@ -1,7 +1,7 @@
 ---
 title: "Cloud Native Chennai"
 logo: "images/communities/cnc-logo.png"
-years: ["2025", "2027"]
+years: ["2027"]
 weight: 2
 socials:
   website: "https://community.cncf.io/cloud-native-chennai/"

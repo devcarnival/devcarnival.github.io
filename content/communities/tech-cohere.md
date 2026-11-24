@@ -1,7 +1,7 @@
 ---
 title: "TechCohere"
 logo: "images/communities/tech-cohere.jpeg"
-years: ["2025", "2027"]
+years: ["2027"]
 weight: 18
 socials:
   linkedin: "https://www.linkedin.com/company/tech-cohere/about/"

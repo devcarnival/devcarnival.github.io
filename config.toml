@@ -58,7 +58,6 @@ buildFuture = true
     weight = 5
 
 [taxonomies]
-  year = "years"
   tag = "tags"
   category = "categories"
   business_domain = "business_domains"
