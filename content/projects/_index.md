@@ -27,10 +27,6 @@ Get guidance and mentorship from industry professionals to help refine your idea
 **🎪 Showcase Your Project for 2 Days**  
 Get your own stall at DevCarnival to demonstrate your project, interact with attendees, share your work, and receive feedback throughout the **two-day event**.
 
-### Who Can Participate?
-
-Teams with a maximum of two members who have a project to demonstrate and a passion for technology and innovation.
-
 ### Focus Technical Skills & Domains
 
 We welcome developer tools, functional prototypes, and innovative projects across key technical skills:
@@ -40,9 +36,5 @@ We welcome developer tools, functional prototypes, and innovative projects acros
 - **Web & Mobile Systems:** High-performance web applications, cross-platform mobile frameworks, and full-stack solutions.
 - **IoT & Embedded Systems:** Smart hardware prototypes, edge compute devices, and sensor networks.
 - **Cybersecurity & Trust:** Application security, threat defense, identity management, and cryptography.
-
-### Bring Your Ideas to the Pavilion
-
-Turn your work into an experience others can explore. Connect with developers, learn from professionals, and let the community see what you've built.
 
 **Explore all accepted projects, live demonstrations, and interactive prototypes at DevCarnival 2027!**
