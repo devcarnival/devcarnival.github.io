@@ -45,4 +45,4 @@ We welcome developer tools, functional prototypes, and innovative projects acros
 
 Turn your work into an experience others can explore. Connect with developers, learn from professionals, and let the community see what you've built.
 
-**Have something to showcase? Join the Tech Pavilion at DevCarnival 2027!**
+**Explore all accepted projects, live demonstrations, and interactive prototypes at DevCarnival 2027!**
