@@ -3,7 +3,7 @@ title: "Sathishkumar Madhanagopal"
 designation: "Director - AI/ML"
 company: "Tiger Analytics"
 socials:
-  github: "sathishmadhan"
+  github: "sathishmadhana"
   linkedin: "https://www.linkedin.com/in/sathishmadhan/"
 ---
 
